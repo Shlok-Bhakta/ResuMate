@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [svelte()],
 
   site: 'https://shlok-bhakta.github.io',
-  base: 'ResuMate',
+  base: '/ResuMate',
   vite: {
     plugins: [tailwindcss()]
   }
