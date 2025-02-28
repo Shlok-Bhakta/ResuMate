@@ -11,7 +11,20 @@ export default defineConfig({
 
   site: 'https://shlok-bhakta.github.io',
   base: '/ResuMate',
+  outDir: './docs',
+  build: {
+    assets: 'assets'
+  },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name].[ext]',
+          chunkFileNames: 'assets/[name].[hash].js',
+          entryFileNames: 'assets/[name].[hash].js'
+        }
+      }
+    }
   }
 });

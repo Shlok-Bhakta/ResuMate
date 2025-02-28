@@ -6,8 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "deploy": "rm -rf docs && astro build && mv ./dist ./docs"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/svelte": "^7.0.4",
