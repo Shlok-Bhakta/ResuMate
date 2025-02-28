@@ -1,0 +1,157 @@
+/* Resume styling - One-page black and white design */
+body {
+  font-family: 'Times New Roman', sans-serif;
+  box-sizing: border-box;
+  width: 8.5in;
+  margin: 0;
+  padding: 0 0.2in;
+  line-height: 1.1;
+  font-size: 10pt;
+  color: black;
+  background: white;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+
+
+/* Print-specific settings */
+@media print {
+  body {
+    padding: 0in;
+    padding-left: 0.2in;
+    padding-right: 0.2in;
+    margin: 0;
+    width: 8.5in;
+    height: 11in;
+  }
+  
+  @page {
+    size: letter;
+    margin: 0;
+  }
+}
+
+/* Name at the top */
+h1 {
+  text-align: center;
+  font-size: 24pt;
+  margin: 0.1in 0 0 0;
+  letter-spacing: 1px;
+}
+
+img {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 16px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+h4 {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 0px;
+}
+
+/* Section headers (Education, Skills, etc.) */
+h2 {
+  font-size: 11pt;
+  border-bottom: 1pt solid black;
+  margin-top: 0.04in;
+  margin-bottom: 0.03in;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 100%;
+}
+
+/* Subsection headers */
+h3 {
+  font-size: 10pt;
+  margin-bottom: 0.01in;
+  margin-top: 0.03in;
+  font-weight: bold;
+}
+
+/* Tables for alignment (education, projects, etc.) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+table td {
+    padding: 0;
+    vertical-align: top;
+}
+
+table td:first-child {
+  text-align: left;
+  text-decoration: underline;
+}
+
+table td:last-child {
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+
+
+
+/* List styling */
+ul {
+  margin-top: 0;
+  margin-bottom: 0.02in;
+  padding-left: 0.15in;
+}
+
+li {
+  margin-bottom: 0.01in;
+  list-style-type: disc;
+  font-size: 9pt;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding-right: 0.2in;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+
+
+/* Horizontal rule for section separation */
+hr {
+  border: none;
+  border-top: 1pt solid #ddd;
+  margin: 0.1in 0;
+}
+
+
+/* Space optimization */
+p {
+  margin: 0 0;
+}
+
+
+/* Ensure content fits on one page */
+@media screen {
+  .page-break-detector {
+    position: absolute;
+    top: 11in;
+    width: 100%;
+    height: 1px;
+    background-color: red;
+    z-index: 1000;
+  }
+}

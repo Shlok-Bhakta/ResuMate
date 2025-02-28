@@ -1,0 +1,7 @@
+Please enter a company name
+Project saved: TestCompany
+Loaded resume from: /home/shlok/Documents/Programming/Sandbox/ResGen/resume.md
+Generating PDF...
+New highest score: 7.28%
+Resume ATS score: 7.28%
+
