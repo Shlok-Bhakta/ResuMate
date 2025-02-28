@@ -9,6 +9,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [svelte()],
 
+  site: 'https://shlok-bhakta.github.io',
+  base: 'ResuMate',
   vite: {
     plugins: [tailwindcss()]
   }
