@@ -1,0 +1,106 @@
+@import "../../styles/global.css";
+/* @font-face {
+	font-family: "CaskaydiaCoveNF";
+	src: url("/ResuMate/CaskCov.woff2");
+} */
+
+
+/* Set your monospace font (Required to have the editor working correctly!) */
+.carta-font-code {
+	font-family: "CaskaydiaCoveNF", monospace;
+	font-size: 1.1rem;
+}
+
+.carta-theme__default.carta-editor {
+	@apply border-1 border-text rounded-[1px] bg-mantle w-full h-full;
+}
+
+.carta-theme__default .carta-editor ::selection {
+	@apply bg-base;
+}
+
+.carta-theme__default .carta-toolbar {
+	@apply border-b-2 border-peach;
+}
+
+.carta-theme__default .carta-wrapper {
+	@apply px-4
+}
+
+.carta-theme__default .carta-container > * {
+	@apply my-4
+}
+
+/* Text settings */
+.carta-theme__default .carta-input {
+	@apply caret-text;
+}
+
+.carta-theme__default .carta-input ::placeholder {
+	@apply text-text;
+	/* color: var(--text-color); */
+}
+
+/* Toolbar */
+.carta-theme__default .carta-toolbar {
+	@apply px-3
+}
+
+
+/* Markdown input and renderer */
+.carta-theme__default .carta-input,
+.carta-theme__default .carta-renderer {
+	@apply h-[600px] overflow-y-scroll text-text
+}
+
+/* Icons */
+.carta-theme__default .carta-icon,
+.carta-theme__default .carta-icon-full {
+	@apply border-0 
+}
+
+.carta-theme__default .carta-icon > svg > path {
+	@apply fill-text
+}
+
+.carta-theme__default .carta-icon-full {
+	@apply p-4
+}
+
+.carta-theme__default .carta-icon-full span {
+	@apply ml-2
+}
+
+.carta-theme__default .carta-icon:hover,
+.carta-theme__default .carta-icon-full:hover {
+	@apply bg-base 
+}
+
+.carta-input > pre {
+	@apply bg-surface0
+}
+
+.carta-theme__default .carta-icons-menu {
+	@apply p-2 border-2 border-lavender rounded-md min-w-[180px]
+}
+
+.carta-theme__default .carta-icons-menu .carta-icon-full {
+	@apply mt-1
+}
+
+.carta-theme__default .carta-icons-menu .carta-icon-full:first-child {
+	@apply mt-0
+}
+
+/* Buttons */
+.carta-theme__default .carta-toolbar-left button {
+	@apply hidden
+}
+
+.carta-theme__default .carta-toolbar-left button:last-child {
+	@apply hidden
+}
+
+.carta-theme__default .carta-toolbar-left button.carta-active {
+	@apply hidden
+}
