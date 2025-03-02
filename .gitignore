@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# so github doesnt have to tank 2gb of llm data
+.csv
