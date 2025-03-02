@@ -24,4 +24,4 @@ pnpm-debug.log*
 .idea/
 
 # so github doesnt have to tank 2gb of llm data
-.csv
+*.csv
