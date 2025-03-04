@@ -1,7 +1,8 @@
 <script lang="ts">
     import Sidebar from "./nav/sidebar.svelte";
-    import ResumeEditor from "./resume/Resumeeditor.svelte";
+    import ResumeEditor from "./resume/resumeeditor.svelte";
     import Pdfpreview from "./resume/pdfpreview.svelte";
+    import Displayscores from "./resume/displayscores.svelte";
     import { jobUrl, jobDescription, keywords, navstate } from "$utils";
 
     if ($keywords.length === 0) {
@@ -85,6 +86,9 @@
                         <button onclick={fetchContent}>fetch</button>
                         <textarea class="w-full h-full" bind:value={$jobDescription}></textarea>
 
+                    </div>
+                    <div>
+                        <Displayscores />
                     </div>
 
                 <!-- <div class="w-full h-full">
