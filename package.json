@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/svelte": "^7.0.4",
+    "@macfja/svelte-persistent-store": "^2.4.2",
     "@tailwindcss/vite": "^4.0.9",
     "astro": "^5.3.1",
     "carta-md": "^4.7.0",
