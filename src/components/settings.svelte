@@ -23,6 +23,7 @@
         enableCustomCSS,
         resumeTemplate,
         editorShortcuts,
+        createHeader,
     } from "$utils";
 
     async function fetchResTemplate() {
@@ -56,6 +57,24 @@
             
         };
     });
+    $effect(() => {
+        // rebuild the header when any values change
+        $name;
+        $email;
+        $enableEmail
+        $phone;
+        $enablePhone;
+        $website;
+        $enableWebsite;
+        $linkedin;
+        $enableLinkedin;
+        $github;
+        $enableGithub;
+        $address;
+        $enableAddress;
+        $showUSCitizenship;
+        createHeader();
+    })
 </script>
 
 <div class="w-full h-full absolute top-0 left-0 grid grid-cols-1">

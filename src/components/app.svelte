@@ -3,7 +3,7 @@
     import ResumeEditor from "./resume/resumeeditor.svelte";
     import Pdfpreview from "./resume/pdfpreview.svelte";
     import Displayscores from "./resume/displayscores.svelte";
-    import { jobUrl, jobDescription, keywords, navstate, saveCurrentProject, jobName } from "$utils";
+    import { jobUrl, jobDescription, keywords, navstate, saveCurrentProject, jobName, header, createHeader, resumeHtml } from "$utils";
     import Settings from "./settings.svelte";
 
     if ($keywords.length === 0) {
@@ -26,6 +26,11 @@
                 console.log(err);
             });
     }
+
+    if ($header == ""){
+        createHeader();
+    }
+
 
 
     function fetchContent() {
@@ -99,11 +104,11 @@
                 <Displayscores />
             </div>
             
-            <!-- <div class="w-full h-full">
-                {#await content.html then content}
+            <div class="w-full h-full">
+                {#await $resumeHtml then content}
                 <Pdfpreview html={content}/>
                 {/await}
-                </div> -->
+            </div>
         </div>
         {#if $navstate === "None"}
         <div>

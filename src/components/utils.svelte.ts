@@ -1,6 +1,6 @@
 import { persist, createIndexedDBStorage } from "@macfja/svelte-persistent-store"
 import { writable } from "svelte/store"
-import Dexie from "dexie";
+import Dexie, { add } from "dexie";
 import { get } from 'svelte/store';
 import type { InputEnhancer, Plugin } from "carta-md";
 
@@ -24,7 +24,8 @@ export let keywords = persist<string[]>(writable<any>([]), createIndexedDBStorag
 export let saveCount = persist<number>(writable<any>(0), createIndexedDBStorage(), "saveCount");
 export let projectId = persist<number>(writable<any>(-1), createIndexedDBStorage(), "projectId");
 export let availableProjects = persist<any>(writable<any>([]), createIndexedDBStorage(), "availableProjects");
-
+// Create Header for the resume (with name and stuff)
+export const header = persist<any>(writable<any>(""), createIndexedDBStorage(), "header");
 
 // Settings
 export let resumeTemplate = persist<any>(writable<any>("# Go to settings and fetch my resume template from the settings! Also Update your info!"), createIndexedDBStorage(), "resumeTemplate");
@@ -38,13 +39,13 @@ export let address = persist<any>(writable<any>("Moon Street 123"), createIndexe
 export let cssTheme = persist<any>(writable<any>("/ResuMate/style.css"), createIndexedDBStorage(), "cssTheme");
 
 // enable flags incase they want to enable/disable certain things
-export let enableName = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableName");
 export let enableEmail = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableEmail");
 export let enablePhone = persist<any>(writable<any>(true), createIndexedDBStorage(), "enablePhone");
 export let enableWebsite = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableWebsite");
 export let enableLinkedin = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableLinkedin");
 export let enableGithub = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableGithub");
 export let enableAddress = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableAddress");
+export let enableAddressLink = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableAddressLink");
 export let showUSCitizenship = persist<any>(writable<any>(true), createIndexedDBStorage(), "showUSCitizenship");
 
 // gonna be used if they want to add something more custom instead of the name and phone number stuff and default css
@@ -53,6 +54,67 @@ export let enableCustomHeader = persist<any>(writable<any>(false), createIndexed
 export let customCSS = persist<any>(writable<any>(""), createIndexedDBStorage(), "customCSS");
 export let enableCustomCSS = persist<any>(writable<any>(false), createIndexedDBStorage(), "enableCustomCSS");
 
+
+export function createHeader(){
+    let headerString = "";
+    // First Line is Name in Big Text
+    headerString += "# " + get(name) + "\n";
+    // check if any of the flags are enabled
+    if(get(enableEmail) || get(enablePhone) || get(enableWebsite) || get(enableLinkedin) || get(enableGithub) || get(enableAddress) || get(showUSCitizenship)){
+        headerString += "\n";
+        headerString += "#### "
+    }
+    // Next is Phone Number
+    if(get(enablePhone)){
+        // format ![Phone](https://api.iconify.design/material-symbols:call-sharp.svg) [+1 (254)-251-9749](tel:12542519749)
+        headerString += "![Phone](https://shlok-bhakta.github.io/ResuMate/icons/phone) " + get(phone) +  " |";
+    }
+    // Next is Email 
+    if(get(enableEmail)){
+        // format ![Mail](https://api.iconify.design/material-symbols:mail.svg) [shlokbhakta1@gmail.com](mailto:shlokbhakta1@gmail.com)
+        headerString += "![Mail](https://shlok-bhakta.github.io/ResuMate/icons/mail) [" + get(email) + "](mailto:" + get(email) + ") |";
+    }
+    // Next is Address
+    if(get(enableWebsite)){
+        // ![Globe](https://api.iconify.design/material-symbols:globe.svg) [Cisco TX](https://www.google.com/maps/place/Cisco,+TX+76437/@32.3962813,-99.0238931,28527m/data=!3m2!1e3!4b1!4m6!3m5!1s0x865138702bc7e13f:0xd45a9eba224cde84!8m2!3d32.3881861!4d-98.9792336!16zL20vMDEwMGhi?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D)
+        if(get(enableAddressLink)){
+            headerString += "![Globe](https://shlok-bhakta.github.io/ResuMate/icons/globe) [" + get(address) + "](https://www.google.com/maps/place/" + get(address) + ") |";
+        }else{
+            headerString += "![Globe](https://shlok-bhakta.github.io/ResuMate/icons/globe) " + get(address) + " |";
+        }
+    }
+    // Next is Website
+    if(get(enableWebsite)){
+        // ![Internet](https://api.iconify.design/pepicons-pop:internet.svg) [shlokbhakta.dev](https://shlokbhakta.dev/)
+        headerString += "![Website](https://shlok-bhakta.github.io/ResuMate/icons/internet) [" + get(website) + "](" + get(website) + ") |";
+    }
+    // Next is Github
+    if(get(enableGithub)){
+        // ![Github](https://api.iconify.design/mdi:github.svg) [gh.shlokbhakta.dev](https://github.com/Shlok-Bhakta)
+        headerString += "![Github](https://shlok-bhakta.github.io/ResuMate/icons/github) [" + get(github) + "](" + get(github) + ") |";
+    }
+    // Next is Linkedin
+    if(get(enableLinkedin)){
+        // ![Linkedin](https://api.iconify.design/mdi:linkedin.svg) [linkedin.com/in/shlokbhakta](https://linkedin.com/in/shlokbhakta)
+        headerString += "![Linkedin](https://shlok-bhakta.github.io/ResuMate/icons/linkedin) [" + get(linkedin) + "](" + get(linkedin) + ") |";
+    }
+    // Next is Address
+    if(get(showUSCitizenship)){
+        // ![Passport](https://api.iconify.design/mdi:passport.svg) [US CITIZEN](https://www.linkedin.com/in/shlokbhakta/)
+        headerString += "![Passport](https://shlok-bhakta.github.io/ResuMate/icons/passport) [US CITIZEN](https://www.linkedin.com/in/shlokbhakta/) |";
+    }
+
+    // Remove the last | from the headerString
+    headerString = headerString.slice(0, -1);
+
+    // add a couple newline at the end so the content doesnt merge into the resume
+    headerString += "\n\n";
+
+
+    // Update the store so that the whole site can use it
+    header.update(() => {return headerString});
+    console.log(headerString);
+}
 
 
 function getKeywords(text: string, keywords: string[]): string[] {
@@ -228,6 +290,9 @@ export const editorShortcuts: Plugin = {
     ]
 };
 
+
+
+
 interface Project {
     id?: number;
     name: any;
@@ -351,3 +416,5 @@ export function clearProject() {
     // availableProjects.update(() => {return []}); // This one should not be cleared so the people can still see what projects exist
     console.log("cleared");
 }
+
+
