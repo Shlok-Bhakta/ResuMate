@@ -14,6 +14,7 @@
     "@tailwindcss/vite": "^4.0.9",
     "astro": "^5.3.1",
     "carta-md": "^4.7.0",
+    "dexie": "^4.0.11",
     "jspdf": "^3.0.0",
     "lucide-svelte": "^0.476.0",
     "mode-watcher": "^0.5.1",

@@ -21,7 +21,7 @@
     rescore
 </button>
 
-{#if $combinedScore && $jobKeywords && $resumeKeywords && $overlappingKeywords}
+{#if $jobKeywords}
     <div class="w-full h-full grid grid-flow-row">
         <div class="">
             score: {$combinedScore}

@@ -1,3 +1,7 @@
+# Shlok Bhakta
+
+#### ![Phone](https://api.iconify.design/material-symbols:call-sharp.svg) [+1 (254)-251-9749](tel:12542519749) | ![Mail](https://api.iconify.design/material-symbols:mail.svg) [shlokbhakta1@gmail.com](mailto:shlokbhakta1@gmail.com) | ![Globe](https://api.iconify.design/material-symbols:globe.svg) [Cisco TX](https://www.google.com/maps/place/Cisco,+TX+76437/@32.3962813,-99.0238931,28527m/data=!3m2!1e3!4b1!4m6!3m5!1s0x865138702bc7e13f:0xd45a9eba224cde84!8m2!3d32.3881861!4d-98.9792336!16zL20vMDEwMGhi?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D) | ![Github](https://api.iconify.design/mdi:github.svg) [gh.shlokbhakta.dev](https://github.com/Shlok-Bhakta) | ![Internet](https://api.iconify.design/pepicons-pop:internet.svg) [shlokbhakta.dev](https://shlokbhakta.dev/) | ![Passport](https://api.iconify.design/mdi:passport.svg) [US CITIZEN](https://www.linkedin.com/in/shlokbhakta/)
+
 ## Education
 
 | **Texas A&M University** - College Station, TX | 05/2026 |

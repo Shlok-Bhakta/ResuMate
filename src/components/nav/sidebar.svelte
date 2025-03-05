@@ -1,30 +1,46 @@
 <script>
     import Pill from "$ui/pill.svelte";
     import Scrollbox from "$ui/scrollbox.svelte";
-    let i = $state("1");
-    function increment() {
-        i += "1";
-    }
+    import { availableProjects, getProjectNames, loadProject, clearProject, navstate } from "$utils";
+    import { get } from "svelte/store";
+
+    $effect(() => {
+        getProjectNames();
+    });
+
+    $inspect($navstate);
 </script>
 
 <div class="h-svh w-60 col-span-1 bg-crust grid grid-cols-1 grid-rows-[auto_1fr_auto]">
 <!-- A button to make a new project -->
-<Pill text="New Project" onclick={increment}/>
+<Pill text="New Project" onclick={() => {clearProject()}}/>
 <!-- A list of recent projects -->
 
-<Scrollbox >
-    {#each Array(100) as _, i}
-        <Pill text="Project a{i}"/>
-    {/each}
-</Scrollbox>
+{#await $availableProjects}
+    Loading...
+{:then projects} 
+    {#if $availableProjects.length == 0}
+        <div>
+            Get started by creating a new project!
+        </div>
+    {:else}
+    <Scrollbox>
+        {#each $availableProjects as i}
+            <!-- <div>{i}</div> -->
+            <Pill text={i}/>
+        {/each}
+    </Scrollbox>
+    {/if}
+    
+{/await}
 
 <!-- buttons at bottom -->
 <div class="grid grid-cols-3 place-self-end">
     <!-- A clear button -->
-    <Pill text="Clear"/>
+    <Pill text="Refresh" onclick={() => {getProjectNames()}}/>
     <!-- A download button -->
     <Pill text="Downlaod"/>
     <!-- A button to open the settings -->
-    <Pill text="Settings"/>
+    <Pill text="Settings" onclick={() => {$navstate = ($navstate == "None") ? "Settings" : "None"}}/>
 </div>
 </div>

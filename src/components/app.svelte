@@ -3,7 +3,8 @@
     import ResumeEditor from "./resume/resumeeditor.svelte";
     import Pdfpreview from "./resume/pdfpreview.svelte";
     import Displayscores from "./resume/displayscores.svelte";
-    import { jobUrl, jobDescription, keywords, navstate } from "$utils";
+    import { jobUrl, jobDescription, keywords, navstate, saveCurrentProject, jobName } from "$utils";
+    import Settings from "./settings.svelte";
 
     if ($keywords.length === 0) {
         fetch("/ResuMate/keywords.txt")
@@ -51,6 +52,8 @@
                 console.log(err);
             });
     }
+
+
 </script>
 
 <div class="flex flex-row grid-cols-[auto_1fr] w-full h-full">
@@ -73,32 +76,47 @@
             >
                 Job Editor
             </button> -->
-        </div>
-        {#if $navstate.mode === "Edit"}
-            <div class="grid grid-cols-[1fr_1fr] w-full h-full">
-
-                    <div class="bg-base w-full h-full">
-                        <ResumeEditor />
-                    </div>
-
-                    <div>
-                        <textarea class="w-full h-fit" bind:value={$jobUrl}></textarea>
-                        <button onclick={fetchContent}>fetch</button>
-                        <textarea class="w-full h-full" bind:value={$jobDescription}></textarea>
-
-                    </div>
-                    <div>
-                        <Displayscores />
-                    </div>
-
-                <!-- <div class="w-full h-full">
-                    {#await content.html then content}
-                        <Pdfpreview html={content}/>
-                    {/await}
-                </div> -->
+            <div>
+                <input class="text-mantle px-2 py-1 bg-blue rounded-sm" bind:value={$jobName}>
+                <button class="text-mantle px-2 py-1 bg-blue rounded-sm" onclick={() => {saveCurrentProject()}}>
+                    save
+                </button>
             </div>
+        </div>
+        <div class="grid grid-cols-[1fr_1fr] w-full h-full">
+            
+            <div class="bg-base w-full h-full">
+                <ResumeEditor />
+            </div>
+            
+            <div>
+                <textarea class="w-full h-fit" bind:value={$jobUrl}></textarea>
+                <button onclick={fetchContent}>fetch</button>
+                <textarea class="w-full h-full" bind:value={$jobDescription}></textarea>
+                
+            </div>
+            <div>
+                <Displayscores />
+            </div>
+            
+            <!-- <div class="w-full h-full">
+                {#await content.html then content}
+                <Pdfpreview html={content}/>
+                {/await}
+                </div> -->
+        </div>
+        {#if $navstate === "None"}
+        <div>
+            This will be a modal
+        </div>
         {:else}
-            <div>Other Stuff</div>
+            <!-- Mode To Show Settings Modal --> 
+            {#if $navstate === "Settings"}
+                <Settings />
+            {:else if $navstate === "Project Options"}
+                <div>Other Stuff</div>
+            {/if}
+
         {/if}
     </div>
 </div>
