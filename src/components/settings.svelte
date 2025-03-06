@@ -24,8 +24,10 @@
         resumeTemplate,
         editorShortcuts,
         createHeader,
+        resetApplication
     } from "$utils";
-
+    import "./resume/editor.css";
+    import { Carta, MarkdownEditor} from "carta-md";
     async function fetchResTemplate() {
         fetch("/ResuMate/template.md")
             .then((response) => response.text())
@@ -37,14 +39,11 @@
             });
 
     }
-    import "./resume/editor.css";
-    import { Carta, MarkdownEditor} from "carta-md";
-    import type { Plugin } from "carta-md";
-    let carta = $state<any>(null);
+    let carta2 = $state<any>(null);
     // Comment
 
     $effect(() => {
-        carta = new Carta({
+        carta2 = new Carta({
                 sanitizer: false,
                 theme: "catppuccin-mocha",
                 extensions: [
@@ -53,7 +52,7 @@
         });
         return () => {
             
-            carta = null;
+            carta2 = null;
             
         };
     });
@@ -183,6 +182,10 @@
                         <input type="checkbox" bind:checked={$showUSCitizenship} />
                     </div>
                 </div>
+                <div>
+                    <label for="reset" class="text-text">Reset Application</label>
+                    <button class="bg-red px-2 py-1 rounded-sm" onclick={resetApplication}>Reset</button>
+                </div>
             </div>
 
             <!-- The resume base template -->
@@ -193,8 +196,8 @@
                 <label for="resumeTemplate" class="text-text">Resume Template</label>
                 <div>
                     <div class="w-full h-full">    
-                        {#if carta}
-                            <MarkdownEditor {carta} bind:value={$resumeTemplate} mode="tabs" />
+                        {#if carta2}
+                            <MarkdownEditor carta={carta2} bind:value={$resumeTemplate} mode="tabs" />
                         {/if}
                     </div>
                     

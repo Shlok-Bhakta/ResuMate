@@ -17,7 +17,7 @@
     $overlappingKeywords = $overlappingKeywords;
 </script>
 
-<button onclick={() => {score($resumeMd, $jobDescription, $keywords)}}>
+<button onclick={() => {score()}}>
     rescore
 </button>
 

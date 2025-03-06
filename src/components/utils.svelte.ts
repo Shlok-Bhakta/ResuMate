@@ -2,14 +2,16 @@ import { persist, createIndexedDBStorage } from "@macfja/svelte-persistent-store
 import { writable } from "svelte/store"
 import Dexie, { add } from "dexie";
 import { get } from 'svelte/store';
+// import {importDB, exportDB, importInto, peakImportFile} from "dexie-export-import";
 import type { InputEnhancer, Plugin } from "carta-md";
+
 
 export let resumeMd = persist<any>(writable<any>("# Go to settings and fetch my resume template from the settings! Also Update your info!"), createIndexedDBStorage(), "resumeMd");
 export let resumeHtml = persist<any>(writable<any>("<h1>Hi</h1>"), createIndexedDBStorage(), "resumeHtml");
 export let jobDescription = persist<any>(writable<any>("Paste your job description here, or paste a link and try to fetch it"), createIndexedDBStorage(), "jobDescription");
 export let jobUrl = persist<any>(writable<any>("https://example.com/"), createIndexedDBStorage(), "jobUrl");
 export let navstate = persist<any>(writable<any>("None"), createIndexedDBStorage(), "navstate");
-
+export let pagestate = persist<any>(writable<any>("None"), createIndexedDBStorage(), "pagestate");
 export let jobName = persist<any>(writable<any>("Change Me"), createIndexedDBStorage(), "jobName");
 
 
@@ -42,7 +44,7 @@ export let cssTheme = persist<any>(writable<any>("/ResuMate/style.css"), createI
 export let enableEmail = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableEmail");
 export let enablePhone = persist<any>(writable<any>(true), createIndexedDBStorage(), "enablePhone");
 export let enableWebsite = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableWebsite");
-export let enableLinkedin = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableLinkedin");
+export let enableLinkedin = persist<any>(writable<any>(false), createIndexedDBStorage(), "enableLinkedin");
 export let enableGithub = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableGithub");
 export let enableAddress = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableAddress");
 export let enableAddressLink = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableAddressLink");
@@ -67,41 +69,37 @@ export function createHeader(){
     // Next is Phone Number
     if(get(enablePhone)){
         // format ![Phone](https://api.iconify.design/material-symbols:call-sharp.svg) [+1 (254)-251-9749](tel:12542519749)
-        headerString += "![Phone](https://shlok-bhakta.github.io/ResuMate/icons/phone) " + get(phone) +  " |";
+        headerString += "![Phone](https://shlok-bhakta.github.io/ResuMate/icons/phone.svg) " + get(phone) +  " |";
     }
     // Next is Email 
     if(get(enableEmail)){
         // format ![Mail](https://api.iconify.design/material-symbols:mail.svg) [shlokbhakta1@gmail.com](mailto:shlokbhakta1@gmail.com)
-        headerString += "![Mail](https://shlok-bhakta.github.io/ResuMate/icons/mail) [" + get(email) + "](mailto:" + get(email) + ") |";
+        headerString += "![Mail](https://shlok-bhakta.github.io/ResuMate/icons/mail.svg) [" + get(email) + "](mailto:" + get(email) + ") |";
     }
     // Next is Address
-    if(get(enableWebsite)){
+    if(get(enableAddress)){
         // ![Globe](https://api.iconify.design/material-symbols:globe.svg) [Cisco TX](https://www.google.com/maps/place/Cisco,+TX+76437/@32.3962813,-99.0238931,28527m/data=!3m2!1e3!4b1!4m6!3m5!1s0x865138702bc7e13f:0xd45a9eba224cde84!8m2!3d32.3881861!4d-98.9792336!16zL20vMDEwMGhi?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D)
-        if(get(enableAddressLink)){
-            headerString += "![Globe](https://shlok-bhakta.github.io/ResuMate/icons/globe) [" + get(address) + "](https://www.google.com/maps/place/" + get(address) + ") |";
-        }else{
-            headerString += "![Globe](https://shlok-bhakta.github.io/ResuMate/icons/globe) " + get(address) + " |";
-        }
+        headerString += "![Globe](https://shlok-bhakta.github.io/ResuMate/icons/globe.svg) " + get(address) + " |";
     }
     // Next is Website
     if(get(enableWebsite)){
         // ![Internet](https://api.iconify.design/pepicons-pop:internet.svg) [shlokbhakta.dev](https://shlokbhakta.dev/)
-        headerString += "![Website](https://shlok-bhakta.github.io/ResuMate/icons/internet) [" + get(website) + "](" + get(website) + ") |";
+        headerString += "![Website](https://shlok-bhakta.github.io/ResuMate/icons/internet.svg) [" + get(website) + "](https://" + get(website) + ") |";
     }
     // Next is Github
     if(get(enableGithub)){
         // ![Github](https://api.iconify.design/mdi:github.svg) [gh.shlokbhakta.dev](https://github.com/Shlok-Bhakta)
-        headerString += "![Github](https://shlok-bhakta.github.io/ResuMate/icons/github) [" + get(github) + "](" + get(github) + ") |";
+        headerString += "![Github](https://shlok-bhakta.github.io/ResuMate/icons/github.svg) [" + get(github) + "](" + get(github) + ") |";
     }
     // Next is Linkedin
     if(get(enableLinkedin)){
         // ![Linkedin](https://api.iconify.design/mdi:linkedin.svg) [linkedin.com/in/shlokbhakta](https://linkedin.com/in/shlokbhakta)
-        headerString += "![Linkedin](https://shlok-bhakta.github.io/ResuMate/icons/linkedin) [" + get(linkedin) + "](" + get(linkedin) + ") |";
+        headerString += "![Linkedin](https://shlok-bhakta.github.io/ResuMate/icons/linkedin.svg) [" + get(linkedin) + "](" + get(linkedin) + ") |";
     }
     // Next is Address
     if(get(showUSCitizenship)){
         // ![Passport](https://api.iconify.design/mdi:passport.svg) [US CITIZEN](https://www.linkedin.com/in/shlokbhakta/)
-        headerString += "![Passport](https://shlok-bhakta.github.io/ResuMate/icons/passport) [US CITIZEN](https://www.linkedin.com/in/shlokbhakta/) |";
+        headerString += "![Passport](https://shlok-bhakta.github.io/ResuMate/icons/passport.svg) [US CITIZEN](https://www.linkedin.com/in/shlokbhakta/) |";
     }
 
     // Remove the last | from the headerString
@@ -118,7 +116,7 @@ export function createHeader(){
 
 
 function getKeywords(text: string, keywords: string[]): string[] {
-// Clean job description
+    // Clean job description
     let cleanText = text.toLowerCase();
     
     // Find all keywords in the job description
@@ -158,9 +156,38 @@ function getKeywords(text: string, keywords: string[]): string[] {
     }
     return textKeywords;
 }
-export function score(resume: string, jobdesc: string, keywords: string[]) {
-    const jobKey = getKeywords(jobdesc, keywords);
-    const resumeKey = getKeywords(resume, keywords);
+export function score() {
+
+    if(get(keywords).length <= 1000) {
+        console.log("something might be wrong with the keywords refetching");
+        if (get(keywords).length === 0) {
+        fetch("/ResuMate/keywords.txt")
+                .then((response) => response.text())
+                .then((text) => {
+                    // split skills by new line set all to lowercase and remove duplicates
+                    let textcleaned = text
+                        .split("\n")
+                        .map((skill) => skill.toLowerCase())
+                        .filter(
+                            (skill, index, self) => self.indexOf(skill) === index,
+                        );
+                    // sort the skills by length for comparison later
+                    textcleaned.sort((a, b) => b.length - a.length);
+                    keywords.update(() => textcleaned);
+                    // $keywords = text.split("\n").map((skill) => skill.toLowerCase());
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }
+
+    console.log("score");
+    const jobKey = getKeywords(get(jobDescription), get(keywords));
+    const resumeKey = getKeywords(get(resumeMd), get(keywords));
+    console.log(get(jobDescription));
+    console.log(jobKey);
+    console.log(resumeKey);
     // calculate similarity score
     let totalScore = 0;
     let scoreIncrement = 100/jobKey.length;
@@ -291,6 +318,22 @@ export const editorShortcuts: Plugin = {
 };
 
 
+// Plugin to turn || into left and right alligned content
+export function tableify(md: string) {
+    let text = md.split("\n");
+    for (let i = 0; i < text.length; i++) {
+        // if text has a || then split
+        if (text[i].includes("||")) {
+            let splitText = text[i].split("||");
+            // only take the first 2 elements discard the rest
+            splitText = splitText.slice(0, 2);
+            // return the corrected text
+            text[i] = "| " + splitText.join(" | ") + " |" + "\n|:-|-:|\n";
+        }
+    }
+    return text.join("\n");
+}
+
 
 
 interface Project {
@@ -329,6 +372,7 @@ export async function saveCurrentProject() {
     }
     // Then in your saveCurrentProject function:
     if(get(saveCount) === 0) {
+        // temprarily stress test add 100 at a time
         let newID = await db.project.add({
             name: get(jobName),
             md: get(resumeMd),
@@ -344,7 +388,7 @@ export async function saveCurrentProject() {
         console.log("new id: " + newID);
         projectId.update(() => {return newID});
         // update so that the sidebar can update
-        availableProjects.update(() => {return get(availableProjects).unshift(get(jobName))});
+        getProjectNames();
         // jobName.update(() => {return get(jobName)});
     }else{
         // update instead
@@ -388,6 +432,9 @@ export async function loadProject(id: number) {
         combinedScore.update(() => project.score);
         created.update(() => project.created);
         updated.update(() => project.modified);
+        saveCount.update(() => project.saves);
+        projectId.update(() => id);
+        score();
     } else {
         console.log("project not found");
     }
@@ -396,7 +443,7 @@ export async function loadProject(id: number) {
 export async function getProjectNames() {
     // get all the project names
     let projectIds = await db.project.toArray();
-    availableProjects.update(() => {return projectIds.map((project) => project.name)});
+    availableProjects.update(() => {return projectIds.map((project) => [project.name, project.id])});
 }
 
 
@@ -417,4 +464,233 @@ export function clearProject() {
     console.log("cleared");
 }
 
+type DBContent = {
+    [dbName: string]: {
+      [storeName: string]: any[]
+    }
+  };    
 
+export async function downloadDBasJSON(): Promise<void> {
+    const dbNames = ['ResuMateMain', 'svelte-persist'];
+    const exportContent: DBContent = {};
+    
+    for (const dbName of dbNames) {
+        const db = await openDB(dbName);
+        exportContent[dbName] = {};
+
+        for (const storeName of db.objectStoreNames) {
+            const transaction = db.transaction(storeName, 'readonly');
+            const store = transaction.objectStore(storeName);
+            
+            // Use cursor to get both keys and values
+            const data: {key: any, value: any}[] = [];
+            await new Promise<void>((resolve, reject) => {
+                const cursorRequest = store.openCursor();
+                cursorRequest.onerror = () => reject(cursorRequest.error);
+                cursorRequest.onsuccess = (event) => {
+                    const cursor = (event.target as IDBRequest).result;
+                    if (cursor) {
+                        data.push({ key: cursor.key, value: cursor.value });
+                        cursor.continue();
+                    } else {
+                        resolve();
+                    }
+                };
+            });
+            
+            exportContent[dbName][storeName] = data;
+        }
+
+        db.close();
+    }
+
+    const jsonString = JSON.stringify(exportContent, null, 2);
+    downloadJSON(jsonString, 'indexeddb_export.json');
+}
+
+export async function importIndexedDBs(jsonData: string): Promise<void> {
+    try {
+        console.log('Importing IndexedDBs...');
+        const jsonContent = JSON.parse(jsonData);
+        
+        // Check if required databases exist
+        if (!(jsonContent['ResuMateMain'] && jsonContent['svelte-persist'])) {
+            console.error('Required databases not found in import data');
+            return;
+        }
+
+        // Process each database in the export
+        for (const dbName of Object.keys(jsonContent)) {
+            const db = await openDB(dbName);
+            
+            // Process each store in the database
+            for (const storeName of Object.keys(jsonContent[dbName])) {
+                // Check if this store exists in the current database
+                if (!Array.from(db.objectStoreNames).includes(storeName)) {
+                    console.warn(`Object store ${storeName} not found in database ${dbName}, skipping`);
+                    continue;
+                }
+                
+                const transaction = db.transaction(storeName, 'readwrite');
+                const store = transaction.objectStore(storeName);
+                
+                // Clear existing data
+                await clearObjectStore(store);
+                
+                // Add all items from the export
+                const items = jsonContent[dbName][storeName];
+                for (const item of items) {
+                    // If the store uses out-of-line keys, use the key explicitly
+                    if (store.keyPath === null) {
+                        await new Promise<void>((resolve, reject) => {
+                            const request = store.put(item.value, item.key);
+                            request.onerror = () => reject(request.error);
+                            request.onsuccess = () => resolve();
+                        });
+                    } else {
+                        // Otherwise, let the store handle the key
+                        await addItem(store, item.value);
+                    }
+                }
+                
+                await new Promise<void>((resolve) => {
+                    transaction.oncomplete = () => resolve();
+                });
+            }
+            
+            db.close();
+        }
+        
+        console.log('Import completed successfully');
+        
+        // Refresh the application state to reflect the imported data
+        await getProjectNames();
+        
+    } catch (error) {
+        console.error('Error importing data:', error);
+        throw error;
+    }
+}
+export async function resetApplication(): Promise<void> {
+    try {
+        console.log('Resetting application data...');
+        
+        // Clear all databases
+        const dbNames = ['ResuMateMain', 'svelte-persist'];
+        
+        for (const dbName of dbNames) {
+            const db = await openDB(dbName);
+            
+            // Clear all object stores in this database
+            for (const storeName of db.objectStoreNames) {
+                const transaction = db.transaction(storeName, 'readwrite');
+                await clearObjectStore(transaction.objectStore(storeName));
+                await new Promise<void>((resolve) => {
+                    transaction.oncomplete = () => resolve();
+                });
+            }
+            
+            db.close();
+        }
+        
+        // Reset all stores to default values
+        resumeMd.set("# Go to settings and fetch my resume template from the settings! Also Update your info!");
+        resumeHtml.set("<h1>Hi</h1>");
+        jobDescription.set("Paste your job description here, or paste a link and try to fetch it");
+        jobUrl.set("https://example.com/");
+        navstate.set("None");
+        pagestate.set("None");
+        jobName.set("Change Me");
+        resumeKeywords.set([]);
+        jobKeywords.set([]);
+        overlappingKeywords.set([]);
+        combinedScore.set(0);
+        created.set([]);
+        updated.set([]);
+        keywords.set([]);
+        saveCount.set(0);
+        projectId.set(-1);
+        availableProjects.set([]);
+        header.set("");
+        
+        // Reset settings
+        resumeTemplate.set("# Go to settings and fetch my resume template from the settings! Also Update your info!");
+        name.set("John Doe");
+        email.set("example@gmail.com");
+        phone.set("999-999-9999");
+        website.set("example.com");
+        linkedin.set("linkedin.com/in/example");
+        github.set("github.com/example");
+        address.set("Moon Street 123");
+        cssTheme.set("/ResuMate/style.css");
+        
+        // Reset enable flags
+        enableEmail.set(true);
+        enablePhone.set(true);
+        enableWebsite.set(true);
+        enableLinkedin.set(false);
+        enableGithub.set(true);
+        enableAddress.set(true);
+        enableAddressLink.set(true);
+        showUSCitizenship.set(true);
+        customHeader.set("");
+        enableCustomHeader.set(false);
+        customCSS.set("");
+        enableCustomCSS.set(false);
+        
+        console.log('Application reset complete');
+        
+        // Force recreation of the header
+        createHeader();
+        
+        return Promise.resolve();
+    } catch (error) {
+        console.error('Error resetting application:', error);
+        return Promise.reject(error);
+    }
+}
+  
+  // Helper functions
+  
+  function openDB(name: string): Promise<IDBDatabase> {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open(name);
+      request.onerror = () => reject(request.error);
+      request.onsuccess = () => resolve(request.result);
+    });
+  }
+  
+  function getAllData(store: IDBObjectStore): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      const request = store.getAll();
+      request.onerror = () => reject(request.error);
+      request.onsuccess = () => resolve(request.result);
+    });
+  }
+  
+  function clearObjectStore(store: IDBObjectStore): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const request = store.clear();
+      request.onerror = () => reject(request.error);
+      request.onsuccess = () => resolve();
+    });
+  }
+  
+  function addItem(store: IDBObjectStore, item: any): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const request = store.add(item);
+      request.onerror = () => reject(request.error);
+      request.onsuccess = () => resolve();
+    });
+  }
+  
+  function downloadJSON(jsonString: string, filename: string): void {
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+  
