@@ -4,7 +4,7 @@
     let iframe;
     let scale = $state(1);
     let stylesheetContent = $state("");
-    import html2pdf from "html2pdf.js";
+
 
     // Fetch CSS content when component initializes
     async function loadStylesheet() {
@@ -38,13 +38,6 @@
 
     function downloadPdf() {
         if (iframe && props.html && stylesheetContent !== "") {
-            // Create a new JSPDF instance
-
-            // Set the dimensions of the PDF
-            // pdf.internal.pageSize = {
-            //     width: 8.5 * 96, // 8.5 inches in pixels (96 DPI)
-            //     height: 11 * 96, // 11 inches in pixels (96 DPI)
-            // };
             const content = `
             <!DOCTYPE html>
             <html>
@@ -79,29 +72,12 @@
                 </html>
             `;
 
-            // // Add the HTML content to the PDF
-            // pdf.html(content, {
-            //     callback: function () {
-            //         // Download the PDF as a file
-            //         pdf.save("resume.pdf");
-            //     },
-            // });
-            // window.print();
-            const options = {
-                margin: 0,
-                filename: "resume.pdf",
-                // image: { type: "jpeg", quality: 0.98 },
-                // html2canvas: { scale: 1 },
-                jsPDF: {
-                    unit: "in",
-                    format: "letter",
-                    orientation: "portrait",
-                },
-
-            };
-            const element = document.createElement('div');
-            element.innerHTML = content;
-            html2pdf().set(options).from(element).save();
+            let newwindow = window.open();
+            newwindow.document.write(content);
+            newwindow.document.close();
+            newwindow.focus();
+            newwindow.print();
+            newwindow.close();
             // const blob = new Blob([content], { type: "application/pdf" });
             // const url = URL.createObjectURL(blob);
             // console.log(url);
