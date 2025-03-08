@@ -5,7 +5,8 @@
     import Displayscores from "./resume/displayscores.svelte";
     import { jobUrl, jobDescription, keywords, navstate, saveCurrentProject, jobName, header, createHeader, resumeHtml, downloadDBasJSON, importIndexedDBs } from "$utils";
     import Settings from "./settings.svelte";
-
+    import Topbar from "./nav/topbar.svelte";
+    import "./fonts.css";
     if ($keywords.length === 0) {
         fetch("/ResuMate/keywords.txt")
             .then((response) => response.text())
@@ -88,6 +89,7 @@
 <div class="flex flex-row grid-cols-[auto_1fr] w-full h-full">
     <Sidebar />
     <div class="w-full h-full">
+        <Topbar />
         <div class="h-fit">
             <!-- <button
                 class="bg-base px-4 py-2 mx-1 my-1 rounded-md hover:bg-overlay0 transition-all duration-200 h-10"
@@ -134,11 +136,11 @@
                 <Displayscores />
             </div>
             
-            <div class="w-full h-full">
+            <!-- <div class="w-full h-full">
                 {#await $resumeHtml then content}
                 <Pdfpreview html={content}/>
                 {/await}
-            </div>
+            </div> -->
         </div>
         {#if $navstate === "None"}
         <div>

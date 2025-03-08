@@ -83,8 +83,7 @@
             `;
 
             let newwindow = window.open();
-            newwindow.document.write(content);
-            newwindow.document.close();
+            newwindow.write(content);
             newwindow.focus();
             // set new window title so maybe it can be the pdf name as its saved
             newwindow.document.title = "ResuMate";
@@ -154,46 +153,18 @@
 </script>
 
 <svelte:window on:resize={handleResize} />
-
-<div class="pdf-container" bind:this={container} use:handleResize>
-    <iframe
-        bind:this={iframe}
-        title="Resume Preview"
-        class="pdf-iframe"
-        sandbox="allow-same-origin allow-scripts allow-downloads allow-popups allow-forms allow-modals"
-    ></iframe>
+<div class="p-2 bg-crust">  
+    <div class="" bind:this={container} use:handleResize>
+        <iframe
+            bind:this={iframe}
+            title="Resume Preview"
+            class="w-[8.5in] h-[11in] border-none scale-100"
+            sandbox="allow-same-origin allow-scripts allow-downloads allow-popups allow-forms allow-modals"
+        ></iframe>
+    </div>
+    <button class="print-button" onclick={downloadPdf}> Download Resume </button>
 </div>
-<button class="print-button" onclick={downloadPdf}> Download Resume </button>
 
 <style>
     /* Styles remain unchanged */
-    .pdf-container {
-        /* padding: 20px; */
-        display: flex;
-        /* justify-content: center; */
-        /* background-color: #f0f0f0; */
-        /* min-height: 300px; */
-    }
-
-    .pdf-iframe {
-        width: 8.5in;
-        height: 11in;
-        border: none;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .print-button {
-        margin-top: 15px;
-        padding: 8px 16px;
-        background-color: #4a90e2;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: 500;
-    }
-
-    .print-button:hover {
-        background-color: #357ac5;
-    }
 </style>

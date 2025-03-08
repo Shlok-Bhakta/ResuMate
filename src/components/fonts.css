@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "CaskaydiaCoveNF";
+  src: url("../../public/CaskCov.woff2") format("woff2");
+}
+
+.nerdfont {
+    font-family: "CaskaydiaCoveNF", monospace;
+}
