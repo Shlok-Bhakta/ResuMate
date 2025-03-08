@@ -57,11 +57,21 @@
                             padding-left: 0.2in;
                             padding-right: 0.2in;
                             box-sizing: border-box;
-                            }
-                            
+                            overflow: hidden;
+                            max-height: 11in;
                         @page {
                             size: letter;
+                            scale: 1;
                             margin: 0;
+                            width: 8.5in;
+                            height: 11in;
+                        }
+                        
+                        .pdf-page {
+                            overflow: hidden;
+                            max-height: 11in;
+                        }
+
                         }
 
                         </style>
@@ -76,8 +86,16 @@
             newwindow.document.write(content);
             newwindow.document.close();
             newwindow.focus();
-            newwindow.print();
-            newwindow.close();
+            // set new window title so maybe it can be the pdf name as its saved
+            newwindow.document.title = "ResuMate";
+            // wait for like 2 seconds
+            setTimeout(() => {
+                newwindow.print();
+                newwindow.close();
+            }, 2000);
+            // newwindow.print();
+            
+            // newwindow.close();
             // const blob = new Blob([content], { type: "application/pdf" });
             // const url = URL.createObjectURL(blob);
             // console.log(url);
@@ -119,6 +137,7 @@
                                 padding-left: 0.2in;
                                 padding-right: 0.2in;
                                 box-sizing: border-box;
+                                overflow: hidden;
                             }
                         </style>
                     </head>
