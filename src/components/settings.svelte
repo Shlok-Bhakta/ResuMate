@@ -1,6 +1,6 @@
 <script lang="ts">
     import {
-        navstate,
+        moadalState,
         name,
         email,
         phone,
@@ -24,7 +24,9 @@
         resumeTemplate,
         editorShortcuts,
         createHeader,
-        resetApplication
+        resetApplication,
+        importIndexedDBs,
+        downloadDBasJSON
     } from "$utils";
     import "./resume/editor.css";
     import { Carta, MarkdownEditor} from "carta-md";
@@ -74,6 +76,32 @@
         $showUSCitizenship;
         createHeader();
     })
+
+        function handleFileUpload(event: any) {
+        console.log("file upload");
+        console.log(event);
+        if (!(event)) return;
+        if (!(event.target)) return;
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                if(!(e.target)) return;
+                if(!(e.target.result)) return;
+                // const jsonContent = JSON.parse(e.target.result);
+                if(typeof e.target.result !== "string") return;
+                importIndexedDBs(e.target.result);
+            } catch (error) {
+                console.error("Error parsing JSON file:", error);
+            }
+        };
+        reader.onerror = function(e) {
+            console.error("Error reading file:", e);
+        };
+        reader.readAsText(file);
+    }
 </script>
 
 <div class="w-full h-full absolute top-0 left-0 grid grid-cols-1">
@@ -82,7 +110,7 @@
             <button
                 class="bg-red p-2 w-fit h-fit"
                 onclick={() => {
-                    $navstate = $navstate == "None" ? "Settings" : "None";
+                    $moadalState = $moadalState == "None" ? "Settings" : "None";
                 }}>X</button
             >
             <h1 class="place-self-end px-4 text-xl">Settings</h1>
@@ -186,6 +214,11 @@
                     <label for="reset" class="text-text">Reset Application</label>
                     <button class="bg-red px-2 py-1 rounded-sm" onclick={resetApplication}>Reset</button>
                 </div>
+                <button class="text-mantle px-2 py-1 bg-blue rounded-sm" onclick={() => {downloadDBasJSON()}}>
+                    download
+                </button>
+                <!-- file upload that runs importIndexedDBs with the string of the content as input-->
+                <input type="file" id="file-input" accept=".json" onchange={handleFileUpload} />
             </div>
 
             <!-- The resume base template -->

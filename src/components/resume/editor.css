@@ -12,7 +12,7 @@
 }
 
 .carta-theme__default.carta-editor {
-	@apply border-1 border-text rounded-[1px] bg-mantle w-full h-full;
+	@apply border-1 border-overlay0 rounded bg-mantle w-full h-full;
 }
 
 .carta-theme__default .carta-editor ::selection {

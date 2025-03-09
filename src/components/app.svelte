@@ -3,7 +3,7 @@
     import ResumeEditor from "./resume/resumeeditor.svelte";
     import Pdfpreview from "./resume/pdfpreview.svelte";
     import Displayscores from "./resume/displayscores.svelte";
-    import { jobUrl, jobDescription, keywords, navstate, saveCurrentProject, jobName, header, createHeader, resumeHtml, downloadDBasJSON, importIndexedDBs } from "$utils";
+    import { jobUrl, jobDescription, keywords, moadalState, header, createHeader, resumeHtml} from "$utils";
     import Settings from "./settings.svelte";
     import Topbar from "./nav/topbar.svelte";
     import "./fonts.css";
@@ -58,32 +58,6 @@
                 console.log(err);
             });
     }
-
-    function handleFileUpload(event: any) {
-        console.log("file upload");
-        console.log(event);
-        if (!(event)) return;
-        if (!(event.target)) return;
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                if(!(e.target)) return;
-                if(!(e.target.result)) return;
-                // const jsonContent = JSON.parse(e.target.result);
-                if(typeof e.target.result !== "string") return;
-                importIndexedDBs(e.target.result);
-            } catch (error) {
-                console.error("Error parsing JSON file:", error);
-            }
-        };
-        reader.onerror = function(e) {
-            console.error("Error reading file:", e);
-        };
-        reader.readAsText(file);
-    }
 </script>
 
 <div class="flex flex-row grid-cols-[auto_1fr] w-full h-full">
@@ -107,18 +81,6 @@
             >
                 Job Editor
             </button> -->
-            <div>
-                <input class="text-mantle px-2 py-1 bg-blue rounded-sm" bind:value={$jobName}>
-                <button class="text-mantle px-2 py-1 bg-blue rounded-sm" onclick={() => {saveCurrentProject()}}>
-                    save
-                </button>
-                <button class="text-mantle px-2 py-1 bg-blue rounded-sm" onclick={() => {downloadDBasJSON()}}>
-                    download
-                </button>
-            <!-- file upload that runs importIndexedDBs with the string of the content as input-->
-                <input type="file" id="file-input" accept=".json" onchange={handleFileUpload} />
-            
-            </div>
         </div>
         <div class="grid grid-cols-[1fr_1fr] w-full h-full">
             
@@ -142,15 +104,15 @@
                 {/await}
             </div> -->
         </div>
-        {#if $navstate === "None"}
+        {#if $moadalState === "None"}
         <div>
             This will be a modal
         </div>
         {:else}
             <!-- Mode To Show Settings Modal --> 
-            {#if $navstate === "Settings"}
+            {#if $moadalState === "Settings"}
                 <Settings />
-            {:else if $navstate === "Project Options"}
+            {:else if $moadalState === "Project Options"}
                 <div>Other Stuff</div>
             {/if}
 

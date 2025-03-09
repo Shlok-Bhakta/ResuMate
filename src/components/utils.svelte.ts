@@ -10,8 +10,8 @@ export let resumeMd = persist<any>(writable<any>("# Go to settings and fetch my 
 export let resumeHtml = persist<any>(writable<any>("<h1>Hi</h1>"), createIndexedDBStorage(), "resumeHtml");
 export let jobDescription = persist<any>(writable<any>("Paste your job description here, or paste a link and try to fetch it"), createIndexedDBStorage(), "jobDescription");
 export let jobUrl = persist<any>(writable<any>("https://example.com/"), createIndexedDBStorage(), "jobUrl");
-export let navstate = persist<any>(writable<any>("None"), createIndexedDBStorage(), "navstate");
-export let pagestate = persist<any>(writable<any>("None"), createIndexedDBStorage(), "pagestate");
+export let moadalState = persist<any>(writable<any>("None"), createIndexedDBStorage(), "navstate");
+export let projectState = persist<any>(writable<any>("None"), createIndexedDBStorage(), "pagestate");
 export let jobName = persist<any>(writable<any>("Change Me"), createIndexedDBStorage(), "jobName");
 
 
@@ -24,6 +24,7 @@ export let updated = persist<any>(writable<any>([]), createIndexedDBStorage(), "
 export let keywords = persist<string[]>(writable<any>([]), createIndexedDBStorage(), "keywords");
 // for a later version where you can revert files
 export let saveCount = persist<number>(writable<any>(0), createIndexedDBStorage(), "saveCount");
+export let saveState = persist<number>(writable<any>(0), createIndexedDBStorage(), "saveState");
 export let projectId = persist<number>(writable<any>(-1), createIndexedDBStorage(), "projectId");
 export let availableProjects = persist<any>(writable<any>([]), createIndexedDBStorage(), "availableProjects");
 // Create Header for the resume (with name and stuff)
@@ -367,8 +368,8 @@ export async function saveCurrentProject() {
     console.log("saving: " + get(projectId));
     // check if name is empty then dont save
     if(get(jobName) === "" || get(jobName) === "Change Me") {
-        alert("Please a project name (EX: Apple Music Developer)");
-        return;
+        saveState.update(() => {return -1}); // error - no name
+        return -1; // ERR - no name
     }
     // Then in your saveCurrentProject function:
     if(get(saveCount) === 0) {
@@ -390,6 +391,7 @@ export async function saveCurrentProject() {
         // update so that the sidebar can update
         getProjectNames();
         // jobName.update(() => {return get(jobName)});
+        saveState.update(() => {return 1}); // created!
     }else{
         // update instead
         console.log("updating");
@@ -407,12 +409,14 @@ export async function saveCurrentProject() {
             modified: new Date()
         });
         await getProjectNames();
+        saveState.update(() => {return 2}); // updated!
     }
     // Update the saveCount
     if (get(saveCount) === 0) {
         saveCount.update(() => {return get(saveCount) + 1});
     }
-    console.log(db.project.toArray());
+    // console.log(db.project.toArray());
+    return 0; // success
 }
 
 
@@ -598,8 +602,8 @@ export async function resetApplication(): Promise<void> {
         resumeHtml.set("<h1>Hi</h1>");
         jobDescription.set("Paste your job description here, or paste a link and try to fetch it");
         jobUrl.set("https://example.com/");
-        navstate.set("None");
-        pagestate.set("None");
+        moadalState.set("None");
+        projectState.set("None");
         jobName.set("Change Me");
         resumeKeywords.set([]);
         jobKeywords.set([]);

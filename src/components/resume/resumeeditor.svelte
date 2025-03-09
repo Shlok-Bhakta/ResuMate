@@ -2,7 +2,7 @@
     import "./editor.css";
     import { Carta, MarkdownEditor} from "carta-md";
     import { jsPDF } from "jspdf";
-    import { resumeMd, resumeHtml, score, jobDescription, keywords, saveCurrentProject, header, editorShortcuts, tableify} from "$utils";
+    import { resumeMd, resumeHtml, score, jobDescription, keywords, saveCurrentProject, header, editorShortcuts, tableify, saveState} from "$utils";
     let carta = new Carta({
             sanitizer: false,
             theme: "catppuccin-mocha",
@@ -16,9 +16,13 @@
     let scoreTimeout: number | null = null;
     let saveTimeout: number | null = null;
     
+    function updateSaveState() {
+        $saveState = 0; // Pending state
+    }
+
     $effect(() => {
-        
         $resumeHtml = carta.render($header + tableify($resumeMd));
+        updateSaveState();
         // this stops the expensive score function from running every time the editor updates
         // it only runs when the user is idle for 3 seconds
         if (scoreTimeout !== null) {
