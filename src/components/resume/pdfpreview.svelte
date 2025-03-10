@@ -48,72 +48,6 @@
         }
     }
 
-    function downloadPdf() {
-        if (iframe && props.html && stylesheetContent !== "") {
-            const content = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <style>
-                    ${stylesheetContent}
-                    body, html {
-                        margin: 0;
-                        padding: 0;
-                        height: 100%;
-                        }
-                        .pdf-page {
-                            width: 8.5in;
-                            height: 11in;
-                            background-color: white;
-                            padding-top: 0.0in;
-                            padding-left: 0.2in;
-                            padding-right: 0.2in;
-                            box-sizing: border-box;
-                            overflow: hidden;
-                            max-height: 11in;
-                        @page {
-                            size: letter;
-                            scale: 1;
-                            margin: 0;
-                            width: 8.5in;
-                            height: 11in;
-                        }
-                        
-                        .pdf-page {
-                            overflow: hidden;
-                            max-height: 11in;
-                        }
-
-                        }
-
-                        </style>
-                    </head>
-                    <body>
-                        <div class="pdf-page">${props.html}</div>
-                    </body>
-                </html>
-            `;
-
-            const blob = new Blob([content], { type: "text/html;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            
-            const newWindow = window.open(url, '_blank');
-            if (newWindow) {
-                newWindow.onload = () => {
-                    newWindow.document.title = "ResuMate";
-                    setTimeout(() => {
-                        newWindow.focus();
-                        newWindow.print();
-                        // Clean up after printing
-                        setTimeout(() => {
-                            newWindow.close();
-                            URL.revokeObjectURL(url);
-                        }, 100);
-                    }, 100);
-                };
-            }
-        }
-    }
 
     // Load content into the iframe when html and CSS are ready
     $effect(() => {
@@ -168,20 +102,10 @@
             class="w-[8.5in] h-[11in] border-none origin-top mx-auto"
             sandbox="allow-same-origin allow-scripts allow-downloads allow-popups allow-forms allow-modals"
         ></iframe>
-        <button
-            class="absolute top-2 right-2 w-8 h-8 rounded-lg bg-mantle hover:bg-surface1 transition-colors flex items-center justify-center cursor-pointer"
-            onclick={downloadPdf}
-        >
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3C!-- Icon from All by undefined - undefined --%3E%3Cpath fill='%237f849c' d='m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z'/%3E%3C/svg%3E"
-                 alt="Download"
-                 class="w-5 h-5"
-            />
-        </button>
+        
     </div>
 </div>
 
 <style>
-    button {
-        z-index: 10;
-    }
+
 </style>

@@ -117,8 +117,12 @@ export function createHeader(){
 
 
 function getKeywords(text: string, keywords: string[]): string[] {
-    // Clean job description
+    // make everything lowercase for matching
     let cleanText = text.toLowerCase();
+
+    // remove all html comments <!-- -->
+    cleanText = cleanText.replace(/<!--[\s\S]*?-->/g, "");
+
     
     // Find all keywords in the job description
     let textKeywords = <string[]>[];
@@ -603,7 +607,7 @@ export async function resetApplication(): Promise<void> {
         jobDescription.set("Paste your job description here, or paste a link and try to fetch it");
         jobUrl.set("https://example.com/");
         modalState.set("None");
-        projectEditingStage.set("None");
+        projectEditingStage.set("Content");
         jobName.set("Change Me");
         resumeKeywords.set([]);
         jobKeywords.set([]);

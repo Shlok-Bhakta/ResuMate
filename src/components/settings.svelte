@@ -28,7 +28,7 @@
         importIndexedDBs,
         downloadDBasJSON
     } from "$utils";
-// import "./settingseditor.css";
+    // import "./settingseditor.css";
     import { Carta, MarkdownEditor} from "carta-md";
     async function fetchResTemplate() {
         fetch("/ResuMate/template.md")
@@ -222,18 +222,16 @@
             </div>
 
             <!-- The resume base template -->
-            <div class="grid grid-cols-1 w-full grid-rows-[1fr_auto] ">
+            <div class="grid grid-cols-1 w-full grid-rows-[1fr_auto] overflow-y-scroll bg-amber-100">
                 <label for="resumeTemplate" class="text-text">Fetch Default Template</label>
-                <button class="bg-blue px-2 py-1 rounded-sm" onclick={fetchResTemplate}>Fetch</button>
-
+                <button class="bg-blue hover:bg-sapphire transition-all duration-200 px-2 py-1 rounded-sm text-mantle" onclick={fetchResTemplate}>Fetch</button>
                 <label for="resumeTemplate" class="text-text">Resume Template</label>
-                <div>
-                    <div class="w-full h-full">    
+                <div class="w-full">
+                    <div class="w-full">    
                         {#if carta2}
                             <MarkdownEditor carta={carta2} bind:value={$resumeTemplate} mode="tabs" />
                         {/if}
                     </div>
-                    
                 </div>
             </div>
         </div>

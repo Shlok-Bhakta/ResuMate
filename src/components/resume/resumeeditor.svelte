@@ -21,22 +21,25 @@
     }
 
     $effect(() => {
+        $jobDescription
         $resumeHtml = carta.render($header + tableify($resumeMd));
         updateSaveState();
         // this stops the expensive score function from running every time the editor updates
         // it only runs when the user is idle for 3 seconds
         if (scoreTimeout !== null) {
+            // return;
             clearTimeout(scoreTimeout);
         }
         if (saveTimeout !== null) {
+            // return;
             clearTimeout(saveTimeout);
         }
         scoreTimeout = setTimeout(() => {   
             score();
-        }, 1000);
+        }, 500);
         saveTimeout = setTimeout(() => {
             saveCurrentProject();
-        }, 10000);
+        }, 1000);
     });
     $inspect($resumeHtml);
    
