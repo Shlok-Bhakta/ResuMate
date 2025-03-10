@@ -10,8 +10,8 @@ export let resumeMd = persist<any>(writable<any>("# Go to settings and fetch my 
 export let resumeHtml = persist<any>(writable<any>("<h1>Hi</h1>"), createIndexedDBStorage(), "resumeHtml");
 export let jobDescription = persist<any>(writable<any>("Paste your job description here, or paste a link and try to fetch it"), createIndexedDBStorage(), "jobDescription");
 export let jobUrl = persist<any>(writable<any>("https://example.com/"), createIndexedDBStorage(), "jobUrl");
-export let moadalState = persist<any>(writable<any>("None"), createIndexedDBStorage(), "navstate");
-export let projectState = persist<any>(writable<any>("None"), createIndexedDBStorage(), "pagestate");
+export let modalState = persist<any>(writable<any>("None"), createIndexedDBStorage(), "navstate");
+export let projectEditingStage = persist<any>(writable<any>("Content"), createIndexedDBStorage(), "pagestate");
 export let jobName = persist<any>(writable<any>("Change Me"), createIndexedDBStorage(), "jobName");
 
 
@@ -602,8 +602,8 @@ export async function resetApplication(): Promise<void> {
         resumeHtml.set("<h1>Hi</h1>");
         jobDescription.set("Paste your job description here, or paste a link and try to fetch it");
         jobUrl.set("https://example.com/");
-        moadalState.set("None");
-        projectState.set("None");
+        modalState.set("None");
+        projectEditingStage.set("None");
         jobName.set("Change Me");
         resumeKeywords.set([]);
         jobKeywords.set([]);

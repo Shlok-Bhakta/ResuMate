@@ -8,7 +8,7 @@
         getProjectNames,
         loadProject,
         clearProject,
-        moadalState,
+        modalState,
     } from "$utils";
 
     $effect(() => {
@@ -16,7 +16,7 @@
     });
 
 
-    $inspect($moadalState);
+    $inspect($modalState);
 </script>
 
 <div
@@ -60,7 +60,7 @@
         <Pill
             text="Settings"
             onclick={() => {
-                $moadalState = $moadalState == "None" ? "Settings" : "None";
+                $modalState = $modalState == "None" ? "Settings" : "None";
             }}
         />
 </div>

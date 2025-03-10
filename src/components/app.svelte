@@ -3,7 +3,7 @@
     import ResumeEditor from "./resume/resumeeditor.svelte";
     import Pdfpreview from "./resume/pdfpreview.svelte";
     import Displayscores from "./resume/displayscores.svelte";
-    import { jobUrl, jobDescription, keywords, moadalState, header, createHeader, resumeHtml} from "$utils";
+    import { jobUrl, jobDescription, keywords, modalState, header, createHeader, resumeHtml, } from "$utils";
     import Settings from "./settings.svelte";
     import Topbar from "./nav/topbar.svelte";
     import "./fonts.css";
@@ -104,15 +104,15 @@
                 {/await}
             </div> -->
         </div>
-        {#if $moadalState === "None"}
+        {#if $modalState === "None"}
         <div>
             This will be a modal
         </div>
         {:else}
             <!-- Mode To Show Settings Modal --> 
-            {#if $moadalState === "Settings"}
+            {#if $modalState === "Settings"}
                 <Settings />
-            {:else if $moadalState === "Project Options"}
+            {:else if $modalState === "Project Options"}
                 <div>Other Stuff</div>
             {/if}
 

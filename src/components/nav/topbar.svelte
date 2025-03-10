@@ -1,6 +1,6 @@
 <script>
     import "../fonts.css";
-    import { jobName, saveCurrentProject, projectState, saveState } from "$utils";
+    import { jobName, saveCurrentProject, projectEditingStage, saveState } from "$utils";
     // import Button from "$ui/button.svelte";
     function save() {
         saveCurrentProject();
@@ -30,16 +30,18 @@
     
     <div class="w-full"></div>
     <!-- sets up template + settings + job url and stuff -->
-    <button class="px-2 py-1 ml-1 {($projectState == "Content") ? "bg-blue text-mantle" : "bg-mantle text-text"} rounded text-nowrap" onclick="{() => {$projectState = "Content"}}">
+    <button class="px-2 py-1 {($projectEditingStage == "Content") ? "bg-blue text-mantle hover:bg-sapphire" : "bg-mantle text-text hover:bg-overlay0"} rounded text-nowrap transition-all duration-200" onclick="{() => {$projectEditingStage = "Content"}}">
         Content
     </button>
     <!-- a less than sign for subltley showing the expected process -->
+    <img src="https://api.iconify.design/material-symbols:arrow-right-rounded.svg?color=%237f849c" alt="arrow" class="w-6 h-6 place-self-center"/>
     <!-- Fine tune to a set of skills -->
-    <button class="px-2 py-1 ml-1 {($projectState == "Tuning") ? "bg-blue text-mantle" : "bg-mantle text-text"} rounded text-nowrap" onclick="{() => {$projectState = "Tuning"}}">
+    <button class="px-2 py-1 {($projectEditingStage == "Tuning") ? "bg-blue text-mantle hover:bg-sapphire" : "bg-mantle text-text hover:bg-overlay0"} rounded text-nowrap transition-all duration-200" onclick="{() => {$projectEditingStage = "Tuning"}}">
         Tuning
     </button>
+    <img src="https://api.iconify.design/material-symbols:arrow-right-rounded.svg?color=%237f849c" alt="arrow" class="w-6 h-6 place-self-center"/>
     <!-- Export to PDF -->
-    <button class=" px-2 py-1 ml-1 {($projectState == "Export") ? "bg-blue text-mantle" : "bg-mantle text-text"} rounded text-nowrap" onclick="{() => {$projectState = "Export"}}">
+    <button class=" px-2 py-1 {($projectEditingStage == "Export") ? "bg-blue text-mantle hover:bg-sapphire" : "bg-mantle text-text hover:bg-overlay0"} rounded text-nowrap transition-all duration-200" onclick="{() => {$projectEditingStage = "Export"}}">
         Export
     </button>
 

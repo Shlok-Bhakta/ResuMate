@@ -1,6 +1,6 @@
 <script lang="ts">
     import {
-        moadalState,
+        modalState,
         name,
         email,
         phone,
@@ -110,7 +110,7 @@
             <button
                 class="bg-red p-2 w-fit h-fit"
                 onclick={() => {
-                    $moadalState = $moadalState == "None" ? "Settings" : "None";
+                    $modalState = $modalState == "None" ? "Settings" : "None";
                 }}>X</button
             >
             <h1 class="place-self-end px-4 text-xl">Settings</h1>
