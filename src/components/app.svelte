@@ -81,7 +81,7 @@
                             <input class="text-text px-2 py-1 w-full bg-mantle rounded" bind:value={$jobUrl} placeholder="try to fetch with a link" />
                             <button class="text-text px-2 py-1 ml-1 bg-mantle rounded hover:bg-overlay0  transition-all duration-200 " onclick={fetchContent}>fetch</button>
                         </div>
-                        <textarea class="w-full h-40 overflow-y-scroll bg-mantle" bind:value={$jobDescription}></textarea>
+                        <textarea class="w-full h-60 overflow-y-scroll bg-mantle" bind:value={$jobDescription}></textarea>
                     </div>
                     <!-- Future Resume Builder -->
                 </div>
