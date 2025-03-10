@@ -26,13 +26,30 @@
     // Function to handle responsive scaling
     function handleResize() {
         if (container && iframe) {
-            const availableWidth = container.clientWidth - 40;
-            const paperWidthPx = 8.5 * 96; // 8.5 inches in pixels (96 DPI)
-            scale = Math.min(1, availableWidth / paperWidthPx);
-
+            const paperWidthPx = 8.5 * 96;  // 8.5 inches in pixels
+            const paperHeightPx = 11 * 96;  // 11 inches in pixels
+            const containerHeight = window.innerHeight * 0.8;  // Use 80% of viewport
+            const containerWidth = container.clientWidth - 20;  // Account for padding
+            
+            // First check if height is constrained
+            if (paperHeightPx > containerHeight) {
+                // Scale by height and calculate width using aspect ratio
+                scale = containerHeight / paperHeightPx;
+            } else if (paperWidthPx > containerWidth) {
+                // If width needs to be constrained, scale by width
+                scale = containerWidth / paperWidthPx;
+            } else {
+                // No scaling needed
+                scale = 1;
+            }
+            
+            // Apply the transform scale
             iframe.style.transform = `scale(${scale})`;
-            iframe.style.transformOrigin = "top center";
-            container.style.height = `${11 * 96 * scale + 40}px`;
+            iframe.style.transformOrigin = 'top center';
+            
+            // Update container height to match scaled content
+            const scaledHeight = paperHeightPx * scale;
+            container.style.height = `${scaledHeight}px`;
         }
     }
 
@@ -88,9 +105,9 @@
             // set new window title so maybe it can be the pdf name as its saved
             newwindow.document.title = "ResuMate";
             // wait for like 2 seconds
+            newwindow.print();
+            newwindow.close();
             setTimeout(() => {
-                newwindow.print();
-                newwindow.close();
             }, 2000);
             // newwindow.print();
             
@@ -153,12 +170,12 @@
 </script>
 
 <svelte:window on:resize={handleResize} />
-<div class="p-2 bg-crust">  
-    <div class="" bind:this={container} use:handleResize>
+<div class="p-2 bg-crust flex flex-col items-center">
+    <div class="relative overflow-hidden" bind:this={container} use:handleResize>
         <iframe
             bind:this={iframe}
             title="Resume Preview"
-            class="w-[8.5in] h-[11in] border-none scale-100"
+            class="w-[8.5in] h-[11in] border-none origin-top"
             sandbox="allow-same-origin allow-scripts allow-downloads allow-popups allow-forms allow-modals"
         ></iframe>
     </div>
