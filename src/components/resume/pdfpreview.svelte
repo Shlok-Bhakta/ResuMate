@@ -28,28 +28,23 @@
         if (container && iframe) {
             const paperWidthPx = 8.5 * 96;  // 8.5 inches in pixels
             const paperHeightPx = 11 * 96;  // 11 inches in pixels
-            const containerHeight = window.innerHeight * 0.8;  // Use 80% of viewport
-            const containerWidth = container.clientWidth - 20;  // Account for padding
+            const containerHeight = window.innerHeight * 0.95;  // Use 95% of viewport
+            const containerWidth = container.clientWidth;  // Remove padding reduction
             
-            // First check if height is constrained
-            if (paperHeightPx > containerHeight) {
-                // Scale by height and calculate width using aspect ratio
-                scale = containerHeight / paperHeightPx;
-            } else if (paperWidthPx > containerWidth) {
-                // If width needs to be constrained, scale by width
-                scale = containerWidth / paperWidthPx;
-            } else {
-                // No scaling needed
-                scale = 1;
-            }
+            // Calculate scales for both dimensions
+            const heightScale = containerHeight / paperHeightPx;
+            const widthScale = containerWidth / paperWidthPx;
             
-            // Apply the transform scale
+            // Use the smaller scale to maintain aspect ratio while maximizing space
+            scale = Math.min(heightScale, widthScale) * 0.95; // Add a small margin
+            
+            // Apply the transform scale with centered origin
             iframe.style.transform = `scale(${scale})`;
-            iframe.style.transformOrigin = 'top center';
+            iframe.style.transformOrigin = 'center top';
             
-            // Update container height to match scaled content
+            // Update container height to match scaled content with some padding
             const scaledHeight = paperHeightPx * scale;
-            container.style.height = `${scaledHeight}px`;
+            container.style.height = `${scaledHeight + 20}px`; // Add padding
         }
     }
 
@@ -99,29 +94,24 @@
                 </html>
             `;
 
-            let newwindow = window.open();
-            newwindow.write(content);
-            newwindow.focus();
-            // set new window title so maybe it can be the pdf name as its saved
-            newwindow.document.title = "ResuMate";
-            // wait for like 2 seconds
-            newwindow.print();
-            newwindow.close();
-            setTimeout(() => {
-            }, 2000);
-            // newwindow.print();
+            const blob = new Blob([content], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
             
-            // newwindow.close();
-            // const blob = new Blob([content], { type: "application/pdf" });
-            // const url = URL.createObjectURL(blob);
-            // console.log(url);
-            // const a = document.createElement("a");
-            // a.href = url;
-            // a.download = "resume.pdf";
-            // document.body.appendChild(a);
-            // a.click();
-            // document.body.removeChild(a);
-            // URL.revokeObjectURL(url);
+            const newWindow = window.open(url, '_blank');
+            if (newWindow) {
+                newWindow.onload = () => {
+                    newWindow.document.title = "ResuMate";
+                    setTimeout(() => {
+                        newWindow.focus();
+                        newWindow.print();
+                        // Clean up after printing
+                        setTimeout(() => {
+                            newWindow.close();
+                            URL.revokeObjectURL(url);
+                        }, 100);
+                    }, 100);
+                };
+            }
         }
     }
 
@@ -170,18 +160,28 @@
 </script>
 
 <svelte:window on:resize={handleResize} />
-<div class="p-2 bg-crust flex flex-col items-center">
-    <div class="relative overflow-hidden" bind:this={container} use:handleResize>
+<div class="p-1 bg-crust flex flex-col items-center">
+    <div class="relative overflow-hidden w-full" bind:this={container} use:handleResize>
         <iframe
             bind:this={iframe}
             title="Resume Preview"
-            class="w-[8.5in] h-[11in] border-none origin-top"
+            class="w-[8.5in] h-[11in] border-none origin-top mx-auto"
             sandbox="allow-same-origin allow-scripts allow-downloads allow-popups allow-forms allow-modals"
         ></iframe>
+        <button
+            class="absolute top-2 right-2 w-8 h-8 rounded-lg bg-mantle hover:bg-surface1 transition-colors flex items-center justify-center cursor-pointer"
+            onclick={downloadPdf}
+        >
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3C!-- Icon from All by undefined - undefined --%3E%3Cpath fill='%237f849c' d='m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z'/%3E%3C/svg%3E"
+                 alt="Download"
+                 class="w-5 h-5"
+            />
+        </button>
     </div>
-    <button class="print-button" onclick={downloadPdf}> Download Resume </button>
 </div>
 
 <style>
-    /* Styles remain unchanged */
+    button {
+        z-index: 10;
+    }
 </style>
