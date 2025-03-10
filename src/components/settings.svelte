@@ -28,7 +28,7 @@
         importIndexedDBs,
         downloadDBasJSON
     } from "$utils";
-    import "./resume/editor.css";
+// import "./settingseditor.css";
     import { Carta, MarkdownEditor} from "carta-md";
     async function fetchResTemplate() {
         fetch("/ResuMate/template.md")
@@ -105,7 +105,7 @@
 </script>
 
 <div class="w-full h-full absolute top-0 left-0 grid grid-cols-1">
-    <div class="w-1/2 h-2/3 bg-base place-self-center">
+    <div class="w-11/12 h-10/12 bg-base place-self-center">
         <div class="grid grid-cols-2">
             <button
                 class="bg-red p-2 w-fit h-fit"
@@ -239,3 +239,4 @@
         </div>
     </div>
 </div>
+

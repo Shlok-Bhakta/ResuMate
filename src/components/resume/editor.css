@@ -12,23 +12,27 @@
 }
 
 .carta-theme__default.carta-editor {
-	@apply border-1 border-overlay0 rounded bg-mantle w-full h-full;
+	@apply border-b-1 border-r-1 border-overlay0 rounded bg-mantle
 }
 
 .carta-theme__default .carta-editor ::selection {
-	@apply bg-base;
+	@apply bg-base w-full h-full;
 }
 
 .carta-theme__default .carta-toolbar {
-	@apply border-b-2 border-peach;
+	@apply border-b-1 border-overlay0 ;
 }
 
 .carta-theme__default .carta-wrapper {
-	@apply px-4
+	@apply px-4 
 }
 
 .carta-theme__default .carta-container > * {
 	@apply my-4
+}
+
+.carta-container {
+	@apply w-full h-full 
 }
 
 /* Text settings */
@@ -50,8 +54,13 @@
 /* Markdown input and renderer */
 .carta-theme__default .carta-input,
 .carta-theme__default .carta-renderer {
-	@apply h-[600px] overflow-y-scroll text-text
+	@apply h-[calc(100svh-108px)] w-full overflow-y-scroll text-text
 }
+/* 
+.carta-font-code{
+	@apply 
+} */
+
 
 /* Icons */
 .carta-theme__default .carta-icon,
@@ -77,7 +86,7 @@
 }
 
 .carta-input > pre {
-	@apply bg-surface0
+	@apply bg-surface0 
 }
 
 .carta-theme__default .carta-icons-menu {

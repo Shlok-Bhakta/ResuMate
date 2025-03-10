@@ -3,7 +3,7 @@
     import ResumeEditor from "./resume/resumeeditor.svelte";
     import Pdfpreview from "./resume/pdfpreview.svelte";
     import Displayscores from "./resume/displayscores.svelte";
-    import { jobUrl, jobDescription, keywords, modalState, header, createHeader, resumeHtml, } from "$utils";
+    import { jobUrl, jobDescription, keywords, modalState, header, createHeader, resumeHtml, projectEditingStage} from "$utils";
     import Settings from "./settings.svelte";
     import Topbar from "./nav/topbar.svelte";
     import "./fonts.css";
@@ -64,50 +64,41 @@
     <Sidebar />
     <div class="w-full h-full">
         <Topbar />
-        <div class="h-fit">
-            <!-- <button
-                class="bg-base px-4 py-2 mx-1 my-1 rounded-md hover:bg-overlay0 transition-all duration-200 h-10"
-                onclick={() => {
-                    $navstate.tab = "Resume";
-                }}
-            >
-                Resume
-            </button>
-            <button
-                class="bg-base px-4 py-2 mx-1 my-1 rounded-md hover:bg-overlay0 transition-all duration-200 h-10"
-                onclick={() => {
-                    $navstate.tab = "Job Description";
-                }}
-            >
-                Job Editor
-            </button> -->
-        </div>
-        <div class="grid grid-cols-[1fr_1fr] w-full h-full">
+        <div class="grid grid-cols-[1fr_1fr] w-full h-full ">
             
-            <div class="bg-base w-full h-full">
+            <div class="w-full h-full overflow-clip">
                 <ResumeEditor />
             </div>
-            
-            <div>
-                <textarea class="w-full h-fit" bind:value={$jobUrl}></textarea>
-                <button onclick={fetchContent}>fetch</button>
-                <textarea class="w-full h-full" bind:value={$jobDescription}></textarea>
-                
-            </div>
-            <div>
-                <Displayscores />
-            </div>
-            
-            <!-- <div class="w-full h-full">
-                {#await $resumeHtml then content}
-                <Pdfpreview html={content}/>
-                {/await}
+            <!-- <div class="bg-base w-full h-full">
             </div> -->
+            
+
+            {#if $projectEditingStage === "Content"}
+                <div class="w-full h-full">
+                    <!-- Job Url and description -->
+                    <div class="w-full h-full bg-base p-2 rounded-xs">
+                        <div class="w-full h-fit flex flex-row mb-2 gap-2">
+                            <input class="text-text px-2 py-1 w-full bg-mantle rounded" bind:value={$jobUrl} placeholder="try to fetch with a link" />
+                            <button class="text-text px-2 py-1 ml-1 bg-mantle rounded hover:bg-overlay0  transition-all duration-200 " onclick={fetchContent}>fetch</button>
+                        </div>
+                        <textarea class="w-full h-40 overflow-y-scroll bg-mantle" bind:value={$jobDescription}></textarea>
+                    </div>
+                    <!-- Future Resume Builder -->
+                </div>
+            {:else if $projectEditingStage === "Tuning"}
+                <div>
+                    <Displayscores />
+                </div>
+            {:else if $projectEditingStage === "Export"}
+            {#await $resumeHtml then content}
+                <div>
+                    <Pdfpreview html={content}/>
+                </div>
+            {/await}
+            {/if}
         </div>
         {#if $modalState === "None"}
-        <div>
-            This will be a modal
-        </div>
+        <div></div>
         {:else}
             <!-- Mode To Show Settings Modal --> 
             {#if $modalState === "Settings"}
