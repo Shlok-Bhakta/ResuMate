@@ -45,6 +45,6 @@
    
 </script>
 <div class="w-full h-full">    
-    <MarkdownEditor {carta} bind:value={$resumeMd} mode="tabs" />
+    <MarkdownEditor {carta} bind:value={$resumeMd} mode="tabs" theme="main" />
 </div>
 

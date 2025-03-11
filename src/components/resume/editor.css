@@ -7,27 +7,27 @@
 
 /* Set your monospace font (Required to have the editor working correctly!) */
 .carta-font-code {
-	font-family: "CaskaydiaCoveNF", monospace;
+	font-family: "CaskaydiaCoveMono", monospace;
 	font-size: 1.1rem;
 }
 
-.carta-theme__default.carta-editor {
+.carta-theme__main.carta-editor {
 	@apply border-b-1 border-r-1 border-overlay0 rounded bg-mantle
 }
 
-.carta-theme__default .carta-editor ::selection {
+.carta-theme__main .carta-editor ::selection {
 	@apply bg-base w-full h-full;
 }
 
-.carta-theme__default .carta-toolbar {
+.carta-theme__main .carta-toolbar {
 	@apply border-b-1 border-overlay0 ;
 }
 
-.carta-theme__default .carta-wrapper {
+.carta-theme__main .carta-wrapper {
 	@apply px-4 
 }
 
-.carta-theme__default .carta-container > * {
+.carta-theme__main .carta-container > * {
 	@apply my-4
 }
 
@@ -36,24 +36,24 @@
 }
 
 /* Text settings */
-.carta-theme__default .carta-input {
+.carta-theme__main .carta-input {
 	@apply caret-text;
 }
 
-.carta-theme__default .carta-input ::placeholder {
+.carta-theme__main .carta-input ::placeholder {
 	@apply text-text;
 	/* color: var(--text-color); */
 }
 
 /* Toolbar */
-.carta-theme__default .carta-toolbar {
+.carta-theme__main .carta-toolbar {
 	@apply px-3
 }
 
 
 /* Markdown input and renderer */
-.carta-theme__default .carta-input,
-.carta-theme__default .carta-renderer {
+.carta-theme__main .carta-input,
+.carta-theme__main .carta-renderer {
 	@apply h-[calc(100svh-108px)] w-full overflow-y-scroll text-text
 }
 /* 
@@ -63,25 +63,25 @@
 
 
 /* Icons */
-.carta-theme__default .carta-icon,
-.carta-theme__default .carta-icon-full {
+.carta-theme__main .carta-icon,
+.carta-theme__main .carta-icon-full {
 	@apply border-0 
 }
 
-.carta-theme__default .carta-icon > svg > path {
+.carta-theme__main .carta-icon > svg > path {
 	@apply fill-text
 }
 
-.carta-theme__default .carta-icon-full {
+.carta-theme__main .carta-icon-full {
 	@apply p-4
 }
 
-.carta-theme__default .carta-icon-full span {
+.carta-theme__main .carta-icon-full span {
 	@apply ml-2
 }
 
-.carta-theme__default .carta-icon:hover,
-.carta-theme__default .carta-icon-full:hover {
+.carta-theme__main .carta-icon:hover,
+.carta-theme__main .carta-icon-full:hover {
 	@apply bg-base 
 }
 
@@ -89,27 +89,27 @@
 	@apply bg-surface0 
 }
 
-.carta-theme__default .carta-icons-menu {
+.carta-theme__main .carta-icons-menu {
 	@apply p-2 border-2 border-lavender rounded-md min-w-[180px]
 }
 
-.carta-theme__default .carta-icons-menu .carta-icon-full {
+.carta-theme__main .carta-icons-menu .carta-icon-full {
 	@apply mt-1
 }
 
-.carta-theme__default .carta-icons-menu .carta-icon-full:first-child {
+.carta-theme__main .carta-icons-menu .carta-icon-full:first-child {
 	@apply mt-0
 }
 
 /* Buttons */
-.carta-theme__default .carta-toolbar-left button {
+.carta-theme__main .carta-toolbar-left button {
 	@apply hidden
 }
 
-.carta-theme__default .carta-toolbar-left button:last-child {
+.carta-theme__main .carta-toolbar-left button:last-child {
 	@apply hidden
 }
 
-.carta-theme__default .carta-toolbar-left button.carta-active {
+.carta-theme__main .carta-toolbar-left button.carta-active {
 	@apply hidden
 }

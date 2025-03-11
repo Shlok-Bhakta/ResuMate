@@ -1,0 +1,118 @@
+@import "../styles/global.css";
+/* @font-face {
+	font-family: "CaskaydiaCoveMono";
+	src: url("/ResuMate/CaskCov.woff2");
+} */
+
+
+/* Set your monospace font (Required to have the editor working correctly!) */
+.carta-font-code {
+	font-family: "CaskaydiaCoveMono", monospace;
+
+	font-size: 1.1rem;
+	line-height: 1.1rem;
+    letter-spacing: normal;
+}
+
+.carta-theme__settings.carta-editor {
+	@apply border-1 border-overlay0 rounded bg-mantle
+}
+
+.carta-theme__settings .carta-editor ::selection {
+	@apply bg-base w-full h-full;
+}
+
+.carta-theme__settings .carta-toolbar {
+	@apply border-b-1 border-overlay0 ;
+}
+
+.carta-theme__settings .carta-wrapper {
+	@apply px-4 
+}
+
+.carta-theme__settings .carta-container > * {
+	@apply my-4
+}
+
+.carta-container {
+	@apply w-full h-full 
+}
+
+/* Text settings */
+.carta-theme__settings .carta-input {
+	@apply caret-text;
+}
+
+.carta-theme__settings .carta-input ::placeholder {
+	@apply text-text;
+	/* color: var(--text-color); */
+}
+
+/* Toolbar */
+.carta-theme__settings .carta-toolbar {
+	@apply px-3
+}
+
+
+/* Markdown input and renderer */
+.carta-theme__settings .carta-input,
+.carta-theme__settings .carta-renderer {
+	@apply h-[calc(70svh-108px)] w-full overflow-y-scroll text-text
+}
+/* 
+.carta-font-code{
+	@apply 
+} */
+
+
+/* Icons */
+.carta-theme__settings .carta-icon,
+.carta-theme__settings .carta-icon-full {
+	@apply border-0 
+}
+
+.carta-theme__settings .carta-icon > svg > path {
+	@apply fill-text
+}
+
+.carta-theme__settings .carta-icon-full {
+	@apply p-4
+}
+
+.carta-theme__settings .carta-icon-full span {
+	@apply ml-2
+}
+
+.carta-theme__settings .carta-icon:hover,
+.carta-theme__settings .carta-icon-full:hover {
+	@apply bg-base 
+}
+
+.carta-input > pre {
+	@apply bg-surface0 
+}
+
+.carta-theme__settings .carta-icons-menu {
+	@apply p-2 border-2 border-lavender rounded-md min-w-[180px]
+}
+
+.carta-theme__settings .carta-icons-menu .carta-icon-full {
+	@apply mt-1
+}
+
+.carta-theme__settings .carta-icons-menu .carta-icon-full:first-child {
+	@apply mt-0
+}
+
+/* Buttons */
+.carta-theme__settings .carta-toolbar-left button {
+	@apply hidden
+}
+
+.carta-theme__settings .carta-toolbar-left button:last-child {
+	@apply hidden
+}
+
+.carta-theme__settings .carta-toolbar-left button.carta-active {
+	@apply hidden
+}
