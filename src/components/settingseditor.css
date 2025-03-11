@@ -1,3 +1,42 @@
+@keyframes shake-mild {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-3px) rotate(-1deg); }
+    75% { transform: translateX(3px) rotate(1deg); }
+}
+
+@keyframes shake-strong {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-6px) rotate(-2deg); }
+    75% { transform: translateX(6px) rotate(2deg); }
+}
+
+.animate-shake-mild {
+    animation: shake-mild 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+.animate-shake-strong {
+    animation: shake-strong 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+.modal-content {
+    max-height: 85vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--blue) transparent;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--blue);
+    border-radius: 4px;
+}
 @import "../styles/global.css";
 /* @font-face {
 	font-family: "CaskaydiaCoveMono";

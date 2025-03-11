@@ -4,7 +4,7 @@ import Dexie, { add } from "dexie";
 import { get } from 'svelte/store';
 // import {importDB, exportDB, importInto, peakImportFile} from "dexie-export-import";
 import type { InputEnhancer, Plugin } from "carta-md";
-
+import { r } from "docs/assets/render.CG3mZHYP";
 
 export let resumeMd = persist<any>(writable<any>("# Go to settings and fetch my resume template from the settings! Also Update your info!"), createIndexedDBStorage(), "resumeMd");
 export let resumeHtml = persist<any>(writable<any>("<h1>Hi</h1>"), createIndexedDBStorage(), "resumeHtml");
@@ -29,6 +29,7 @@ export let projectId = persist<number>(writable<any>(-1), createIndexedDBStorage
 export let availableProjects = persist<any>(writable<any>([]), createIndexedDBStorage(), "availableProjects");
 // Create Header for the resume (with name and stuff)
 export const header = persist<any>(writable<any>(""), createIndexedDBStorage(), "header");
+export let tuning = writable(false);
 
 // Settings
 export let resumeTemplate = persist<any>(writable<any>("# Go to settings and fetch my resume template from the settings! Also Update your info!"), createIndexedDBStorage(), "resumeTemplate");
@@ -40,6 +41,15 @@ export let linkedin = persist<any>(writable<any>("linkedin.com/in/example"), cre
 export let github = persist<any>(writable<any>("github.com/example"), createIndexedDBStorage(), "github");
 export let address = persist<any>(writable<any>("Moon Street 123"), createIndexedDBStorage(), "address");
 export let cssTheme = persist<any>(writable<any>("/ResuMate/style.css"), createIndexedDBStorage(), "cssTheme");
+// export let llmProvider = persist<any>(writable<any>("openrouter"), createIndexedDBStorage(), "llmProvider");
+// export let openAIKey = persist<any>(writable<any>("your_api_key_here"), createIndexedDBStorage(), "openAIKey");
+// export let googleAIKey = persist<any>(writable<any>("your_api_key_here"), createIndexedDBStorage(), "googleAIKey");
+export let openRouterKey = persist<any>(writable<any>("your_api_key_here"), createIndexedDBStorage(), "openRouterKey");
+// export let openAIModel = persist<any>(writable<any>("o3-mini-2025-01-31"), createIndexedDBStorage(), "openAIModel");
+// export let googleAIModel = persist<any>(writable<any>("gemini-2.0-flash"), createIndexedDBStorage(), "googleAIModel");
+export let openRouterAIModel = persist<any>(writable<any>("gemini-2.0-flash"), createIndexedDBStorage(), "openRouterAIModel");
+
+export let knowlegeBase = persist<any>(writable<any>("Fetch some example knowlege to see what it looks like"), createIndexedDBStorage(), "knowlegeBase");
 
 // enable flags incase they want to enable/disable certain things
 export let enableEmail = persist<any>(writable<any>(true), createIndexedDBStorage(), "enableEmail");
@@ -90,17 +100,17 @@ export function createHeader(){
     // Next is Github
     if(get(enableGithub)){
         // ![Github](https://api.iconify.design/mdi:github.svg) [gh.shlokbhakta.dev](https://github.com/Shlok-Bhakta)
-        headerString += "![Github](https://shlok-bhakta.github.io/ResuMate/icons/github.svg) [" + get(github) + "](" + get(github) + ") |";
+        headerString += "![Github](https://shlok-bhakta.github.io/ResuMate/icons/github.svg) [" + get(github) + "](https://" + get(github) + ") |";
     }
     // Next is Linkedin
     if(get(enableLinkedin)){
         // ![Linkedin](https://api.iconify.design/mdi:linkedin.svg) [linkedin.com/in/shlokbhakta](https://linkedin.com/in/shlokbhakta)
-        headerString += "![Linkedin](https://shlok-bhakta.github.io/ResuMate/icons/linkedin.svg) [" + get(linkedin) + "](" + get(linkedin) + ") |";
+        headerString += "![Linkedin](https://shlok-bhakta.github.io/ResuMate/icons/linkedin.svg) [" + get(linkedin) + "](https://" + get(linkedin) + ") |";
     }
     // Next is Address
     if(get(showUSCitizenship)){
         // ![Passport](https://api.iconify.design/mdi:passport.svg) [US CITIZEN](https://www.linkedin.com/in/shlokbhakta/)
-        headerString += "![Passport](https://shlok-bhakta.github.io/ResuMate/icons/passport.svg) [US CITIZEN](https://www.linkedin.com/in/shlokbhakta/) |";
+        headerString += "![Passport](https://shlok-bhakta.github.io/ResuMate/icons/passport.svg) US CITIZEN|";
     }
 
     // Remove the last | from the headerString
@@ -512,6 +522,8 @@ export async function loadProject(id: number) {
 export async function getProjectNames() {
     // get all the project names
     let projectIds = await db.project.toArray();
+    // reverse the order so the newest projects are at the top
+    projectIds.reverse();
     availableProjects.update(() => {return projectIds.map((project) => [project.name, project.id])});
 }
 
@@ -692,6 +704,11 @@ export async function resetApplication(): Promise<void> {
         github.set("github.com/example");
         address.set("Moon Street 123");
         cssTheme.set("/ResuMate/style.css");
+        // llmProvider.set("openrouter");
+        // openAIKey.set("your_api_key_here");
+        // googleAIKey.set("your_api_key_here");
+        openRouterKey.set("your_api_key_here");
+        knowlegeBase.set("Fetch some example knowlege to see what it looks like");
         
         // Reset enable flags
         enableEmail.set(true);
@@ -762,4 +779,91 @@ export async function resetApplication(): Promise<void> {
     a.click();
     URL.revokeObjectURL(url);
   }
-  
+
+  export async function tuneResume() {
+    tuning.set(true);
+
+    let prompt = `
+    You are a Resume Tuner who cannot tell a lie!
+
+    You need to truthfully tune a resume to match the job description and the job requirements.
+
+    The resume is in markdown with the only difference being that || allows for having text on the right and left of the html
+
+    You are also a tool so you can only output the markdown for the resume.
+    do not output anything else. as this will break the tool. The first character should be the first header and the last character should be your tuned version
+    make sure not to forget the headers. the ## is super important so dont skip it!
+    
+    get rid of the comments (<!-- -->) and really only include the parts you specificly want to maximize that score!
+
+    for example:
+
+    if the job is for C#
+    - then you can delete a cpu development project and instead uncomment a game development project and tune a bullet to contain C#
+    - You can remove a bullet thats about writing documentation and instead uncomment a bullet about C# so that the length remains the same but there are more keyword matches
+
+    here is your knowlege base, draw from this to boost the score higher when needed:
+    ${get(knowlegeBase)}
+
+    try changing words in the resume to match closer like for example
+    if the job description has "C++" and the resume has "c++" then change the resume to "C++" to match the job description
+    `;
+
+
+    let content = `
+    remember to get rid of the comments (<!-- -->) and really only include the parts you specificly want to maximize that score!
+
+
+    Here is the job description:
+    ${get(jobDescription)}
+
+    here is the job requirements:
+    ${get(jobKeywords)}
+
+    here is the resume:
+    ${get(resumeMd)}
+
+    here is the resume keywords:
+    ${get(resumeKeywords)}
+
+    Here is the combined score:
+    ${get(combinedScore)}
+    `;
+    await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${get(openRouterKey)}`,
+        },
+        body: JSON.stringify({
+            model: get(openRouterAIModel),
+            messages: [
+                {
+                    role: "system",
+                    content: prompt,
+                },
+                {
+                    role: "user",
+                    content: content,
+                },
+            ],
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            // cleanup
+            // remove anything before first #
+            // data.choices[0].message.content = data.choices[0].message.content.replace(/.*?\n/, "");
+            // remove the last ``` and everything after it
+            data.choices[0].message.content = data.choices[0].message.content.replace(/```\n.*?\n```/, "");
+            // remove the ``` if it exists
+            data.choices[0].message.content = data.choices[0].message.content.replace(/```/, "");
+            console.log(data);
+            console.log(data.choices[0].message.content);
+            resumeMd.set(data.choices[0].message.content);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    tuning.set(false);
+  }

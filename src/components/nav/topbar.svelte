@@ -17,16 +17,24 @@
 <div class="flex flex-row bg-crust p-1 border-b-1 border-overlay0">
     <input
         class="text-text px-2 py-1 bg-mantle rounded"
+        placeholder="Project Name"
         bind:value={$jobName}
     />
     <div class="relative">
         <button
-            class="text-text px-2 py-1 ml-1 bg-mantle rounded-xs hover:bg-overlay0 transition-all duration-200 flex flex-row items-center justify-center gap-2"
+            class="text-text px-2 py-1 ml-1 bg-mantle rounded-xs hover:bg-overlay0 transition-all duration-200 flex flex-row items-center justify-center gap-2 group relative before:content-[attr(data-tooltip)] before:absolute before:px-1.5 before:py-0.5 before:left-1/2 before:-translate-x-1/2 before:top-full before:mt-1 before:whitespace-nowrap before:rounded before:bg-crust before:text-xs before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-200 before:z-50"
             onclick={() => {
                 save();
             }}
+            data-tooltip={
+                $saveState === -1
+                    ? "Error Saving: Try changing the name of the project and trying again"
+                    : $saveState === 0
+                    ? "Currently saving..."
+                    : "Saved successfully!"
+            }
         >
-            save
+            Save
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-5 h-5"
