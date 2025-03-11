@@ -31,7 +31,7 @@
         knowlegeBase,
         openRouterAIModel,
     } from "$utils";
-    import { av } from "docs/assets/render.CG3mZHYP";
+    // Removed invalid import
     import "./settingseditor.css";
     import { Carta, MarkdownEditor } from "carta-md";
 

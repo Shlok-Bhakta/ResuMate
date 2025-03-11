@@ -4,7 +4,6 @@ import Dexie, { add } from "dexie";
 import { get } from 'svelte/store';
 // import {importDB, exportDB, importInto, peakImportFile} from "dexie-export-import";
 import type { InputEnhancer, Plugin } from "carta-md";
-import { r } from "docs/assets/render.CG3mZHYP";
 
 export let resumeMd = persist<any>(writable<any>("# Go to settings and fetch my resume template from the settings! Also Update your info!"), createIndexedDBStorage(), "resumeMd");
 export let resumeHtml = persist<any>(writable<any>("<h1>Hi</h1>"), createIndexedDBStorage(), "resumeHtml");
