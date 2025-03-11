@@ -306,6 +306,53 @@ function commentLines(input: InputEnhancer){
     input.textarea.setSelectionRange(selection.start, selection.end);
 }
 
+function moveSelectionUp(input: InputEnhancer) {
+    const selection = input.getSelection();
+    
+    // Get the start and end lines
+    const startLineInfo = input.getLine(selection.start);
+    const endLineInfo = input.getLine(selection.end);
+    
+    // Check if already at the top of the document
+    if (startLineInfo.start === 0) {
+        return; // Can't move up if already at the top
+    }
+    
+    // Get the line above the selection
+    const lineAboveInfo = input.getLine(startLineInfo.start - 1);
+    const lineAboveLength = lineAboveInfo.value.length;
+    
+    // Get the content to move
+    const contentToMove = input.textarea.value.substring(startLineInfo.start, endLineInfo.end);
+    
+    // Calculate the new position for selection
+    const newSelectionStart = selection.start - lineAboveLength - 1; // -1 for newline
+    const newSelectionEnd = selection.end - lineAboveLength - 1;
+    
+    // Calculate content length being moved
+    const contentLength = endLineInfo.end - startLineInfo.start;
+    
+    // Remove the selected lines
+    input.removeAt(startLineInfo.start, contentLength);
+    
+    // Insert the content above the line above
+    input.insertAt(lineAboveInfo.start, contentToMove + '\n');
+    
+    // Restore selection at new position
+    // setTimeout(() => {
+    //     input.textarea.setSelectionRange(
+    //         Math.max(0, newSelectionStart),
+    //         Math.max(0, newSelectionEnd)
+    //     );
+    // }, 0);
+    input.textarea.setSelectionRange(newSelectionStart, newSelectionEnd);
+}
+
+function moveSelectionDown(input: InputEnhancer) {
+    const selection = input.getSelection();
+    console.log(selection);
+}
+
 // Export the keyboard shortcuts
 export const editorShortcuts: Plugin = {
     shortcuts: [
@@ -318,7 +365,17 @@ export const editorShortcuts: Plugin = {
             id: 'underline',
             combination: new Set(['control', 'u']),
             action: (input) => input.toggleSelectionSurrounding('__')
-        }
+        },
+        // {
+        //     id: 'shiftup',
+        //     combination: new Set(['alt', 'k']),
+        //     action: (input) => moveSelectionUp(input)
+        // },
+        // {
+        //     id: 'shiftdown',
+        //     combination: new Set(['alt', 'j']),
+        //     action: (input) => moveSelectionDown(input)
+        // },
     ]
 };
 
@@ -327,6 +384,10 @@ export const editorShortcuts: Plugin = {
 export function tableify(md: string) {
     let text = md.split("\n");
     for (let i = 0; i < text.length; i++) {
+        // if text starts with comment <!-- then skip
+        if (text[i].startsWith("<!--")) {
+            continue;
+        }
         // if text has a || then split
         if (text[i].includes("||")) {
             let splitText = text[i].split("||");

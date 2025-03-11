@@ -224,7 +224,6 @@
             <!-- The resume base template -->
             <div class="grid grid-cols-1 w-full grid-rows-[1fr_auto]">
                 <button class="bg-blue hover:bg-sapphire transition-all duration-200 px-2 py-1 rounded-sm text-mantle" onclick={fetchResTemplate}>Fetch Resume Template</button>
-                <label for="resumeTemplate" class="text-text">Resume Template</label>
                 <div class="w-full">
                     <div class="w-full">    
                         {#if carta2}
