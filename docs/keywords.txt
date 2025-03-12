@@ -1,1894 +1,2599 @@
-﻿C
-BitBake
-Matlab
-Q#
-AIDL
-Kotlin
-ASP
-Marko
-Handlebars
-CsoundScore
-Nit
-JSON
+Easy Programming Language
+configuration management
+object oriented analysis
+artificial intelligence
+firebase authentication
+facebook javascript sdk
+google chrome extension
+single page application
+development environment
+database administration
+backwards compatibility
+content security policy
+facebook authentication
+conditional compilation
+Bourne shell
+PROSE modeling language
+thread synchronization
+nonlinear optimization
+concurrent programming
+active directory group
+information extraction
+procedural programming
+angular reactive forms
+asp.net mvc validation
+asp.net mvc controller
+optimistic concurrency
+functional programming
+continuous integration
+command line interface
+azure active directory
+windows authentication
+conditional statements
+production environment
+database normalization
+azure resource manager
+client side validation
+separation of concerns
+reinforcement learning
+azure machine learning
+AutoLISP 
+Visual LISP
 Fortran
-Tea
-Inform7
-DCPU-16ASM
-Gherkin
-AutoIt
-jq
-JavaScript
-TSQL
-Scaml
-AMPL
-Parrot
-Logos
-GAP
-Haml
-AGSScript
-CSON
-TypeScript
-SQF
-INI
-LOLCODE
-F#
-G-code
-TXL
-Mercury
-Ballerina
-SmPL
-Io
-Alloy
-Slice
-Scala
-VisualBasic.NET
-APIBlueprint
-SCSS
-Riot
-Idris
-node.js
-Raku
-PowerBuilder
-Mustache
-Click
-Zimpl
-Uno
-Jasmin
-PropellerSpin
-Modula-3
-AL
-Go
-MATLAB
-D
-1CEnterprise
-Nearley
-Dockerfile
-Genie
-Charity
-JSONiq
-XS
-Svelte
-Boo
-Haxe
-Nimrod
-Swift
-Cool
-ooc
-YASnippet
-ECL
-PicoLisp
-HCL
-Ragel
-QtScript
-PLSQL
-CLIPS
-Clojure
-SQL
-NASL
-Thrift
-TIProgram
-Robot
-Arduino
-sed
-EJS
-Objective-J
-DM
-Lean
-UnrealScript
-Pony
-QML
-Bash
-Cap'nProto
-WebAssembly
-ClassicASP
-Haskell
-eC
-SystemVerilog
-ANTLR
-Julia
-Asymptote
-GameMaker
-Coq
-VCL
-Fluent
-ImageJMacro
-Eiffel
-AspectJ
-Slim
-Bicep
-Beef
-Graphviz
-Brainfuck
-RichTextFormat
-IGORPro
-SWIG
-Kit
-VisualBasic
-FreeBasic
-PostScript
-Singularity
-IDL
-Starlark
-Terra
-Zeek
-Cuda
-Elixir
-Latte
-q
-REALbasic
-mongoDB
-Roff
-CommonWorkflow
-Mirah
-Ox
-Crystal
-XML
-VBScript
-KiCadSchematic
-ClosureTemplates
-ActionScript
-FreeMarker
-Cirru
-KiCad
-GDB
-opencv
-OpenEdgeABL
-GLSL
-Shell
-Metal
-Awk
-Nim
-SaltStack
-SQLPL
-RUNOFF
-Turing
-Apex
-Cython
-Isabelle
-OpenQASM
-DTrace
-Agda
-LSL
-Puppet
-DataWeave
-Omgrofl
-Brightscript
-Ragelin
-Twig
-Vala
-BlitzMax
-Groff
-M
-Scilab
-MTML
-Gosu
-MLIR
-CartoCSS
-Cycript
-NSIS
-X10
-CMake
-Ring
-NetLinx
-mupad
-xBase
-KakouneScript
-Pep8
-Reason
-Macaulay2
-SAS
-Pawn
-Futhark
-TeX
-Bison
-TLA
-CUE
+MAPPER now part of BIS
+system administration
+azure virtual network
+application lifecycle
+database optimization
+model view controller
+programming languages
+distributed computing
+dependency management
+business intelligence
+python multithreading
+continuous deployment
+google authentication
+computer architecture
+software distribution
+hardware acceleration
+encryption asymmetric
+Apex (Salesforce.com)
+static code analysis
+standards compliance
+serverside rendering
+function composition
+language translation
+project organization
+business logic layer
+database permissions
+server configuration
+dependency injection
+internationalization
+google play services
+domain driven design
+inversion of control
+forms authentication
+reactive programming
+basic authentication
+database performance
+azure service fabric
+database replication
+angularjs controller
+restful architecture
+windows applications
+javascript framework
+application settings
+string interpolation
+progressive web apps
+data synchronization
 COBOL
-OCaml
-Rebol
-Gnuplot
-ProtocolBuffer
-Csound
-ATS
-Mako
-VHDL
-Hack
-AngelScript
-Arc
-LiveScript
-Smalltalk
-EmacsLisp
-Xojo
-Ada
-Shen
-Lasso
-VimSnippet
-JupyterNotebook
-nesC
-Nemerle
-XQuery
-Xonsh
-SuperCollider
-FLUX
-Groovy
-PowerShell
-GDScript
-Dylan
-Golo
-Modula-2
-Moocode
-Fennel
-PAWN
-KRL
-Chapel
-ApacheConf
-Diff
-Pug
-Markdown
-Sage
-ZenScript
-FORTRAN
-Perl6
-Dhall
-Slash
-V
-NCL
-CsoundDocument
-Dogescript
-PigLatin
-Zephir
-QMake
-Meson
-LabVIEW
-UrWeb
-EmberScript
-Java
-ASP.NET
-CodeQL
-Vimscript
-Monkey
-AppleScript
-PEG.js
-SMT
-DOT
-Jinja
-ObjectScript
-Redcode
-Ioke
-Lex
-APL
-Ruby
-HyPhy
-Bluespec
-YAML
-Ecl
-Lua
-Nix
-Scheme
-Harbour
-Astro
-Earthly
-HiveQL
-Ren'Py
-ReScript
-PogoScript
-Red
-ado.net
-LLVM
-DIGITALCommand
-Augeas
-Glyph
-WebOntology
-Stan
-Assembly
-Verilog
-CommonLisp
-Elm
-ASL
-Odin
-Nextflow
-StringTemplate
-KiCadLayout
-Befunge
-BASIC
-ios
-Cucumber
-RPC
-Wollok
-Perl6
-LilyPond
-Python
-RenderScript
-Squirrel
+KUKA Robot Language
+Lisp
+internet connection
+distributed caching
+generic collections
+orientation changes
+supervised learning
+continuous delivery
+penetration testing
+email notifications
+amazon web services
+network programming
+database connection
+relational database
+integration testing
+performance testing
+desktop application
+configuration files
+password protection
+generic programming
+password encryption
+http authentication
+unhandled exception
+gesture recognition
+digital certificate
+pattern recognition
+angular2 components
+n tier architecture
+Batch (Windows/Dos)
+C++ – ISO/IEC 14882
+Deesel (formerly G)
+Game Maker Language
+High Level Assembly
+Not eXactly C (NXC)
+Visual DialogScript
+XMOS architecture )
+background service
+laravel validation
+angular controller
+abstract data type
+angular datatables
+persistent storage
+wordpress rest api
+database relations
+scripting language
+session management
+application design
+regression testing
+visual studio code
+function parameter
+email verification
+mobile development
+azure blob storage
+hardware interface
+numerical analysis
+code documentation
+analytic functions
+django file upload
+google geolocation
+content management
+network monitoring
+selenium webdriver
+reporting services
+exception handling
+garbage collection
+prepared statement
+query optimization
+speech recognition
+data visualization
+repository pattern
+database migration
+background process
+project management
+image manipulation
+functional testing
+mobile application
+release management
+android networking
+applicationcontext
+android navigation
+application server
+distributed system
+browser automation
+azure sql database
 C#
-VisualStudio
-linux
-opengl
-glew
-svn
-osx
-apache
-vim
-hibernate
-orm
-soap
-excel
-oracle
-flash
-photoshop
-winapi
-github
-gitlab
-jira
-ajax
-eclipse
-vmware
-cad
-ubuntu
-InnoSetup
-Clean
-Racket
-Fancy
-selenium
-Opa
-EQ
-Oxygene
-PureScript
-HolyC
-Rust
-PureBasic
-ABAP
-Solidity
-LoomScript
-YARA
-mIRCScript
-CWeb
-Fantom
-Smarty
-Pascal
-J
-Modelica
-Grace
-Sieve
-ShellSession
-Mask
-vb.net
-R
-postgresql
-mssql
-windows
-Stylus
-WebIDL
-XC
-StandardML
-C++
-Clarion
-Tcl
-Frege
-Mathematica
-MAXScript
-Delphi
-Rouge
-wdl
-GCCMachineDescription
-Volt
-ChucK
-Boogie
-Motoko
-OpenPolicyAgent
-E
-M4
-Liquid
-Jsonnet
-XPages
-CSS
-Erlang
-Forth
-Jolie
-GAML
-GAMS
-Pike
-Limbo
-Objective-C++
-MQL5
-OpenSCAD
-PureData
-Eagle
-KaitaiStruct
-ZAP
-Promela
-Blade
-Org
-ColdFusion
-MoonScript
-Papyrus
-RAML
-Rascal
-PHP
-Opal
-Factor
-Nunjucks
-BlitzBasic
-Stata
-Yacc
-Sass
-Processing
-NetLogo
-Grammatical
-MQL4
-Logtalk
-Nu
-NetLinx+ERB
-Oz
-VBA
-LookML
-Faust
-Makefile
-NewLisp
-POV-RaySDL
-Prolog
-ShaderLab
-Perl
-AutoHotkey
-REXX
-SourcePawn
-XProc
-ComponentPascal
-JFlex
-VimL
-XSLT
-SRecodeTemplate
-Smali
-Less
-P4
-Objective-C
-PLpgSQL
-Dart
-Mysql
-Genshi
-F*
-HTML
-jQuery
-Bootstrap
-React
-Vue.js
-Angular
-Ember.js
-Backbone.js
-Meteor
-Express.js
-Koa
-Next.js
-Gatsby
-Nuxt.js
-Dust
-Razor
-Velocity
-Thymeleaf
-AsciiDoc
-reStructuredText
-MediaWiki
-WikiCreole
-TikiWiki
-DokuWiki
-Hiki
-PmWiki
-MoinMoin
-TracWiki
-TWiki
-Confluence
-Dotclear
-Ghost
-Joomla
-WordPress
-Drupal
-Jekyll
-Hugo
-Octopress
-Hexo
-Sphinx
-MkDocs
-Scribus
-LaTeX
-XeLaTeX
-pdfTeX
-ConTeXt
-LyX
-AsciiDoctor
-org-mode
-Pandoc
-Sphinx-Doc
-Slate
-Swagger
-OpenAPI
-Postman
-SwaggerUI
-ReDoc
-RapidAPI
-Lisp
-MongoDB
-PostgreSQL
-MySQL
-SQLite
-Oracle
-MicrosoftSQLServer
-DB2
-Redis
-Elasticsearch
-Cassandra
-Hadoop
-Spark
-Flink
-Storm
-Kafka
-RabbitMQ
-ActiveMQ
-AWSLambda
-AzureFunctions
-GoogleCloudFunctions
-CloudFunctionsforFirebase
-Heroku
-GoogleAppEngine
-MicrosoftAzure
-AWSEC2
-Docker
-Kubernetes
-OpenShift
-ApacheTomcat
-Jetty
-Glassfish
-WildFly
-Weblogic
-JBoss
-IBMWebSphere
-PivotaltcServer
-ApacheHTTPServer
-Nginx
-IIS
-HAProxy
-Varnish
-Android
-iOS
-WindowsPhone
-Blackberry
-Tizen
-FirefoxOS
-UbuntuTouch
-SailfishOS
-WebOS
-Electron
-PhoneGap
-Cordova
-ReactNative
-NativeScript
-Flutter
-Ionic
-Xamarin
-KotlinMultiplatform
-Qt
-GTK
-wxWidgets
-FLTK
-MFC
-AWT
-Swing
-JavaFX
-SWT
-ReadMe
-Postwoman
-Insomnia
-Apigee
-Mulesoft
-Apiary
-SwaggerHub
-Redocly
-Stoplight
-LFE
-Hy
-CoffeeScript
-Myghty
-FilebenchWML
-Ceylon
-Xtend
-Vue
-wisp
-HLSL
-Zig
-Pan
-Bro
-Apache
-Wicket
-ASP.NETCore
-CakePHP
-Catalyst
-CodeIgniter
-CppCMS
-Django
-Flask
-Jam.py
-Yii
-Laravel
-Mojolicious
-Sails.js
-Symfony
-SpringMVC
-Wt
-webtoolkit
-Zend
-Bottle
-Camping
-Falcon
-Scalatra
-Lumen
-Silex
-Sinatra
-Jooby
-Javalin
-Jodd
-Helidon
-Pippo
-Rapidoid
-Armeria
-AkkaHTTP
-Ratpack
-Ktor
-Toolatra
-ActiveVFP
-Agavi
-AIDA/Web
-AmetysCMS
-ApacheCocoon
-ApacheShale
-ApacheSling
-ApacheStruts1
-ApacheStruts2
-ApacheTapestry
-ApacheTiles
-ApacheWicket
-Apotomo
-Appery.io
-AppFuse
-ASP.NETMVC
-ASP.NETRazor
-ASP.NETWebForms
-ATLServer
-BackdropCMS
-Barracuda
-BEdita
-Brutos
-CastleProject
-ApacheClick
-CodeChargeStudio
-ColdBoxPlatform
-ColdSpring
-Crypton
-DabbleDB
-DAMP
-Dancer
-DataFlex
-DirectWebRemoting
-Drogon
-Echo
-EclipseMojarra
-ExponentCMS
-ExtJS
-Fat-Free
-FluidUI
-Foundation
-FuelPHP
-Fusebox
-Gatsby
-GetSimpleCMS
-GoogleAppsScript
-Grails
-Gyroscope
-Hammerkit
-Horde
-IBMWebSphereApplicationServer
-ICEfaces
-JakartaEE
-Jamroom
-JBND
-JBossSeam
-JHipster
-JQuery
-JQueryMobile
-JVx
-JWt
-Kajona
-Kitura
-Laminas
-Li3
-Lift
-LivelyKernel
-Git
-Subversion
-Mercurial
-CVS
-Perforce
-Bazaar
-Darcs
-GitLab
-Bitbucket
-GitHub
-AzureDevOps
-JIRA
-Asana
-Trello
-PivotalTracker
-Redmine
-MantisBT
-Bugzilla
-Trac
-YouTrack
-Jama
-Aha!
-Clubhouse
-Zoho
-ProjeQtOr
-Redbooth
-Basecamp
-Flowdock
-LYME
-MERN
-Merb
-MooTools
-MozillaSkywriter
-Nette
-Obidos
-Padrino
-Pandesic
-Pantheon
-PEAR
-Phoenix
-PhpCodeGenie
-Play
-Plone
-PopPHP
-PRADO
-ProcessWire
-Qcodo
-Quarkus
-RichFaces
-Rocket
-RubyonRails
-RunBASIC
-Seaside
-SignalR
-Silex
-SilverstripeCMS
-Sinatra
-SmartFramework
-Snap
-Solutionstack
-Spark
-Spring
-SpringRoo
-Stripes
-SunWebDeveloperPack
-TailwindCSS
-Topincs
-Vaadin
-Vapor
-WaveMaker
-WebSpheresMash
-Wt
-Hapi.js
-Koa.js
-Nest.js
-Pyramid
-Tornado
-DjangoRestFramework
-FastAPI
-Sanic
-Flask-RESTful
-Flask-RESTPlus
-TornadoRestAPI
-Hug
-Aiohttp
-Starlette
-RESTX
-Eve
-DjangoRESTframework
-bottle
-aiohttp
-eve
-Grails
-Struts
-Dropwizard
-Brightstack
-Lithium
-ZendFramework
-SpringBoot
-XOOPS
-Yesod
-ZK
-Angular.js
-Express
-Horde
-Zikula
-Web2py
-TurboGears
-Phalcon
-Grok
-Yesod
-SenchaExtJS
-Phoenix
-PHPixie 
-CaliburnMicro
-React.js
-ReactNative
-Corona
-thymeleaf
-visio
-jQueryMobile
-MobileAngularUI
-AppceleratorTitanium
-Swiftic
-jsp
-maven
-html5
-appium
-junit
-postman
-android
-docker
-azure
-javafx
-Framework7
-ApacheMXNet 
-.NET
-ML.NET
-Infer.NET
-Accord.NET
-Chainer
-Horovod
-H2OQ
-Gauge
-Pytest
-Jest
-Mocha
-Jasmine
-Nightwatch
-Protractor
-Cypress
-TestProject
-Galen
-WebDriverIO
-OpenTest
-Citrus
-Karate 
-Scrapy
-Truffle
-Appcelerator
-SwiftUI
-CoronaSDK
-AdobeAir
-Kivy
-PWA
-OnsenUI
-IntelXDK
-AdobePhoneGap
-Framework7
-SenchaTouch
-KendoUI
-GrialUIKit
-Xamarin.Forms
-Embark
-Etherlime
-OpenZeppelin
-Brownie
-CreateEthApp
-Exonum 
-Hyperledger 
-Corda 
-MultiChain 
-SiteWhere
-Aurelia
-Mithril
-Bulma
-Microdot
-Rapidoid 
-Ktor 
-VisualStudioCode
-SublimeText
-Atom
-WebStorm
-NetBeans
-Eclipse
-IntelliJIDEA
-Dreamweaver
-Notepad++
-Brackets
-Vim
-Emacs
-PyCharm
-PHPStorm
-RubyMine
-AppCode
-WebMatrix
-AptanaStudio
-Coda
-TextMate
-BBEdit
-KomodoEdit
-BlueJ
-JCreator
-JDeveloper
-AndroidStudio
-Xcode
-XamarinStudio
-AndroidSDK
-iOSSDK
-.NET
-360-degree video
-3D Animation
-3D Design
-3D Model Maker
-3D Modelling
-3D Printing
-3D Rendering
-3ds Max
-4D
-Academic Writing
-Accounting
+Caché ObjectScript
+GOM (Good Old Mad)
+Google Apps Script
+Hartmann pipelines
+Windows PowerShell
+internet explorer
+multiple monitors
+browser extension
+location services
+command line tool
+responsive images
+network interface
+custom validators
+angular universal
+real time updates
+static ip address
+default arguments
+background thread
+react virtualized
+document database
+android framework
+jquery pagination
+dynamic languages
+denial of service
+jquery traversing
+database security
+xml configuration
+twitter bootstrap
+google app engine
+android fragments
+stored procedures
+memory management
+javascript events
+firebase database
+responsive design
+push notification
+angular ui router
+android animation
+cluster computing
+android imageview
+elastic beanstalk
+session variables
+compact framework
+social networking
+linear regression
+android resources
+amazon cloudfront
+augmented reality
+hybrid mobile app
+email attachments
+string comparison
+android lifecycle
+android bluetooth
+data access layer
+android tablayout
+scala collections
+screen resolution
+network protocols
+voice recognition
+android broadcast
+custom attributes
+data manipulation
+email integration
+query performance
+high availability
+image recognition
+unique constraint
+feature detection
+sharepoint online
+language features
+feature selection
+code organization
+image compression
+method overriding
+user registration
+Assembly language
+GameMonkey Script
+Klerer-May System
+Not Quite C (NQC)
+Pascal – ISO 7185
+database trigger
+android database
+windows firewall
+dynamic controls
+database indexes
+android security
+user interaction
+data integration
+azure automation
+event delegation
+angular template
+docker container
+azure deployment
+model validation
+sql optimization
+android hardware
+abstract factory
+response headers
+react router dom
+jquery draggable
+dynamic websites
+asp.net controls
+css preprocessor
+document library
+windows identity
+software quality
+data compression
+error correction
+image comparison
+entity framework
+image processing
+android activity
+machine learning
+web applications
+android listview
+google analytics
+active directory
+android edittext
+uicollectionview
+django templates
+android emulator
+operating system
+jquery selectors
+windows services
+wordpress plugin
+pattern matching
+full text search
+background image
+android manifest
+angular material
+static libraries
+cluster analysis
+android textview
+batch processing
+computer science
+background color
+file permissions
+android drawable
+jenkins pipeline
+ansible playbook
+remote debugging
+android contacts
+video processing
+build automation
+android espresso
+firebase storage
+observer pattern
+ternary operator
+android cardview
+database backups
+angular services
+custom component
+cross validation
+email validation
+argument passing
+case insensitive
+business objects
+object detection
+face recognition
+access modifiers
+user permissions
+application pool
+package managers
+solid principles
+facebook ads api
+standard library
+static variables
+database restore
+strategy pattern
+fluent interface
+resource manager
+Component Pascal
+Hamilton C shell
+IBM Informix-4GL
+Maxima (see also
+Stackless Python
+Wolfram Language
+session storage
+background task
+file management
+asp.net routing
+data extraction
+google webfonts
+service locator
+date conversion
+message passing
+data processing
+dynamic library
+express session
+cursor position
+multiple select
+email templates
+voice recording
+android version
+file processing
+change tracking
+network traffic
+fault tolerance
+data management
+structured data
+dynamic content
+request mapping
+data protection
+web api testing
+html validation
+builder pattern
+design patterns
+data structures
+database design
+spring security
+version control
+crystal reports
+computer vision
+automated tests
+video streaming
+ssl certificate
+material design
+virtual machine
+scheduled tasks
+css transitions
+google calendar
+custom controls
+exchange server
+database schema
+user experience
+software design
+text processing
+react bootstrap
+angular filters
+developer tools
+bootstrap table
+jquery callback
+error reporting
+video recording
+windows console
+python datetime
+user management
+EASYTRIEVE PLUS
+CMS EXEC (EXEC)
+PL/I – ISO 6160
+Visual DataFlex
+sqlperformance
+datetimeoffset
+mobile browser
+android search
+java websocket
+physics engine
+google account
+android memory
+data retrieval
+data integrity
+infrastructure
+static content
+mobile devices
+css frameworks
+apache cordova
+azure cosmosdb
+object storage
+multithreading
+user interface
+android studio
+authentication
+error handling
+eclipse plugin
+floating point
+event handling
+initialization
+jasper reports
+pdf generation
+cross platform
+single sign on
+load balancing
+virtualization
+data warehouse
+microsoft edge
+implementation
+android button
+android source
+css transforms
+apache commons
+race condition
+android sdcard
+android styles
+google adwords
+mobile website
+event listener
+android dialog
+specifications
+shared hosting
+android bitmap
+remote desktop
+service worker
+speech to text
+access control
+data migration
+Virtual memory
+Windows server
+Administration
+Web frameworks
+Business logic
+Stress testing
+business rules
+issue tracking
+Executable UML
+Visual Fortran
+Visual Objects
+windows phone
+ruby on rails
+service layer
+subscriptions
+multiplatform
+web standards
+point of sale
+strong typing
+android event
+.net standard
+after effects
+data recovery
+android fonts
+extensibility
+virtual hosts
+jquery events
+prerequisites
+apache config
+rating system
+android icons
+document body
+microstrategy
+static typing
+java security
+amazon lambda
+audit logging
+dynamic forms
+arcgis server
+xamarin forms
+hash function
+node postgres
+image caching
+web audio api
+google client
+orchestration
+test coverage
+schema design
+cloud storage
+visual studio
+google chrome
+elasticsearch
+serialization
+intellij idea
+jquery mobile
+playframework
+configuration
+notifications
+drag and drop
+xamarin.forms
+user controls
+css selectors
+cross browser
+documentation
+thread safety
+authorization
+media queries
+local storage
+deep learning
+client server
+accessibility
+customization
+code coverage
+visualization
+search engine
+sql injection
+message queue
+compatibility
+build process
+communication
+data modeling
+ui automation
+microservices
+shopping cart
+file transfer
+file handling
+globalization
+crash reports
+code snippets
+data analysis
+relationships
+transactional
+user accounts
+administrator
+error logging
+image scaling
+ubuntu server
+jquery dialog
+collaboration
+auto generate
+data cleaning
+swipe gesture
+web analytics
+mobile phones
+cloud hosting
+text analysis
+Edinburgh IMP
+JavaFX Script
+Object Pascal
+ORCA/Modula-2
+Processing.js
+SuperCollider
+SystemVerilog
+Visual FoxPro
+Visual Prolog
+dynamics crm
+react router
+code cleanup
+type systems
+web frontend
+presentation
+bearer token
+domain model
+machine code
+file manager
+video player
+spring cache
+audio player
+build system
+social media
+build server
+event driven
+offline mode
+proxy server
+file browser
+beta testing
+storing data
+flow control
+server error
+select query
+data sharing
+file storage
+touch events
+object model
+web services
+unit testing
+apache spark
+asynchronous
+optimization
+react native
+data binding
+command line
+web scraping
+asp.net core
+autocomplete
+architecture
+transactions
+cryptography
+dependencies
+polymorphism
+apache kafka
+progress bar
+associations
+html parsing
+sql order by
+lazy loading
+media player
+relationship
+return value
+android view
+font awesome
+immutability
+benchmarking
+registration
+distribution
+access token
+partitioning
+intersection
+multilingual
+deep linking
+contact form
+class design
+subscription
+path finding
+verification
+dynamic data
+provisioning
+multitasking
+data science
+pull request
+antialiasing
+sanitization
+aspect ratio
+serializable
+color scheme
+organization
+requirements
+image upload
+azure search
+file sharing
+http caching
+data storage
+http request
 ActionScript
-Active Directory
-Ad Planning / Buying
-Adobe Air
-Adobe Captivate
-Adobe Dreamweaver
-Adobe Fireworks
-Adobe Flash
-Adobe InDesign
-Adobe Lightroom
-Adobe LiveCycle Designer
-Adobe Premiere Pro
-Advertisement Design
-Advertising
-Aeronautical Engineering
-Aerospace Engineering
-Affiliate Marketing
-Afrikaans
-After Effects
-Agile Development
-Agronomy
-Air Conditioning
-Airbnb
-AJAX
-Albanian
-Algorithm
-Alibaba
-Amazon Fire
-Amazon Kindle
-Amazon Web Services
-AMQP
-Analytics
-Android
-Android Honeycomb
-Android Wear SDK
-Angular.js
-Animation
-Antenna Services
-Anything Goes
-Apache
-Apache Ant
-Apache Solr
-App Designer
-App Developer
-Appcelerator Titanium
-Apple Compressor
-Apple iBooks Author
-Apple Logic Pro
-Apple Motion
-Apple Safari
-Apple Watch
-Applescript
-Appliance Installation
-Appliance Repair
-Arabic
-Arduino
-Argus Monitoring Software
-Article Rewriting
-Article Submission
-Articles
-Artificial Intelligence
-Arts / Crafts
-AS400 / iSeries
-Asbestos Removal
-ASP
-ASP.NET
-Asphalt
-Assembly
-Asterisk PBX
-Astrophysics
-Attic Access Ladders
-Attorney
-Audio Production
-Audio Services
-Audit
-Augmented Reality
-AutoCAD
-Autodesk Inventor
-Autodesk Revit
-AutoHotkey
-Automotive
-Autotask
-Awnings
-Axure
-Azure
+CoffeeScript
+IBM HAScript
+JScript .NET
+Kaleidoscope
+Machine code
+NewtonScript
+OpenEdge ABL
+TouchDevelop
+UnrealScript
+XC (exploits
+google play
+web testing
+legacy code
+file access
+spring bean
+url mapping
+synchronize
+body parser
+consistency
+data access
+sql scripts
+build tools
+reliability
+saving data
+jquery post
+http method
+static site
+calculation
+css modules
+web storage
+java server
+spring form
+html parser
+code editor
+css content
+get request
+objective c
+asp.net mvc
+performance
+codeigniter
+google maps
+silverlight
+spring boot
+file upload
 backbone.js
-Balsamiq
-Balustrading
-Bamboo Flooring
-Banner Design
-Basque
-Bathroom
-Bengali
-Big Data
-BigCommerce
-Binary Analysis
-Biology
-Biotechnology
-Bitcoin
-Biztalk
-Blackberry
-Blog
-Blog Design
-Blog Install
-Bluetooth Low Energy (BLE)
-BMC Remedy
-Book Artist
-Book Writing
-Bookkeeping
-Boonex Dolphin
-Bootstrap
-Bosnian
-Bower
-BPO
-Brackets
-Brain Storming
-Branding
-Bricklaying
-Broadcast Engineering
-Brochure Design
-BSD
-Building
-Building Architecture
-Building Certifiers
-Building Consultants
-Building Designer
-Building Surveyors
-Bulgarian
-Bulk Marketing
-Business Analysis
-Business Cards
-Business Catalyst
-Business Coaching
-Business Intelligence
-Business Plans
-Business Writing
-Buyer Sourcing
-C Programming
-C# Programming
-C++ Programming
-CAD/CAM
-CakePHP
-Call Center
-Call Control XML
-Capture NX2
-Caricature / Cartoons
-Carpentry
-Carpet Repair / Laying
-Carports
-Cartography / Maps
-Carwashing
-CasperJS
-Cassandra
-Catalan
-Catch Phrases
-CATIA
-Ceilings
-Cement Bonding Agents
-CGI
-Chef Configuration Management
-Chemical Engineering
-Chordiant
-Christmas
-Chrome OS
-Cinema 4D
-Circuit Design
-Cisco
-Civil Engineering
-Classifieds Posting
-Clean Technology
-Cleaning Carpet
-Cleaning Domestic
-Cleaning Upholstery
-Climate Sciences
-CLIPS
-Clothesline
-Cloud Computing
-CMS
-Coating Materials
-COBOL
-Cocoa
-Codeigniter
-Coding
-Cold Fusion
-Columns
-Commercial Cleaning
-Commercials
-Communications
-Compliance
-Computer Graphics
-Computer Help
-Computer Security
-Concept Art
-Concept Design
-Concreting
-Construction Monitoring
-Content Writing
-Contracts
-Conversion Rate Optimisation
-Cooking / Recipes
-Cooking / Baking
-Copy Typing
-Copywriting
-Corporate Identity
-Courses
-Covers / Packaging
-CRE Loaded
-Creative Design
-Creative Writing
-CRM
-Croatian
-Cryptography
-Crystal Reports
-CS-Cart
-CSS
-CubeCart
-CUDA
-Customer Service
-Customer Support
-Czech
-Damp Proofing
-Danish
-Dari
-Dart
-Data Entry
-Data Mining
-Data Processing
-Data Science
-Data Warehousing
-Database Administration
-Database Development
-Database Programming
-DataLife Engine
-Dating
-DDS
-Debian
-Debugging
-Decking
-Decoration
-Delivery
-Delphi
-Demolition
-Design
-Desktop Support
-Digital Design
-Disposals
-Django
-DNS
-DOS
-DotNetNuke
-Drafting
-Drains
-Drones
-Drupal
-Dthreejs
-Dutch
-Dynamics
-eBay
-eBooks
-eCommerce
-Editing
-Education / Tutoring
-edX
-Elasticsearch
-eLearning
-eLearning Designer
-Electrical Engineering
-Electricians
-Electronic Forms
-Electronics
-Email Developer
-Email Handling
-Email Marketing
-Embedded Software
-Ember.js
-Employment Law
-Energy
-Engineering
-Engineering Drawing
-English (UK)
-English (US)
-English Grammar
-English Spelling
-Entrepreneurship
-ePub
-Equipment Hire
-Erlang
-ERP
-Estonian
-Etsy
-Event Planning
-Event Staffing
-Excavation
-Excel
-Express JS
-Expression Engine
-Extensions / Additions
-Face Recognition
-Facebook Marketing
-Fashion Design
-Fashion Modeling
-Fencing
-Feng Shui
-Fiction
-FileMaker
-Filipino
-Filmmaking
-Final Cut Pro
-Finale / Sibelius
-Finance
-Financial Analysis
-Financial Markets
-Financial Planning
-Financial Research
-Finite Element Analysis
-Finnish
-Firefox
-Flash 3D
-Flashmob
-Flex
-Floor Coatings
-Flooring
-Flow Charts
-Flyer Design
-Flyscreens
-Food Takeaway
-Format / Layout
-Fortran
-Forum Posting
-Forum Software
-FPGA
-Frames / Trusses
-Freelance
-FreelancerAPI
-FreeSwitch
-French
-French (Canadian)
-Fundraising
-Furniture Assembly
-Furniture Design
-Game Consoles
-Game Design
-Game Development
-GameSalad
-Gamification
-GarageBand
-Gardening
-Gas Fitting
-Genealogy
-General Labor
-General Office
-Genetic Engineering
-Geolocation
-Geology
-Geospatial
-Geotechnical Engineering
-German
-Ghostwriting
-GIMP
-Git
-Glass / Mirror / Glazing
-Golang
-Google Adsense
-Google Adwords
-Google Analytics
-Google App Engine
-Google Cardboard
-Google Chrome
-Google Cloud Storage
-Google Earth
-Google Maps API
-Google Plus
-Google SketchUp
-Google Web Toolkit
-Google Webmaster Tools
-Google Website Optimizer
-GoPro
-GPGPU
-GPS
-Grails
-Grant Writing
-Graphic Design
-Grease Monkey
-Greek
-Growth Hacking
-Grunt
-Guttering
-Hadoop
-Hair Styles
-Handyman
-Haskell
-HBase
-Health
-Heating Systems
-Hebrew
-Helpdesk
-Heroku
-Hindi
-Hire me
-History
-Hive
-Home Automation
-Home Design
-Home Organization
-HomeKit
-Hot Water
-House Cleaning
-Housework
-HP Openview
-HTML
-HTML5
-Human Resources
-Human Sciences
-Hungarian
-iBeacon
-IBM BPM
-IBM Tivoli
-IBM Websphere Transformation Tool
-Icon Design
-IIS
-IKEA Installation
-Illustration
-Illustrator
-Imaging
-iMovie
-Indonesian
-Industrial Design
-Industrial Engineering
-Infographics
-Inspections
-Instagram
-Installation
-Instrumentation
-Insurance
-Interior Design
-Interiors
-Internet Marketing
-Internet Research
-Internet Security
-Interpreter
-Interspire
-Intuit QuickBooks
-Inventory Management
-Investment Research
-Invitation Design
-Ionic Framework
-iPad
-iPhone
-ISO9001
-Italian
-ITIL
-J2EE
-J2ME
-Jabber
-Japanese
-Java
-JavaFX
-Javascript
-JD Edwards CNC
-JDF
-Jewellery
-Joomla
-Journalist
-jQuery / Prototype
-JSON
-JSP
-Kannada
-Kinect
-Kitchen
-Knockout.js
-Korean
-Label Design
-LabVIEW
-Landing Pages
-Landscape Design
-Landscaping
-Landscaping / Gardening
-Laravel
-LaTeX
-Latvian
-Laundry and Ironing
-Lawn Mowing
-Leads
-Leap Motion SDK
-Legal
-Legal Research
-Legal Writing
-LESS/Sass/SCSS
-Life Coaching
-Lighting
-Linear Programming
-Link Building
-Linkedin
-Linnworks Order Management
-LINQ
-Linux
-Lisp
-Lithuanian
+knockout.js
+collections
+concurrency
+inheritance
+permissions
+xml parsing
+geolocation
+compression
+refactoring
+constraints
+conditional
+httprequest
+persistence
+open source
+integration
+translation
+html select
+replication
+spreadsheet
+angular cli
+game engine
+positioning
+android xml
+form submit
+dreamweaver
+data mining
+html5 audio
+web hosting
+breakpoints
+scalability
+html helper
+client side
+server side
+atom editor
+google apps
+date format
+stack trace
+text editor
+distributed
+apple watch
+soap client
+artifactory
+dynamic sql
+credentials
+bootstrap 4
+enumeration
+placeholder
+environment
+material ui
+code review
+portability
+composition
+interactive
+binary data
+synchronous
+auto update
+transitions
+private key
+controllers
+conventions
+scaffolding
+abstraction
+reusability
+autoscaling
+rest client
+e2e testing
+spring rest
+jquery tabs
+maintenance
+electronics
+methodology
+domain name
+connections
+android gps
+boilerplate
+Agilent VEE
+AmbientTalk
+AppleScript
+LotusScript
+Mathematica
+MicroScript
+MIVA Script
+Object Lisp
+Object REXX
+Objective-C
+Objective-J
+Small Basic
+UCSD Pascal
+servicenow
+convention
+error code
+estimation
+event loop
+fontfamily
+descriptor
+unique key
+statements
+team build
+redundancy
+coordinate
+percentile
+amazon ebs
+disconnect
+peoplesoft
+enumerator
+equivalent
+prometheus
+activation
+conceptual
+operations
+continuous
+serializer
+decoupling
+procedures
+throughput
+appearance
+repetition
+mixed mode
+precedence
+spring web
+test suite
+accounting
+box shadow
+system.net
+chromebook
+detailview
+imagefield
+filedialog
+key events
+boost test
+singlepage
+tablespace
+sql tuning
+search box
+page title
+federation
+ftp server
+cross site
+javascript
+sql server
+postgresql
+powershell
+spring mvc
+typescript
+dictionary
+networking
+matplotlib
+encryption
+visual c++
+sharepoint
+reflection
+amazon ec2
+deployment
+tensorflow
+parameters
+properties
+controller
+coldfusion
+background
+html table
+automation
+google api
+datatables
+sqlalchemy
+frameworks
+namespaces
+navigation
+attributes
+formatting
+statistics
+storyboard
+salesforce
+components
+expression
+kubernetes
+containers
+regression
+datasource
+e commerce
+aws lambda
+powerpoint
+monitoring
+observable
+ip address
+angular ui
+stylesheet
+simulation
+geospatial
+versioning
+assemblies
+sql insert
+attachment
+scheduling
+git branch
+responsive
+middleware
+amazon rds
+spring aop
+android ui
+large data
+web worker
+amazon sqs
+outer join
+api design
+amazon sns
+git rebase
+redux form
+python 3.6
+spring jms
+git commit
+production
+confluence
+templating
+foundation
+assertions
+blockchain
+recurrence
+smartphone
+hard drive
+task queue
+delegation
+android tv
+geofencing
+modularity
+amazon vpc
+node mysql
+protection
+base class
+user roles
+amazon ecs
+ui testing
+foreground
+typography
+enumerable
+ms project
+relational
+sequential
+value type
+multimedia
+image size
+http error
+read write
+end to end
+dom events
+A# (Axiom)
+A-0 System
+AutoHotkey
+ColdFusion
+DATATRIEVE
+ECMAScript
+Emacs Lisp
+FLOW-MATIC
+Franz Lisp
+JavaScript
+Legoscript
+LiveScript
+MATH-MATIC
+Maya (MEL)
+MillScript
+ObjectLOGO
+PeopleCode
+Plankalkül
+PostScript
+Powerhouse
+PowerShell
+Processing
+Revolution
+RuneScript
+Script.NET
+SyncCharts
+TypeScript
+Unix shell
+Visual J++
+XSLT – see
+Z notation
+wordpress
+angularjs
+websphere
+bootstrap
+file read
+listeners
+stateless
+subscribe
+saucelabs
+integrate
+error log
+artifacts
+in memory
+indicator
+backtrace
+normalize
+discovery
+ownership
+changeset
+drilldown
+linegraph
+fork join
+imagelist
+paradigms
+rowfilter
+user data
+artoolkit
+fasterxml
+readlines
+reflector
+text size
+inference
+switching
+spotlight
+bulk load
+react dom
+endpoints
+integrity
+relevance
+utilities
+ui design
+test data
+wireframe
+algorithm
+excel vba
+hibernate
+jquery ui
+templates
+debugging
+variables
+ms access
+animation
+exception
+recursion
+amazon s3
+websocket
+interface
+cassandra
+bluetooth
+scripting
+oauth 2.0
+windows 7
+windows 8
+passwords
+resources
+webdriver
+migration
+iteration
+streaming
+office365
+bitbucket
+real time
+analytics
+reporting
+standards
+messaging
+highlight
+photoshop
+directive
+packaging
+dashboard
+lifecycle
+execution
+simulator
+configure
+signature
+atlassian
+jetbrains
+terraform
+formatter
+dimension
+filezilla
+datastore
+cron task
+instances
+universal
+numerical
+direction
+antivirus
+sequences
+connector
+messenger
+inventory
+uploading
+portfolio
+operation
+ABC ALGOL
+Autocoder
+BeanShell
+Boomerang
+CorVision
+Easy PL/I
+GraphTalk
+Hopscotch
+HyperTalk
+Join Java
+Macsyma )
+Microcode
+Model 204
+Pipelines
+SabreTalk
+SenseTalk
+SequenceL
+SIMSCRIPT
+Smalltalk
+SPITBOL )
+Speedcode
+Stateflow
+SuperTalk
+Turbo C++
+Visual J#
+selenium
+angular2
+database
+firebase
+backbone
+projects
+building
+reducers
+querying
+feedback
+consumer
+executor
+versions
+research
+spectrum
+receiver
+mediator
+auditing
+handlers
+affinity
+accounts
+artifact
+profiles
+reactive
+contract
+capacity
+channels
+complete
+contrast
+facebook
+smart tv
+angular4
+security
+datetime
+generics
+redirect
+assembly
+checkbox
+indexing
+encoding
+printing
+graphics
+combobox
+terminal
+datagrid
+triggers
+download
+callback
+calendar
+keyboard
+location
+treeview
+rabbitmq
+geometry
+position
+embedded
+fragment
+cucumber
+comments
+textarea
+workflow
+metadata
+frontend
+response
+instance
+electron
+packages
+teradata
+hardware
+perforce
+firewall
+abstract
+tracking
+dropdown
+optional
+matching
+pipeline
+nullable
+sortable
+shortcut
+equality
+conflict
+analysis
+profiler
+username
+webhooks
+playback
+blocking
+modeling
+progress
+readonly
+elements
+collapse
+children
+sharding
+designer
+wireless
+ethernet
+products
+snapshot
+newrelic
+addition
+relative
+messages
+schedule
+movement
+explorer
+behavior
+endpoint
+transfer
+shipping
+datalist
+duration
+populate
+hostname
+timeline
+infinite
+graphite
+updating
+internal
+autofill
+chaining
+material
+solution
+platform
+required
+provider
+robotics
+git flow
+renderer
+floating
+iterable
+failover
+testcase
+phonegap
+recovery
+devtools
+gestures
+intranet
+sysadmin
+scanning
+autoplay
+autosize
+simulate
+Ace DASL
+ALGOL
+Ateji PX
+Bertrand
+bash and
+CFEngine
+CL (IBM)
+Converge
+Coral 66
+DataFlex
+Euphoria
+@Formula
+Fortress
+F-Script
+IPTSCRAE
+LilyPond
+Little b
 LiveCode
-Locksmith
-Logistics / Shipping
-Logo Design
-Lotus Notes
-Lua
-Mac OS
-Macedonian
-Machine Learning
-Magento
-Magic Leap
-Mailchimp
-Mailwizz
-Make Up
-Makerbot
-Malay
-Malayalam
-Maltese
-Management
-Manufacturing
-Manufacturing Design
-Map Reduce
-MariaDB
-Market Research
-Marketing
-Marketplace Service
-Materials Engineering
-Mathematics
-Matlab and Mathematica
-Maya
-Mechanical Engineering
-Mechatronics
-Medical
-Medical Writing
-Metatrader
-MeteorJS
-Metro
-Microbiology
-Microcontroller
-Microsoft
-Microsoft Access
-Microsoft Exchange
-Microsoft Expression
-Microsoft Hololens
-Microsoft Office
-Microsoft Outlook
-Microsoft SQL Server
-Microsoft Visio
-Microstation
-Millwork
-Mining Engineering
-Minitlab
-MLM
-MMORPG
-Mobile App Testing
-Mobile Phone
-MODx
-MonetDB
-Moodle
-Mortgage Brokering
-Motion Graphics
-Moving
-MQTT
-Mural Painting
-Music
-MVC
-MYOB
-MySpace
-MySQL
-Nanotechnology
-Natural Language
-Network Administration
-Newsletters
-Nginx
-Ning
-Nintex Forms
-Nintex Workflow
+Metacard
+Metafont
+Modelica
+Modula-2
+Modula-3
+Napier88
+Net.Data
+Newspeak
+NWScript
+OmniMark
+Phrogram
+Picolisp
+PortablE
+Prograph
+ProvideX
+QtScript
+Simulink
+SNOBOL (
+Snowball
+Squirrel
+Starlogo
+Topspeed
+Ubercode
+Winbatch
+xHarbour
+android
+angular
+windows
+express
+laravel
+jenkins
+asp.net
 node.js
-Nokia
-Norwegian
-NoSQL Couch / Mongo
-Nutrition
-OAuth
-Objective C
-OCR
-Oculus Mobile SDK
-Odoo
-Online Writing
-Open Cart
-Open Journal Systems
-OpenBravo
+inspect
+scoping
+segment
+catalog
+encoder
+country
+visitor
+measure
+scraper
+winston
+corrupt
+garbage
+decoder
+outline
+seeding
+digital
+writing
+modular
+reactor
+rebuild
+reindex
+onerror
+podcast
+contain
+concept
+git lfs
+aws ec2
+recover
+opcache
+members
+recycle
+heading
+targets
+faraday
+details
+openbsd
+rancher
+macbook
+banking
+speaker
+posting
+lexical
+eclipse
+mongodb
+cordova
+reactjs
+symfony
+sockets
+sorting
+parsing
+session
+magento
+haskell
+firefox
+cakephp
+caching
+testing
+unity3d
+java ee
+logging
+xamarin
+cookies
+twitter
+methods
+dynamic
+browser
+plugins
+unicode
+file io
+service
+replace
+webview
+clojure
+webpack
+casting
+process
+binding
+routing
+promise
+console
+openssl
+request
+website
+polymer
+flexbox
+boolean
+command
+vagrant
+timeout
+package
+ansible
+install
+mapping
+runtime
+mockito
+tooltip
+drawing
+decimal
+signals
+version
+refresh
+storage
+spinner
+adapter
+hosting
+umbraco
+overlay
+mariadb
+project
+gallery
+extract
+counter
+formula
+average
+handler
+upgrade
+element
+loading
+toolbar
+message
+wrapper
+webpage
+virtual
+backend
+web api
+payment
+tableau
+reverse
+release
+private
+publish
+startup
+opacity
+pyramid
+connect
+sandbox
+postman
+product
+desktop
+archive
+keyword
+spatial
+scaling
+graphql
+powerbi
+options
+styling
+symbols
+mozilla
+profile
+restore
+history
+diagram
+preview
+builder
+porting
+capture
+monitor
+restart
+metrics
+display
+channel
+finance
+account
+privacy
+gateway
+drivers
+migrate
+summary
+tracing
+API Key
+Markers
+Matcher
+Surface
+Weather
+Billing
+Graphic
+flutter
+traffic
+invoice
+stretch
+terrain
+payload
+staging
+imaging
+netstat
+explain
+packets
+vsphere
+A# .NET
+ACT-III
+Action!
+Adenine
+ALGOL W
+Amiga E
+AspectJ
+Averest
+Babbage
+Blockly
+C Shell
+Cayenne
+Charity
+chomski
+Clarion
+Clipper
+Clojure
+COMPASS
+Cryptol
+Cyclone
+Datalog
+Emerald
+Epigram
+Esterel
+Fjölnir
+Flavors
+FoxBase
+Harbour
+Haskell
+IBM RPG
+JScript
+Karel++
+Kixtart
+KRYPTON
+L# .NET
+LabVIEW
+Lagoona
+Logtalk
+Mercury
+Miranda
+Mortran
+Nemerle
+NetLogo
+NetRexx
+NewLISP
+occam-π
+Oxygene
+PARI/GP
+Planner
+Promela
+Redcode
+Sawzall
+Scratch
+Subtext
+TELCOMP
+Uniface
+"WATFIV
+jquery
+gitlab
+python
+django
+docker
+drupal
+appium
+strict
+scalar
+sentry
+orders
+limits
+manual
+packer
+radius
+writer
+vision
+bridge
+avatar
+claims
+reader
+alerts
+author
+vendor
+aspect
+listen
+broker
+notice
+scopes
+rights
+states
+letter
+unlock
+hiding
+orange
+akamai
+galera
+invite
+throws
+locked
+locate
+arrays
+iphone
+string
+spring
+oracle
+apache
+matlab
+sqlite
+pandas
+opencv
+delphi
+ubuntu
+object
+hadoop
+github
+memory
+mobile
+layout
+design
+server
+upload
+insert
+routes
+stream
+header
+dialog
+window
+client
+output
+themes
+report
+vscode
+editor
+schema
+entity
+kotlin
+backup
+branch
+amazon
+action
+system
+config
+locale
+struts
+puppet
+render
+global
+native
+margin
+center
+inline
+device
+sybase
+assets
+vmware
+parent
+redhat
+kibana
+commit
+sphinx
+urllib
+pickle
+daemon
+plotly
+expect
+encode
+record
+offset
+reload
+fedora
+lookup
+pascal
+dapper
+access
+sensor
+future
+assert
+logout
+option
+theory
+concat
+prompt
+helper
+target
+repeat
+shadow
+loader
+devops
+eslint
+nagios
+social
+splunk
+legacy
+dagger
+citrix
+notify
+oauth2
+subnet
+hybrid
+gaming
+trello
+apollo
+review
+typing
+Accent
+Alma-0
+AutoIt
+Bigwig
+Bistro
+Ceylon
+Chapel
+CHIP-8
+Claire
+COWSEL
+Csound
+Cython
+Delphi
+DRAKON
+DYNAMO
+Eiffel
+Elixir
+Erlang
+Escher
+Euclid
+EXEC 2
+Factor
+Falcon
+Fantom
+FORMAC
+FoxPro
+G-code
+GEORGE
+Godiva
+GOTRAN
+Groovy
+Inform
+ISLISP
+JOVIAL
+Jython
+Kotlin
+Ladder
+Limnor
+Lisaac
+Lite-C
+Lustre
+LYaPAS
+MATLAB
+Modula
+Nickle
+Oberon
+Octave
 OpenCL
-OpenGL
-OpenSceneGraph
-OpenSSL
-OpenStack
-OpenVMS
-Oracle
-Order Processing
-Organizational Change Management
-OSCommerce
-Package Design
-Packing / Shipping
-Painting
-Palm
-Papiamento
-Parallax Scrolling
-Parallel Processing
-Parallels Automation
-Parallels Desktop
-Patents
-Pattern Making
-Pattern Matching
-Pavement
-PayPal API
-Payroll
-Paytrace
-PCB Layout
-PDF
-PEGA PRPC
-PencilBlue CMS
-Pentaho
-PeopleSoft
-Periscope
-Perl
-Personal Development
-Pest Control
-Pet Sitting
-Petroleum Engineering
-Phone Support
-PhoneGap
-Photo Editing
-Photography
-Photoshop
-Photoshop Coding
-Photoshop Design
-PHP
-Physics
-PICK Multivalue DB
-Pickup
-Pinterest
-Piping
-PLC / SCADA
-Plesk
-Plugin
-Plumbing
-Poet
-Poetry
-Polish
-Portuguese
-Portuguese (Brazil)
-Post-Production
-Poster Design
-PostgreSQL
-Powerpoint
-Powershell
-Pre-production
-Presentations
-Press Releases
-Prestashop
-Prezi
-Print
-Procurement
-Product Descriptions
-Product Design
-Product Management
-Product Sourcing
-Programming
-Project Management
-Project Scheduling
+OptimJ
+Orwell
+PCASTL
+PL/SQL
+PLEXIL
+POP-11
 Prolog
-Proofreading
-Property Development
-Property Law
-Property Management
-Proposal/Bid Writing
-Protoshare
-PSD to HTML
-PSD2CMS
-Psychology
-Public Relations
-Publishing
-Punjabi
-Puppet
+PROMAL
+PROTEL
 Python
-QlikView
-Qualtrics Survey Platform
-Quantum
-QuarkXPress
-QuickBase
-R Programming Language
-RapidWeaver
-Raspberry Pi
-Ray-tracing
-React.js
-Real Estate
-REALbasic
-Recruitment
-Red Hat
-Redis
-Redshift
-Regular Expressions
-Remote Sensing
-Removalist
-Renewable Energy Design
-Report Writing
-Research
-RESTful
-Resumes
-Reviews
-Risk Management
-Robotics
-Rocket Engine
-Romanian
-Roofing
-RTOS
-Ruby
-Ruby on Rails
-Russian
-RWD
-Sales
-Salesforce App Development
-Salesforce.com
-Samsung
-Samsung Accessory SDK
-SAP
-SAS
-Scala
+QuakeC
+Racket
+Rapira
+Ratfiv
+Ratfor
+S-Lang
+S-PLUS
+Sather
 Scheme
-Scientific Research
-Screenwriting
-Script Install
-Scrum
-Scrum Development
-Sculpturing
-Search Engine Marketing
-Sencha / YahooUI
-SEO
-Serbian
-Sewing
-Sharepoint
-Shell Script
-Shopify
-Shopify Templates
-Shopping
-Shopping Carts
-Short Stories
-Siebel
-Sign Design
-Silverlight
-Simplified Chinese (China)
-Slogans
-Slovakian
-Slovenian
-Smarty PHP
-Snapchat
-Social Engine
-Social Media Marketing
-Social Networking
-Socket IO
-Software Architecture
-Software Development
-Software Testing
-Solaris
-Solidworks
-Sound Design
-Spanish
-Spanish (Spain)
-Spark
-Speech Writing
-Sphinx
-Splunk
-Sports
-SPSS Statistics
-SQL
-SQLite
-Squarespace
-Squid Cache
-Startups
-Stationery Design
-Statistical Analysis
-Statistics
-Steam API
-Sticker Design
-Storage Area Networks
-Storyboard
-Stripe
-Structural Engineering
-Subversion
-SugarCRM
-Supplier Sourcing
-Surfboard Design
-Swedish
-Swift
-Symbian
-Symfony PHP
-System Admin
-T-Shirts
-Tableau
-Tally Definition Language
-Tamil
-TaoBao API
-Tattoo Design
-Tax
-Tax Law
-Technical Support
-Technical Writing
-Tekla Structures
-Telecommunications Engineering
-Telemarketing
-Telephone Handling
-Telugu
-Templates
-Test Automation
-Testing / QA
-TestStand
-Textile Engineering
-Thai
-Tibco Spotfire
-Tiling
-Time Management
-Titanium
-Tizen SDK for Wearables
-Traditional Chinese (Hong Kong)
-Traditional Chinese (Taiwan)
-Training
-Transcription
-Translation
-Travel Writing
-Troubleshooting
-Tumblr
-Turkish
-Twitter
-Typescript
-TYPO3
-Typography
-Ubuntu
-Ukrainian
-Umbraco
-UML Design
-Unit4 Business World
-Unity 3D
-UNIX
-Urdu
-Usability Testing
-User Experience Design
-User Interface / IA
-User Interface Design
-Valuation / Appraisal
-Varnish Cache
-VB.NET
-vBulletin
-Vectorization
-Veeam
-Vehicle Signage
-Verilog
-VHDL
-VertexFX
-Video Broadcasting
-Video Editing
-Video Production
-Video Services
-Video Upload
-Videography
-Vietnamese
-Viral Marketing
-Virtual Assistant
-Virtual Worlds
-Virtuemart
-Virtuozzo
-Visa / Immigration
-Visual Arts
-Visual Basic
-Visual Basic for Apps
-Visual Foxpro
-Visual Merchandising
-Visualization
-VMware
-Voice Artist
-Voice Talent
-VoiceXML
-VoIP
-Volusion
-VPS
-vTiger
-Vuforia
-WatchKit
-Web Hosting
-Web Scraping
-Web Search
-Web Security
-Web Services
-webMethods
-WebOS
-Website Design
-Website Management
-Website Testing
-Weddings
-Weebly
-Welsh
-WHMCS
-WIKI
-Wikipedia
-Windows 8
-Windows API
-Windows CE
-Windows Desktop
-Windows Mobile
-Windows Phone
-Windows Server
-Wireframes
-Wireless
-Wix
-Wolfram
-WooCommerce
-Word
-Word Processing
-WordPress
-Workshops
-WPF
-Wufoo
-x86/x64 Assembler
-Xamarin
-Xero
-XML
-XMPP
-Xojo
-Xoops
-XPages
+Scilab
+SIMPOL
+SIGNAL
+SiMPLE
+Simula
+Squeak
+Strand
+TACPOL
+Timber
+Turing
+Unicon
+WebDNA
+Whiley
+Wyvern
 XQuery
-XSLT
-Yahoo! Store Design
-Yard Work / Removal
-Yarn
-Yiddish
-Yii
-YouTube
-Zbrush
-Zen Cart
-Zend
-Zendesk
-Zoho
+Yorick
+react
+mysql
+chain
+light
+group
+price
+quota
+tweak
+forge
+sales
+regex
+swift
+linux
+excel
+xcode
+html5
+forms
+image
+scala
+swing
+shell
+maven
+class
+loops
+azure
+email
+numpy
+cocoa
+flash
+nginx
+audio
+video
+razor
+xpath
+boost
+input
+flask
+graph
+login
+junit
+plsql
+https
+types
+oauth
+rspec
+fonts
+timer
+neo4j
+build
+merge
+split
+proxy
+jboss
+model
+scope
+count
+redis
+cmake
+table
+order
+stack
+click
+queue
+icons
+cloud
+nosql
+width
+match
+adobe
+ionic
+field
+views
+nodes
+mouse
+admin
+clone
+where
+scale
+limit
+block
+panel
+alert
+state
+frame
+media
+local
+value
+store
+music
+sleep
+intel
+pixel
+title
+shape
+nexus
+photo
+rdbms
+reset
+patch
+roles
+space
+break
+paste
+point
+layer
+radio
+alpha
+clear
+trace
+agile
+cycle
+lines
+tiles
+alarm
+skype
+scrum
+slack
+agent
+cisco
+basic
+ports
+vuejs
+owasp
+robot
+feeds
+grant
+crypt
+items
+level
+relay
+ABSET
+ABSYS
+Agora
+AIMMS
+Alice
+ARexx
+Argus
+BASIC
+BLISS
+BlooP
+ksh )
+CDuce
+Cecil
+Cesil
+CHAIN
+Charm
+CHILL
+ChucK
+Clean
+CLIST
+CMS-2
+Cobra
+COMAL
+COMIT
+Curry
+dBase
+DinkC
+DIBOL
+Draco
+Dylan
+ESPOL
+Etoys
+Euler
+FAUST
+FlooP
+FOCAL
+FOCUS
+Forth
+Frege
+Genie
+GNU E
+Gödel
+GRASS
+HAL/S
+Idris
+ISWIM
+Joule
+Julia
+Karel
+LANSA
+Lasso
+LaTeX
+Limbo
+Lingo
+Lithe
+Lucid
+M2001
+MAD/I
+Magik
+Magma
+Maple
+MIMIC
+Mirah
+Mohol
+Mouse
+MUMPS
+NXT-G
+o:XML
+Obliq
+OCaml
+occam
+Oriel
+PEARL
+Perl6
+Pharo
+PILOT
+Pizza
+PL-11
+PL360
+PLANC
+PROIV
+Pro*C
+RAPID
+REBOL
+REFAL
+RTL/2
+SALSA
+SAM76
+Scala
+Seed7
+SISAL
+SMALL
+Snap!
+SPARK
+Stata
+SYMPL
+"TMG 
+T-SQL
+TUTOR
+Umple
+UNITY
+WebQL
+XOTcl
+XPath
+Xtend
+gleam
+linq
+html
+mobx
+wave
+rate
+demo
+repo
+term
+lens
+hour
+heat
+bold
+java
+.net
+json
+ruby
+ajax
+bash
+list
+css3
+perl
+rest
+file
+tsql
+xaml
+date
+http
+unix
+curl
+xslt
+post
+math
+join
+flex
+jdbc
+soap
+text
+view
+path
+sass
+hive
+tree
+grep
+cron
+cuda
+gulp
+dojo
+mono
+char
+tags
+grid
+ldap
+smtp
+cors
+find
+copy
+rust
+save
+dart
+maps
+user
+odbc
+less
+load
+pipe
+size
+hdfs
+lisp
+chef
+task
+byte
+fork
+wifi
+blob
+case
+yaml
+rxjs
+exec
+echo
+chat
+port
+line
+heap
+gzip
+push
+hook
+jira
+call
+cell
+href
+diff
+eval
+each
+bind
+sftp
+root
+wait
+yarn
+edit
+crop
+crud
+move
+show
+main
+voip
+mqtt
+axis
+ping
+slim
+sync
+saml
+send
+exit
+like
+core
+wiki
+boot
+flux
+apex
+word
+area
+disk
+base
+pool
+rank
+lint
+saas
+tile
+bits
+tail
+zero
+thin
+bulk
+head
+pull
+edge
+flow
+role
+perf
+wine
+nmap
+name
+ABAP
+ACL2
+Agda
+Alef
+AMOS
+AMPL
+Axum
+Bash
+BCPL
+BETA
+BitC
+Blue
+BREW
+BPEL
+C/AL
+Caml
+CFML
+Chef
+CICS
+Cilk
+CODE
+Cool
+Corn
+CUDA
+Curl
+Dart
+Ease
+ELAN
+Flex
+FOIL
+GAMS
+GLSL
+GOAL
+Golo
+Gosu
+GPSS
+Hack
+Haxe
+HLSL
+Hope
+Hugo
+Hume
+Icon
+Ioke
+ISPF
+JADE
+Jako
+JASS
+Java
+JEAN
+JOSS
+Kojo
+Lava
+LC-3
+Leda
+LINC
+LISA
+Logo
+Lynx
+make
+Mary
+Mesa
+MIIS
+Moby
+NASM
+Neko
+nesC
+NESL
+NEWP
+Nial
+Nice
+NSIS
+OBJ2
+Onyx
+Opal
+OPS5
+Perl
+Pico
+Pict
+Pike
+PIKT
+PL/0
+PL/B
+PL/C
+PL/M
+PL/P
+PLEX
+Plus
+Pure
+Qalb
+Reia
+REXX
+Rlab
+ROOP
+Ruby
+Rust
+SA-C
+SAIL
+SASL
+Self
+SETL
+SLIP
+Span
+SPIN
+SP/k
+S/SL
+TACL
+TADS
+TECO
+Trac
+TTCN
+Vala
+VSXu
+vvvv
+Xojo
+XPL0
+Zeno
+ZOPL
+git
+php
+edi
+sdn
+can
+pci
+nas
+cad
+man
+cab
+jql
+crt
+ssd
+bus
+nic
+amp
+dfs
+hal
+ace
+gcp
+c++
+ios
+css
+sql
+xml
+wpf
+vba
+osx
+api
+wcf
+csv
+jsp
+oop
+pdf
+jsf
+url
+ssl
+jpa
+web
+ssh
+tcp
+npm
+jar
+orm
+dns
+get
+ftp
+sdk
+com
+map
+jvm
+ide
+int
+arm
+udp
+db2
+set
+nlp
+rss
+pip
+seo
+zip
+gem
+key
+usb
+jms
+tdd
+uml
+png
+row
+uri
+aes
+rsa
+gpu
+sap
+mp3
+jwt
+xss
+exe
+md5
+ipc
+cpu
+ocr
+nfc
+std
+rdf
+war
+ibm
+aop
+crm
+etl
+gif
+ado
+acl
+cdn
+gnu
+dos
+rpc
+soa
+esb
+tar
+vpn
+bit
+rpm
+sax
+mvp
+sse
+gdi
+dry
+iot
+var
+p2p
+cvs
+cql
+dsl
+ram
+utc
+cas
+xls
+rtf
+ada
+jsx
+aix
+scp
+amd
+pca
+ddl
+lex
+lan
+iso
+nat
+geo
+box
+doc
+spi
+ERP
+RAD
+LED
+ICC
+PKI
+VNC
+DES
+IDL
+SMB
+AAC
+KDE
+PGP
+DIR
+OUT
+PLC
+NTP
+POP
+SYS
+BIN
+RTC
+RFC
+CEP
+SEQ
+OGG
+ALM
+DRM
+ARP
+EPS
+IDA
+BSD
+ABI
+ACS
+XEN
+GPL
+EMF
+FIX
+A++
+ABC
+ACC
+Ada
+ALF
+APL
+Arc
+ATS
+AWK
+Boo
+C--
+Cel
+CLU
+Coq
+CPL
+csh
+CSP
+DCL
+Dog
+EGL
+Elm
+EPL
+FFP
+FPr
+GAP
+GDL
+Go!
+Hop
+ICI
+IMP
+IPL
+J++
+JAL
+JCL
+Joy
+KEE
+KIF
+KRC
+KRL
+ksh
+LIL
+LIS
+LPC
+LSE
+LSL
+Lua
+MDL
+MOO
+MPD
+CIL
+MSL
+NGL
+Nim
+NPL
+Oak
+Opa
+OPL
+Orc
+P′′
+PCF
+PDL
+PHP
+PPL
+QPL
+R++
+Red
+RPG
+RPL
+RSL
+SAS
+SBL
+Sed
+SML
+SOL
+SPS
+SQR
+TAL
+Tcl
+Tea
+TeX
+TEX
+TIE
+Tom
+TOM
+TPU
+TTM
+TXL
+X++
+X10
+XBL
+XPL
+XSB
+YQL
+Zsh
+ZPL
+nix
+C#
+Go
+IP
+QA
+ML
+A+
+bc
+Cg
+Ch
+dc
+E#
+es
+F#
+FL
+FP
+GJ
+GM
+Id
+Io
+J#
+M4
+M#
+Nu
+Oz
+P#
+rc
+S2
+S3
+SR
+X#
+XL
+B
+C
+D
+E
+F
+G
+J
+K
+L
+R
+S
+T
