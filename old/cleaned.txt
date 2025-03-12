@@ -1,3 +1,30 @@
+PowerBuilder – 4GL GUI applcation generator from Sybase
+Janus (time-reversible computing programming language)
+DASL (Distributed Application Specification Language)
+Janus (concurrent constraint programming language)
+Max (Max Msp – Graphical Programming Environment)
+App Inventor for Android's visual block language
+DASL (Datapoint's Advanced Systems Language)
+MaxScript internal language 3D Studio Max
+Q (programming language from Kx Systems)
+Combined Programming Language (CPL)
+Q (equational programming language)
+Swift (parallel scripting language)
+Common Intermediate Language (CIL)
+EusLisp Robot Programming Language
+Swift (Apple programming language)
+Mystic Programming Language (MPL)
+MAD (Michigan Algorithm Decoder)
+Constraint Handling Rules (CHR)
+MarsCode (programming language)
+ParaSail (programming language)
+Citrine (programming language)
+Common Lisp (also known as CL)
+IBM Basic assembly language
+MASM Microsoft Assembly x86
+MARK-IV now VISION:BUILDER
+content management system
+http basic authentication
 Easy Programming Language
 configuration management
 object oriented analysis
@@ -12,7 +39,7 @@ backwards compatibility
 content security policy
 facebook authentication
 conditional compilation
-Bourne shell
+Bourne shell (including
 PROSE modeling language
 thread synchronization
 nonlinear optimization
@@ -37,9 +64,8 @@ client side validation
 separation of concerns
 reinforcement learning
 azure machine learning
-AutoLISP 
-Visual LISP
-Fortran
+AutoLISP / Visual LISP
+Fortran – ISO/IEC 1539
 MAPPER now part of BIS
 system administration
 azure virtual network
@@ -86,9 +112,9 @@ application settings
 string interpolation
 progressive web apps
 data synchronization
-COBOL
-KUKA Robot Language
-Lisp
+COBOL – ISO/IEC 1989
+KUKA Robot Language)
+Lisp – ISO/IEC 13816
 internet connection
 distributed caching
 generic collections
@@ -171,7 +197,7 @@ application server
 distributed system
 browser automation
 azure sql database
-C#
+C# – ISO/IEC 23270
 Caché ObjectScript
 GOM (Good Old Mad)
 Google Apps Script
@@ -1267,7 +1293,9 @@ autoplay
 autosize
 simulate
 Ace DASL
-ALGOL
+ALGOL 58
+ALGOL 60
+ALGOL 68
 Ateji PX
 Bertrand
 bash and

@@ -49,6 +49,7 @@
             python311Packages.joblib
             python311Packages.keras
             python311Packages.tf-keras
+            python311Packages.openai
           ];
           
           shellHook = ''

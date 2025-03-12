@@ -1,10 +1,14 @@
-Easy Programming Language
-configuration management
-object oriented analysis
+content management system
+http basic authentication
+
 artificial intelligence
 firebase authentication
 facebook javascript sdk
 google chrome extension
+configuration management
+object oriented analysis
+
+
 single page application
 development environment
 database administration
@@ -12,8 +16,6 @@ backwards compatibility
 content security policy
 facebook authentication
 conditional compilation
-Bourne shell
-PROSE modeling language
 thread synchronization
 nonlinear optimization
 concurrent programming
@@ -26,6 +28,7 @@ asp.net mvc controller
 optimistic concurrency
 functional programming
 continuous integration
+
 command line interface
 azure active directory
 windows authentication
@@ -37,27 +40,25 @@ client side validation
 separation of concerns
 reinforcement learning
 azure machine learning
-AutoLISP 
-Visual LISP
-Fortran
-MAPPER now part of BIS
 system administration
 azure virtual network
+
 application lifecycle
 database optimization
 model view controller
 programming languages
+selenium
 distributed computing
 dependency management
 business intelligence
 python multithreading
 continuous deployment
 google authentication
+
 computer architecture
 software distribution
 hardware acceleration
 encryption asymmetric
-Apex (Salesforce.com)
 static code analysis
 standards compliance
 serverside rendering
@@ -65,6 +66,7 @@ function composition
 language translation
 project organization
 business logic layer
+
 database permissions
 server configuration
 dependency injection
@@ -72,6 +74,7 @@ internationalization
 google play services
 domain driven design
 inversion of control
+internet explorer
 forms authentication
 reactive programming
 basic authentication
@@ -82,21 +85,21 @@ angularjs controller
 restful architecture
 windows applications
 javascript framework
+
 application settings
 string interpolation
 progressive web apps
 data synchronization
-COBOL
-KUKA Robot Language
-Lisp
 internet connection
 distributed caching
 generic collections
 orientation changes
+
 supervised learning
 continuous delivery
 penetration testing
 email notifications
+
 amazon web services
 network programming
 database connection
@@ -115,14 +118,6 @@ digital certificate
 pattern recognition
 angular2 components
 n tier architecture
-Batch (Windows/Dos)
-C++ – ISO/IEC 14882
-Deesel (formerly G)
-Game Maker Language
-High Level Assembly
-Not eXactly C (NXC)
-Visual DialogScript
-XMOS architecture )
 background service
 laravel validation
 angular controller
@@ -130,6 +125,7 @@ abstract data type
 angular datatables
 persistent storage
 wordpress rest api
+
 database relations
 scripting language
 session management
@@ -146,6 +142,7 @@ code documentation
 analytic functions
 django file upload
 google geolocation
+
 content management
 network monitoring
 selenium webdriver
@@ -162,22 +159,18 @@ background process
 project management
 image manipulation
 functional testing
+
 mobile application
 release management
 android networking
+release management
 applicationcontext
 android navigation
 application server
 distributed system
 browser automation
 azure sql database
-C#
-Caché ObjectScript
-GOM (Good Old Mad)
-Google Apps Script
-Hartmann pipelines
-Windows PowerShell
-internet explorer
+
 multiple monitors
 browser extension
 location services
@@ -185,6 +178,7 @@ command line tool
 responsive images
 network interface
 custom validators
+
 angular universal
 real time updates
 static ip address
@@ -201,6 +195,7 @@ database security
 xml configuration
 twitter bootstrap
 google app engine
+internet explorer
 android fragments
 stored procedures
 memory management
@@ -209,30 +204,44 @@ firebase database
 responsive design
 push notification
 angular ui router
+
+android
+windows phone
+ruby on rails
+wordpress
 android animation
+dynamics crm
 cluster computing
 android imageview
 elastic beanstalk
 session variables
 compact framework
 social networking
+angular2
 linear regression
+windows phone
 android resources
 amazon cloudfront
 augmented reality
+angular2
 hybrid mobile app
 email attachments
 string comparison
 android lifecycle
+dynamics crm
 android bluetooth
+google play
+angularjs
 data access layer
 android tablayout
 scala collections
 screen resolution
 network protocols
+angular
 voice recognition
 android broadcast
 custom attributes
+
 data manipulation
 email integration
 query performance
@@ -247,11 +256,7 @@ code organization
 image compression
 method overriding
 user registration
-Assembly language
-GameMonkey Script
-Klerer-May System
-Not Quite C (NQC)
-Pascal – ISO 7185
+
 database trigger
 android database
 windows firewall
@@ -262,6 +267,7 @@ user interaction
 data integration
 azure automation
 event delegation
+
 angular template
 docker container
 azure deployment
@@ -277,6 +283,7 @@ asp.net controls
 css preprocessor
 document library
 windows identity
+
 software quality
 data compression
 error correction
@@ -317,6 +324,7 @@ android contacts
 video processing
 build automation
 android espresso
+
 firebase storage
 observer pattern
 ternary operator
@@ -339,16 +347,24 @@ solid principles
 facebook ads api
 standard library
 static variables
+
+database
+websphere
 database restore
+android
+firebase
+jquery
 strategy pattern
+windows
+react
+express
+laravel
+jenkins
 fluent interface
-resource manager
-Component Pascal
-Hamilton C shell
-IBM Informix-4GL
-Maxima (see also
-Stackless Python
-Wolfram Language
+linq
+gitlab
+python
+asp.net
 session storage
 background task
 file management
@@ -358,6 +374,7 @@ google webfonts
 service locator
 date conversion
 message passing
+django
 data processing
 dynamic library
 express session
@@ -367,13 +384,16 @@ email templates
 voice recording
 android version
 file processing
+
 change tracking
 network traffic
 fault tolerance
+resource manager
 data management
 structured data
 dynamic content
 request mapping
+
 data protection
 web api testing
 html validation
@@ -395,41 +415,49 @@ css transitions
 google calendar
 custom controls
 exchange server
+
 database schema
 user experience
 software design
 text processing
+
 react bootstrap
 angular filters
 developer tools
 bootstrap table
+react router
 jquery callback
+
 error reporting
 video recording
 windows console
 python datetime
 user management
-EASYTRIEVE PLUS
-CMS EXEC (EXEC)
-PL/I – ISO 6160
-Visual DataFlex
+angularjs
 sqlperformance
 datetimeoffset
 mobile browser
+backbone
 android search
 java websocket
+jquery
 physics engine
 google account
 android memory
 data retrieval
+bootstrap
+
 data integrity
 infrastructure
 static content
 mobile devices
+
 css frameworks
 apache cordova
 azure cosmosdb
 object storage
+node.js
+
 multithreading
 user interface
 android studio
@@ -444,6 +472,7 @@ pdf generation
 cross platform
 single sign on
 load balancing
+
 virtualization
 data warehouse
 microsoft edge
@@ -467,19 +496,16 @@ service worker
 speech to text
 access control
 data migration
+
 Virtual memory
 Windows server
 Administration
 Web frameworks
 Business logic
 Stress testing
+
 business rules
 issue tracking
-Executable UML
-Visual Fortran
-Visual Objects
-windows phone
-ruby on rails
 service layer
 subscriptions
 multiplatform
@@ -499,23 +525,31 @@ apache config
 rating system
 android icons
 document body
+
+docker
 microstrategy
 static typing
+jquery
+mysql
 java security
 amazon lambda
 audit logging
+asp.net
 dynamic forms
 arcgis server
+drupal
 xamarin forms
 hash function
 node postgres
 image caching
 web audio api
 google client
+
 orchestration
 test coverage
 schema design
 cloud storage
+ruby on rails
 visual studio
 google chrome
 elasticsearch
@@ -537,6 +571,7 @@ media queries
 local storage
 deep learning
 client server
+
 accessibility
 customization
 code coverage
@@ -556,10 +591,12 @@ file handling
 globalization
 crash reports
 code snippets
+
 data analysis
 relationships
 transactional
 user accounts
+
 administrator
 error logging
 image scaling
@@ -573,18 +610,8 @@ web analytics
 mobile phones
 cloud hosting
 text analysis
-Edinburgh IMP
-JavaFX Script
-Object Pascal
-ORCA/Modula-2
-Processing.js
-SuperCollider
-SystemVerilog
-Visual FoxPro
-Visual Prolog
-dynamics crm
-react router
 code cleanup
+
 type systems
 web frontend
 presentation
@@ -595,6 +622,7 @@ file manager
 video player
 spring cache
 audio player
+
 build system
 social media
 build server
@@ -603,6 +631,7 @@ offline mode
 proxy server
 file browser
 beta testing
+
 storing data
 flow control
 server error
@@ -611,6 +640,7 @@ data sharing
 file storage
 touch events
 object model
+
 web services
 unit testing
 apache spark
@@ -628,6 +658,7 @@ cryptography
 dependencies
 polymorphism
 apache kafka
+react router
 progress bar
 associations
 html parsing
@@ -638,6 +669,7 @@ relationship
 return value
 android view
 font awesome
+
 immutability
 benchmarking
 registration
@@ -648,6 +680,7 @@ intersection
 multilingual
 deep linking
 contact form
+
 class design
 subscription
 path finding
@@ -663,25 +696,15 @@ aspect ratio
 serializable
 color scheme
 organization
+
 requirements
 image upload
 azure search
 file sharing
+
 http caching
 data storage
 http request
-ActionScript
-CoffeeScript
-IBM HAScript
-JScript .NET
-Kaleidoscope
-Machine code
-NewtonScript
-OpenEdge ABL
-TouchDevelop
-UnrealScript
-XC (exploits
-google play
 web testing
 legacy code
 file access
@@ -690,9 +713,11 @@ url mapping
 synchronize
 body parser
 consistency
+
 data access
 sql scripts
 build tools
+
 reliability
 saving data
 jquery post
@@ -700,6 +725,7 @@ http method
 static site
 calculation
 css modules
+
 web storage
 java server
 spring form
@@ -707,6 +733,7 @@ html parser
 code editor
 css content
 get request
+
 objective c
 asp.net mvc
 performance
@@ -723,6 +750,7 @@ inheritance
 permissions
 xml parsing
 geolocation
+google play
 compression
 refactoring
 constraints
@@ -732,6 +760,8 @@ persistence
 open source
 integration
 translation
+
+laravel
 html select
 replication
 spreadsheet
@@ -759,6 +789,7 @@ apple watch
 soap client
 artifactory
 dynamic sql
+
 credentials
 bootstrap 4
 enumeration
@@ -775,35 +806,25 @@ auto update
 transitions
 private key
 controllers
+
 conventions
 scaffolding
 abstraction
 reusability
 autoscaling
 rest client
+
 e2e testing
 spring rest
 jquery tabs
 maintenance
+
 electronics
 methodology
 domain name
 connections
 android gps
 boilerplate
-Agilent VEE
-AmbientTalk
-AppleScript
-LotusScript
-Mathematica
-MicroScript
-MIVA Script
-Object Lisp
-Object REXX
-Objective-C
-Objective-J
-Small Basic
-UCSD Pascal
 servicenow
 convention
 error code
@@ -825,6 +846,7 @@ equivalent
 prometheus
 activation
 conceptual
+
 operations
 continuous
 serializer
@@ -836,6 +858,7 @@ repetition
 mixed mode
 precedence
 spring web
+
 test suite
 accounting
 box shadow
@@ -851,9 +874,11 @@ tablespace
 sql tuning
 search box
 page title
+
 federation
 ftp server
 cross site
+
 javascript
 sql server
 postgresql
@@ -890,6 +915,7 @@ storyboard
 salesforce
 components
 expression
+
 kubernetes
 containers
 regression
@@ -912,6 +938,7 @@ scheduling
 git branch
 responsive
 middleware
+
 amazon rds
 spring aop
 android ui
@@ -926,6 +953,7 @@ redux form
 python 3.6
 spring jms
 git commit
+
 production
 confluence
 templating
@@ -934,10 +962,12 @@ assertions
 blockchain
 recurrence
 smartphone
+
 hard drive
 task queue
 delegation
 android tv
+git
 geofencing
 modularity
 amazon vpc
@@ -955,51 +985,20 @@ relational
 sequential
 value type
 multimedia
+
+html
 image size
 http error
+appium
 read write
 end to end
 dom events
-A# (Axiom)
-A-0 System
-AutoHotkey
-ColdFusion
-DATATRIEVE
-ECMAScript
-Emacs Lisp
-FLOW-MATIC
-Franz Lisp
-JavaScript
-Legoscript
-LiveScript
-MATH-MATIC
-Maya (MEL)
-MillScript
-ObjectLOGO
-PeopleCode
-Plankalkül
-PostScript
-Powerhouse
-PowerShell
-Processing
-Revolution
-RuneScript
-Script.NET
-SyncCharts
-TypeScript
-Unix shell
-Visual J++
-XSLT – see
-Z notation
-wordpress
-angularjs
-websphere
-bootstrap
 file read
 listeners
 stateless
 subscribe
 saucelabs
+
 integrate
 error log
 artifacts
@@ -1010,11 +1009,13 @@ normalize
 discovery
 ownership
 changeset
+
 drilldown
 linegraph
 fork join
 imagelist
 paradigms
+mysql
 rowfilter
 user data
 artoolkit
@@ -1030,10 +1031,15 @@ react dom
 endpoints
 integrity
 relevance
+
 utilities
+
 ui design
 test data
 wireframe
+
+angularjs
+wordpress
 algorithm
 excel vba
 hibernate
@@ -1062,6 +1068,7 @@ iteration
 streaming
 office365
 bitbucket
+
 real time
 analytics
 reporting
@@ -1069,6 +1076,8 @@ standards
 messaging
 highlight
 photoshop
+
+git
 directive
 packaging
 dashboard
@@ -1077,8 +1086,10 @@ execution
 simulator
 configure
 signature
+
 atlassian
 jetbrains
+
 terraform
 formatter
 dimension
@@ -1093,45 +1104,19 @@ antivirus
 sequences
 connector
 messenger
+
+git
 inventory
 uploading
 portfolio
 operation
-ABC ALGOL
-Autocoder
-BeanShell
-Boomerang
-CorVision
-Easy PL/I
-GraphTalk
-Hopscotch
-HyperTalk
-Join Java
-Macsyma )
-Microcode
-Model 204
-Pipelines
-SabreTalk
-SenseTalk
-SequenceL
-SIMSCRIPT
-Smalltalk
-SPITBOL )
-Speedcode
-Stateflow
-SuperTalk
-Turbo C++
-Visual J#
-selenium
-angular2
-database
-firebase
-backbone
+
 projects
 building
 reducers
 querying
 feedback
+
 consumer
 executor
 versions
@@ -1142,20 +1127,26 @@ mediator
 auditing
 handlers
 affinity
+
 accounts
 artifact
 profiles
 reactive
 contract
+
 capacity
 channels
 complete
 contrast
+database
 facebook
 smart tv
 angular4
+
+selenium
 security
 datetime
+firebase
 generics
 redirect
 assembly
@@ -1187,6 +1178,7 @@ metadata
 frontend
 response
 instance
+
 electron
 packages
 teradata
@@ -1197,6 +1189,7 @@ abstract
 tracking
 dropdown
 optional
+
 matching
 pipeline
 nullable
@@ -1220,6 +1213,7 @@ sharding
 designer
 wireless
 ethernet
+
 products
 snapshot
 newrelic
@@ -1244,6 +1238,7 @@ updating
 internal
 autofill
 chaining
+
 material
 solution
 platform
@@ -1261,62 +1256,13 @@ recovery
 devtools
 gestures
 intranet
+
 sysadmin
 scanning
+
 autoplay
 autosize
 simulate
-Ace DASL
-ALGOL
-Ateji PX
-Bertrand
-bash and
-CFEngine
-CL (IBM)
-Converge
-Coral 66
-DataFlex
-Euphoria
-@Formula
-Fortress
-F-Script
-IPTSCRAE
-LilyPond
-Little b
-LiveCode
-Metacard
-Metafont
-Modelica
-Modula-2
-Modula-3
-Napier88
-Net.Data
-Newspeak
-NWScript
-OmniMark
-Phrogram
-Picolisp
-PortablE
-Prograph
-ProvideX
-QtScript
-Simulink
-SNOBOL (
-Snowball
-Squirrel
-Starlogo
-Topspeed
-Ubercode
-Winbatch
-xHarbour
-android
-angular
-windows
-express
-laravel
-jenkins
-asp.net
-node.js
 inspect
 scoping
 segment
@@ -1332,12 +1278,16 @@ garbage
 decoder
 outline
 seeding
+
 digital
 writing
+
 modular
 reactor
 rebuild
 reindex
+
+php
 onerror
 podcast
 contain
@@ -1349,6 +1299,8 @@ opcache
 members
 recycle
 heading
+
+git
 targets
 faraday
 details
@@ -1359,8 +1311,15 @@ banking
 speaker
 posting
 lexical
+
+android
+asp.net
+node.js
+windows
 eclipse
 mongodb
+laravel
+angular
 cordova
 reactjs
 symfony
@@ -1369,6 +1328,7 @@ sorting
 parsing
 session
 magento
+express
 haskell
 firefox
 cakephp
@@ -1379,6 +1339,7 @@ java ee
 logging
 xamarin
 cookies
+jenkins
 twitter
 methods
 dynamic
@@ -1401,6 +1362,7 @@ openssl
 request
 website
 polymer
+
 flexbox
 boolean
 command
@@ -1438,6 +1400,7 @@ loading
 toolbar
 message
 wrapper
+
 webpage
 virtual
 backend
@@ -1465,6 +1428,7 @@ powerbi
 options
 styling
 symbols
+
 mozilla
 profile
 restore
@@ -1480,6 +1444,7 @@ metrics
 display
 channel
 finance
+
 account
 privacy
 gateway
@@ -1487,6 +1452,7 @@ drivers
 migrate
 summary
 tracing
+
 API Key
 Markers
 Matcher
@@ -1494,6 +1460,7 @@ Surface
 Weather
 Billing
 Graphic
+
 flutter
 traffic
 invoice
@@ -1506,70 +1473,7 @@ netstat
 explain
 packets
 vsphere
-A# .NET
-ACT-III
-Action!
-Adenine
-ALGOL W
-Amiga E
-AspectJ
-Averest
-Babbage
-Blockly
-C Shell
-Cayenne
-Charity
-chomski
-Clarion
-Clipper
-Clojure
-COMPASS
-Cryptol
-Cyclone
-Datalog
-Emerald
-Epigram
-Esterel
-Fjölnir
-Flavors
-FoxBase
-Harbour
-Haskell
-IBM RPG
-JScript
-Karel++
-Kixtart
-KRYPTON
-L# .NET
-LabVIEW
-Lagoona
-Logtalk
-Mercury
-Miranda
-Mortran
-Nemerle
-NetLogo
-NetRexx
-NewLISP
-occam-π
-Oxygene
-PARI/GP
-Planner
-Promela
-Redcode
-Sawzall
-Scratch
-Subtext
-TELCOMP
-Uniface
-"WATFIV
-jquery
-gitlab
-python
-django
-docker
-drupal
-appium
+
 strict
 scalar
 sentry
@@ -1584,12 +1488,14 @@ bridge
 avatar
 claims
 reader
+
 alerts
 author
 vendor
 aspect
 listen
 broker
+
 notice
 scopes
 rights
@@ -1604,8 +1510,12 @@ invite
 throws
 locked
 locate
+
+jquery
+python
 arrays
 iphone
+django
 string
 spring
 oracle
@@ -1615,9 +1525,11 @@ sqlite
 pandas
 opencv
 delphi
+
 ubuntu
 object
 hadoop
+docker
 github
 memory
 mobile
@@ -1633,6 +1545,7 @@ dialog
 window
 client
 output
+
 themes
 report
 vscode
@@ -1641,6 +1554,7 @@ schema
 entity
 kotlin
 backup
+gitlab
 branch
 amazon
 action
@@ -1659,6 +1573,7 @@ device
 sybase
 assets
 vmware
+
 parent
 redhat
 kibana
@@ -1691,116 +1606,39 @@ target
 repeat
 shadow
 loader
+
 devops
 eslint
 nagios
 social
+
 splunk
 legacy
 dagger
+
 citrix
 notify
 oauth2
 subnet
 hybrid
+
 gaming
 trello
 apollo
 review
 typing
-Accent
-Alma-0
-AutoIt
-Bigwig
-Bistro
-Ceylon
-Chapel
-CHIP-8
-Claire
-COWSEL
-Csound
-Cython
-Delphi
-DRAKON
-DYNAMO
-Eiffel
-Elixir
-Erlang
-Escher
-Euclid
-EXEC 2
-Factor
-Falcon
-Fantom
-FORMAC
-FoxPro
-G-code
-GEORGE
-Godiva
-GOTRAN
-Groovy
-Inform
-ISLISP
-JOVIAL
-Jython
-Kotlin
-Ladder
-Limnor
-Lisaac
-Lite-C
-Lustre
-LYaPAS
-MATLAB
-Modula
-Nickle
-Oberon
-Octave
-OpenCL
-OptimJ
-Orwell
-PCASTL
-PL/SQL
-PLEXIL
-POP-11
-Prolog
-PROMAL
-PROTEL
-Python
-QuakeC
-Racket
-Rapira
-Ratfiv
-Ratfor
-S-Lang
-S-PLUS
-Sather
-Scheme
-Scilab
-SIMPOL
-SIGNAL
-SiMPLE
-Simula
-Squeak
-Strand
-TACPOL
-Timber
-Turing
-Unicon
-WebDNA
-Whiley
-Wyvern
-XQuery
-Yorick
-react
-mysql
 chain
 light
+
 group
 price
 quota
 tweak
 forge
+
 sales
+
+mysql
 regex
 swift
 linux
@@ -1849,6 +1687,7 @@ scope
 count
 redis
 cmake
+
 table
 order
 stack
@@ -1876,6 +1715,7 @@ alert
 state
 frame
 media
+
 local
 value
 store
@@ -1906,8 +1746,10 @@ lines
 tiles
 alarm
 skype
+
 scrum
 slack
+
 agent
 cisco
 basic
@@ -1920,115 +1762,8 @@ grant
 crypt
 items
 level
+
 relay
-ABSET
-ABSYS
-Agora
-AIMMS
-Alice
-ARexx
-Argus
-BASIC
-BLISS
-BlooP
-ksh )
-CDuce
-Cecil
-Cesil
-CHAIN
-Charm
-CHILL
-ChucK
-Clean
-CLIST
-CMS-2
-Cobra
-COMAL
-COMIT
-Curry
-dBase
-DinkC
-DIBOL
-Draco
-Dylan
-ESPOL
-Etoys
-Euler
-FAUST
-FlooP
-FOCAL
-FOCUS
-Forth
-Frege
-Genie
-GNU E
-Gödel
-GRASS
-HAL/S
-Idris
-ISWIM
-Joule
-Julia
-Karel
-LANSA
-Lasso
-LaTeX
-Limbo
-Lingo
-Lithe
-Lucid
-M2001
-MAD/I
-Magik
-Magma
-Maple
-MIMIC
-Mirah
-Mohol
-Mouse
-MUMPS
-NXT-G
-o:XML
-Obliq
-OCaml
-occam
-Oriel
-PEARL
-Perl6
-Pharo
-PILOT
-Pizza
-PL-11
-PL360
-PLANC
-PROIV
-Pro*C
-RAPID
-REBOL
-REFAL
-RTL/2
-SALSA
-SAM76
-Scala
-Seed7
-SISAL
-SMALL
-Snap!
-SPARK
-Stata
-SYMPL
-"TMG 
-T-SQL
-TUTOR
-Umple
-UNITY
-WebQL
-XOTcl
-XPath
-Xtend
-gleam
-linq
-html
 mobx
 wave
 rate
@@ -2037,9 +1772,13 @@ repo
 term
 lens
 hour
+
 heat
 bold
+
+
 java
+html
 .net
 json
 ruby
@@ -2047,6 +1786,7 @@ ajax
 bash
 list
 css3
+linq
 perl
 rest
 file
@@ -2096,6 +1836,7 @@ size
 hdfs
 lisp
 chef
+
 task
 byte
 fork
@@ -2141,12 +1882,14 @@ saml
 send
 exit
 like
+
 core
 wiki
 boot
 flux
 apex
 word
+
 area
 disk
 base
@@ -2162,133 +1905,14 @@ thin
 bulk
 head
 pull
+
 edge
 flow
 role
 perf
 wine
+
 nmap
-name
-ABAP
-ACL2
-Agda
-Alef
-AMOS
-AMPL
-Axum
-Bash
-BCPL
-BETA
-BitC
-Blue
-BREW
-BPEL
-C/AL
-Caml
-CFML
-Chef
-CICS
-Cilk
-CODE
-Cool
-Corn
-CUDA
-Curl
-Dart
-Ease
-ELAN
-Flex
-FOIL
-GAMS
-GLSL
-GOAL
-Golo
-Gosu
-GPSS
-Hack
-Haxe
-HLSL
-Hope
-Hugo
-Hume
-Icon
-Ioke
-ISPF
-JADE
-Jako
-JASS
-Java
-JEAN
-JOSS
-Kojo
-Lava
-LC-3
-Leda
-LINC
-LISA
-Logo
-Lynx
-make
-Mary
-Mesa
-MIIS
-Moby
-NASM
-Neko
-nesC
-NESL
-NEWP
-Nial
-Nice
-NSIS
-OBJ2
-Onyx
-Opal
-OPS5
-Perl
-Pico
-Pict
-Pike
-PIKT
-PL/0
-PL/B
-PL/C
-PL/M
-PL/P
-PLEX
-Plus
-Pure
-Qalb
-Reia
-REXX
-Rlab
-ROOP
-Ruby
-Rust
-SA-C
-SAIL
-SASL
-Self
-SETL
-SLIP
-Span
-SPIN
-SP/k
-S/SL
-TACL
-TADS
-TECO
-Trac
-TTCN
-Vala
-VSXu
-vvvv
-Xojo
-XPL0
-Zeno
-ZOPL
-git
-php
 edi
 sdn
 can
@@ -2299,6 +1923,7 @@ man
 cab
 jql
 crt
+
 ssd
 bus
 nic
@@ -2307,12 +1932,15 @@ dfs
 hal
 ace
 gcp
+
+php
 c++
 ios
 css
 sql
 xml
 wpf
+git
 vba
 osx
 api
@@ -2325,6 +1953,7 @@ jsf
 url
 ssl
 jpa
+
 web
 ssh
 tcp
@@ -2368,6 +1997,7 @@ xss
 exe
 md5
 ipc
+
 cpu
 ocr
 nfc
@@ -2415,6 +2045,7 @@ amd
 pca
 ddl
 lex
+
 lan
 iso
 nat
@@ -2422,6 +2053,7 @@ geo
 box
 doc
 spi
+
 ERP
 RAD
 LED
@@ -2458,142 +2090,10 @@ XEN
 GPL
 EMF
 FIX
-A++
-ABC
-ACC
-Ada
-ALF
-APL
-Arc
-ATS
-AWK
-Boo
-C--
-Cel
-CLU
-Coq
-CPL
-csh
-CSP
-DCL
-Dog
-EGL
-Elm
-EPL
-FFP
-FPr
-GAP
-GDL
-Go!
-Hop
-ICI
-IMP
-IPL
-J++
-JAL
-JCL
-Joy
-KEE
-KIF
-KRC
-KRL
-ksh
-LIL
-LIS
-LPC
-LSE
-LSL
-Lua
-MDL
-MOO
-MPD
-CIL
-MSL
-NGL
-Nim
-NPL
-Oak
-Opa
-OPL
-Orc
-P′′
-PCF
-PDL
-PHP
-PPL
-QPL
-R++
-Red
-RPG
-RPL
-RSL
-SAS
-SBL
-Sed
-SML
-SOL
-SPS
-SQR
-TAL
-Tcl
-Tea
-TeX
-TEX
-TIE
-Tom
-TOM
-TPU
-TTM
-TXL
-X++
-X10
-XBL
-XPL
-XSB
-YQL
-Zsh
-ZPL
-nix
+
 C#
 Go
 IP
 QA
 ML
-A+
-bc
-Cg
-Ch
-dc
-E#
-es
-F#
-FL
-FP
-GJ
-GM
-Id
-Io
-J#
-M4
-M#
-Nu
-Oz
-P#
-rc
-S2
-S3
-SR
-X#
-XL
-B
-C
-D
-E
-F
-G
-J
-K
-L
-R
-S
-T
+

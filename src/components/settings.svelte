@@ -30,6 +30,7 @@
         openRouterKey,
         knowlegeBase,
         openRouterAIModel,
+        keywords,
     } from "$utils";
     // Removed invalid import
     import "./settingseditor.css";
@@ -83,8 +84,6 @@
                 console.log(err);
             });
     }
-
-
 
     let carta2 = $state<any>(null);
     // Comment
@@ -159,6 +158,9 @@
     // fetchModels();
 
     let showModelDropdown = $state(false);
+    let keywordSearch = $state("");
+    let newKeyword = $state("");
+
 </script>
 
 <div class="w-full h-full absolute top-0 left-0 grid grid-cols-1 bg-crust/70">
@@ -533,36 +535,138 @@
                     <div>
                         Use OpenRouter to tune your resume. Enter API Key.
                     </div>
-                        <input type="text" placeholder="Enter your OpenRouter API Key" bind:value={$openRouterKey} class="w-full text-text px-3 py-2 bg-mantle rounded-md border border-surface0 focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent transition-all duration-200" />
-                        <div class="flex flex-row relative">
-                            <input
-                                type="text"
-                                placeholder="Search for a model..."
-                                bind:value={$openRouterAIModel}
-                                onfocus={() => {
-                                    if (usableModels.length === 0) {
-                                        fetchModels();
-                                    }
-                                    showModelDropdown = true;
-                                }}
-                                onblur={() => setTimeout(() => showModelDropdown = false, 200)}
-                                class="w-full text-text px-3 py-2 bg-mantle rounded-md border border-surface0 focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent transition-all duration-200"
-                            />
-                            
-                            {#if showModelDropdown && usableModels.length > 0}
-                                <div class="absolute z-10 top-full mt-1 left-0 right-0 bg-mantle border border-surface0 rounded-md shadow-lg max-h-60 overflow-auto">
-                                    {#each usableModels.filter(model => 
-                                        !$openRouterAIModel || model.name.toLowerCase().includes($openRouterAIModel.toLowerCase())                                    ) as model}
-                                        <button 
-                                            class="px-3 py-2 cursor-pointer hover:bg-surface0 w-full text-left"
-                                            onmousedown={() => $openRouterAIModel = model.id}
+                    <input
+                        type="text"
+                        placeholder="Enter your OpenRouter API Key"
+                        bind:value={$openRouterKey}
+                        class="w-full text-text px-3 py-2 bg-mantle rounded-md border border-surface0 focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent transition-all duration-200"
+                    />
+                    <div class="flex flex-row relative">
+                        <input
+                            type="text"
+                            placeholder="Search for a model..."
+                            bind:value={$openRouterAIModel}
+                            onfocus={() => {
+                                if (usableModels.length === 0) {
+                                    fetchModels();
+                                }
+                                showModelDropdown = true;
+                            }}
+                            onblur={() =>
+                                setTimeout(
+                                    () => (showModelDropdown = false),
+                                    200,
+                                )}
+                            class="w-full text-text px-3 py-2 bg-mantle rounded-md border border-surface0 focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent transition-all duration-200"
+                        />
+
+                        {#if showModelDropdown && usableModels.length > 0}
+                            <div
+                                class="absolute z-10 top-full mt-1 left-0 right-0 bg-mantle border border-surface0 rounded-md shadow-lg max-h-60 overflow-auto"
+                            >
+                                {#each usableModels.filter((model) => !$openRouterAIModel || model.name
+                                            .toLowerCase()
+                                            .includes($openRouterAIModel.toLowerCase())) as model}
+                                    <button
+                                        class="px-3 py-2 cursor-pointer hover:bg-surface0 w-full text-left"
+                                        onmousedown={() =>
+                                            ($openRouterAIModel = model.id)}
+                                    >
+                                        {model.name}
+                                    </button>
+                                {/each}
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+
+                <!-- Keywords Editor -->
+                <div class="space-y-2">
+                    <div>
+                        Edit the keywords found in the job description and the
+                        resume. This will give more accurate scores.
+                    </div>
+                    <div class="flex flex-row gap-2">
+                        <input
+                            type="text"
+                            placeholder="New Keyword"
+                            bind:value={newKeyword}
+                            onkeydown={(e) => {
+                                if (e.key === 'Enter' && newKeyword.trim()) {
+                                    keywords.update(kws => {
+                                        // Add the new keyword
+                                        const updatedKeywords = [...kws, newKeyword.trim()];
+                                        // Sort by length (longest to shortest)
+                                        updatedKeywords.sort((a, b) => b.length - a.length);
+                                        return updatedKeywords;
+                                    });
+                                    newKeyword = ''; // Clear the input
+                                }
+                            }}
+                            class="w-full text-text px-3 py-2 bg-mantle rounded-md border border-surface0 focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent transition-all duration-200"
+                        />
+                        <button
+                            class="px-3 py-2 bg-blue hover:bg-sapphire transition-all duration-200 rounded text-mantle"
+                            onclick={() => {
+                                if (newKeyword.trim()) {
+                                    keywords.update(kws => {
+                                        const updatedKeywords = [...kws, newKeyword.trim()];
+                                        updatedKeywords.sort((a, b) => b.length - a.length);
+                                        return updatedKeywords;
+                                    });
+                                    newKeyword = '';
+                                }
+                            }}
+                        >
+                            Add
+                        </button>
+                    </div>
+
+                    <div class="relative">
+                        <input
+                            type="text"
+                            placeholder="Search keywords..."
+                            class="w-full text-text px-3 py-2 bg-mantle rounded-md border border-surface0 focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent transition-all duration-200 mb-2"
+                            bind:value={keywordSearch}
+                            onfocus={() => showModelDropdown = false}
+                        />
+                        
+                        <div
+                            class="border border-surface0 rounded-md shadow-lg max-h-60 overflow-auto bg-mantle"
+                        >
+                            {#each $keywords.filter(kw => 
+                                keywordSearch.trim() === '' || 
+                                kw.toLowerCase().includes(keywordSearch.toLowerCase())
+                            ).reverse() as keyword}
+                                <div
+                                    class="px-3 py-2 hover:bg-surface0 w-full text-left flex justify-between items-center"
+                                >
+                                    <span>{keyword}</span>
+                                    <button
+                                        class="text-red hover:text-maroon transition-colors"
+                                        onclick={() => {
+                                            keywords.update((kws) => {
+                                                return kws.filter(k => k !== keyword);
+                                            });
+                                        }}
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="w-4 h-4"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
                                         >
-                                            {model.name}
-                                        </button>
-                                    {/each}
+                                            <path
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                            />
+                                        </svg>
+                                    </button>
                                 </div>
-                            {/if}
+                            {/each}
                         </div>
+                    </div>
                 </div>
 
                 <!-- Application Controls -->
@@ -706,7 +810,7 @@
                 </div>
 
                 <!-- Knowledge Base -->
-                 <h2
+                <h2
                     class="text-lg font-medium text-text mb-4 flex items-center gap-2"
                 >
                     <svg
@@ -742,12 +846,16 @@
                     Fetch Sample Knowledge Base
                 </button>
                 <div>
-                    This is going to be all the knowlege passed into the llm when tuning your resume.
+                    This is going to be all the knowlege passed into the llm
+                    when tuning your resume.
                 </div>
                 <div
                     class="h-[calc(100vh-24rem)] w-full rounded-lg overflow-hidden border border-surface0"
                 >
-                    <textarea class="w-full h-80 overflow-y-scroll bg-mantle p-2" bind:value={$knowlegeBase}>
+                    <textarea
+                        class="w-full h-80 overflow-y-scroll bg-mantle p-2"
+                        bind:value={$knowlegeBase}
+                    >
                         hi
                     </textarea>
                 </div>

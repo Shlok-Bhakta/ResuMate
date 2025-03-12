@@ -59,7 +59,9 @@
             });
     }
 </script>
-
+<button onclick={() => {console.log($keywords)}}>
+    print
+</button>
 <div class="flex flex-row grid-cols-[auto_1fr] w-full h-full">
     <Sidebar />
     <div class="w-full h-full">
