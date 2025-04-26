@@ -23,7 +23,7 @@
 </script>
 
 {#if $jobKeywords}
-    <div class="w-full flex flex-col gap-2">
+    <div class="w-full flex flex-col gap-2 p-4">
         <div class="w-full flex items-center justify-between mb-1">
             <div class="text-xs text-subtext0">
                 Match Score: {$combinedScore}%
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 w-full gap-2 mt-2">
+        <div class="grid grid-cols-2 w-full gap-2 mt-2 h-auto">
             <div class="flex flex-col">
                 <div class="text-xs mb-1 font-medium text-subtext0">
                     Job Keywords
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col">
+            <div class="flex flex-col h-full">
                 <div class="text-xs mb-1 font-medium text-subtext0">
                     Resume Keywords
                 </div>
