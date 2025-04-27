@@ -45,9 +45,8 @@
 
 
 /* Set your monospace font (Required to have the editor working correctly!) */
-.carta-font-code {
+.carta-theme__settings.carta-font-code {
 	font-family: "CaskaydiaCoveMono", monospace;
-
 	font-size: 1.1rem;
 	line-height: 1.1rem;
     letter-spacing: normal;

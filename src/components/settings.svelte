@@ -853,7 +853,7 @@
                     class="h-[calc(100vh-24rem)] w-full rounded-lg overflow-hidden border border-surface0"
                 >
                     <textarea
-                        class="w-full h-80 overflow-y-scroll bg-mantle p-2"
+                        class="w-full h-full overflow-y-scroll bg-mantle p-2"
                         bind:value={$knowlegeBase}
                     >
                         hi
