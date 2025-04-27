@@ -76,18 +76,18 @@
                 <div class="w-full h-full bg-crust">
                     <!-- Job Url and description -->
                     <div class="w-full h-full ">
-                        <div class="w-full h-full bg-base p-2 rounded-xs">
+                        <div class="w-full h-full bg-base p-2 rounded-xs flex flex-col">
                             <div class="w-full h-fit flex flex-row mb-2 gap-2">
                                 <input class="text-text px-2 py-1 w-full bg-mantle rounded" bind:value={$jobUrl} placeholder="try to fetch with a link" />
                                 <button class="text-text px-2 py-1 ml-1 bg-mantle rounded hover:bg-overlay0 transition-all duration-200 " onclick={fetchContent}>fetch</button>
                             </div>
-                            <textarea class="w-full h-11/12 overflow-y-scroll bg-mantle p-2" bind:value={$jobDescription}></textarea>
+                            <textarea class="w-full flex-grow overflow-y-scroll bg-mantle p-2" bind:value={$jobDescription}></textarea>
                         </div>
                     </div>
                     <!-- Future Resume Builder -->
                 </div>
             {:else if $projectEditingStage === "Tuning"}
-                <div>
+                <div class="h-full">
                     <Displayscores />
                 </div>
             {:else if $projectEditingStage === "Preview"}
