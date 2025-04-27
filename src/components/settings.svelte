@@ -533,7 +533,7 @@
                 <!-- Pick an LLM Provider -->
                 <div class="space-y-2">
                     <div>
-                        Use OpenRouter to tune your resume. Enter API Key.
+                        Use <a target="_blank" rel="noopener noreferrer" href="https://openrouter.ai/settings/keys" class="text-blue underline">OpenRouter</a> to tune your resume. Enter API Key.
                     </div>
                     <input
                         type="text"

@@ -46,7 +46,7 @@ export let cssTheme = persist<any>(writable<any>("/ResuMate/style.css"), createI
 export let openRouterKey = persist<any>(writable<any>("your_api_key_here"), createIndexedDBStorage(), "openRouterKey");
 // export let openAIModel = persist<any>(writable<any>("o3-mini-2025-01-31"), createIndexedDBStorage(), "openAIModel");
 // export let googleAIModel = persist<any>(writable<any>("gemini-2.0-flash"), createIndexedDBStorage(), "googleAIModel");
-export let openRouterAIModel = persist<any>(writable<any>("gemini-2.0-flash"), createIndexedDBStorage(), "openRouterAIModel");
+export let openRouterAIModel = persist<any>(writable<any>("google/gemini-2.5-flash-preview"), createIndexedDBStorage(), "openRouterAIModel");
 
 export let knowlegeBase = persist<any>(writable<any>("Fetch some example knowlege to see what it looks like"), createIndexedDBStorage(), "knowlegeBase");
 
