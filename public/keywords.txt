@@ -1,5 +1,3 @@
-Easy Programming Language
-configuration management
 object oriented analysis
 artificial intelligence
 firebase authentication
@@ -12,8 +10,8 @@ backwards compatibility
 content security policy
 facebook authentication
 conditional compilation
-Bourne shell
-PROSE modeling language
+bourne shell
+prose modeling language
 thread synchronization
 nonlinear optimization
 concurrent programming
@@ -37,10 +35,10 @@ client side validation
 separation of concerns
 reinforcement learning
 azure machine learning
-AutoLISP 
-Visual LISP
-Fortran
-MAPPER now part of BIS
+autolisp 
+visual lisp
+fortran
+mapper now part of bis
 system administration
 azure virtual network
 application lifecycle
@@ -57,7 +55,6 @@ computer architecture
 software distribution
 hardware acceleration
 encryption asymmetric
-Apex (Salesforce.com)
 static code analysis
 standards compliance
 serverside rendering
@@ -86,9 +83,9 @@ application settings
 string interpolation
 progressive web apps
 data synchronization
-COBOL
-KUKA Robot Language
-Lisp
+cobol
+kuka robot language
+lisp
 internet connection
 distributed caching
 generic collections
@@ -115,14 +112,9 @@ digital certificate
 pattern recognition
 angular2 components
 n tier architecture
-Batch (Windows/Dos)
-C++ – ISO/IEC 14882
-Deesel (formerly G)
-Game Maker Language
-High Level Assembly
-Not eXactly C (NXC)
-Visual DialogScript
-XMOS architecture )
+game maker language
+high level assembly
+visual dialogscript
 background service
 laravel validation
 angular controller
@@ -171,12 +163,11 @@ application server
 distributed system
 browser automation
 azure sql database
-C#
-Caché ObjectScript
-GOM (Good Old Mad)
-Google Apps Script
-Hartmann pipelines
-Windows PowerShell
+c#
+caché objectscript
+google apps script
+hartmann pipelines
+windows powershell
 internet explorer
 multiple monitors
 browser extension
@@ -247,11 +238,10 @@ code organization
 image compression
 method overriding
 user registration
-Assembly language
-GameMonkey Script
-Klerer-May System
-Not Quite C (NQC)
-Pascal – ISO 7185
+assembly language
+gamemonkey script
+klerer-may system
+pascal – iso 7185
 database trigger
 android database
 windows firewall
@@ -343,12 +333,11 @@ database restore
 strategy pattern
 fluent interface
 resource manager
-Component Pascal
-Hamilton C shell
-IBM Informix-4GL
-Maxima (see also
-Stackless Python
-Wolfram Language
+component pascal
+hamilton c shell
+ibm informix-4gl
+stackless python
+wolfram language
 session storage
 background task
 file management
@@ -409,10 +398,9 @@ video recording
 windows console
 python datetime
 user management
-EASYTRIEVE PLUS
-CMS EXEC (EXEC)
-PL/I – ISO 6160
-Visual DataFlex
+easytrieve plus
+pl/i – iso 6160
+visual dataflex
 sqlperformance
 datetimeoffset
 mobile browser
@@ -467,17 +455,17 @@ service worker
 speech to text
 access control
 data migration
-Virtual memory
-Windows server
-Administration
-Web frameworks
-Business logic
-Stress testing
+virtual memory
+windows server
+administration
+web frameworks
+business logic
+stress testing
 business rules
 issue tracking
-Executable UML
-Visual Fortran
-Visual Objects
+executable uml
+visual fortran
+visual objects
 windows phone
 ruby on rails
 service layer
@@ -573,15 +561,15 @@ web analytics
 mobile phones
 cloud hosting
 text analysis
-Edinburgh IMP
-JavaFX Script
-Object Pascal
-ORCA/Modula-2
-Processing.js
-SuperCollider
-SystemVerilog
-Visual FoxPro
-Visual Prolog
+edinburgh imp
+javafx script
+object pascal
+orca/modula-2
+processing.js
+supercollider
+systemverilog
+visual foxpro
+visual prolog
 dynamics crm
 react router
 code cleanup
@@ -670,17 +658,16 @@ file sharing
 http caching
 data storage
 http request
-ActionScript
-CoffeeScript
-IBM HAScript
-JScript .NET
-Kaleidoscope
-Machine code
-NewtonScript
-OpenEdge ABL
-TouchDevelop
-UnrealScript
-XC (exploits
+actionscript
+coffeescript
+ibm hascript
+jscript .net
+kaleidoscope
+machine code
+newtonscript
+openedge abl
+touchdevelop
+unrealscript
 google play
 web testing
 legacy code
@@ -791,19 +778,19 @@ domain name
 connections
 android gps
 boilerplate
-Agilent VEE
-AmbientTalk
-AppleScript
-LotusScript
-Mathematica
-MicroScript
-MIVA Script
-Object Lisp
-Object REXX
-Objective-C
-Objective-J
-Small Basic
-UCSD Pascal
+agilent vee
+ambienttalk
+applescript
+lotusscript
+mathematica
+microscript
+miva script
+object lisp
+object rexx
+objective-c
+objective-j
+small basic
+ucsd pascal
 servicenow
 convention
 error code
@@ -960,37 +947,34 @@ http error
 read write
 end to end
 dom events
-A# (Axiom)
-A-0 System
-AutoHotkey
-ColdFusion
-DATATRIEVE
-ECMAScript
-Emacs Lisp
-FLOW-MATIC
-Franz Lisp
-JavaScript
-Legoscript
-LiveScript
-MATH-MATIC
-Maya (MEL)
-MillScript
-ObjectLOGO
-PeopleCode
-Plankalkül
-PostScript
-Powerhouse
-PowerShell
-Processing
-Revolution
-RuneScript
-Script.NET
-SyncCharts
-TypeScript
-Unix shell
-Visual J++
-XSLT – see
-Z notation
+autohotkey
+coldfusion
+datatrieve
+ecmascript
+emacs lisp
+flow-matic
+franz lisp
+javascript
+legoscript
+livescript
+math-matic
+millscript
+objectlogo
+peoplecode
+plankalkül
+postscript
+powerhouse
+powershell
+processing
+revolution
+runescript
+script.net
+synccharts
+typescript
+unix shell
+visual j++
+xslt – see
+z notation
 wordpress
 angularjs
 websphere
@@ -1097,31 +1081,31 @@ inventory
 uploading
 portfolio
 operation
-ABC ALGOL
-Autocoder
-BeanShell
-Boomerang
-CorVision
-Easy PL/I
-GraphTalk
-Hopscotch
-HyperTalk
-Join Java
-Macsyma )
-Microcode
-Model 204
-Pipelines
-SabreTalk
-SenseTalk
-SequenceL
-SIMSCRIPT
-Smalltalk
-SPITBOL )
-Speedcode
-Stateflow
-SuperTalk
-Turbo C++
-Visual J#
+abc algol
+autocoder
+beanshell
+boomerang
+corvision
+easy pl/i
+graphtalk
+hopscotch
+hypertalk
+join java
+macsyma )
+microcode
+model 204
+pipelines
+sabretalk
+sensetalk
+sequencel
+simscript
+smalltalk
+spitbol )
+speedcode
+stateflow
+supertalk
+turbo c++
+visual j#
 selenium
 angular2
 database
@@ -1266,49 +1250,47 @@ scanning
 autoplay
 autosize
 simulate
-Ace DASL
-ALGOL
-Ateji PX
-Bertrand
+ace dasl
+algol
+ateji px
+bertrand
 bash and
-CFEngine
-CL (IBM)
-Converge
-Coral 66
-DataFlex
-Euphoria
-@Formula
-Fortress
-F-Script
-IPTSCRAE
-LilyPond
-Little b
-LiveCode
-Metacard
-Metafont
-Modelica
-Modula-2
-Modula-3
-Napier88
-Net.Data
-Newspeak
-NWScript
-OmniMark
-Phrogram
-Picolisp
-PortablE
-Prograph
-ProvideX
-QtScript
-Simulink
-SNOBOL (
-Snowball
-Squirrel
-Starlogo
-Topspeed
-Ubercode
-Winbatch
-xHarbour
+cfengine
+converge
+coral 66
+dataflex
+euphoria
+@formula
+fortress
+f-script
+iptscrae
+lilypond
+little b
+livecode
+metacard
+metafont
+modelica
+modula-2
+modula-3
+napier88
+net.data
+newspeak
+nwscript
+omnimark
+phrogram
+picolisp
+portable
+prograph
+providex
+qtscript
+simulink
+snowball
+squirrel
+starlogo
+topspeed
+ubercode
+winbatch
+xharbour
 android
 angular
 windows
@@ -1487,13 +1469,13 @@ drivers
 migrate
 summary
 tracing
-API Key
-Markers
-Matcher
-Surface
-Weather
-Billing
-Graphic
+api key
+markers
+matcher
+surface
+weather
+billing
+graphic
 flutter
 traffic
 invoice
@@ -1506,63 +1488,63 @@ netstat
 explain
 packets
 vsphere
-A# .NET
-ACT-III
-Action!
-Adenine
-ALGOL W
-Amiga E
-AspectJ
-Averest
-Babbage
-Blockly
-C Shell
-Cayenne
-Charity
+a# .net
+act-iii
+action!
+adenine
+algol w
+amiga e
+aspectj
+averest
+babbage
+blockly
+c shell
+cayenne
+charity
 chomski
-Clarion
-Clipper
-Clojure
-COMPASS
-Cryptol
-Cyclone
-Datalog
-Emerald
-Epigram
-Esterel
-Fjölnir
-Flavors
-FoxBase
-Harbour
-Haskell
-IBM RPG
-JScript
-Karel++
-Kixtart
-KRYPTON
-L# .NET
-LabVIEW
-Lagoona
-Logtalk
-Mercury
-Miranda
-Mortran
-Nemerle
-NetLogo
-NetRexx
-NewLISP
+clarion
+clipper
+clojure
+compass
+cryptol
+cyclone
+datalog
+emerald
+epigram
+esterel
+fjölnir
+flavors
+foxbase
+harbour
+haskell
+ibm rpg
+jscript
+karel++
+kixtart
+krypton
+l# .net
+labview
+lagoona
+logtalk
+mercury
+miranda
+mortran
+nemerle
+netlogo
+netrexx
+newlisp
 occam-π
-Oxygene
-PARI/GP
-Planner
-Promela
-Redcode
-Sawzall
-Scratch
-Subtext
-TELCOMP
-Uniface
-"WATFIV
+oxygene
+pari/gp
+planner
+promela
+redcode
+sawzall
+scratch
+subtext
+telcomp
+uniface
+"watfiv
 jquery
 gitlab
 python
@@ -1708,89 +1690,89 @@ trello
 apollo
 review
 typing
-Accent
-Alma-0
-AutoIt
-Bigwig
-Bistro
-Ceylon
-Chapel
-CHIP-8
-Claire
-COWSEL
-Csound
-Cython
-Delphi
-DRAKON
-DYNAMO
-Eiffel
-Elixir
-Erlang
-Escher
-Euclid
-EXEC 2
-Factor
-Falcon
-Fantom
-FORMAC
-FoxPro
-G-code
-GEORGE
-Godiva
-GOTRAN
-Groovy
-Inform
-ISLISP
-JOVIAL
-Jython
-Kotlin
-Ladder
-Limnor
-Lisaac
-Lite-C
-Lustre
-LYaPAS
-MATLAB
-Modula
-Nickle
-Oberon
-Octave
-OpenCL
-OptimJ
-Orwell
-PCASTL
-PL/SQL
-PLEXIL
-POP-11
-Prolog
-PROMAL
-PROTEL
-Python
-QuakeC
-Racket
-Rapira
-Ratfiv
-Ratfor
-S-Lang
-S-PLUS
-Sather
-Scheme
-Scilab
-SIMPOL
-SIGNAL
-SiMPLE
-Simula
-Squeak
-Strand
-TACPOL
-Timber
-Turing
-Unicon
-WebDNA
-Whiley
-Wyvern
-XQuery
-Yorick
+accent
+alma-0
+autoit
+bigwig
+bistro
+ceylon
+chapel
+chip-8
+claire
+cowsel
+csound
+cython
+delphi
+drakon
+dynamo
+eiffel
+elixir
+erlang
+escher
+euclid
+exec 2
+factor
+falcon
+fantom
+formac
+foxpro
+g-code
+george
+godiva
+gotran
+groovy
+inform
+islisp
+jovial
+jython
+kotlin
+ladder
+limnor
+lisaac
+lite-c
+lustre
+lyapas
+matlab
+modula
+nickle
+oberon
+octave
+opencl
+optimj
+orwell
+pcastl
+pl/sql
+plexil
+pop-11
+prolog
+promal
+protel
+python
+quakec
+racket
+rapira
+ratfiv
+ratfor
+s-lang
+s-plus
+sather
+scheme
+scilab
+simpol
+signal
+simple
+simula
+squeak
+strand
+tacpol
+timber
+turing
+unicon
+webdna
+whiley
+wyvern
+xquery
+yorick
 react
 mysql
 chain
@@ -1921,111 +1903,111 @@ crypt
 items
 level
 relay
-ABSET
-ABSYS
-Agora
-AIMMS
-Alice
-ARexx
-Argus
-BASIC
-BLISS
-BlooP
+abset
+absys
+agora
+aimms
+alice
+arexx
+argus
+basic
+bliss
+bloop
 ksh )
-CDuce
-Cecil
-Cesil
-CHAIN
-Charm
-CHILL
-ChucK
-Clean
-CLIST
-CMS-2
-Cobra
-COMAL
-COMIT
-Curry
-dBase
-DinkC
-DIBOL
-Draco
-Dylan
-ESPOL
-Etoys
-Euler
-FAUST
-FlooP
-FOCAL
-FOCUS
-Forth
-Frege
-Genie
-GNU E
-Gödel
-GRASS
-HAL/S
-Idris
-ISWIM
-Joule
-Julia
-Karel
-LANSA
-Lasso
-LaTeX
-Limbo
-Lingo
-Lithe
-Lucid
-M2001
-MAD/I
-Magik
-Magma
-Maple
-MIMIC
-Mirah
-Mohol
-Mouse
-MUMPS
-NXT-G
-o:XML
-Obliq
-OCaml
+cduce
+cecil
+cesil
+chain
+charm
+chill
+chuck
+clean
+clist
+cms-2
+cobra
+comal
+comit
+curry
+dbase
+dinkc
+dibol
+draco
+dylan
+espol
+etoys
+euler
+faust
+floop
+focal
+focus
+forth
+frege
+genie
+gnu e
+gödel
+grass
+hal/s
+idris
+iswim
+joule
+julia
+karel
+lansa
+lasso
+latex
+limbo
+lingo
+lithe
+lucid
+m2001
+mad/i
+magik
+magma
+maple
+mimic
+mirah
+mohol
+mouse
+mumps
+nxt-g
+o:xml
+obliq
+ocaml
 occam
-Oriel
-PEARL
-Perl6
-Pharo
-PILOT
-Pizza
-PL-11
-PL360
-PLANC
-PROIV
-Pro*C
-RAPID
-REBOL
-REFAL
-RTL/2
-SALSA
-SAM76
-Scala
-Seed7
-SISAL
-SMALL
-Snap!
-SPARK
-Stata
-SYMPL
-"TMG 
-T-SQL
-TUTOR
-Umple
-UNITY
-WebQL
-XOTcl
-XPath
-Xtend
+oriel
+pearl
+perl6
+pharo
+pilot
+pizza
+pl-11
+pl360
+planc
+proiv
+pro*c
+rapid
+rebol
+refal
+rtl/2
+salsa
+sam76
+scala
+seed7
+sisal
+small
+snap!
+spark
+stata
+sympl
+"tmg 
+t-sql
+tutor
+umple
+unity
+webql
+xotcl
+xpath
+xtend
 gleam
 linq
 html
@@ -2169,124 +2151,117 @@ perf
 wine
 nmap
 name
-ABAP
-ACL2
-Agda
-Alef
-AMOS
-AMPL
-Axum
-Bash
-BCPL
-BETA
-BitC
-Blue
-BREW
-BPEL
-C/AL
-Caml
-CFML
-Chef
-CICS
-Cilk
-CODE
-Cool
-Corn
-CUDA
-Curl
-Dart
-Ease
-ELAN
-Flex
-FOIL
-GAMS
-GLSL
-GOAL
-Golo
-Gosu
-GPSS
-Hack
-Haxe
-HLSL
-Hope
-Hugo
-Hume
-Icon
-Ioke
-ISPF
-JADE
-Jako
-JASS
-Java
-JEAN
-JOSS
-Kojo
-Lava
-LC-3
-Leda
-LINC
-LISA
-Logo
-Lynx
+abap
+acl2
+agda
+alef
+amos
+ampl
+axum
+bash
+bcpl
+beta
+bitc
+blue
+brew
+bpel
+c/al
+caml
+cfml
+chef
+cics
+cilk
+code
+cool
+corn
+cuda
+curl
+dart
+ease
+elan
+flex
+foil
+gams
+glsl
+goal
+golo
+gosu
+gpss
+hack
+haxe
+hlsl
+hope
+hugo
+hume
+icon
+ioke
+ispf
+jade
+jako
+jass
+java
+jean
+joss
+kojo
+lava
+lc-3
+leda
+linc
+lisa
+logo
+lynx
 make
-Mary
-Mesa
-MIIS
-Moby
-NASM
-Neko
-nesC
-NESL
-NEWP
-Nial
-Nice
-NSIS
-OBJ2
-Onyx
-Opal
-OPS5
-Perl
-Pico
-Pict
-Pike
-PIKT
-PL/0
-PL/B
-PL/C
-PL/M
-PL/P
-PLEX
-Plus
-Pure
-Qalb
-Reia
-REXX
-Rlab
-ROOP
-Ruby
-Rust
-SA-C
-SAIL
-SASL
-Self
-SETL
-SLIP
-Span
-SPIN
-SP/k
-S/SL
-TACL
-TADS
-TECO
-Trac
-TTCN
-Vala
-VSXu
+mary
+mesa
+miis
+moby
+nasm
+neko
+nesc
+nesl
+newp
+nial
+nsis
+obj2
+onyx
+opal
+ops5
+perl
+pico
+pict
+pike
+pikt
+plex
+plus
+pure
+qalb
+reia
+rexx
+rlab
+roop
+ruby
+rust
+sa-c
+sail
+sasl
+setl
+slip
+span
+spin
+sp/k
+s/sl
+tacl
+tads
+teco
+trac
+ttcn
+vala
+vsxu
 vvvv
-Xojo
-XPL0
-Zeno
-ZOPL
+xojo
+xpl0
+zeno
+zopl
 git
 php
 edi
@@ -2422,178 +2397,84 @@ geo
 box
 doc
 spi
-ERP
-RAD
-LED
-ICC
-PKI
-VNC
-DES
-IDL
-SMB
-AAC
-KDE
-PGP
-DIR
-OUT
-PLC
-NTP
-POP
-SYS
-BIN
-RTC
-RFC
-CEP
-SEQ
-OGG
-ALM
-DRM
-ARP
-EPS
-IDA
-BSD
-ABI
-ACS
-XEN
-GPL
-EMF
-FIX
-A++
-ABC
-ACC
-Ada
-ALF
-APL
-Arc
-ATS
-AWK
-Boo
-C--
-Cel
-CLU
-Coq
-CPL
+erp
+rad
+led
+icc
+pki
+vnc
+des
+idl
+smb
+aac
+kde
+pgp
+dir
+out
+plc
+ntp
+pop
+bin
+rtc
+rfc
+seq
+drm
+arp
+eps
+ida
+bsd
+abi
+acs
+xen
+gpl
+emf
+ada
+awk
+cel
+clu
+coq
+cpl
 csh
-CSP
-DCL
-Dog
-EGL
-Elm
-EPL
-FFP
-FPr
-GAP
-GDL
-Go!
-Hop
-ICI
-IMP
-IPL
-J++
-JAL
-JCL
-Joy
-KEE
-KIF
-KRC
-KRL
-ksh
-LIL
-LIS
-LPC
-LSE
-LSL
-Lua
-MDL
-MOO
-MPD
-CIL
-MSL
-NGL
-Nim
-NPL
-Oak
-Opa
-OPL
-Orc
-P′′
-PCF
-PDL
-PHP
-PPL
-QPL
-R++
-Red
-RPG
-RPL
-RSL
-SAS
-SBL
-Sed
-SML
-SOL
-SPS
-SQR
-TAL
-Tcl
-Tea
-TeX
-TEX
-TIE
-Tom
-TOM
-TPU
-TTM
-TXL
-X++
-X10
-XBL
-XPL
-XSB
-YQL
-Zsh
-ZPL
+csp
+dcl
+dog
+egl
+elm
+epl
+ffp
+fpr
+gap
+gdl
+go!
+hop
+ici
+imp
+ipl
+j++
+jal
+jcl
+joy
+kee
+kif
+krc
+krl
+lua
+nim
+sol
+tex
+xsb
+yql
+zsh
+zpl
 nix
-C#
-Go
-IP
-QA
-ML
-A+
-bc
-Cg
-Ch
-dc
-E#
-es
-F#
-FL
-FP
-GJ
-GM
-Id
-Io
-J#
-M4
-M#
-Nu
-Oz
-P#
-rc
-S2
-S3
-SR
-X#
-XL
-B
-C
-D
-E
-F
-G
-J
-K
-L
-R
-S
-T
+c#
+go
+ip
+qa
+ml
+f#
+s2
+s3
+x#
+c
+r
