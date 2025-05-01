@@ -798,14 +798,23 @@ export async function resetApplication(): Promise<void> {
     for example:
 
     if the job is for C#
-    - then you can delete a cpu development project and instead uncomment a game development project and tune a bullet to contain C#
+    - then you can delete the cpu development project and instead add game development project from the knowlege bank or resume comments and tune the bullets to contain C# also talk about where C# was used in the project if possible  
     - You can remove a bullet thats about writing documentation and instead uncomment a bullet about C# so that the length remains the same but there are more keyword matches
-
-    here is your knowlege base, draw from this to boost the score higher when needed:
+    - **IMPORTANT** you must use the XYZ format for bullets for optimal results. The format goes as follows: <Unique Buzzword that is ideally not used in the resume already> X by doing Y resulting in Z where Z is a number or quantification of the result. 
+        For example: Architected a scalable backend in C# composed of microservices on Azure cloud resulting in a 20% increase in system stability. 
+        Note that you should not lie! If this example is not in the knowlege base or the resume already then it should not be a part of the resume and you would have to find some other tech that uses C# to fill the role. 
+    
+    here is your knowlege base, anything in here is fair game to add into the resume and will not be counted as lying:
     ${get(knowlegeBase)}
 
     try changing words in the resume to match closer like for example
     if the job description has "C++" and the resume has "c++" then change the resume to "C++" to match the job description
+
+    The way scoring works is that the job description gets some keywords taken out and the resume gets some keyowrds taken out and a score is calculated by simply taking the number of keywords that are in the job description and what percentage of the keywords are in the resume. The scoring is really simple and is not indicitive of the quality of the resume. So you need to make educated decisions from the knowlege bank to see what you can remove to not only maximize the simple score given but also how recruiters will percieve the resume and how other ATS systems that take stuff like length of experience and stuff into account.
+
+    You need to one shot this. There is no retrys built into the tool so you need to do your best this first shot.
+
+    Odds are that you will need to change some bullets to match the job description better
     `;
 
 
@@ -816,7 +825,7 @@ export async function resetApplication(): Promise<void> {
     Here is the job description:
     ${get(jobDescription)}
 
-    here is the job requirements:
+    here is the job keyowrds that you need to maximize:
     ${get(jobKeywords)}
 
     here is the resume:
