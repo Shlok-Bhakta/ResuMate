@@ -46,7 +46,7 @@ export let cssTheme = persist<any>(writable<any>("/ResuMate/style.css"), createI
 export let openRouterKey = persist<any>(writable<any>("your_api_key_here"), createIndexedDBStorage(), "openRouterKey");
 // export let openAIModel = persist<any>(writable<any>("o3-mini-2025-01-31"), createIndexedDBStorage(), "openAIModel");
 // export let googleAIModel = persist<any>(writable<any>("gemini-2.0-flash"), createIndexedDBStorage(), "googleAIModel");
-export let openRouterAIModel = persist<any>(writable<any>("google/gemini-2.5-flash-preview"), createIndexedDBStorage(), "openRouterAIModel");
+export let openRouterAIModel = persist<any>(writable<any>("openai/gpt-4.1"), createIndexedDBStorage(), "openRouterAIModel");
 
 export let knowlegeBase = persist<any>(writable<any>("Fetch some example knowlege to see what it looks like"), createIndexedDBStorage(), "knowlegeBase");
 
@@ -707,6 +707,7 @@ export async function resetApplication(): Promise<void> {
         // openAIKey.set("your_api_key_here");
         // googleAIKey.set("your_api_key_here");
         openRouterKey.set("your_api_key_here");
+        openRouterAIModel.set("openai/gpt-4.1");
         knowlegeBase.set("Fetch some example knowlege to see what it looks like");
         
         // Reset enable flags
@@ -798,28 +799,40 @@ export async function resetApplication(): Promise<void> {
     for example:
 
     if the job is for C#
-    - then you can delete the cpu development project and instead add game development project from the knowlege bank or resume comments and tune the bullets to contain C# also talk about where C# was used in the project if possible  
+    - then you can delete an irrelevant cpu development project and instead add a unity game development project from the knowlege bank or resume comments and tune the bullets to contain C# also talk about where C# was used in the project if possible    
     - You can remove a bullet thats about writing documentation and instead uncomment a bullet about C# so that the length remains the same but there are more keyword matches
     - **IMPORTANT** you must use the XYZ format for bullets for optimal results. The format goes as follows: <Unique Buzzword that is ideally not used in the resume already> X by doing Y resulting in Z where Z is a number or quantification of the result. 
         For example: Architected a scalable backend in C# composed of microservices on Azure cloud resulting in a 20% increase in system stability. 
         Note that you should not lie! If this example is not in the knowlege base or the resume already then it should not be a part of the resume and you would have to find some other tech that uses C# to fill the role. 
     
+        
+    try changing words in the resume to match closer like for example
+    if the job description has "C++" and the resume has "c++" then change the resume to "C++" to match the job description
+    Do not bold text in the skills section of the resume as that breaks the parser
+
+    the only things you should normally do:
+    - Update the Relevant Coursework either from the knowlege base or reword the coursework to match part of the job description. EX: Database Systems -> Database Systems in MySQL and MongoDB. Only change if it is mentioned in the description.
+    - Update Skills and order them in the same way they are mentioned in the job description. For example if the job description says "Java Python and Gradle" then you should update the languages section to list Java first; Python second, and the Technologies section to list gradle first.  
+    - Update Experiece to reword the description to match parts of the job description if applicable. For example if the job description mentions 1 year of Java then maybe mention Java in the Experience assuming you can find it in the Knowledge Base.
+    - Update the Project Experience to order the bullets by most relevant to least. Also change out certain projects for ones from the knowlege bank if they fit more. Prioritize stuff outside of class but if need be then go ahead and add them. Order projects from most relevant to least relevant. If a bullet is not relevant then you can replace it with something else that may be more relevant or you can rewrite it to emphasize something from the job.
+    - If there is an Events section then go ahead and update it to pick only relevant events or events where I Won or placed well to show that I do stuff outside of class. Of course if the job description is more cybersecurity focused then pick some CTFs. If the job is more Development focused then maybe pick the hackathons.
+    - If there is a Certifications section then go ahead and update it to pick only relevant certifications or certifications that are relevant to the job. For example if the job is more cybersecurity focused then pick some cybersecurity certifications. If the job is more Development focused then maybe pick the certifications for the languages I used.
+
+    This resume is designed to be PACKED! Maintain the current length of uncommented stuff.       
+    
+    The way scoring works is that the job description gets some keywords taken out and the resume gets some keyowrds taken out and a score is calculated by simply taking the number of keywords that are in the job description and what percentage of the keywords are in the resume. The scoring is really simple and is not indicitive of the quality of the resume. So you need to make educated decisions from the knowlege bank to see what you can remove to not only maximize the simple score given but also how recruiters will percieve the resume and how other ATS systems that take stuff like length of experience and stuff into account.
+    
+    You need to one shot this. There is no retries built into the tool so you need to do your best this first shot.
+    
     here is your knowlege base, anything in here is fair game to add into the resume and will not be counted as lying:
     ${get(knowlegeBase)}
 
-    try changing words in the resume to match closer like for example
-    if the job description has "C++" and the resume has "c++" then change the resume to "C++" to match the job description
-
-    The way scoring works is that the job description gets some keywords taken out and the resume gets some keyowrds taken out and a score is calculated by simply taking the number of keywords that are in the job description and what percentage of the keywords are in the resume. The scoring is really simple and is not indicitive of the quality of the resume. So you need to make educated decisions from the knowlege bank to see what you can remove to not only maximize the simple score given but also how recruiters will percieve the resume and how other ATS systems that take stuff like length of experience and stuff into account.
-
-    You need to one shot this. There is no retrys built into the tool so you need to do your best this first shot.
-
-    Odds are that you will need to change some bullets to match the job description better
+    REMEMBER NO LYING! LYING WILL NOT GET ME A JOB!
     `;
 
 
     let content = `
-    remember to get rid of the comments (<!-- -->) and really only include the parts you specificly want to maximize that score!
+    remember to get rid of the comments (<!-- -->) and really only include the parts you specificly want to maximize that score and maintain the current length of uncommented stuff!
 
 
     Here is the job description:
