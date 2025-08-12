@@ -1,8 +1,7 @@
 <script lang="ts">
 	/**
-	 * CreateProjectDialog (Svelte 5 runes mode)
-	 * - Replaces store $prefix sugar with explicit .set / subscribe
-	 * - Uses event attributes (onsubmit / onclick)
+	 * CreateProjectDialog
+	 * Simplified to use $store sugar.
 	 */
 	import {
 		clearProject,
@@ -13,7 +12,6 @@
 		saveCurrentProject,
 		modalState
 	} from "$utils";
-	import { get } from "svelte/store";
 
 	let name = $state("");
 	let url = $state("");
@@ -22,7 +20,7 @@
 	let errorMsg = $state("");
 
 	function close() {
-		modalState.set("None");
+		$modalState = "None";
 	}
 
 	async function onSubmit(e: Event) {
@@ -35,12 +33,12 @@
 		creating = true;
 		try {
 			clearProject();
-			jobName.set(name.trim());
-			jobUrl.set(url.trim() || "https://example.com/");
+			$jobName = name.trim();
+			$jobUrl = url.trim() || "https://example.com/";
 			if (fromTemplate) {
-				resumeMd.set(get(resumeTemplate));
+				$resumeMd = $resumeTemplate;
 			} else {
-				resumeMd.set("");
+				$resumeMd = "";
 			}
 			await saveCurrentProject();
 			close();
@@ -88,7 +86,7 @@
 			/>
 			<p class="text-xs opacity-70">Used by the fetch tool to grab job description later.</p>
 		</div>
-	
+
 		<label class="flex items-center gap-2 text-sm">
 			<input
 				type="checkbox"

@@ -1,55 +1,32 @@
 <script lang="ts">
 	/**
-	 * Topbar (fresh rewrite)
-	 * Updated to avoid $store sugar (manual subscriptions) for Svelte 5 runes mode consistency.
+	 * Topbar
+	 * Reset action moved into Project Options dialog; top bar only exposes Edit / Duplicate / Save.
 	 */
 	import ModeSwitcher from "./ModeSwitcher.svelte";
 	import {
-		resumeTemplate,
-		resumeMd,
 		saveCurrentProject,
 		saveState,
 		modalState,
 		duplicateProject,
 		projectId
 	} from "$utils";
-	import { get } from "svelte/store";
-	import { onDestroy } from "svelte";
-	
+
 	// Props from LayoutRoot
 	const { collapsed = false, onShowSidebar = () => {} } = $props<{ collapsed?: boolean; onShowSidebar?: () => void }>();
-	
-	// Local reactive copies of store values
-	let modal = "None";
-	let saveStateVal = $state(0);
-	let currentProjectId = -1;
-	
-	const unsubModal = modalState.subscribe(v => modal = v);
-	const unsubSaveState = saveState.subscribe(v => saveStateVal = v);
-	const unsubProjectId = projectId.subscribe(v => currentProjectId = v);
-	
-	onDestroy(() => {
-		unsubModal();
-		unsubSaveState();
-		unsubProjectId();
-	});
-	
+
 	function openEdit() {
-		modalState.set("Project Options");
+		$modalState = "Project Options";
 	}
-	
+
 	async function onDuplicate() {
-		await duplicateProject(currentProjectId);
+		await duplicateProject($projectId);
 	}
-	
-	function resetToTemplate() {
-		resumeMd.set(get(resumeTemplate));
-	}
-	
+
 	function saveProject() {
 		saveCurrentProject();
 	}
-	
+
 	function saveStatusText(v: number): string {
 		switch (v) {
 			case -1:
@@ -63,7 +40,7 @@
 				return "";
 		}
 	}
-	
+
 	function saveStatusTone(v: number): string {
 		switch (v) {
 			case -1:
@@ -84,30 +61,25 @@
 	role="banner"
 	aria-label="Application top bar"
 >
-	<!-- Reset -->
-	<button
-		type="button"
-		onclick={resetToTemplate}
-		class="px-2 py-1 rounded bg-mantle text-text text-sm hover:bg-overlay0 transition-colors"
-		aria-label="Reset resume content to template"
-	>
-		Reset
-	</button>
-
 	<!-- Sidebar show when collapsed -->
 	{#if collapsed}
 		<button
 			type="button"
 			onclick={onShowSidebar}
-			class="px-2 py-1 rounded bg-blue text-mantle text-sm hover:bg-sapphire transition-colors"
+			class="p-1 rounded bg-mantle text-text hover:bg-overlay0 transition-colors focus:outline-hidden focus:ring-2 focus:ring-blue/70"
 			aria-label="Show sidebar"
 			title="Show sidebar"
 		>
-			Show Sidebar
+			<img
+				src="/ResuMate/icons/sidebaropen.svg"
+				alt=""
+				aria-hidden="true"
+				class="w-5 h-5 pointer-events-none"
+			/>
 		</button>
 	{/if}
 
-	<!-- Project actions -->
+	<!-- Project actions (Edit / Duplicate) -->
 	<div class="flex items-center gap-2">
 		<button
 			type="button"
@@ -121,7 +93,7 @@
 		<button
 			type="button"
 			onclick={onDuplicate}
-			class="px-2 py-1 rounded bg-sapphire text-mantle text-sm hover:bg-blue transition-colors"
+			class="px-2 py-1 rounded bg-mantle text-text text-sm hover:bg-overlay0 transition-colors"
 			aria-label="Duplicate project"
 			title="Duplicate project"
 		>
@@ -134,24 +106,23 @@
 		<button
 			type="button"
 			onclick={saveProject}
-			class="px-2 py-1 rounded bg-mantle text-text text-sm hover:bg-overlay0 transition-colors relative"
+			class="px-2 py-1 rounded bg-blue text-mantle text-sm hover:bg-sapphire transition-colors relative"
 			aria-describedby="save-status-text"
 			aria-label="Save project"
 		>
 			Save
 			<span
-				class={"absolute -top-1 -right-1 w-3 h-3 rounded-full " + saveStatusTone(saveStateVal)}
+				class={"absolute -top-1 -right-1 w-3 h-3 rounded-full " + saveStatusTone($saveState)}
 				aria-hidden="true"
 			/>
 		</button>
-		<!-- Visible textual status (kept concise) -->
 		<div
 			id="save-status-text"
 			role="status"
 			aria-live="polite"
 			class="text-xs min-w-[4ch]"
 		>
-			{saveStatusText(saveStateVal)}
+			{saveStatusText($saveState)}
 		</div>
 	</div>
 

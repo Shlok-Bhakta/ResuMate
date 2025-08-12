@@ -9,10 +9,13 @@
 		jobName,
 		jobUrl,
 		projectId,
-		saveCurrentProject
+		saveCurrentProject,
+		resumeTemplate,
+		resumeMd
 	} from "$utils";
 	import { renameProject, duplicateProject, deleteProject } from "$utils";
 	import { onMount } from "svelte";
+	import { get } from "svelte/store";
 
 	// Local reactive state
 	let name = $state("");
@@ -81,6 +84,21 @@
 		}
 	}
 
+	async function onReset() {
+		if (!confirm("Reset resume to template? This will discard current resume content.")) return;
+		errorMsg = "";
+		working = true;
+		try {
+			resumeMd.set(get(resumeTemplate));
+			// Leave dialog open so user can still rename / save / duplicate or cancel.
+		} catch (err) {
+			console.error(err);
+			errorMsg = "Failed to reset content.";
+		} finally {
+			working = false;
+		}
+	}
+	
 	async function onDelete() {
 		if (!confirm("Delete this project? This cannot be undone.")) return;
 		errorMsg = "";
@@ -105,8 +123,26 @@
 	onkeydown={onKeydown}
 >
 	<header class="mb-3">
-		<h2 id="project-options-title" class="text-lg font-semibold">Project options</h2>
-		<p class="text-xs opacity-70">Rename, set job URL, duplicate or delete.</p>
+		<div class="flex items-start justify-between gap-3">
+			<div>
+				<h2 id="project-options-title" class="text-lg font-semibold">Project options</h2>
+				<p class="text-xs opacity-70">Rename, set job URL, duplicate or delete.</p>
+			</div>
+			<button
+				type="button"
+				class="p-1 rounded bg-mantle hover:bg-overlay0 transition-colors focus:outline-hidden focus:ring-2 focus:ring-blue/70"
+				onclick={close}
+				aria-label="Close dialog"
+				title="Close"
+			>
+				<img
+					src="/ResuMate/icons/cancel.svg"
+					alt=""
+					aria-hidden="true"
+					class="w-5 h-5 pointer-events-none"
+				/>
+			</button>
+		</div>
 	</header>
 
 	<form class="space-y-3" onsubmit={onSave}>
@@ -148,20 +184,21 @@
 				>
 					Delete
 				</button>
+				<button
+					type="button"
+					class="px-3 py-1 rounded bg-red/80 hover:bg-red text-mantle text-sm transition-colors"
+					onclick={onReset}
+					disabled={working}
+					aria-label="Reset resume to template"
+					title="Reset resume content to template"
+				>
+					Reset
+				</button>
 			</div>
 			<div class="flex items-center gap-2">
 				<button
 					type="button"
-					class="px-3 py-1 rounded bg-mantle hover:bg-overlay0 text-sm transition-colors"
-					onclick={close}
-					disabled={working}
-					aria-label="Cancel"
-				>
-					Cancel
-				</button>
-				<button
-					type="button"
-					class="px-3 py-1 rounded bg-sapphire hover:bg-blue text-mantle text-sm transition-colors"
+					class="px-3 py-1 rounded bg-mantle hover:bg-overlay0 text-text text-sm transition-colors"
 					onclick={onDuplicate}
 					disabled={working}
 					aria-label="Duplicate project"
