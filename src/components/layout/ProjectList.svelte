@@ -31,6 +31,22 @@
 	let projects = $state<[string, number][]>([]);
 	availableProjects.subscribe((v) => (projects = v as [string, number][]));
 
+	// Search / filtering
+	let search = $state("");
+	const filteredProjects: [string, number][] = $derived(
+		search.trim()
+			? projects.filter((p) => p[0].toLowerCase().includes(search.toLowerCase()))
+			: projects
+	);
+	
+	// Keep focus index in range when filtering
+	$effect(() => {
+		if (focusedIndex >= filteredProjects.length) {
+			focusedIndex = filteredProjects.length - 1;
+		}
+		if (focusedIndex < -1) focusedIndex = -1;
+	});
+
 	// Roving focus management over the primary "open" buttons only
 	let itemButtons: HTMLButtonElement[] = [];
 	let focusedIndex = $state(-1);
@@ -105,12 +121,27 @@
 	}
 </script>
 
-<nav aria-label="Projects" class="flex flex-col gap-2">
-	{#if projects.length === 0}
-		<p class="text-xs px-2 py-1">No projects yet. Create one to begin.</p>
+<nav aria-label="Projects" class="flex flex-col gap-2 flex-1 min-h-0">
+	<!-- Search input -->
+	<div class="px-1">
+		<input
+			type="text"
+			class="w-full px-2 py-1 rounded bg-mantle text-text text-sm focus:outline-none focus:ring-1 focus:ring-blue placeholder:text-overlay1"
+			placeholder="Search projects..."
+			bind:value={search}
+			aria-label="Search projects"
+		/>
+	</div>
+
+	{#if (filteredProjects?.length || 0) === 0}
+		<p class="text-xs px-2 py-1">
+			{projects.length === 0
+				? "No projects yet. Create one to begin."
+				: "No matches."}
+		</p>
 	{:else}
-		<ul role="list" class="flex flex-col gap-1 max-h-[40vh] overflow-y-auto overflow-x-hidden pr-1">
-			{#each projects as proj, i}
+		<ul role="list" class="flex flex-col gap-1 flex-1 min-h-0 overflow-y-auto overflow-x-hidden pr-1">
+			{#each filteredProjects as proj, i}
 				<li class="list-none">
 					<div class="flex items-center gap-2 min-w-0">
 						<!-- Primary: Open project -->
@@ -118,7 +149,7 @@
 							use:register={i}
 							type="button"
 							onfocus={() => (focusedIndex = i)}
-							onkeydown={(e) => onItemKeyDown(e, i, projects.length)}
+							onkeydown={(e) => onItemKeyDown(e, i, filteredProjects.length)}
 							class="flex-1 min-w-0 text-left text-sm px-2 py-1 rounded outline-hidden focus:outline-hidden focus:ring-2 focus:ring-blue/70 focus:ring-offset-1 transition-colors {focusedIndex === i ? 'bg-overlay0' : 'bg-mantle hover:bg-surface0'}"
 							data-index={i}
 							onclick={() => activateProject(proj)}

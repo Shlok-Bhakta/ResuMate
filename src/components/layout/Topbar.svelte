@@ -1,7 +1,8 @@
 <script lang="ts">
 	/**
 	 * Topbar
-	 * Reset action moved into Project Options dialog; top bar only exposes Edit / Duplicate / Save.
+	 * Reset action in Project Options; includes Edit / Duplicate / Save / PDF Download.
+	 * Download: opens a new printable window with injected HTML + inlined stylesheet for accessibility / scraping.
 	 */
 	import ModeSwitcher from "./ModeSwitcher.svelte";
 	import {
@@ -9,7 +10,9 @@
 		saveState,
 		modalState,
 		duplicateProject,
-		projectId
+		projectId,
+		resumeHtml,
+		jobName
 	} from "$utils";
 
 	// Props from LayoutRoot
@@ -25,6 +28,92 @@
 
 	function saveProject() {
 		saveCurrentProject();
+	}
+
+	let stylesheetContent = $state("");
+
+	async function loadStylesheet() {
+		try {
+			const response = await fetch("/ResuMate/style.css");
+			if (response.ok) {
+				stylesheetContent = await response.text();
+			} else {
+				console.error("Failed to load stylesheet");
+			}
+		} catch (error) {
+			console.error("Error loading stylesheet:", error);
+		}
+	}
+	loadStylesheet();
+
+	async function downloadPdf() {
+		// if $resumeHtml's promise is not resolved yet, don't download
+		if ($resumeHtml && stylesheetContent !== "") {
+			const content = `
+			         <!DOCTYPE html>
+			         <html>
+			         <head>
+			             <style>
+			                 ${stylesheetContent}
+			                 body, html {
+			                     margin: 0;
+			                     padding: 0;
+			                     height: 100%;
+			                     }
+			                     .pdf-page {
+			                         width: 8.5in;
+			                         height: 11in;
+			                         background-color: white;
+			                         padding-top: 0.0in;
+			                         padding-left: 0.2in;
+			                         padding-right: 0.2in;
+			                         box-sizing: border-box;
+			                         overflow: hidden;
+			                         max-height: 11in;
+			                     @page {
+			                         size: letter;
+			                         scale: 1;
+			                         margin: 0;
+			                         width: 8.5in;
+			                         height: 11in;
+			                     }
+			                     
+			                     .pdf-page {
+			                         overflow: hidden;
+			                         max-height: 11in;
+			                     }
+
+			                     }
+
+			                     </style>
+			                 </head>
+			                 <body>
+			                     <div class="pdf-page">${await $resumeHtml}</div>
+			                 </body>
+			             </html>
+			         `;
+
+			const blob = new Blob([content], {
+				type: "text/html;charset=utf-8",
+			});
+			const url = URL.createObjectURL(blob);
+
+			const newWindow = window.open(url, "_blank");
+			if (newWindow) {
+				newWindow.onload = () => {
+					newWindow.document.title = $jobName || "ResuMate";
+					setTimeout(() => {
+						newWindow.focus();
+						newWindow.print();
+						// Clean up after printing
+						setTimeout(() => {
+							newWindow.close();
+							URL.revokeObjectURL(url);
+						}, 100);
+					}, 100);
+				};
+			}
+		}
 	}
 
 	function saveStatusText(v: number): string {
@@ -132,13 +221,13 @@
 	<!-- Mode Switcher -->
 	<ModeSwitcher />
 
-	<!-- Download Placeholder -->
+	<!-- Download PDF (prints HTML) -->
 	<button
 		type="button"
-		class="ml-2 px-2 py-1 rounded bg-mantle text-text text-sm opacity-60 cursor-not-allowed"
-		aria-disabled="true"
-		aria-label="Download (disabled placeholder)"
-		title="Download (coming soon in rewrite integration)"
+		onclick={downloadPdf}
+		class="ml-2 px-2 py-1 rounded bg-mantle text-text text-sm hover:bg-overlay0 transition-colors"
+		aria-label="Download / Print resume"
+		title="Download / Print resume"
 	>
 		Download
 	</button>
