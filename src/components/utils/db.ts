@@ -93,48 +93,57 @@ export const db = new ResuMateDatabase();
  * - Updates saveState to signal UI: -1 error, 1 created, 2 updated.
  */
 export async function saveCurrentProject(): Promise<number> {
+  const now = new Date();
+  const id = get(projectId);
+
   if (get(jobName) === "" || get(jobName) === "Change Me") {
     saveState.set(-1);
     return -1;
   }
 
-  if (get(saveCount) === 0) {
-    const newID = await db.project.add({
-      name: get(jobName),
-      md: get(resumeMd),
-      mdKeywords: get(resumeKeywords),
-      jobUrl: get(jobUrl),
-      jobDesc: get(jobDescription),
-      jobKeywords: get(jobKeywords),
-      score: get(combinedScore),
-      saves: get(saveCount),
-      created: new Date(),
-      modified: new Date()
-    });
-    projectId.set(newID);
-    await getProjectNames();
-    saveState.set(1);
-  } else {
-    await db.project.update(get(projectId), {
-      name: get(jobName),
-      md: get(resumeMd),
-      mdKeywords: get(resumeKeywords),
-      jobUrl: get(jobUrl),
-      jobDesc: get(jobDescription),
-      jobKeywords: get(jobKeywords),
-      score: get(combinedScore),
-      saves: get(saveCount),
-      created: new Date(), // (original code overwrote created; consider preserving)
-      modified: new Date()
-    });
-    await getProjectNames();
-    saveState.set(2);
-  }
+  try {
+    if (id === -1) {
+      const newID = await db.project.add({
+        name: get(jobName),
+        md: get(resumeMd),
+        mdKeywords: get(resumeKeywords),
+        jobUrl: get(jobUrl),
+        jobDesc: get(jobDescription),
+        jobKeywords: get(jobKeywords),
+        score: get(combinedScore),
+        saves: 1,
+        created: now,
+        modified: now
+      });
+      projectId.set(newID);
+      saveCount.set(1);
+      saveState.set(1);
+    } else {
+      const existing = await db.project.get(id);
+      const newSaves = (existing?.saves ?? get(saveCount)) + 1;
+      await db.project.update(id, {
+        name: get(jobName),
+        md: get(resumeMd),
+        mdKeywords: get(resumeKeywords),
+        jobUrl: get(jobUrl),
+        jobDesc: get(jobDescription),
+        jobKeywords: get(jobKeywords),
+        score: get(combinedScore),
+        saves: newSaves,
+        created: existing?.created ?? now,
+        modified: now
+      });
+      saveCount.set(newSaves);
+      saveState.set(2);
+    }
 
-  if (get(saveCount) === 0) {
-    saveCount.set(get(saveCount) + 1);
+    await getProjectNames();
+    return 0;
+  } catch (e) {
+    console.error(e);
+    saveState.set(-1);
+    return -1;
   }
-  return 0;
 }
 
 /**
@@ -167,6 +176,52 @@ export async function getProjectNames(): Promise<void> {
   const all = await db.project.toArray();
   all.reverse();
   availableProjects.set(all.map(p => [p.name, p.id]));
+}
+
+export async function renameProject(id: number, newName: string): Promise<void> {
+  const name = newName.trim();
+  if (!name) return;
+  await db.project.update(id, { name, modified: new Date() });
+  if (get(projectId) === id) {
+    jobName.set(name);
+  }
+  await getProjectNames();
+}
+
+export async function duplicateProject(id: number, newName?: string): Promise<number> {
+  const src = await db.project.get(id);
+  if (!src) {
+    console.warn("Project to duplicate not found:", id);
+    return -1;
+  }
+  const now = new Date();
+  const name = (newName ?? `${src.name} (Copy)`).trim();
+  const newID = await db.project.add({
+    name,
+    md: src.md,
+    mdKeywords: src.mdKeywords,
+    jobUrl: src.jobUrl,
+    jobDesc: src.jobDesc,
+    jobKeywords: src.jobKeywords,
+    score: src.score,
+    saves: 0,
+    created: now,
+    modified: now
+  });
+  projectId.set(newID);
+  jobName.set(name);
+  saveCount.set(0);
+  await getProjectNames();
+  await loadProject(newID);
+  return newID;
+}
+
+export async function deleteProject(id: number): Promise<void> {
+  await db.project.delete(id);
+  if (get(projectId) === id) {
+    clearProject();
+  }
+  await getProjectNames();
 }
 
 /**

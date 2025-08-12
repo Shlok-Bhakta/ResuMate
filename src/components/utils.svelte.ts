@@ -42,7 +42,10 @@ export {
   clearProject,
   downloadDBasJSON,
   importIndexedDBs,
-  resetApplication
+  resetApplication,
+  renameProject,
+  duplicateProject,
+  deleteProject
 } from "./utils/db";
 
 // Resume tuning (LLM)

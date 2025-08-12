@@ -1,3 +1,21 @@
+<!--
+DEPRECATED LEGACY COMPONENT: Download (PDF export trigger)
+Replaced temporarily by a disabled placeholder in rewritten Topbar:
+- New Topbar: [`Topbar.svelte`](src/components/layout/Topbar.svelte)
+- Integrated shell: [`LayoutRoot.svelte`](src/components/layout/LayoutRoot.svelte)
+- App integration: [`app.svelte`](src/components/app.svelte)
+
+Status:
+- Retained only until post-rewrite phase adds a new accessible download flow.
+- DO NOT add new features here.
+- Remove after tasks #15 & #16 complete (see a11y checklist: [`nav-a11y-checklist.md`](nav-a11y-checklist.md)).
+
+Planned improvements for replacement implementation:
+- Progress / generation feedback
+- Error handling + retry
+- Single responsibility utility for HTML to printable doc
+- Avoid inline fetch of stylesheet (bundle or server-provided)
+-->
 <script>
     import { resumeHtml } from "$utils";
     let props = $props();

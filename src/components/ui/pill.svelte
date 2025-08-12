@@ -1,3 +1,12 @@
+<!--
+DEPRECATED LEGACY COMPONENT: Pill
+Superseded by forthcoming design system Button primitive (see rewrite tasks & theming plan).
+Retention Purpose:
+- Reference for spacing/token usage prior to primitive introduction.
+- Will be removed after tasks #15 & #16 (legacy component cleanup) complete.
+
+Do NOT extend this component. Prefer new primitives once added.
+-->
 <script>
     const props = $props();
     let cleanText = $derived((props.text.length > 13) ? props.text.substring(0, 13) + "..." : props.text);

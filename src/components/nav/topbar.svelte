@@ -1,3 +1,18 @@
+<!--
+DEPRECATED LEGACY COMPONENT: Topbar
+Replaced by rewritten components:
+- New Topbar: [`Topbar.svelte`](src/components/layout/Topbar.svelte)
+- Integrated Shell: [`LayoutRoot.svelte`](src/components/layout/LayoutRoot.svelte)
+- App integration: [`app.svelte`](src/components/app.svelte)
+
+Do NOT extend this legacy file. It is retained temporarily for reference and will be removed after rewrite tasks #15 & #16 complete (see a11y checklist: [`nav-a11y-checklist.md`](nav-a11y-checklist.md)).
+
+Functional differences vs new implementation:
+- Lacks labeled project name input.
+- Tooltip hack via ::before, no aria-live status text (dot only).
+- Mode switching via multiple buttons (not proper tab semantics).
+- Inline download component (will be reintroduced post-rewrite).
+-->
 <script>
   import "../fonts.css";
   import {
@@ -64,7 +79,6 @@
         /></svg
       >
     </button>
-    <!-- display different icons based on the save state -->
     <div class="absolute -top-1 -right-1">
       {#if $saveState === -1}
         <div class="bg-red rounded-full w-3 h-3"></div>
@@ -104,7 +118,7 @@
           xmlns="http://www.w3.org/2000/svg"
           class="w-5 h-5"
           viewBox="0 0 24 24"
-          ><!-- Icon from All by undefined - undefined --><path
+          ><path
             class={$projectEditingStage == mode ? "fill-mantle" : "fill-text"}
             d="M8.267 1.618a.75.75 0 0 1 1.027-.264l.832.492l9.247 5.307a.75.75 0 1 1-.747 1.301l-.843-.484l-1.505 2.598l-.002-.002l-2.558-1.471a.75.75 0 1 0-.748 1.3l2.556 1.47l-.961 1.66l-.002-.001l-4.203-2.418a.75.75 0 1 0-.748 1.3l4.2 2.417l-.885 1.529l-.002-.002l-2.613-1.503a.75.75 0 0 0-.748 1.3l2.611 1.502l-1.12 1.932a4.86 4.86 0 0 1-6.628 1.77a4.827 4.827 0 0 1-1.776-6.605L9.373 3.143l-.006-.003l-.836-.494a.75.75 0 0 1-.264-1.028M20 17c1.105 0 2-.933 2-2.083c0-.72-.783-1.681-1.37-2.3a.86.86 0 0 0-1.26 0c-.587.619-1.37 1.58-1.37 2.3c0 1.15.895 2.083 2 2.083"
           /></svg
@@ -114,7 +128,7 @@
           xmlns="http://www.w3.org/2000/svg"
           class="w-5 h-5"
           viewBox="0 0 24 24"
-          ><!-- Icon from All by undefined - undefined --><path
+          ><path
             class={$projectEditingStage == mode ? "fill-mantle" : "fill-text"}
             d="M6 23H3q-.825 0-1.412-.587T1 21v-3h2v3h3zm12 0v-2h3v-3h2v3q0 .825-.587 1.413T21 23zm-6-4.5q-3 0-5.437-1.775T3 12q1.125-2.95 3.563-4.725T12 5.5t5.438 1.775T21 12q-1.125 2.95-3.562 4.725T12 18.5m0-3q1.45 0 2.475-1.025T15.5 12t-1.025-2.475T12 8.5T9.525 9.525T8.5 12t1.025 2.475T12 15.5m0-2q-.625 0-1.062-.437T10.5 12t.438-1.062T12 10.5t1.063.438T13.5 12t-.437 1.063T12 13.5M1 6V3q0-.825.588-1.412T3 1h3v2H3v3zm20 0V3h-3V1h3q.825 0 1.413.588T23 3v3z"
           /></svg
@@ -128,6 +142,5 @@
     />
   {/each}
 
-  <!-- download pdf button -->
   <Download />
 </div>
