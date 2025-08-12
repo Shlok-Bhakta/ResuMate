@@ -15,7 +15,7 @@ export const resumeMd = persisted<string>(
   "resumeMd",
   "# Go to settings and fetch my resume template from the settings! Also Update your info!"
 );
-export const resumeHtml = persisted<string>("resumeHtml", "<h1>Hi</h1>");
+export const resumeHtml = writable<string | Promise<string>>("<h1>Hi</h1>");
 export const jobDescription = persisted<string>(
   "jobDescription",
   "Paste your job description here, or paste a link and try to fetch it"

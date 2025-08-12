@@ -1,7 +1,6 @@
 <script lang="ts">
     import "./editor.css";
     import { Carta, MarkdownEditor} from "carta-md";
-    import { jsPDF } from "jspdf";
     import { resumeMd, resumeHtml, score, jobDescription, keywords, saveCurrentProject, header, editorShortcuts, tableify, saveState} from "$utils";
     let carta = new Carta({
             sanitizer: false,
@@ -41,7 +40,6 @@
             saveCurrentProject();
         }, 1000);
     });
-    $inspect($resumeHtml);
    
 </script>
 <div class="w-full h-full">    
