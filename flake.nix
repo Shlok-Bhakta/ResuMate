@@ -12,7 +12,7 @@
 
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     unstable-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
@@ -32,29 +32,10 @@
         devShells.default = pkgs.mkShell {
           name = "Resume-ATS-Optimizer";
           nativeBuildInputs = with pkgs; [
-            python311
-            python311Packages.nltk
-            python311Packages.pandas
-            python311Packages.numpy
-            python311Packages.matplotlib
-            python311Packages.scikitlearn
-            python311Packages.scipy
-            python311Packages.spacy
-            python311Packages.beautifulsoup4
-            python311Packages.alive-progress
-            python311Packages.tensorflow
-            python311Packages.fuzzywuzzy
-            python311Packages.sentence-transformers
-            python311Packages.tqdm
-            python311Packages.joblib
-            python311Packages.keras
-            python311Packages.tf-keras
-            python311Packages.openai
+            unstable.gemini-cli
           ];
           
           shellHook = ''
-            echo "Resume ATS Optimization environment ready."
-            zsh
           '';
         };
       });
