@@ -19,6 +19,7 @@
     "html2pdf.js": "^0.10.3",
     "lucide-svelte": "^0.476.0",
     "mode-watcher": "^0.5.1",
+    "peerjs": "^1.5.5",
     "svelte": "^5.20.4",
     "tailwind-scrollbar": "^4.0.1",
     "tailwindcss": "^4.0.9",

@@ -161,6 +161,247 @@
     let keywordSearch = $state("");
     let newKeyword = $state("");
 
+    // PeerJS IndexedDB Transfer
+    import Peer from "peerjs";
+    import { nanoid } from "nanoid";
+
+    // PeerJS state
+    let peer = $state<any>(null);
+    let conn = $state<any>(null);
+    let peerStatus = $state<"idle"|"waiting"|"connected"|"error"|"transferring"|"done">("idle");
+    let peerError = $state<string>("");
+    let peerTab = $state<"send"|"receive">("send");
+    let peerCode = $state<string>("");
+    let peerCodeInput = $state<string>("");
+    let peerShowConfirm = $state<boolean>(false);
+    let peerShowOverwrite = $state<boolean>(false);
+    let peerTransferMsg = $state<string>("");
+    let peerTransferProgress = $state<string>("");
+    let peerTransferDone = $state<boolean>(false);
+    let peerReady = $state<boolean>(false); // Only true after Peer "open"
+
+    function generateCode() {
+        // 3 random words + 4 random hex chars
+        const words = Array.from({length:3},()=>Math.random().toString(36).substring(2,6)).join("-");
+        const hex = Math.random().toString(16).substring(2,6);
+        return `${words}-${hex}`;
+    }
+
+    function resetPeerState() {
+        if (peer) {
+            try { peer.destroy(); } catch {}
+        }
+        peer = null;
+        conn = null;
+        peerStatus = "idle";
+        peerError = "";
+        peerCode = "";
+        peerCodeInput = "";
+        peerShowConfirm = false;
+        peerShowOverwrite = false;
+        peerTransferMsg = "";
+        peerTransferProgress = "";
+        peerTransferDone = false;
+        peerReady = false;
+    }
+
+    async function startSend() {
+        resetPeerState();
+        peerTab = "send";
+        peerCode = generateCode();
+        peerStatus = "waiting";
+        peerReady = false;
+        try {
+            console.log("[PeerJS] Creating Peer (send mode) with ID:", peerCode);
+            peer = new Peer(peerCode, { debug: 2 });
+            console.log("[PeerJS] Peer object created:", peer);
+            peer.on("open", (id: any) => {
+                console.log("[PeerJS] Peer open (send mode). My ID:", id);
+                peerReady = true;
+                console.log("[PeerJS] Peer is now ready for connections.");
+            });
+            peer.on("connection", (connection: any) => {
+                console.log("[PeerJS] Incoming connection from:", connection.peer);
+                conn = connection;
+                peerStatus = "connected";
+                peerTransferMsg = "Peer connected. Preparing data...";
+                connection.on("error", (err: any) => {
+                    console.error("[PeerJS] Connection error (send mode):", err);
+                    peerError = "Connection error: " + err;
+                    peerStatus = "error";
+                });
+                connection.on("close", () => {
+                    console.log("[PeerJS] Connection closed (send mode)");
+                    peerStatus = "idle";
+                });
+                sendDB();
+            });
+            peer.on("disconnected", () => {
+                console.warn("[PeerJS] Peer disconnected (send mode)");
+            });
+            peer.on("error", (err: any) => {
+                console.error("[PeerJS] PeerJS error (send mode):", err);
+                peerError = "PeerJS error: " + err;
+                peerStatus = "error";
+            });
+            peer.on("close", () => {
+                console.log("[PeerJS] Peer closed (send mode)");
+            });
+        } catch (e) {
+            peerError = "PeerJS init error: " + e;
+            peerStatus = "error";
+        }
+    }
+
+    async function sendDB() {
+        if (!conn) return;
+        peerTransferMsg = "Exporting IndexedDB...";
+        peerStatus = "transferring";
+        try {
+            // Patch: downloadDBasJSON triggers download, so we need to extract JSON directly
+            // We'll reimplement export logic here for direct transfer
+            const dbNames = ["ResuMateMain", "svelte-persist"];
+            const exportContent: any = {};
+            for (const dbName of dbNames) {
+                const rawDB = await (window as any).indexedDB.open(dbName);
+                await new Promise<void>((resolve, reject) => {
+                    rawDB.onerror = () => reject(rawDB.error);
+                    rawDB.onsuccess = () => resolve();
+                });
+                const db = rawDB.result;
+                exportContent[dbName] = {};
+                for (const storeName of db.objectStoreNames) {
+                    const tx = db.transaction(storeName, "readonly");
+                    const store = tx.objectStore(storeName);
+                    const data: { key: any; value: any }[] = [];
+                    await new Promise<void>((resolve, reject) => {
+                        const cursorRequest = store.openCursor();
+                        cursorRequest.onerror = () => reject(cursorRequest.error);
+                        cursorRequest.onsuccess = (e: any) => {
+                            const cursor = e.target.result;
+                            if (cursor) {
+                                data.push({ key: cursor.key, value: cursor.value });
+                                cursor.continue();
+                            } else {
+                                resolve();
+                            }
+                        };
+                    });
+                    exportContent[dbName][storeName] = data;
+                }
+                db.close();
+            }
+            const jsonString = JSON.stringify(exportContent);
+            peerTransferMsg = "Sending data...";
+            conn.send(jsonString);
+            peerTransferMsg = "Data sent. Waiting for confirmation...";
+            conn.on("data", (msg: any) => {
+                if (msg === "received") {
+                    peerTransferMsg = "Transfer complete!";
+                    peerStatus = "done";
+                    peerTransferDone = true;
+                }
+            });
+        } catch (e) {
+            peerError = "Export/send error: " + e;
+            peerStatus = "error";
+        }
+    }
+
+    async function startReceive() {
+        resetPeerState();
+        peerTab = "receive";
+        peerCodeInput = "";
+        peerStatus = "idle";
+    }
+
+    async function connectToSender() {
+        peerStatus = "waiting";
+        peerError = "";
+        try {
+            console.log("[PeerJS] Creating Peer (receive mode) with default options");
+            peer = new Peer("", { debug: 2 });
+            console.log("[PeerJS] Peer object created (receive mode):", peer);
+            peer.on("open", (id: any) => {
+                console.log("[PeerJS] Peer open (receive mode). My ID:", id);
+            });
+            peer.on("disconnected", () => {
+                console.warn("[PeerJS] Peer disconnected (receive mode)");
+            });
+            peer.on("error", (err: any) => {
+                console.error("[PeerJS] PeerJS error (receive mode):", err);
+                peerError = "PeerJS error: " + err;
+                peerStatus = "error";
+            });
+            peer.on("close", () => {
+                console.log("[PeerJS] Peer closed (receive mode)");
+            });
+            console.log("[PeerJS] Attempting to connect to sender with ID:", peerCodeInput);
+            conn = peer.connect(peerCodeInput);
+            conn.on("open", () => {
+                console.log("[PeerJS] Connection to sender opened");
+                peerStatus = "connected";
+                peerTransferMsg = "Connected. Waiting for data...";
+            });
+            conn.on("error", (err: any) => {
+                console.error("[PeerJS] Connection error (receive mode):", err);
+            });
+            conn.on("close", () => {
+                console.log("[PeerJS] Connection closed (receive mode)");
+            });
+            conn.on("data", (jsonString: string) => {
+                console.log("[PeerJS] Data received from sender. Length:", jsonString?.length);
+                peerTransferMsg = "Data received. Validating...";
+                try {
+                    const json = JSON.parse(jsonString);
+                    if (!json["ResuMateMain"] || !json["svelte-persist"]) {
+                        peerError = "Invalid data format.";
+                        peerStatus = "error";
+                        return;
+                    }
+                    peerShowOverwrite = true;
+                    // Save JSON for import after confirmation
+                    (window as any)._peerReceivedJSON = jsonString;
+                } catch (e) {
+                    peerError = "Invalid JSON: " + e;
+                    peerStatus = "error";
+                }
+            });
+            conn.on("error", (err: any) => {
+                peerError = "Connection error: " + err;
+                peerStatus = "error";
+            });
+            conn.on("close", () => {
+                if (!peerTransferDone) peerStatus = "idle";
+            });
+        } catch (e) {
+            peerError = "PeerJS error: " + e;
+            peerStatus = "error";
+        }
+    }
+
+    async function confirmImport() {
+        peerShowOverwrite = false;
+        peerTransferMsg = "Importing data...";
+        peerStatus = "transferring";
+        try {
+            const jsonString = (window as any)._peerReceivedJSON;
+            await importIndexedDBs(jsonString);
+            peerTransferMsg = "Import complete!";
+            peerStatus = "done";
+            peerTransferDone = true;
+            if (conn) conn.send("received");
+        } catch (e) {
+            peerError = "Import error: " + e;
+            peerStatus = "error";
+        }
+    }
+
+    function cancelImport() {
+        peerShowOverwrite = false;
+        peerTransferMsg = "Import cancelled.";
+        peerStatus = "idle";
+    }
 </script>
 
 <div class="w-full h-full absolute top-0 left-0 grid grid-cols-1 bg-crust/70">
@@ -225,6 +466,8 @@
                     </svg>
                     Personal Information
                 </h2>
+
+
 
                 <!-- Name -->
                 <div class="space-y-2">
@@ -755,6 +998,98 @@
                                 Upload Data
                             </label>
                         </div>
+                    </div>
+                </div>
+
+                                <!-- PeerJS Transfer Section -->
+                <div class="rounded-lg border-2 border-blue bg-blue/10 p-4 mb-6 shadow peerjs-transfer-section">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
+                        </svg>
+                        <span class="font-semibold text-red text-lg">PeerJS Transfer UNDER CONSTRUCTION</span>
+                    </div>
+                    <div class="flex gap-2 mb-4">
+                        <button
+                            class="px-3 py-1 rounded-l bg-red text-base font-medium text-base-100 focus:outline-none transition-all duration-150"
+                            class:opacity-70={peerTab !== 'send'}
+                            onclick={() => startSend()}
+                        >
+                            Send
+                        </button>
+                        <button
+                            class="px-3 py-1 rounded-r bg-red text-base font-medium text-base-100 focus:outline-none transition-all duration-150"
+                            class:opacity-70={peerTab !== 'receive'}
+                            onclick={() => startReceive()}
+                        >
+                            Receive
+                        </button>
+                    </div>
+                    {#if peerTab === 'send'}
+                        <div class="space-y-2">
+                            {#if peerReady}
+                            <div>
+                                <span class="font-semibold">Your Code:</span>
+                                <span class="ml-2 px-2 py-1 rounded bg-surface0 text-blue font-mono select-all">{peerCode}</span>
+                            </div>
+                            {:else}
+                            <div class="text-yellow-600 font-medium">Waiting for Peer to be ready...</div>
+                            {/if}
+                            <div>
+                                <button
+                                    class="mt-2 px-3 py-1 rounded bg-green text-base-100 font-medium"
+                                    onclick={() => startSend()}
+                                    disabled={peerStatus === 'waiting' || peerStatus === 'connected' || peerStatus === 'transferring'}
+                                >
+                                    Generate & Wait for Connection
+                                </button>
+                            </div>
+                        </div>
+                    {:else}
+                        <div class="space-y-2">
+                            <div>
+                                <label class="font-semibold" for="peer-code-input">Enter Code:</label>
+                                <input
+                                    id="peer-code-input"
+                                    class="ml-2 px-2 py-1 rounded bg-surface0 border border-blue text-blue font-mono"
+                                    bind:value={peerCodeInput}
+                                    placeholder="Paste code here"
+                                    autocomplete="off"
+                                />
+                            </div>
+                            <div>
+                                <button
+                                    class="mt-2 px-3 py-1 rounded bg-green text-base-100 font-medium"
+                                    onclick={() => connectToSender()}
+                                    disabled={peerStatus === 'waiting' || peerStatus === 'connected' || peerStatus === 'transferring'}
+                                >
+                                    Connect
+                                </button>
+                            </div>
+                        </div>
+                    {/if}
+                    <div class="mt-4">
+                        {#if peerStatus === 'waiting'}
+                            <div class="text-yellow-600 font-medium">Waiting for peer...</div>
+                        {:else if peerStatus === 'connected'}
+                            <div class="text-green-600 font-medium">Connected!</div>
+                        {:else if peerStatus === 'transferring'}
+                            <div class="text-blue-600 font-medium">Transferring data...</div>
+                        {:else if peerStatus === 'done'}
+                            <div class="text-green-700 font-semibold">Transfer complete!</div>
+                        {:else if peerStatus === 'error'}
+                            <div class="text-red-600 font-medium">Error: {peerError}</div>
+                        {/if}
+                        {#if peerTransferMsg}
+                            <div class="text-sm mt-1">{peerTransferMsg}</div>
+                        {/if}
+                        {#if peerShowOverwrite}
+                            <div class="mt-2 bg-yellow-100 border border-yellow-400 rounded p-2">
+                                <div class="mb-2 font-semibold text-yellow-800">Import received data?</div>
+                                <button class="px-3 py-1 rounded bg-green text-base-100 font-medium mr-2" onclick={() => confirmImport()}>Yes, Import</button>
+                                <button class="px-3 py-1 rounded bg-red text-base-100 font-medium" onclick={() => cancelImport()}>Cancel</button>
+                            </div>
+                        {/if}
                     </div>
                 </div>
             </div>

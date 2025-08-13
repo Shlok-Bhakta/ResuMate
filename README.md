@@ -58,6 +58,37 @@ Step 1 is naming the project. Give it a name that describes the resume
 Once you have named it, hit the save button.
 and you should see the light turn green and the project be added to the sidebar
 
+## Send/Receive (PeerJS Transfer)
+
+You can transfer all your resume data between browsers or devices using the **Send/Receive** feature, powered by PeerJS and IndexedDB. This is useful for moving your data to a new device or sharing with someone you trust.
+
+### How It Works
+
+- **All data on the receiver will be replaced** with the sender's data.
+- The transfer happens directly between browsers—no data is sent to any server.
+
+### Requirements
+
+- Both sender and receiver must use a browser that supports IndexedDB and PeerJS (most modern browsers).
+- Internet connection is required for PeerJS signaling.
+
+### Steps
+
+#### Sender
+
+1. Open the app and go to the settings.
+2. Click "Send Data".
+3. A code will be generated—share this code with the receiver.
+
+#### Receiver
+
+1. Open the app and go to the settings.
+2. Click "Receive Data".
+3. Enter the code provided by the sender.
+4. Confirm to replace all your current data with the sender's data.
+
+**Note:** This will overwrite all your existing resume data on the receiving device.
+
 ![image](https://github.com/user-attachments/assets/f89e8a5d-e826-4e04-8091-228288c2db71)
 
 Changing the name will also update it in the sidebar
