@@ -218,6 +218,13 @@
 	<!-- Spacer -->
 	<div class="flex-1" />
 
+	<!-- Project Name show -->
+	<div class="w-fit nerdfont">{$jobName}</div>
+
+	<!-- Spacer -->
+	<div class="flex-1" />
+
+	
 	<!-- Mode Switcher -->
 	<ModeSwitcher />
 
