@@ -12,8 +12,9 @@
     });
     $inspect(carta);
     
-    let scoreTimeout: number | null = null;
-    let saveTimeout: number | null = null;
+    let scoreTimeout: ReturnType<typeof setTimeout> | null = null;
+    let saveTimeout: ReturnType<typeof setTimeout> | null = null;
+    let rerenderTimeout: ReturnType<typeof setTimeout> | null = null;
     
     function updateSaveState() {
         $saveState = 0; // Pending state
@@ -26,18 +27,22 @@
         // this stops the expensive score function from running every time the editor updates
         // it only runs when the user is idle for 3 seconds
         if (scoreTimeout !== null) {
-            // return;
             clearTimeout(scoreTimeout);
         }
         if (saveTimeout !== null) {
-            // return;
             clearTimeout(saveTimeout);
+        }
+        if (rerenderTimeout !== null) {
+            clearTimeout(rerenderTimeout);
         }
         scoreTimeout = setTimeout(() => {   
             score();
         }, 500);
         saveTimeout = setTimeout(() => {
             saveCurrentProject();
+        }, 1000);
+        rerenderTimeout = setTimeout(() => {
+            $resumeHtml = carta.render($header + tableify($resumeMd));
         }, 1000);
     });
    

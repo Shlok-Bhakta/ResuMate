@@ -90,7 +90,11 @@
                 <Displayscores />
             </div>
         {:else if $projectEditingStage === "Preview"}
-            {#await $resumeHtml then content}
+            {#await $resumeHtml}
+                <div>
+                    <Pdfpreview html={"<h1>Loading...</h1>"} />
+                </div>
+            {:then content}
                 <div>
                     <Pdfpreview html={content} />
                 </div>

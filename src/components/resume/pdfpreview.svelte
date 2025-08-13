@@ -36,7 +36,7 @@
             const widthScale = containerWidth / paperWidthPx;
             
             // Use the smaller scale to maintain aspect ratio while maximizing space
-            scale = Math.min(heightScale, widthScale) * 0.95; // Add a small margin
+            scale = Math.min(heightScale, widthScale) * 1; // Add a small margin
             
             // Apply the transform scale with centered origin
             iframe.style.transform = `scale(${scale})`;
