@@ -219,7 +219,7 @@
 	<div class="flex-1" />
 
 	<!-- Project Name show -->
-	<div class="w-fit nerdfont">{$jobName}</div>
+	<div class="w-fit nerdfont">{$jobName.length < 60 ? $jobName : $jobName.slice(0, 60) + "..."}</div>
 
 	<!-- Spacer -->
 	<div class="flex-1" />
