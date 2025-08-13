@@ -27,6 +27,3 @@ pnpm-debug.log*
 *.csv
 
 resume_score_tool/
-
-# crush directory
-.crush/
