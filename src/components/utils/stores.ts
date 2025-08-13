@@ -77,7 +77,7 @@ export const enableLinkedin = persisted<boolean>("enableLinkedin", false);
 export const enableGithub = persisted<boolean>("enableGithub", true);
 export const enableAddress = persisted<boolean>("enableAddress", true);
 export const enableAddressLink = persisted<boolean>("enableAddressLink", true);
-export const showUSCitizenship = persisted<boolean>("showUSCitizenship", true);
+export const showUSCitizenship = persisted<boolean>("showUSCitizenship", false);
 
 /* Customization */
 export const customHeader = persisted<string>("customHeader", "");
