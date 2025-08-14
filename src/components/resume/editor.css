@@ -14,27 +14,45 @@
 }
 
 .carta-theme__main.carta-editor {
-	@apply border-b-1 border-r-1 border-overlay0 rounded bg-mantle
+	@apply border border-blue/30 rounded-xl shadow-xl;
+	background: rgba(30, 30, 46, 0.7);
+	backdrop-filter: blur(16px) saturate(180%);
+	-webkit-backdrop-filter: blur(16px) saturate(180%);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carta-theme__main.carta-editor:focus-within {
+	@apply border-blue/50;
+	background: rgba(30, 30, 46, 0.8);
+	box-shadow: 0 0 0 4px rgb(137 180 250 / 0.15), 0 20px 25px -5px rgb(0 0 0 / 0.3);
 }
 
 .carta-theme__main .carta-editor ::selection {
 	@apply bg-base w-full h-full;
 }
 
-.carta-theme__main .carta-toolbar {
-	@apply border-b-1 border-overlay0 ;
-}
+/* Toolbar removed */
 
 .carta-theme__main .carta-wrapper {
-	@apply px-4 
+	@apply p-3;
 }
 
 .carta-theme__main .carta-container > * {
-	@apply my-4
+	@apply my-2;
 }
 
-.carta-container {
-	@apply w-full h-full 
+.carta-theme__main .carta-container {
+	@apply w-full h-full rounded-xl overflow-hidden;
+	background: linear-gradient(135deg, 
+		rgba(137, 180, 250, 0.02) 0%, 
+		rgba(116, 199, 236, 0.015) 25%, 
+		rgba(166, 227, 161, 0.01) 50%, 
+		rgba(250, 179, 135, 0.015) 75%, 
+		rgba(243, 139, 168, 0.02) 100%
+	);
+	border: 1px solid rgba(137, 180, 250, 0.15);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
 }
 
 /* Text settings */
@@ -43,8 +61,8 @@
 }
 
 .carta-theme__main .carta-input ::placeholder {
-	@apply text-text;
-	/* color: var(--text-color); */
+	@apply text-subtext1;
+	opacity: 0.8;
 }
 
 /* Toolbar */
@@ -56,7 +74,69 @@
 /* Markdown input and renderer */
 .carta-theme__main .carta-input,
 .carta-theme__main .carta-renderer {
-	@apply h-[calc(100svh-108px)] w-full overflow-y-scroll text-text
+	@apply h-[calc(100svh-80px)] w-full overflow-y-auto text-text;
+	padding: 0.5rem !important;
+	background: rgba(30, 30, 46, 0.15);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	scrollbar-width: thin;
+	scrollbar-color: rgba(108, 112, 134, 0.3) transparent;
+	border-radius: 0.75rem;
+	margin: 0.5rem !important;
+}
+
+/* Target the actual textarea more specifically */
+.carta-theme__main .carta-input textarea {
+	padding: 0.1rem !important;
+}
+
+/* Make sure the syntax highlighting overlay matches */
+.carta-theme__main .carta-input pre {
+	padding: 0.1rem !important;
+	margin: 0 !important;
+}
+
+/* Also try targeting the carta input wrapper more aggressively */
+.carta-theme__main .carta-input textarea,
+.carta-theme__main .carta-input pre {
+	padding: 0.1rem !important;
+}
+
+.carta-theme__main .carta-input .carta-input-wrapper {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.carta-theme__main .carta-input {
+	background: rgba(30, 30, 46, 0.1);
+}
+
+.carta-theme__main .carta-renderer {
+	background: rgba(24, 24, 37, 0.15);
+	border-left: 1px solid rgba(137, 180, 250, 0.08);
+}
+
+.carta-theme__main .carta-input::-webkit-scrollbar,
+.carta-theme__main .carta-renderer::-webkit-scrollbar {
+	width: 8px;
+}
+
+.carta-theme__main .carta-input::-webkit-scrollbar-track,
+.carta-theme__main .carta-renderer::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.carta-theme__main .carta-input::-webkit-scrollbar-thumb,
+.carta-theme__main .carta-renderer::-webkit-scrollbar-thumb {
+	background: rgba(137, 180, 250, 0.3);
+	border-radius: 6px;
+	border: 1px solid rgba(137, 180, 250, 0.1);
+}
+
+.carta-theme__main .carta-input::-webkit-scrollbar-thumb:hover,
+.carta-theme__main .carta-renderer::-webkit-scrollbar-thumb:hover {
+	background: rgba(137, 180, 250, 0.5);
+	box-shadow: 0 0 8px rgba(137, 180, 250, 0.2);
 }
 /* 
 .carta-font-code{
@@ -84,15 +164,45 @@
 
 .carta-theme__main .carta-icon:hover,
 .carta-theme__main .carta-icon-full:hover {
-	@apply bg-base 
+	@apply bg-surface0/50;
+	transition: background-color 0.2s ease;
 }
 
-.carta-input > pre {
-	@apply bg-surface0 
+.carta-theme__main .carta-icon:active,
+.carta-theme__main .carta-icon-full:active {
+	@apply bg-surface0/70;
+}
+
+.carta-theme__main .carta-input > pre {
+	@apply rounded-lg border;
+	background: rgba(49, 50, 68, 0.4);
+	border-color: rgba(137, 180, 250, 0.2);
+	padding: 1rem;
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
+
+/* Improve focus states */
+.carta-theme__main .carta-input:focus {
+	outline: none;
+	border-color: rgb(137 180 250 / 0.5);
+}
+
+/* Add subtle animations */
+.carta-theme__main .carta-icon {
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carta-theme__main .carta-icon:hover {
+	transform: translateY(-1px);
 }
 
 .carta-theme__main .carta-icons-menu {
-	@apply p-2 border-2 border-lavender rounded-md min-w-[180px]
+	@apply p-3 border border-blue/30 rounded-xl min-w-[180px] shadow-2xl;
+	background: rgba(30, 30, 46, 0.9);
+	backdrop-filter: blur(20px) saturate(180%);
+	-webkit-backdrop-filter: blur(20px) saturate(180%);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carta-theme__main .carta-icons-menu .carta-icon-full {
@@ -103,15 +213,19 @@
 	@apply mt-0
 }
 
-/* Buttons */
-.carta-theme__main .carta-toolbar-left button {
-	@apply hidden
+/* Hide entire toolbar */
+.carta-theme__main .carta-toolbar {
+	display: none !important;
 }
 
-.carta-theme__main .carta-toolbar-left button:last-child {
-	@apply hidden
+/* Also hide any toolbar-related elements */
+.carta-theme__main .carta-toolbar,
+.carta-theme__main .carta-toolbar-left,
+.carta-theme__main .carta-toolbar-right {
+	display: none !important;
 }
 
-.carta-theme__main .carta-toolbar-left button.carta-active {
-	@apply hidden
+/* Make sure container takes full space without toolbar */
+.carta-theme__main .carta-container {
+	height: 100% !important;
 }
