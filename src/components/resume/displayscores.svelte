@@ -85,27 +85,6 @@
             <!-- Keywords Grid -->
             <div class="flex-1 min-h-0">
                 <div class="grid grid-cols-2 gap-3 h-full">
-                    <!-- Job Keywords -->
-                    <div class="flex flex-col min-h-0">
-                        <div class="flex items-center gap-2 mb-3">
-                            <div class="w-1.5 h-1.5 rounded-full bg-blue"></div>
-                            <h3 class="text-sm font-semibold text-text">Job Keywords</h3>
-                            <div class="glass-badge-small">{$jobKeywords.length}</div>
-                        </div>
-                        <div class="glass-keyword-container">
-                            {#each $jobKeywords as jobKeyword}
-                                <div class="keyword-badge {$overlappingKeywords.includes(jobKeyword) ? 'keyword-matched' : 'keyword-unmatched'}">
-                                    {#if $overlappingKeywords.includes(jobKeyword)}
-                                        <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                        </svg>
-                                    {/if}
-                                    {jobKeyword}
-                                </div>
-                            {/each}
-                        </div>
-                    </div>
-
                     <!-- Resume Keywords -->
                     <div class="flex flex-col min-h-0">
                         <div class="flex items-center gap-2 mb-3">
@@ -122,6 +101,27 @@
                                         </svg>
                                     {/if}
                                     {resumeKeyword}
+                                </div>
+                            {/each}
+                        </div>
+                    </div>
+
+                    <!-- Job Keywords -->
+                    <div class="flex flex-col min-h-0">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="w-1.5 h-1.5 rounded-full bg-blue"></div>
+                            <h3 class="text-sm font-semibold text-text">Job Keywords</h3>
+                            <div class="glass-badge-small">{$jobKeywords.length}</div>
+                        </div>
+                        <div class="glass-keyword-container">
+                            {#each $jobKeywords as jobKeyword}
+                                <div class="keyword-badge {$overlappingKeywords.includes(jobKeyword) ? 'keyword-matched' : 'keyword-unmatched'}">
+                                    {#if $overlappingKeywords.includes(jobKeyword)}
+                                        <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    {/if}
+                                    {jobKeyword}
                                 </div>
                             {/each}
                         </div>
@@ -177,16 +177,16 @@
             rgba(250, 179, 135, 0.015) 75%, 
             rgba(243, 139, 168, 0.02) 100%
         );
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
         border: 1px solid rgba(137, 180, 250, 0.15);
         border-radius: 0.75rem;
     }
 
     .glass-panel {
         background: rgba(30, 30, 46, 0.15);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(1px);
+        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(137, 180, 250, 0.08);
         border-radius: 0.75rem;
         margin: 0.25rem;
@@ -255,8 +255,8 @@
         width: 100%;
         height: 8px;
         background: rgba(49, 50, 68, 0.5);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(1px);
+        -webkit-backdrop-filter: blur(1px);
         border-radius: 4px;
         overflow: hidden;
         border: 1px solid rgba(137, 180, 250, 0.1);
@@ -287,8 +287,8 @@
 
     .glass-keyword-container {
         background: rgba(30, 30, 46, 0.1);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(1px);
+        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(137, 180, 250, 0.08);
         border-radius: 0.5rem;
         padding: 0.75rem;
@@ -322,8 +322,8 @@
         font-size: 0.75rem;
         font-weight: 500;
         transition: all 0.3s ease;
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(1px);
+        -webkit-backdrop-filter: blur(1px);
     }
 
     .keyword-matched {
@@ -340,8 +340,8 @@
 
     .glass-badge-small {
         background: rgba(49, 50, 68, 0.6);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(1px);
+        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(137, 180, 250, 0.2);
         border-radius: 1rem;
         padding: 0.125rem 0.5rem;
@@ -421,8 +421,8 @@
 
     .glass-icon-container {
         background: rgba(49, 50, 68, 0.3);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(1px);
+        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(137, 180, 250, 0.2);
         border-radius: 50%;
         display: flex;
