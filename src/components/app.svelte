@@ -44,24 +44,26 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <div class="grid grid-cols-[1fr_1fr] w-full h-full relative">
-        <div class="w-full h-full overflow-clip">
+    <div class="flex w-full h-full relative">
+        <div class="flex-1 min-w-0 h-full overflow-clip">
             <ResumeEditor />
         </div>
 
         {#if $projectEditingStage === "Content"}
-            <JobFetcher />
+            <div class="flex-1 min-w-0">
+                <JobFetcher />
+            </div>
         {:else if $projectEditingStage === "Tuning"}
-            <div class="h-full">
+            <div class="flex-1 min-w-0 h-full">
                 <Displayscores />
             </div>
         {:else if $projectEditingStage === "Preview"}
             {#await $resumeHtml}
-                <div class="w-fit left-0">
+                <div class="w-fit flex-shrink-0">
                     <Pdfpreview html={"<h1>Loading...</h1>"} />
                 </div>
             {:then content}
-                <div>
+                <div class="w-fit flex-shrink-0">
                     <Pdfpreview html={content} />
                 </div>
             {/await}
