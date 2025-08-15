@@ -1,13 +1,64 @@
 # ResuMate 📃
-A Resume generator for Developers.
 
-![image](https://github.com/user-attachments/assets/6536e10e-7cfe-47bf-9db8-c34ccae692d2)
+A smart resume builder for developers that helps you tailor resumes to specific job postings.
 
-getting a job in tech is hard I will try my best to make it easer!
-This app runs fully in the browser so there is no data being sent to me. Everything is on your own computer!!
+🌐 **[Try it now](https://shlok-bhakta.github.io/ResuMate/)** - Runs entirely in your browser, no data leaves your device!
 
-## How to use
-Go to [https://shlok-bhakta.github.io/ResuMate/](https://shlok-bhakta.github.io/ResuMate/)
+![ResuMate App Overview](image-placeholder-app-overview.png)
+*Modern glassmorphism UI with real-time resume editing and keyword scoring*
+
+## Features
+
+- **AI-powered resume tuning** - Automatically adapt your resume to job descriptions
+- **Smart keyword matching** - See how well your resume matches job requirements  
+- **Real-time preview** - Watch your resume update as you edit
+- **Data sync** - Transfer data between devices securely
+- **Export to PDF** - Professional formatting ready for applications
+
+![Feature Showcase](image-placeholder-features.png)
+*AI tuning, keyword scoring, and PDF export in action*
+
+## Quick Start
+
+1. **Setup** - Add your basic info and optionally connect an OpenRouter AI key
+   
+   ![Settings Panel](image-placeholder-settings.png)
+   *Clean tabbed settings with profile info and AI configuration*
+
+2. **Create Project** - Start a new resume project with a descriptive name
+   
+   ![Project Creation](image-placeholder-new-project.png)
+   *Simple project creation with glassmorphism modals*
+
+3. **Add Content** - Write your resume in markdown with job description
+   
+   ![Content Editor](image-placeholder-editor.png)
+   *Split-pane editor with markdown on left, job description on right*
+
+4. **Tune & Score** - See keyword matches and use AI to optimize content
+   
+   ![Keyword Scoring](image-placeholder-scoring.png)
+   *Real-time keyword analysis with visual score indicators*
+
+5. **Export** - Download as PDF when ready
+   
+   ![PDF Preview](image-placeholder-preview.png)
+   *Professional PDF formatting with perfect print layout*
+
+## Key Tips
+
+- Use `||` in markdown to split left/right aligned content: `**Company** - Location || Date`
+- Use `Alt + /` to quickly comment/uncomment lines
+- Higher scores mean better keyword matching with job descriptions
+- AI tuning requires an OpenRouter API key (optional but recommended)
+
+## Need Help?
+
+The app includes detailed help within the settings panel, or check the [full documentation](https://github.com/Shlok-Bhakta/ResuMate) for screenshots and step-by-step guides.
+
+---
+
+Built with ❤️ using Svelte • [Report issues](https://github.com/Shlok-Bhakta/ResuMate/issues) • [Contribute](https://github.com/Shlok-Bhakta/ResuMate/pulls)
 
 ## Setup
 Hit the settings button in the bottom left of the screen
