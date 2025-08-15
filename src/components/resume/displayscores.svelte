@@ -15,14 +15,14 @@
 
     let isRescoring = false;
 
-    function getScoreColor(score) {
+    function getScoreColor(score: number) {
         if (score >= 80) return 'from-green to-teal';
         if (score >= 60) return 'from-yellow to-peach';
         if (score >= 40) return 'from-peach to-maroon';
         return 'from-red to-maroon';
     }
 
-    function getScoreText(score) {
+    function getScoreText(score: number) {
         if (score >= 80) return 'Excellent Match';
         if (score >= 60) return 'Good Match';
         if (score >= 40) return 'Fair Match';

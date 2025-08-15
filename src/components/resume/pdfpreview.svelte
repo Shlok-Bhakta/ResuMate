@@ -29,22 +29,29 @@
             const paperWidthPx = 8.5 * 96;  // 8.5 inches in pixels
             const paperHeightPx = 11 * 96;  // 11 inches in pixels
             const containerHeight = window.innerHeight * 0.95;  // Use 95% of viewport
-            const containerWidth = container.clientWidth;  // Remove padding reduction
             
-            // Calculate scales for both dimensions
+            // Calculate scale based on available height to fit perfectly
             const heightScale = containerHeight / paperHeightPx;
-            const widthScale = containerWidth / paperWidthPx;
+            scale = Math.min(heightScale, 1); // Don't scale larger than 100%
             
-            // Use the smaller scale to maintain aspect ratio while maximizing space
-            scale = Math.min(heightScale, widthScale) * 1; // Add a small margin
-            
-            // Apply the transform scale with centered origin
+            // Apply the transform scale with left-top origin
             iframe.style.transform = `scale(${scale})`;
-            iframe.style.transformOrigin = 'center top';
+            iframe.style.transformOrigin = 'left top';
             
-            // Update container height to match scaled content with some padding
+            // Calculate the actual space needed for the scaled preview
+            const scaledWidth = paperWidthPx * scale;
             const scaledHeight = paperHeightPx * scale;
-            container.style.height = `${scaledHeight + 20}px`; // Add padding
+            
+            // Set container to exact size needed
+            container.style.width = `${scaledWidth}px`;
+            container.style.height = `${scaledHeight}px`;
+            
+            // Set parent container width to just what's needed + padding
+            // This will free up space for the editor
+            const parentContainer = container.parentElement;
+            if (parentContainer) {
+                parentContainer.style.width = `${scaledWidth + 32}px`; // 32px for padding
+            }
         }
     }
 
@@ -68,6 +75,7 @@
                                 margin: 0;
                                 padding: 0;
                                 height: 100%;
+                                
                             }
                             .pdf-page {
                                 width: 8.5in;
@@ -94,12 +102,12 @@
 </script>
 
 <svelte:window on:resize={handleResize} />
-<div class="p-1 bg-crust flex flex-col items-center">
-    <div class="relative overflow-hidden w-full" bind:this={container} use:handleResize>
+<div class="w-full h-full bg-crust flex items-start justify-start p-4">
+    <div class="relative overflow-hidden w-fit" bind:this={container} use:handleResize>
         <iframe
             bind:this={iframe}
             title="Resume Preview"
-            class="w-[8.5in] h-[11in] border-none origin-top mx-auto"
+            class="w-[8.5in] h-[11in] border-none origin-top"
             sandbox="allow-same-origin allow-scripts allow-downloads allow-popups allow-forms allow-modals"
         ></iframe>
         
