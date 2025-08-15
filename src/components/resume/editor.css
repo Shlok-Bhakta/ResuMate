@@ -16,8 +16,6 @@
 .carta-theme__main.carta-editor {
 	@apply border border-blue/30 rounded-xl shadow-xl;
 	background: rgba(30, 30, 46, 0.7);
-	backdrop-filter: blur(2px) saturate(180%);
-	-webkit-backdrop-filter: blur(2px) saturate(180%);
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -51,8 +49,6 @@
 		rgba(243, 139, 168, 0.02) 100%
 	);
 	border: 1px solid rgba(137, 180, 250, 0.15);
-	backdrop-filter: blur(2px);
-	-webkit-backdrop-filter: blur(2px);
 }
 
 /* Text settings */
@@ -77,8 +73,6 @@
 	@apply h-[calc(100svh-85px)] w-full overflow-y-auto text-text;
 	padding: 0.5rem !important;
 	background: rgba(30, 30, 46, 0.15);
-	backdrop-filter: blur(1px);
-	-webkit-backdrop-filter: blur(1px);
 	scrollbar-width: thin;
 	scrollbar-color: rgba(108, 112, 134, 0.3) transparent;
 	border-radius: 0.75rem;
@@ -178,8 +172,6 @@
 	background: rgba(49, 50, 68, 0.4);
 	border-color: rgba(137, 180, 250, 0.2);
 	padding: 1rem;
-	backdrop-filter: blur(1px);
-	-webkit-backdrop-filter: blur(1px);
 }
 
 /* Improve focus states */
@@ -200,8 +192,6 @@
 .carta-theme__main .carta-icons-menu {
 	@apply p-3 border border-blue/30 rounded-xl min-w-[180px] shadow-2xl;
 	background: rgba(30, 30, 46, 0.9);
-	backdrop-filter: blur(20px) saturate(180%);
-	-webkit-backdrop-filter: blur(20px) saturate(180%);
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

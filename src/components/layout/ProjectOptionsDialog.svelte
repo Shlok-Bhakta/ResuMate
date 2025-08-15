@@ -117,102 +117,128 @@
 
 <!-- Dialog Panel -->
 <div
-	class="bg-crust text-text rounded-md shadow-lg w-[min(560px,92vw)] p-4"
+	class="glass-dialog w-[min(560px,92vw)] p-6"
 	role="document"
 	aria-labelledby="project-options-title"
 	onkeydown={onKeydown}
 >
-	<header class="mb-3">
-		<div class="flex items-start justify-between gap-3">
-			<div>
-				<h2 id="project-options-title" class="text-lg font-semibold">Project options</h2>
-				<p class="text-xs opacity-70">Rename, set job URL, duplicate or delete.</p>
+	<header class="mb-4">
+		<div class="flex items-start justify-between gap-4">
+			<div class="flex items-center gap-3">
+				<div class="w-3 h-3 rounded-full bg-yellow animate-pulse"></div>
+				<div>
+					<h2 id="project-options-title" class="text-xl font-bold text-text">Project Options</h2>
+					<p class="text-sm text-subtext0">Rename, set job URL, duplicate or delete.</p>
+				</div>
 			</div>
 			<button
 				type="button"
-				class="p-1 rounded bg-mantle hover:bg-overlay0 transition-colors focus:outline-hidden focus:ring-2 focus:ring-blue/70"
+				class="glass-icon-button p-2 transition-all focus:outline-hidden focus:ring-2 focus:ring-blue/70"
 				onclick={close}
 				aria-label="Close dialog"
 				title="Close"
 			>
-				<img
-					src="/ResuMate/icons/cancel.svg"
-					alt=""
-					aria-hidden="true"
-					class="w-5 h-5 pointer-events-none"
-				/>
+				<svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+					<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+				</svg>
 			</button>
 		</div>
 	</header>
 
-	<form class="space-y-3" onsubmit={onSave}>
-		<div class="flex flex-col gap-1">
-			<label for="po-name" class="text-sm">Project name</label>
+	<form class="space-y-4" onsubmit={onSave}>
+		<div class="flex flex-col gap-2">
+			<label for="po-name" class="text-sm font-medium text-text">Project name</label>
 			<input
 				id="po-name"
-				class="px-2 py-1 rounded bg-mantle text-text text-sm focus:outline-none focus:ring-1 focus:ring-blue"
+				class="glass-input px-3 py-2 focus:glass-input-focus transition-all duration-300"
 				bind:value={name}
 				placeholder="e.g., Company – Role"
 			/>
 		</div>
 
-		<div class="flex flex-col gap-1">
-			<label for="po-url" class="text-sm">Job URL (optional)</label>
+		<div class="flex flex-col gap-2">
+			<label for="po-url" class="text-sm font-medium text-text">Job URL (optional)</label>
 			<input
 				id="po-url"
-				class="px-2 py-1 rounded bg-mantle text-text text-sm focus:outline-none focus:ring-1 focus:ring-blue"
+				class="glass-input px-3 py-2 focus:glass-input-focus transition-all duration-300"
 				bind:value={url}
 				placeholder="https://example.com/job"
 				inputmode="url"
 				spellcheck="false"
 			/>
-			<p class="text-xs opacity-70">Used by the fetch tool to grab job description later.</p>
+			<p class="text-xs text-subtext1">Used by the fetch tool to grab job description later.</p>
 		</div>
 
 		{#if errorMsg}
-			<div role="alert" class="text-sm text-red">{errorMsg}</div>
+			<div role="alert" class="glass-error flex items-center gap-2 p-3">
+				<svg class="w-4 h-4 text-red flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+					<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+				</svg>
+				<span class="text-sm text-red">{errorMsg}</span>
+			</div>
 		{/if}
 
-		<div class="flex flex-wrap items-center justify-between gap-2 pt-2">
+		<div class="flex flex-wrap items-center justify-between gap-3 pt-4">
 			<div class="flex items-center gap-2">
 				<button
 					type="button"
-					class="px-3 py-1 rounded bg-red/80 hover:bg-red text-mantle text-sm transition-colors"
+					class="glass-button-danger px-3 py-2 transition-all flex items-center gap-2"
 					onclick={onDelete}
 					disabled={working}
 					aria-label="Delete project"
 				>
-					Delete
+					<img
+						src="/ResuMate/icons/trash.svg"
+						alt=""
+						aria-hidden="true"
+						class="w-4 h-4 pointer-events-none"
+					/>
+					<span>Delete</span>
 				</button>
 				<button
 					type="button"
-					class="px-3 py-1 rounded bg-red/80 hover:bg-red text-mantle text-sm transition-colors"
+					class="glass-button-warning px-3 py-2 transition-all flex items-center gap-2"
 					onclick={onReset}
 					disabled={working}
 					aria-label="Reset resume to template"
 					title="Reset resume content to template"
 				>
-					Reset
+					<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+						<path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+					</svg>
+					<span>Reset</span>
 				</button>
 			</div>
-			<div class="flex items-center gap-2">
+			<div class="flex items-center gap-3">
 				<button
 					type="button"
-					class="px-3 py-1 rounded bg-mantle hover:bg-overlay0 text-text text-sm transition-colors"
+					class="glass-button-secondary px-3 py-2 transition-all flex items-center gap-2"
 					onclick={onDuplicate}
 					disabled={working}
 					aria-label="Duplicate project"
 					title="Create a copy"
 				>
-					Duplicate
+					<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+						<path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
+						<path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z" />
+					</svg>
+					<span>Duplicate</span>
 				</button>
 				<button
 					type="submit"
-					class="px-3 py-1 rounded bg-blue hover:bg-sapphire text-mantle text-sm transition-colors disabled:opacity-60"
+					class="glass-button-primary px-4 py-2 transition-all flex items-center gap-2 min-w-[90px] justify-center"
 					disabled={working}
 					aria-label="Save changes"
 				>
-					{working ? "Working…" : "Save"}
+					{#if working}
+						<div class="w-4 h-4 border-2 border-base border-t-transparent rounded-full animate-spin"></div>
+						<span>Working...</span>
+					{:else}
+						<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+							<path d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414L2.586 8l3.707-3.707a1 1 0 011.414 0z" />
+						</svg>
+						<span>Save</span>
+					{/if}
 				</button>
 			</div>
 		</div>
@@ -220,5 +246,134 @@
 </div>
 
 <style>
-	/* Panel styling only; overlay/escape handled by parent LayoutRoot */
+	.glass-dialog {
+		background: rgba(30, 30, 46, 0.95);
+		border: 1px solid rgba(137, 180, 250, 0.3);
+		border-radius: 0.75rem;
+		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+		color: rgb(205, 214, 244);
+	}
+
+	.glass-icon-button {
+		background: rgba(17, 17, 27, 0.6);
+		border: 1px solid rgba(137, 180, 250, 0.3);
+		border-radius: 0.5rem;
+		color: rgb(205, 214, 244);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.glass-icon-button:hover {
+		background: rgba(17, 17, 27, 0.8);
+		border-color: rgba(137, 180, 250, 0.5);
+		transform: translateY(-1px);
+	}
+
+	.glass-input {
+		background: rgba(17, 17, 27, 0.8);
+		border: 1px solid rgba(137, 180, 250, 0.3);
+		border-radius: 0.5rem;
+		color: rgb(205, 214, 244);
+		font-size: 0.875rem;
+		outline: none;
+	}
+
+	.glass-input::placeholder {
+		color: rgb(108, 112, 134);
+	}
+
+	.glass-input-focus {
+		border-color: rgba(137, 180, 250, 0.6);
+		box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.2);
+		background: rgba(17, 17, 27, 0.9);
+	}
+
+	.glass-button-secondary {
+		background: rgba(17, 17, 27, 0.6);
+		border: 1px solid rgba(137, 180, 250, 0.3);
+		border-radius: 0.5rem;
+		color: rgb(205, 214, 244);
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.glass-button-secondary:hover:not(:disabled) {
+		background: rgba(17, 17, 27, 0.8);
+		border-color: rgba(137, 180, 250, 0.5);
+		transform: translateY(-1px);
+	}
+
+	.glass-button-primary {
+		background: linear-gradient(135deg, 
+			rgba(137, 180, 250, 0.8) 0%, 
+			rgba(116, 199, 236, 0.9) 100%
+		);
+		border: 1px solid rgba(137, 180, 250, 0.4);
+		border-radius: 0.5rem;
+		color: rgb(17, 17, 27);
+		font-size: 0.875rem;
+		font-weight: 600;
+		box-shadow: 0 2px 8px rgba(137, 180, 250, 0.2);
+	}
+
+	.glass-button-primary:hover:not(:disabled) {
+		background: linear-gradient(135deg, 
+			rgba(137, 180, 250, 0.9) 0%, 
+			rgba(116, 199, 236, 1) 100%
+		);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 16px rgba(137, 180, 250, 0.3);
+	}
+
+	.glass-button-primary:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+		transform: none;
+	}
+
+	.glass-button-danger {
+		background: rgba(243, 139, 168, 0.2);
+		border: 1px solid rgba(243, 139, 168, 0.4);
+		border-radius: 0.5rem;
+		color: rgb(243, 139, 168);
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.glass-button-danger:hover:not(:disabled) {
+		background: rgba(243, 139, 168, 0.3);
+		border-color: rgba(243, 139, 168, 0.6);
+		transform: translateY(-1px);
+		box-shadow: 0 2px 8px rgba(243, 139, 168, 0.2);
+	}
+
+	.glass-button-warning {
+		background: rgba(250, 179, 135, 0.2);
+		border: 1px solid rgba(250, 179, 135, 0.4);
+		border-radius: 0.5rem;
+		color: rgb(250, 179, 135);
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.glass-button-warning:hover:not(:disabled) {
+		background: rgba(250, 179, 135, 0.3);
+		border-color: rgba(250, 179, 135, 0.6);
+		transform: translateY(-1px);
+		box-shadow: 0 2px 8px rgba(250, 179, 135, 0.2);
+	}
+
+	.glass-button-danger:disabled,
+	.glass-button-warning:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+		transform: none;
+	}
+
+	.glass-error {
+		background: rgba(243, 139, 168, 0.1);
+		border: 1px solid rgba(243, 139, 168, 0.3);
+		border-radius: 0.5rem;
+	}
 </style>

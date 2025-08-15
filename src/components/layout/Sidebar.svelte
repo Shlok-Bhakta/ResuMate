@@ -109,8 +109,6 @@
 			rgba(30, 30, 46, 0.04) 75%, 
 			rgba(166, 227, 161, 0.03) 100%
 		);
-		backdrop-filter: blur(24px) saturate(180%);
-		-webkit-backdrop-filter: blur(24px) saturate(180%);
 		border-right: 1px solid rgba(137, 180, 250, 0.15);
 		box-shadow: 
 			4px 0 32px rgba(137, 180, 250, 0.05),
@@ -149,8 +147,6 @@
 
 	.glass-icon-button {
 		background: rgba(30, 30, 46, 0.2);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.15);
 		border-radius: 0.5rem;
 		display: flex;
@@ -172,8 +168,6 @@
 
 	.glass-button {
 		background: rgba(30, 30, 46, 0.15);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.1);
 		border-radius: 0.5rem;
 		transition: all 0.15s ease-out;
@@ -192,8 +186,6 @@
 			rgba(137, 180, 250, 0.5) 0%, 
 			rgba(116, 199, 236, 0.6) 100%
 		);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.3);
 		border-radius: 0.5rem;
 		color: rgb(30, 30, 46);

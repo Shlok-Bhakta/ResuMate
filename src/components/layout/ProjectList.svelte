@@ -179,8 +179,6 @@
 <style>
 	.glass-search {
 		background: rgba(30, 30, 46, 0.2);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.15);
 		transition: all 0.15s ease-out;
 	}
@@ -193,8 +191,6 @@
 	}
 
 	.glass-project-button {
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.05);
 		transition: all 0.15s ease-out;
 	}
@@ -222,8 +218,6 @@
 
 	.glass-edit-button {
 		background: rgba(30, 30, 46, 0.15);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.1);
 		color: rgb(186, 194, 222);
 		transition: all 0.15s ease-out;

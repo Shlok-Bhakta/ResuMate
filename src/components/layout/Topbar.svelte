@@ -146,7 +146,7 @@
 </script>
 
 <div
-	class="glass-topbar flex items-center gap-3 px-4 py-3 relative overflow-hidden"
+	class="glass-topbar flex items-center gap-3 px-4 py-3 relative overflow-hidden h-12"
 	role="banner"
 	aria-label="Application top bar"
 >
@@ -249,8 +249,6 @@
 			rgba(250, 179, 135, 0.06) 75%, 
 			rgba(243, 139, 168, 0.08) 100%
 		);
-		backdrop-filter: blur(16px) saturate(180%);
-		-webkit-backdrop-filter: blur(16px) saturate(180%);
 		border-bottom: 1px solid rgba(137, 180, 250, 0.2);
 		box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
 	}
@@ -287,8 +285,6 @@
 
 	.glass-button-small {
 		background: rgba(30, 30, 46, 0.3);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.2);
 		border-radius: 0.5rem;
 		display: flex;
@@ -306,8 +302,6 @@
 
 	.glass-button {
 		background: rgba(30, 30, 46, 0.2);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.15);
 		border-radius: 0.5rem;
 		color: rgb(205, 214, 244);
@@ -327,8 +321,6 @@
 			rgba(137, 180, 250, 0.6) 0%, 
 			rgba(116, 199, 236, 0.7) 100%
 		);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.4);
 		border-radius: 0.5rem;
 		color: rgb(30, 30, 46);

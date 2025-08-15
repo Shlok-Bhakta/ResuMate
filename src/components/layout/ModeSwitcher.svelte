@@ -108,8 +108,6 @@
 
 <style>
 	.glass-tab {
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		border: 1px solid rgba(137, 180, 250, 0.1);
 		font-weight: 500;
 		transition: all 0.15s ease-out;
@@ -145,24 +143,4 @@
 		transform: translateY(-1px);
 	}
 
-	.glass-tab-active::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: -100%;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(90deg, 
-			transparent,
-			rgba(255, 255, 255, 0.15),
-			transparent
-		);
-		animation: tab-shine 2s ease infinite;
-	}
-
-	@keyframes tab-shine {
-		0% { left: -100%; }
-		50% { left: 100%; }
-		100% { left: 100%; }
-	}
 </style>

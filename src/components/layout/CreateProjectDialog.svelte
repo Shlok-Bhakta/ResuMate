@@ -53,57 +53,65 @@
 
 <!-- Dialog Panel -->
 <div
-	class="bg-crust text-text rounded-md shadow-lg w-[min(480px,92vw)] p-4"
+	class="glass-dialog w-[min(480px,92vw)] p-6"
 	role="document"
 	aria-labelledby="create-project-title"
 >
-	<header class="mb-3">
-		<h2 id="create-project-title" class="text-lg font-semibold">Create new project</h2>
-		<p class="text-xs opacity-70">Choose a name. Optionally start from your saved template.</p>
+	<header class="mb-4">
+		<div class="flex items-center gap-3 mb-2">
+			<div class="w-3 h-3 rounded-full bg-green animate-pulse"></div>
+			<h2 id="create-project-title" class="text-xl font-bold text-text">Create New Project</h2>
+		</div>
+		<p class="text-sm text-subtext0">Choose a name. Optionally start from your saved template.</p>
 	</header>
 
-	<form onsubmit={onSubmit} class="space-y-3">
-		<div class="flex flex-col gap-1">
-			<label for="create-project-name" class="text-sm">Project name</label>
+	<form onsubmit={onSubmit} class="space-y-4">
+		<div class="flex flex-col gap-2">
+			<label for="create-project-name" class="text-sm font-medium text-text">Project name</label>
 			<input
 				id="create-project-name"
-				class="px-2 py-1 rounded bg-mantle text-text text-sm focus:outline-none focus:ring-1 focus:ring-blue"
+				class="glass-input px-3 py-2 focus:glass-input-focus transition-all duration-300"
 				bind:value={name}
 				placeholder="e.g., Company - Role"
 				autofocus
 			/>
 		</div>
 
-		<div class="flex flex-col gap-1">
-			<label for="create-project-url" class="text-sm">Job URL (optional)</label>
+		<div class="flex flex-col gap-2">
+			<label for="create-project-url" class="text-sm font-medium text-text">Job URL (optional)</label>
 			<input
 				id="create-project-url"
-				class="px-2 py-1 rounded bg-mantle text-text text-sm focus:outline-none focus:ring-1 focus:ring-blue"
+				class="glass-input px-3 py-2 focus:glass-input-focus transition-all duration-300"
 				bind:value={url}
 				placeholder="https://example.com/job"
 				inputmode="url"
 				spellcheck="false"
 			/>
-			<p class="text-xs opacity-70">Used by the fetch tool to grab job description later.</p>
+			<p class="text-xs text-subtext1">Used by the fetch tool to grab job description later.</p>
 		</div>
 
-		<label class="flex items-center gap-2 text-sm">
+		<label class="glass-checkbox-label">
 			<input
 				type="checkbox"
-				class="accent-blue"
+				class="glass-checkbox"
 				bind:checked={fromTemplate}
 			/>
-			Start from template
+			<span class="text-sm font-medium text-text">Start from template</span>
 		</label>
 
 		{#if errorMsg}
-			<div role="alert" class="text-sm text-red">{errorMsg}</div>
+			<div role="alert" class="glass-error flex items-center gap-2 p-3">
+				<svg class="w-4 h-4 text-red flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+					<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+				</svg>
+				<span class="text-sm text-red">{errorMsg}</span>
+			</div>
 		{/if}
 
-		<div class="flex justify-end gap-2 pt-2">
+		<div class="flex justify-end gap-3 pt-4">
 			<button
 				type="button"
-				class="px-3 py-1 rounded bg-mantle hover:bg-overlay0 transition-colors text-sm"
+				class="glass-button-secondary px-4 py-2 transition-all"
 				onclick={close}
 				aria-label="Cancel"
 			>
@@ -111,16 +119,122 @@
 			</button>
 			<button
 				type="submit"
-				class="px-3 py-1 rounded bg-blue text-mantle hover:bg-sapphire transition-colors text-sm disabled:opacity-60"
+				class="glass-button-primary px-4 py-2 transition-all flex items-center gap-2 min-w-[100px] justify-center"
 				disabled={creating}
 				aria-label="Create project"
 			>
-				{creating ? "Creating…" : "Create"}
+				{#if creating}
+					<div class="w-4 h-4 border-2 border-base border-t-transparent rounded-full animate-spin"></div>
+					<span>Creating...</span>
+				{:else}
+					<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+						<path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+					</svg>
+					<span>Create</span>
+				{/if}
 			</button>
 		</div>
 	</form>
 </div>
 
 <style>
-	/* Panel styling only; overlay provided by parent LayoutRoot */
+	.glass-dialog {
+		background: rgba(30, 30, 46, 0.95);
+		border: 1px solid rgba(137, 180, 250, 0.3);
+		border-radius: 0.75rem;
+		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+		color: rgb(205, 214, 244);
+	}
+
+	.glass-input {
+		background: rgba(17, 17, 27, 0.8);
+		border: 1px solid rgba(137, 180, 250, 0.3);
+		border-radius: 0.5rem;
+		color: rgb(205, 214, 244);
+		font-size: 0.875rem;
+		outline: none;
+	}
+
+	.glass-input::placeholder {
+		color: rgb(108, 112, 134);
+	}
+
+	.glass-input-focus {
+		border-color: rgba(137, 180, 250, 0.6);
+		box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.2);
+		background: rgba(17, 17, 27, 0.9);
+	}
+
+	.glass-checkbox-label {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		cursor: pointer;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		transition: all 0.2s ease;
+	}
+
+	.glass-checkbox-label:hover {
+		background: rgba(17, 17, 27, 0.4);
+	}
+
+	.glass-checkbox {
+		width: 1rem;
+		height: 1rem;
+		border-radius: 0.25rem;
+		border: 1px solid rgba(137, 180, 250, 0.4);
+		background: rgba(17, 17, 27, 0.6);
+		cursor: pointer;
+		accent-color: rgb(137, 180, 250);
+	}
+
+	.glass-button-secondary {
+		background: rgba(17, 17, 27, 0.6);
+		border: 1px solid rgba(137, 180, 250, 0.3);
+		border-radius: 0.5rem;
+		color: rgb(205, 214, 244);
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.glass-button-secondary:hover {
+		background: rgba(17, 17, 27, 0.8);
+		border-color: rgba(137, 180, 250, 0.5);
+		transform: translateY(-1px);
+	}
+
+	.glass-button-primary {
+		background: linear-gradient(135deg, 
+			rgba(137, 180, 250, 0.8) 0%, 
+			rgba(116, 199, 236, 0.9) 100%
+		);
+		border: 1px solid rgba(137, 180, 250, 0.4);
+		border-radius: 0.5rem;
+		color: rgb(17, 17, 27);
+		font-size: 0.875rem;
+		font-weight: 600;
+		box-shadow: 0 2px 8px rgba(137, 180, 250, 0.2);
+	}
+
+	.glass-button-primary:hover:not(:disabled) {
+		background: linear-gradient(135deg, 
+			rgba(137, 180, 250, 0.9) 0%, 
+			rgba(116, 199, 236, 1) 100%
+		);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 16px rgba(137, 180, 250, 0.3);
+	}
+
+	.glass-button-primary:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+		transform: none;
+	}
+
+	.glass-error {
+		background: rgba(243, 139, 168, 0.1);
+		border: 1px solid rgba(243, 139, 168, 0.3);
+		border-radius: 0.5rem;
+	}
 </style>

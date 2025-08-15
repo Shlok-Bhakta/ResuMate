@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@anthropic-ai/claude-code": "^1.0.81",
     "@astrojs/svelte": "^7.0.11",
     "@macfja/svelte-persistent-store": "^2.4.2",
     "@tailwindcss/vite": "^4.0.9",

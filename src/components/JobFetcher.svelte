@@ -124,16 +124,12 @@
             rgba(250, 179, 135, 0.015) 75%, 
             rgba(243, 139, 168, 0.02) 100%
         );
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
         border: 1px solid rgba(137, 180, 250, 0.15);
         border-radius: 0.75rem;
     }
 
     .glass-panel {
         background: rgba(30, 30, 46, 0.15);
-        backdrop-filter: blur(1px);
-        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(137, 180, 250, 0.08);
         border-radius: 0.75rem;
         margin: 0.25rem;
@@ -141,8 +137,6 @@
 
     .glass-input {
         background: rgba(30, 30, 46, 0.1);
-        backdrop-filter: blur(1px);
-        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(137, 180, 250, 0.08);
         border-radius: 0.5rem;
         color: rgb(205, 214, 244);
@@ -161,8 +155,6 @@
             rgba(137, 180, 250, 0.8) 0%, 
             rgba(116, 199, 236, 0.9) 100%
         );
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
         border: 1px solid rgba(137, 180, 250, 0.3);
         border-radius: 0.5rem;
         color: rgb(17, 17, 27);
@@ -193,8 +185,6 @@
 
     .glass-textarea-container {
         background: rgba(30, 30, 46, 0.1);
-        backdrop-filter: blur(1px);
-        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(137, 180, 250, 0.08);
         border-radius: 0.75rem;
         overflow: hidden;
@@ -235,8 +225,6 @@
 
     .glass-badge {
         background: rgba(49, 50, 68, 0.8);
-        backdrop-filter: blur(1px);
-        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(137, 180, 250, 0.2);
         border-radius: 1rem;
         padding: 0.25rem 0.75rem;
@@ -246,16 +234,12 @@
 
     .glass-error {
         background: rgba(243, 139, 168, 0.1);
-        backdrop-filter: blur(1px);
-        -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(243, 139, 168, 0.3);
         border-radius: 0.5rem;
     }
 
     .glass-overlay {
         background: rgba(30, 30, 46, 0.8);
-        backdrop-filter: blur(1px);
-        -webkit-backdrop-filter: blur(1px);
         border-radius: 0.75rem;
     }
 </style>

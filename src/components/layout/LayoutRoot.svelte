@@ -202,7 +202,7 @@
 		{#if modal !== "None"}
 			<!-- Modal region -->
 			<div
-				class="fixed inset-0 z-50 flex items-start justify-center p-8 bg-black/40"
+				class="fixed inset-0 z-50 flex items-start justify-center p-8 bg-black/70"
 				role="dialog"
 				aria-modal="true"
 				onclick={() => setModal("None")}
@@ -239,8 +239,6 @@
 			rgba(137, 180, 250, 0.2) 50%,
 			rgba(137, 180, 250, 0.1) 100%
 		);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 		transition: all 0.3s ease;
 	}
 
