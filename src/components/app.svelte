@@ -57,7 +57,7 @@
             </div>
         {:else if $projectEditingStage === "Preview"}
             {#await $resumeHtml}
-                <div>
+                <div class="w-fit left-0">
                     <Pdfpreview html={"<h1>Loading...</h1>"} />
                 </div>
             {:then content}

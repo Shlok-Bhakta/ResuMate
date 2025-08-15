@@ -34,8 +34,12 @@
 
 html {
   font-family: Inter, sans-serif, system-ui;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
   @apply bg-mantle text-text;
+  height: 100%;
+  overflow: hidden;
 }

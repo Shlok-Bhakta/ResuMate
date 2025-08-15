@@ -28,11 +28,11 @@
         if (container && iframe) {
             const paperWidthPx = 8.5 * 96;  // 8.5 inches in pixels
             const paperHeightPx = 11 * 96;  // 11 inches in pixels
-            const containerHeight = window.innerHeight * 0.95;  // Use 95% of viewport
+            const containerHeight = window.innerHeight * 0.9;  // Use 90% of viewport for breathing room
             
             // Calculate scale based on available height to fit perfectly
             const heightScale = containerHeight / paperHeightPx;
-            scale = Math.min(heightScale, 1); // Don't scale larger than 100%
+            scale = Math.min(heightScale, 0.95); // Scale down a bit more for padding
             
             // Apply the transform scale with left-top origin
             iframe.style.transform = `scale(${scale})`;
@@ -81,9 +81,9 @@
                                 width: 8.5in;
                                 height: 11in;
                                 background-color: white;
-                                padding-top: 0.0in;
                                 padding-left: 0.2in;
                                 padding-right: 0.2in;
+                                padding-bottom: 0.1in;
                                 box-sizing: border-box;
                                 overflow: hidden;
                             }
