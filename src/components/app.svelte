@@ -14,6 +14,7 @@
         resumeTemplate
     } from "$utils";
     import "./fonts.css";
+  import WelcomeModal from "./WelcomeModal.svelte";
 
     if ($keywords.length === 0) {
         fetch("/ResuMate/keywords.txt")
@@ -70,6 +71,8 @@
         {/if}
     </div>
 </LayoutRoot>
+
+<WelcomeModal />
 
 <style>
     .blob {

@@ -85,6 +85,8 @@ export const enableCustomHeader = persisted<boolean>("enableCustomHeader", false
 export const customCSS = persisted<string>("customCSS", "");
 export const enableCustomCSS = persisted<boolean>("enableCustomCSS", false);
 
+export const hasSeenWelcome = persisted<boolean>("hasSeenWelcome", false);
+
 /* ========================================================================
  * Re-export helper type(s)
  * ===================================================================== */
