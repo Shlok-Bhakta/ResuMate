@@ -240,10 +240,15 @@
         gap: 0.5rem;
     }
 
+    .glass-button-small {
+        transition: all 0.15s ease-out;
+    }
+
     .glass-button-small:hover:not(:disabled) {
         background: rgba(30, 30, 46, 0.8);
         border-color: rgba(137, 180, 250, 0.4);
         transform: translateY(-1px);
+        transition: none;
     }
 
     .glass-button-small:disabled {
@@ -366,11 +371,16 @@
         cursor: pointer;
     }
 
+    .ai-button {
+        transition: all 0.15s ease-out;
+    }
+
     .ai-button:hover:not(:disabled) {
         background: rgba(30, 30, 46, 0.6);
         border-color: rgba(137, 180, 250, 0.5);
         transform: translateY(-1px);
         box-shadow: 0 4px 12px rgba(137, 180, 250, 0.15);
+        transition: none;
     }
 
     .ai-button:disabled {

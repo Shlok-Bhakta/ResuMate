@@ -126,7 +126,7 @@
 	<div class="px-1">
 		<input
 			type="text"
-			class="w-full px-2 py-1 rounded bg-mantle text-text text-sm focus:outline-none focus:ring-1 focus:ring-blue placeholder:text-overlay1"
+			class="glass-search w-full px-3 py-2 rounded text-text text-sm focus:outline-none placeholder:text-overlay1"
 			placeholder="Search projects..."
 			bind:value={search}
 			aria-label="Search projects"
@@ -150,7 +150,7 @@
 							type="button"
 							onfocus={() => (focusedIndex = i)}
 							onkeydown={(e) => onItemKeyDown(e, i, filteredProjects.length)}
-							class="flex-1 min-w-0 text-left text-sm px-2 py-1 rounded outline-hidden focus:outline-hidden focus:ring-2 focus:ring-blue/70 focus:ring-offset-1 transition-colors {focusedIndex === i ? 'bg-overlay0' : 'bg-mantle hover:bg-surface0'}"
+							class="glass-project-button flex-1 min-w-0 text-left text-sm px-3 py-2 rounded outline-hidden focus:outline-hidden focus:ring-2 focus:ring-blue/70 transition-all {focusedIndex === i ? 'glass-project-focused' : 'glass-project-normal'}"
 							data-index={i}
 							onclick={() => activateProject(proj)}
 							aria-label={`Load project ${proj[0]}`}
@@ -162,7 +162,7 @@
 						<!-- Secondary: Edit (project options) -->
 						<button
 							type="button"
-							class="px-2 py-1 rounded text-xs bg-mantle hover:bg-overlay0 focus:ring-2 focus:ring-blue/70 focus:ring-offset-1"
+							class="glass-edit-button px-2 py-1 rounded text-xs focus:ring-2 focus:ring-blue/70 transition-all"
 							aria-label={`Edit project ${proj[0]}`}
 							title="Project options"
 							onclick={() => editProject(proj)}
@@ -177,5 +177,64 @@
 </nav>
 
 <style>
-	/* Minimal overrides: rely on existing Tailwind classes */
+	.glass-search {
+		background: rgba(30, 30, 46, 0.2);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border: 1px solid rgba(137, 180, 250, 0.15);
+		transition: all 0.15s ease-out;
+	}
+
+	.glass-search:focus {
+		background: rgba(30, 30, 46, 0.3);
+		border-color: rgba(137, 180, 250, 0.4);
+		box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.1);
+		transition: none;
+	}
+
+	.glass-project-button {
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border: 1px solid rgba(137, 180, 250, 0.05);
+		transition: all 0.15s ease-out;
+	}
+
+	.glass-project-normal {
+		background: rgba(30, 30, 46, 0.1);
+		color: rgb(205, 214, 244);
+	}
+
+	.glass-project-normal:hover {
+		background: rgba(30, 30, 46, 0.25);
+		border-color: rgba(137, 180, 250, 0.15);
+		transform: translateX(2px);
+		box-shadow: 2px 0 8px rgba(137, 180, 250, 0.1);
+		transition: none;
+	}
+
+	.glass-project-focused {
+		background: rgba(137, 180, 250, 0.15);
+		border-color: rgba(137, 180, 250, 0.3);
+		color: rgb(205, 214, 244);
+		transform: translateX(2px);
+		box-shadow: 2px 0 8px rgba(137, 180, 250, 0.15);
+	}
+
+	.glass-edit-button {
+		background: rgba(30, 30, 46, 0.15);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border: 1px solid rgba(137, 180, 250, 0.1);
+		color: rgb(186, 194, 222);
+		transition: all 0.15s ease-out;
+	}
+
+	.glass-edit-button:hover {
+		background: rgba(30, 30, 46, 0.3);
+		border-color: rgba(137, 180, 250, 0.25);
+		color: rgb(205, 214, 244);
+		transform: translateY(-1px);
+		box-shadow: 0 2px 6px rgba(137, 180, 250, 0.1);
+		transition: none;
+	}
 </style>

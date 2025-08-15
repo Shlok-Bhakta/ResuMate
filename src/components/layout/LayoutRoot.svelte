@@ -183,7 +183,7 @@
 
 	<!-- Vertical resizer -->
 	<div
-		class="w-1 cursor-ew-resize hover:bg-overlay0"
+		class="glass-resizer w-1 cursor-ew-resize relative"
 		role="separator"
 		aria-orientation="vertical"
 		aria-label="Resize sidebar"
@@ -233,5 +233,48 @@
 </div>
 
 <style>
-	/* Minimal shell styles; sizing/resize handled via state + events */
+	.glass-resizer {
+		background: linear-gradient(180deg,
+			rgba(137, 180, 250, 0.1) 0%,
+			rgba(137, 180, 250, 0.2) 50%,
+			rgba(137, 180, 250, 0.1) 100%
+		);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		transition: all 0.3s ease;
+	}
+
+	.glass-resizer:hover {
+		background: linear-gradient(180deg,
+			rgba(137, 180, 250, 0.2) 0%,
+			rgba(137, 180, 250, 0.4) 50%,
+			rgba(137, 180, 250, 0.2) 100%
+		);
+		width: 4px;
+		box-shadow: 0 0 16px rgba(137, 180, 250, 0.3);
+	}
+
+	/* Interaction effects with background blobs */
+	.glass-resizer::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 2px;
+		height: 100%;
+		background: linear-gradient(180deg,
+			transparent 0%,
+			rgba(137, 180, 250, 0.6) 20%,
+			rgba(116, 199, 236, 0.8) 50%,
+			rgba(137, 180, 250, 0.6) 80%,
+			transparent 100%
+		);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.glass-resizer:hover::before {
+		opacity: 1;
+	}
 </style>

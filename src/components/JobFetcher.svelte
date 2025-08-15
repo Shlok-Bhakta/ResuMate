@@ -170,7 +170,7 @@
         box-shadow: 
             0 4px 12px rgba(137, 180, 250, 0.2),
             inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.15s ease-out;
     }
 
     .glass-button:hover:not(:disabled) {
@@ -182,6 +182,7 @@
             0 6px 20px rgba(137, 180, 250, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.3);
         transform: translateY(-1px);
+        transition: none;
     }
 
     .glass-button:disabled {

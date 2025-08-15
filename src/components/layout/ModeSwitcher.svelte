@@ -97,7 +97,7 @@
 			type="button"
 			tabindex={i === activeIndex ? 0 : -1}
 			aria-selected={i === activeIndex}
-			class="px-2 py-1 rounded text-sm transition-colors {i === activeIndex ? 'bg-blue text-mantle' : 'bg-mantle text-text hover:bg-overlay0'}"
+			class="glass-tab px-3 py-2 rounded text-sm transition-all {i === activeIndex ? 'glass-tab-active' : 'glass-tab-inactive'}"
 			onclick={() => setMode(mode)}
 			onfocus={() => (activeIndex = i)}
 		>
@@ -107,5 +107,62 @@
 </div>
 
 <style>
-	/* Minimal styling; further theming deferred */
+	.glass-tab {
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border: 1px solid rgba(137, 180, 250, 0.1);
+		font-weight: 500;
+		transition: all 0.15s ease-out;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.glass-tab-inactive {
+		background: rgba(30, 30, 46, 0.15);
+		color: rgb(186, 194, 222);
+		border-color: rgba(137, 180, 250, 0.08);
+	}
+
+	.glass-tab-inactive:hover {
+		background: rgba(30, 30, 46, 0.3);
+		color: rgb(205, 214, 244);
+		border-color: rgba(137, 180, 250, 0.2);
+		transform: translateY(-1px);
+		box-shadow: 0 2px 8px rgba(137, 180, 250, 0.1);
+		transition: none;
+	}
+
+	.glass-tab-active {
+		background: linear-gradient(135deg, 
+			rgba(137, 180, 250, 0.6) 0%, 
+			rgba(116, 199, 236, 0.7) 100%
+		);
+		color: rgb(30, 30, 46);
+		border-color: rgba(137, 180, 250, 0.4);
+		box-shadow: 
+			0 4px 12px rgba(137, 180, 250, 0.2),
+			inset 0 1px 0 rgba(255, 255, 255, 0.2);
+		transform: translateY(-1px);
+	}
+
+	.glass-tab-active::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, 
+			transparent,
+			rgba(255, 255, 255, 0.15),
+			transparent
+		);
+		animation: tab-shine 2s ease infinite;
+	}
+
+	@keyframes tab-shine {
+		0% { left: -100%; }
+		50% { left: 100%; }
+		100% { left: 100%; }
+	}
 </style>

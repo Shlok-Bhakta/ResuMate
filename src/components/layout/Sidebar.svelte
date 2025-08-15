@@ -34,7 +34,7 @@
 </script>
 
 <aside
-	class="flex flex-col gap-4 p-3 h-svh border-r-1 border-overlay0 bg-crust overflow-hidden"
+	class="glass-sidebar flex flex-col gap-4 p-4 h-svh overflow-hidden relative"
 	aria-label="Primary"
 	style={`width:${collapsed ? '0px' : width + 'px'}; ${collapsed ? 'padding:0;border-right-width:0' : ''}`}
 	aria-hidden={collapsed}
@@ -42,7 +42,7 @@
 	<header class="flex items-center gap-2">
 		<button
 			type="button"
-			class="p-1 rounded hover:bg-overlay0 transition-colors text-text focus:outline-hidden focus:ring-2 focus:ring-blue/70"
+			class="glass-icon-button p-2 text-text transition-all focus:outline-hidden focus:ring-2 focus:ring-blue/70"
 			onclick={onToggleSidebar}
 			aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
 			aria-expanded={!collapsed}
@@ -70,7 +70,7 @@
 	<div class="flex flex-col gap-2" aria-hidden={collapsed}>
 		<button
 			type="button"
-			class="px-2 py-1 rounded text-sm bg-blue text-mantle hover:bg-sapphire transition-colors w-full text-left"
+			class="glass-button-primary px-3 py-2 rounded text-sm w-full text-left transition-all"
 			onclick={openCreateDialog}
 			aria-label="New Project"
 		>
@@ -90,7 +90,7 @@
 	<footer class="mt-auto pt-2 flex flex-col gap-2" aria-hidden={collapsed}>
 		<button
 			type="button"
-			class="px-2 py-1 rounded text-sm bg-mantle hover:bg-overlay0 transition-colors text-text w-full text-left"
+			class="glass-button px-3 py-2 rounded text-sm text-text w-full text-left transition-all"
 			onclick={toggleSettings}
 			aria-pressed={$modalState === "Settings"}
 			aria-label="Toggle settings"
@@ -101,5 +101,141 @@
 </aside>
 
 <style>
-	/* Resizing handled by parent. When collapsed, we hide padding/borders. */
+	.glass-sidebar {
+		background: linear-gradient(180deg, 
+			rgba(137, 180, 250, 0.05) 0%, 
+			rgba(30, 30, 46, 0.03) 25%, 
+			rgba(116, 199, 236, 0.02) 50%, 
+			rgba(30, 30, 46, 0.04) 75%, 
+			rgba(166, 227, 161, 0.03) 100%
+		);
+		backdrop-filter: blur(24px) saturate(180%);
+		-webkit-backdrop-filter: blur(24px) saturate(180%);
+		border-right: 1px solid rgba(137, 180, 250, 0.15);
+		box-shadow: 
+			4px 0 32px rgba(137, 180, 250, 0.05),
+			inset 0 0 0 1px rgba(137, 180, 250, 0.08);
+	}
+
+	.glass-sidebar::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 1px;
+		height: 100%;
+		background: linear-gradient(180deg, 
+			rgba(137, 180, 250, 0.3) 0%,
+			rgba(116, 199, 236, 0.2) 25%,
+			transparent 50%,
+			rgba(166, 227, 161, 0.2) 75%,
+			rgba(137, 180, 250, 0.3) 100%
+		);
+	}
+
+	.glass-sidebar::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, 
+			rgba(137, 180, 250, 0.2),
+			rgba(116, 199, 236, 0.3) 50%,
+			rgba(137, 180, 250, 0.2)
+		);
+	}
+
+	.glass-icon-button {
+		background: rgba(30, 30, 46, 0.2);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border: 1px solid rgba(137, 180, 250, 0.15);
+		border-radius: 0.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.glass-icon-button {
+		transition: all 0.15s ease-out;
+	}
+
+	.glass-icon-button:hover {
+		background: rgba(30, 30, 46, 0.4);
+		border-color: rgba(137, 180, 250, 0.3);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(137, 180, 250, 0.1);
+		transition: none;
+	}
+
+	.glass-button {
+		background: rgba(30, 30, 46, 0.15);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border: 1px solid rgba(137, 180, 250, 0.1);
+		border-radius: 0.5rem;
+		transition: all 0.15s ease-out;
+	}
+
+	.glass-button:hover {
+		background: rgba(30, 30, 46, 0.3);
+		border-color: rgba(137, 180, 250, 0.25);
+		transform: translateY(-1px);
+		box-shadow: 0 2px 8px rgba(137, 180, 250, 0.1);
+		transition: none;
+	}
+
+	.glass-button-primary {
+		background: linear-gradient(135deg, 
+			rgba(137, 180, 250, 0.5) 0%, 
+			rgba(116, 199, 236, 0.6) 100%
+		);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border: 1px solid rgba(137, 180, 250, 0.3);
+		border-radius: 0.5rem;
+		color: rgb(30, 30, 46);
+		font-weight: 600;
+		box-shadow: 0 2px 12px rgba(137, 180, 250, 0.2);
+		position: relative;
+		overflow: hidden;
+		transition: all 0.15s ease-out;
+	}
+
+	.glass-button-primary::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, 
+			transparent,
+			rgba(255, 255, 255, 0.2),
+			transparent
+		);
+		transition: left 0.3s ease;
+	}
+
+	.glass-button-primary:hover::before {
+		left: 100%;
+	}
+
+	.glass-button-primary:hover {
+		background: linear-gradient(135deg, 
+			rgba(137, 180, 250, 0.7) 0%, 
+			rgba(116, 199, 236, 0.8) 100%
+		);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 20px rgba(137, 180, 250, 0.3);
+		transition: none;
+	}
+
+	/* Custom rounded corner for sidebar corner where it meets topbar */
+	.glass-sidebar {
+		border-top-right-radius: 16px;
+		border-bottom-right-radius: 16px;
+	}
 </style>
