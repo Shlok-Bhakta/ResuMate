@@ -124,55 +124,53 @@
             rgba(250, 179, 135, 0.015) 75%, 
             rgba(243, 139, 168, 0.02) 100%
         );
-        border: 1px solid rgba(137, 180, 250, 0.15);
-        border-radius: 0.75rem;
+        border: 1px solid rgba(116, 199, 236, 0.15);
+        border-radius: 8px;
     }
 
     .glass-panel {
         background: rgba(30, 30, 46, 0.15);
-        border: 1px solid rgba(137, 180, 250, 0.08);
-        border-radius: 0.75rem;
+        border: 1px solid rgba(116, 199, 236, 0.08);
+        border-radius: 8px;
         margin: 0.25rem;
     }
 
     .glass-input {
-        background: rgba(30, 30, 46, 0.1);
-        border: 1px solid rgba(137, 180, 250, 0.08);
-        border-radius: 0.5rem;
+        background: rgba(30, 30, 46, 0.3);
+        border: 1px solid rgba(116, 199, 236, 0.15);
+        border-radius: 4px;
         color: rgb(205, 214, 244);
         font-size: 0.875rem;
         line-height: 1.6;
     }
 
     .glass-input-focus {
-        border-color: rgba(137, 180, 250, 0.3);
-        box-shadow: inset 0 0 0 1px rgba(137, 180, 250, 0.3);
-        background: rgba(30, 30, 46, 0.2);
+        border-color: rgba(116, 199, 236, 0.4);
+        box-shadow: inset 0 0 0 1px rgba(116, 199, 236, 0.3);
+        background: rgba(30, 30, 46, 0.4);
     }
 
     .glass-button {
         background: linear-gradient(135deg, 
             rgba(137, 180, 250, 0.8) 0%, 
-            rgba(116, 199, 236, 0.9) 100%
+            rgba(116, 199, 236, 0.9) 50%,
+            rgba(94, 196, 188, 0.85) 100%
         );
-        border: 1px solid rgba(137, 180, 250, 0.3);
-        border-radius: 0.5rem;
+        border: 1px solid rgba(116, 199, 236, 0.4);
+        border-radius: 4px;
         color: rgb(17, 17, 27);
         font-weight: 600;
-        box-shadow: 
-            0 4px 12px rgba(137, 180, 250, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         transition: all 0.15s ease-out;
     }
 
     .glass-button:hover:not(:disabled) {
         background: linear-gradient(135deg, 
             rgba(137, 180, 250, 0.9) 0%, 
-            rgba(116, 199, 236, 1) 100%
+            rgba(116, 199, 236, 1) 50%,
+            rgba(94, 196, 188, 0.95) 100%
         );
-        box-shadow: 
-            0 6px 20px rgba(137, 180, 250, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         transform: translateY(-1px);
         transition: none;
     }
@@ -185,8 +183,8 @@
 
     .glass-textarea-container {
         background: rgba(30, 30, 46, 0.1);
-        border: 1px solid rgba(137, 180, 250, 0.08);
-        border-radius: 0.75rem;
+        border: 1px solid rgba(116, 199, 236, 0.08);
+        border-radius: 8px;
         overflow: hidden;
     }
 

@@ -146,51 +146,49 @@
 	}
 
 	.glass-icon-button {
-		background: rgba(30, 30, 46, 0.2);
-		border: 1px solid rgba(137, 180, 250, 0.15);
-		border-radius: 0.5rem;
+		background: rgba(30, 30, 46, 0.3);
+		border: 1px solid rgba(116, 199, 236, 0.2);
+		border-radius: 4px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-
-	.glass-icon-button {
 		transition: all 0.15s ease-out;
 	}
 
 	.glass-icon-button:hover {
-		background: rgba(30, 30, 46, 0.4);
-		border-color: rgba(137, 180, 250, 0.3);
+		background: rgba(30, 30, 46, 0.5);
+		border-color: rgba(116, 199, 236, 0.4);
 		transform: translateY(-1px);
-		box-shadow: 0 4px 12px rgba(137, 180, 250, 0.1);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 		transition: none;
 	}
 
 	.glass-button {
-		background: rgba(30, 30, 46, 0.15);
-		border: 1px solid rgba(137, 180, 250, 0.1);
-		border-radius: 0.5rem;
+		background: rgba(30, 30, 46, 0.3);
+		border: 1px solid rgba(116, 199, 236, 0.15);
+		border-radius: 4px;
 		transition: all 0.15s ease-out;
 	}
 
 	.glass-button:hover {
-		background: rgba(30, 30, 46, 0.3);
-		border-color: rgba(137, 180, 250, 0.25);
+		background: rgba(30, 30, 46, 0.5);
+		border-color: rgba(116, 199, 236, 0.3);
 		transform: translateY(-1px);
-		box-shadow: 0 2px 8px rgba(137, 180, 250, 0.1);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 		transition: none;
 	}
 
 	.glass-button-primary {
 		background: linear-gradient(135deg, 
-			rgba(137, 180, 250, 0.5) 0%, 
-			rgba(116, 199, 236, 0.6) 100%
+			rgba(137, 180, 250, 0.8) 0%, 
+			rgba(116, 199, 236, 0.9) 50%,
+			rgba(94, 196, 188, 0.85) 100%
 		);
-		border: 1px solid rgba(137, 180, 250, 0.3);
-		border-radius: 0.5rem;
-		color: rgb(30, 30, 46);
+		border: 1px solid rgba(116, 199, 236, 0.4);
+		border-radius: 4px;
+		color: rgb(17, 17, 27);
 		font-weight: 600;
-		box-shadow: 0 2px 12px rgba(137, 180, 250, 0.2);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 		position: relative;
 		overflow: hidden;
 		transition: all 0.15s ease-out;
@@ -217,17 +215,14 @@
 
 	.glass-button-primary:hover {
 		background: linear-gradient(135deg, 
-			rgba(137, 180, 250, 0.7) 0%, 
-			rgba(116, 199, 236, 0.8) 100%
+			rgba(137, 180, 250, 0.9) 0%, 
+			rgba(116, 199, 236, 1) 50%,
+			rgba(94, 196, 188, 0.95) 100%
 		);
-		transform: translateY(-2px);
-		box-shadow: 0 4px 20px rgba(137, 180, 250, 0.3);
+		transform: translateY(-1px);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 		transition: none;
 	}
 
-	/* Custom rounded corner for sidebar corner where it meets topbar */
-	.glass-sidebar {
-		border-top-right-radius: 16px;
-		border-bottom-right-radius: 16px;
-	}
+	/* Clean edges - no rounded corners for Hyprland vibes */
 </style>

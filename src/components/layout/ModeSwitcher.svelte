@@ -108,38 +108,38 @@
 
 <style>
 	.glass-tab {
-		border: 1px solid rgba(137, 180, 250, 0.1);
+		border: 1px solid rgba(116, 199, 236, 0.1);
 		font-weight: 500;
 		transition: all 0.15s ease-out;
 		position: relative;
 		overflow: hidden;
+		border-radius: 4px;
 	}
 
 	.glass-tab-inactive {
-		background: rgba(30, 30, 46, 0.15);
+		background: rgba(30, 30, 46, 0.3);
 		color: rgb(186, 194, 222);
-		border-color: rgba(137, 180, 250, 0.08);
+		border-color: rgba(116, 199, 236, 0.1);
 	}
 
 	.glass-tab-inactive:hover {
-		background: rgba(30, 30, 46, 0.3);
+		background: rgba(30, 30, 46, 0.5);
 		color: rgb(205, 214, 244);
-		border-color: rgba(137, 180, 250, 0.2);
+		border-color: rgba(116, 199, 236, 0.3);
 		transform: translateY(-1px);
-		box-shadow: 0 2px 8px rgba(137, 180, 250, 0.1);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 		transition: none;
 	}
 
 	.glass-tab-active {
 		background: linear-gradient(135deg, 
-			rgba(137, 180, 250, 0.6) 0%, 
-			rgba(116, 199, 236, 0.7) 100%
+			rgba(137, 180, 250, 0.8) 0%, 
+			rgba(116, 199, 236, 0.9) 50%,
+			rgba(94, 196, 188, 0.85) 100%
 		);
-		color: rgb(30, 30, 46);
-		border-color: rgba(137, 180, 250, 0.4);
-		box-shadow: 
-			0 4px 12px rgba(137, 180, 250, 0.2),
-			inset 0 1px 0 rgba(255, 255, 255, 0.2);
+		color: rgb(17, 17, 27);
+		border-color: rgba(116, 199, 236, 0.4);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 		transform: translateY(-1px);
 	}
 

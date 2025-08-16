@@ -45,26 +45,26 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <div class="flex w-full h-full relative">
-        <div class="flex-1 min-w-0 h-full overflow-clip">
+    <div class="flex w-full h-full relative gap-1">
+        <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
             <ResumeEditor />
         </div>
 
         {#if $projectEditingStage === "Content"}
-            <div class="flex-1 min-w-0">
+            <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
                 <JobFetcher />
             </div>
         {:else if $projectEditingStage === "Tuning"}
-            <div class="flex-1 min-w-0 h-full">
+            <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
                 <Displayscores />
             </div>
         {:else if $projectEditingStage === "Preview"}
             {#await $resumeHtml}
-                <div class="w-fit flex-shrink-0">
+                <div class="w-fit flex-shrink-0 h-full overflow-hidden glass-panel">
                     <Pdfpreview html={"<h1>Loading...</h1>"} />
                 </div>
             {:then content}
-                <div class="w-fit flex-shrink-0">
+                <div class="w-fit flex-shrink-0 h-full overflow-hidden glass-panel">
                     <Pdfpreview html={content} />
                 </div>
             {/await}
@@ -75,76 +75,100 @@
 <WelcomeModal />
 
 <style>
+    .glass-panel {
+        background: linear-gradient(145deg, 
+            rgba(137, 180, 250, 0.03) 0%, 
+            rgba(30, 30, 46, 0.02) 25%, 
+            rgba(116, 199, 236, 0.02) 50%, 
+            rgba(30, 30, 46, 0.03) 75%, 
+            rgba(166, 227, 161, 0.02) 100%
+        );
+        border: 1px solid rgba(137, 180, 250, 0.08);
+        border-radius: 12px;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(137, 180, 250, 0.1);
+    }
+
     .blob {
         position: absolute;
         border-radius: 50%;
-        filter: blur(60px);
-        opacity: 0.12;
+        opacity: 0.08;
         animation-timing-function: ease-in-out;
         animation-iteration-count: infinite;
         animation-direction: alternate;
+        pointer-events: none;
     }
 
     .blob-1 {
-        width: 300px;
-        height: 300px;
-        background: rgb(137, 180, 250); /* blue */
-        top: 10%;
-        left: 10%;
-        animation: float1 12s infinite;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(137, 180, 250, 0.6) 0%, rgba(116, 199, 236, 0.4) 50%, transparent 70%);
+        top: 5%;
+        left: 5%;
+        animation: float1 16s infinite;
     }
 
     .blob-2 {
-        width: 250px;
-        height: 250px;
-        background: rgb(180, 190, 254); /* lavender */
-        top: 60%;
-        right: 15%;
-        animation: float2 15s infinite;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(116, 199, 236, 0.5) 0%, rgba(94, 196, 188, 0.4) 50%, transparent 70%);
+        top: 55%;
+        right: 10%;
+        animation: float2 20s infinite;
     }
 
     .blob-3 {
-        width: 200px;
-        height: 200px;
-        background: rgb(116, 199, 236); /* sapphire */
-        bottom: 20%;
-        left: 50%;
-        animation: float3 18s infinite;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(94, 196, 188, 0.4) 0%, rgba(116, 199, 236, 0.3) 50%, transparent 70%);
+        bottom: 15%;
+        left: 45%;
+        animation: float3 24s infinite;
     }
 
     @keyframes float1 {
         0% {
-            transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1) rotate(0deg);
         }
-        50% {
-            transform: translate(50px, -30px) scale(1.1);
+        33% {
+            transform: translate(60px, -40px) scale(1.1) rotate(120deg);
+        }
+        66% {
+            transform: translate(-30px, 50px) scale(0.9) rotate(240deg);
         }
         100% {
-            transform: translate(-20px, 40px) scale(0.9);
+            transform: translate(0, 0) scale(1) rotate(360deg);
         }
     }
 
     @keyframes float2 {
         0% {
-            transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1) rotate(0deg);
         }
-        50% {
-            transform: translate(-40px, 50px) scale(0.8);
+        33% {
+            transform: translate(-50px, 60px) scale(0.8) rotate(-120deg);
+        }
+        66% {
+            transform: translate(40px, -35px) scale(1.2) rotate(-240deg);
         }
         100% {
-            transform: translate(30px, -25px) scale(1.2);
+            transform: translate(0, 0) scale(1) rotate(-360deg);
         }
     }
 
     @keyframes float3 {
         0% {
-            transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1) rotate(0deg);
         }
-        50% {
-            transform: translate(-60px, -40px) scale(1.1);
+        33% {
+            transform: translate(-70px, -50px) scale(1.1) rotate(90deg);
+        }
+        66% {
+            transform: translate(50px, 40px) scale(0.9) rotate(180deg);
         }
         100% {
-            transform: translate(40px, 35px) scale(0.9);
+            transform: translate(0, 0) scale(1) rotate(270deg);
         }
     }
 

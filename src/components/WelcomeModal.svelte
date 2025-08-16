@@ -24,7 +24,7 @@
 {#if showWelcome}
     <!-- Backdrop -->
     <div 
-        class="fixed inset-0 bg-crust/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        class="fixed inset-0 glass-modal-backdrop z-50 flex items-center justify-center p-4"
         role="dialog" 
         aria-modal="true"
         aria-labelledby="welcome-title"
@@ -81,14 +81,26 @@
 {/if}
 
 <style>
+    .glass-modal-backdrop {
+        background: linear-gradient(135deg, 
+            rgba(17, 17, 27, 0.85) 0%, 
+            rgba(24, 24, 37, 0.9) 50%, 
+            rgba(17, 17, 27, 0.85) 100%
+        );
+        backdrop-filter: saturate(180%) contrast(120%);
+    }
+
     .welcome-modal {
-        background: rgba(17, 17, 27, 0.95);
-        border: 1px solid rgba(137, 180, 250, 0.3);
+        background: linear-gradient(145deg, 
+            rgba(30, 30, 46, 0.95) 0%, 
+            rgba(17, 17, 27, 0.98) 100%
+        );
+        border: 1px solid rgba(137, 180, 250, 0.2);
         border-radius: 1rem;
         padding: 1.5rem;
         box-shadow: 
-            0 20px 25px -5px rgba(0, 0, 0, 0.3),
-            0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(137, 180, 250, 0.1);
     }
     
     .welcome-header {

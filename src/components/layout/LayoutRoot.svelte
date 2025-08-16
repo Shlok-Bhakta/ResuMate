@@ -202,7 +202,7 @@
 		{#if modal !== "None"}
 			<!-- Modal region -->
 			<div
-				class="fixed inset-0 z-50 flex items-start justify-center p-8 bg-black/70"
+				class="fixed inset-0 z-50 flex items-start justify-center p-8 glass-modal-backdrop"
 				role="dialog"
 				aria-modal="true"
 				onclick={() => setModal("None")}
@@ -274,5 +274,14 @@
 
 	.glass-resizer:hover::before {
 		opacity: 1;
+	}
+
+	.glass-modal-backdrop {
+		background: linear-gradient(135deg, 
+			rgba(17, 17, 27, 0.85) 0%, 
+			rgba(24, 24, 37, 0.9) 50%, 
+			rgba(17, 17, 27, 0.85) 100%
+		);
+		backdrop-filter: saturate(180%) contrast(120%);
 	}
 </style>

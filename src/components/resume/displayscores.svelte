@@ -16,10 +16,35 @@
     let isRescoring = false;
 
     function getScoreColor(score: number) {
-        if (score >= 80) return 'from-green to-teal';
-        if (score >= 60) return 'from-yellow to-peach';
-        if (score >= 40) return 'from-peach to-maroon';
-        return 'from-red to-maroon';
+        if (score >= 80) return 'bg-gradient-to-r from-green to-teal';
+        if (score >= 60) return 'bg-gradient-to-r from-yellow to-peach';
+        if (score >= 40) return 'bg-gradient-to-r from-peach to-maroon';
+        return 'bg-gradient-to-r from-red to-maroon';
+    }
+
+    function getScoreCircleStyle(score: number) {
+        if (score >= 80) {
+            return `background: linear-gradient(135deg, 
+                rgba(166, 227, 161, 0.8) 0%, 
+                rgba(148, 226, 213, 0.9) 100%
+            ); border-color: rgba(148, 226, 213, 0.6);`;
+        }
+        if (score >= 60) {
+            return `background: linear-gradient(135deg, 
+                rgba(249, 226, 175, 0.8) 0%, 
+                rgba(250, 179, 135, 0.9) 100%
+            ); border-color: rgba(250, 179, 135, 0.6);`;
+        }
+        if (score >= 40) {
+            return `background: linear-gradient(135deg, 
+                rgba(250, 179, 135, 0.8) 0%, 
+                rgba(235, 160, 172, 0.9) 100%
+            ); border-color: rgba(235, 160, 172, 0.6);`;
+        }
+        return `background: linear-gradient(135deg, 
+            rgba(243, 139, 168, 0.8) 0%, 
+            rgba(235, 160, 172, 0.9) 100%
+        ); border-color: rgba(243, 139, 168, 0.6);`;
     }
 
     function getScoreText(score: number) {
@@ -46,7 +71,7 @@
             <div class="mb-4">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
-                        <div class="score-circle">
+                        <div class="score-circle" style={getScoreCircleStyle(Math.round($combinedScore))}>
                             <span class="text-lg font-bold text-base">{Math.round($combinedScore)}%</span>
                         </div>
                         <div>
@@ -74,7 +99,7 @@
                 
                 <!-- Progress Bar -->
                 <div class="glass-progress-container">
-                    <div class="glass-progress-bar bg-gradient-to-r {getScoreColor(Math.round($combinedScore))}" style="width: {$combinedScore}%"></div>
+                    <div class="glass-progress-bar {getScoreColor(Math.round($combinedScore))}" style="width: {$combinedScore}%"></div>
                 </div>
                 <div class="flex justify-between text-xs text-subtext1 mt-1 px-1">
                     <span>0%</span>
@@ -177,14 +202,14 @@
             rgba(250, 179, 135, 0.015) 75%, 
             rgba(243, 139, 168, 0.02) 100%
         );
-        border: 1px solid rgba(137, 180, 250, 0.15);
-        border-radius: 0.75rem;
+        border: 1px solid rgba(116, 199, 236, 0.15);
+        border-radius: 8px;
     }
 
     .glass-panel {
         background: rgba(30, 30, 46, 0.15);
-        border: 1px solid rgba(137, 180, 250, 0.08);
-        border-radius: 0.75rem;
+        border: 1px solid rgba(116, 199, 236, 0.08);
+        border-radius: 8px;
         margin: 0.25rem;
     }
 
@@ -192,40 +217,35 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: linear-gradient(135deg, 
-            rgba(137, 180, 250, 0.3) 0%, 
-            rgba(116, 199, 236, 0.4) 100%
-        );
-        border: 2px solid rgba(137, 180, 250, 0.3);
+        border: 2px solid;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
 
     .glass-button-small {
-        background: rgba(30, 30, 46, 0.6);
-        border: 1px solid rgba(137, 180, 250, 0.2);
-        border-radius: 0.5rem;
+        background: rgba(30, 30, 46, 0.3);
+        border: 1px solid rgba(116, 199, 236, 0.2);
+        border-radius: 4px;
         padding: 0.5rem 0.75rem;
         color: rgb(205, 214, 244);
         font-size: 0.75rem;
-        transition: all 0.3s ease;
+        transition: all 0.15s ease-out;
         display: flex;
         align-items: center;
         gap: 0.5rem;
     }
 
-    .glass-button-small {
-        transition: all 0.15s ease-out;
-    }
-
     .glass-button-small:hover:not(:disabled) {
-        background: rgba(30, 30, 46, 0.8);
-        border-color: rgba(137, 180, 250, 0.4);
+        background: rgba(30, 30, 46, 0.5);
+        border-color: rgba(116, 199, 236, 0.4);
         transform: translateY(-1px);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         transition: none;
     }
 
@@ -240,7 +260,7 @@
         background: rgba(49, 50, 68, 0.5);
         border-radius: 4px;
         overflow: hidden;
-        border: 1px solid rgba(137, 180, 250, 0.1);
+        border: 1px solid rgba(116, 199, 236, 0.1);
     }
 
     .glass-progress-bar {
@@ -257,7 +277,8 @@
         border: 1px solid rgba(137, 180, 250, 0.08);
         border-radius: 0.5rem;
         padding: 0.75rem;
-        height: calc(100vh - 20rem);
+        flex: 1;
+        min-height: 0;
         overflow-y: auto;
         display: flex;
         flex-wrap: wrap;
@@ -312,28 +333,24 @@
 
     .ai-button {
         width: 100%;
-        background: rgba(30, 30, 46, 0.4);
-        border: 1px solid rgba(137, 180, 250, 0.3);
-        border-radius: 0.75rem;
+        background: rgba(30, 30, 46, 0.3);
+        border: 1px solid rgba(116, 199, 236, 0.3);
+        border-radius: 8px;
         padding: 0.875rem 1.25rem;
         color: rgb(205, 214, 244);
         font-weight: 500;
         font-size: 0.875rem;
-        transition: all 0.2s ease;
+        transition: all 0.15s ease-out;
         position: relative;
         overflow: hidden;
         cursor: pointer;
     }
 
-    .ai-button {
-        transition: all 0.15s ease-out;
-    }
-
     .ai-button:hover:not(:disabled) {
-        background: rgba(30, 30, 46, 0.6);
-        border-color: rgba(137, 180, 250, 0.5);
+        background: rgba(30, 30, 46, 0.5);
+        border-color: rgba(116, 199, 236, 0.5);
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(137, 180, 250, 0.15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         transition: none;
     }
 

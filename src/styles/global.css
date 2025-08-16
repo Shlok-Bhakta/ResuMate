@@ -33,13 +33,19 @@
 }
 
 html {
-  font-family: Inter, sans-serif, system-ui;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   height: 100%;
   overflow: hidden;
+  background: linear-gradient(135deg, 
+    rgba(17, 17, 27, 1) 0%, 
+    rgba(24, 24, 37, 1) 50%, 
+    rgba(30, 30, 46, 1) 100%
+  );
 }
 
 body {
-  @apply bg-mantle text-text;
+  @apply bg-transparent text-text;
   height: 100%;
   overflow: hidden;
+  background: transparent;
 }
