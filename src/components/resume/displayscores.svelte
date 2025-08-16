@@ -10,7 +10,9 @@
         keywords,
         tuneResume,
         tuning,
-        openRouterAIModel
+        openRouterAIModel,
+        streamingContent,
+        isStreaming
     } from "$utils";
 
     let isRescoring = false;
@@ -156,12 +158,19 @@
 
             <!-- AI Tune Button -->
             <div class="mt-4">
-                <button class="ai-button" onclick={tuneResume} disabled={$tuning}>
+                <button class="ai-button" class:streaming={$isStreaming} onclick={tuneResume} disabled={$tuning}>
                     {#if $tuning}
                         <div class="ai-button-content">
-                            <div class="ai-spinner"></div>
-                            <span>Optimizing Resume...</span>
+                            <div class="ai-spinner" class:streaming-spinner={$isStreaming}></div>
+                            {#if $isStreaming}
+                                <span>Streaming AI Response...</span>
+                            {:else}
+                                <span>Optimizing Resume...</span>
+                            {/if}
                         </div>
+                        {#if $isStreaming}
+                            <div class="streaming-progress"></div>
+                        {/if}
                     {:else}
                         <div class="ai-button-content">
                             <div class="ai-icon">
@@ -174,6 +183,28 @@
                         </div>
                     {/if}
                 </button>
+                
+                <!-- Streaming Content Preview -->
+                {#if $isStreaming && $streamingContent}
+                    <div class="streaming-preview">
+                        <div class="streaming-header">
+                            <div class="streaming-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <span>Live AI Generation</span>
+                            <div class="typing-indicator">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                            </div>
+                        </div>
+                        <div class="streaming-content">
+                            {$streamingContent}
+                        </div>
+                    </div>
+                {/if}
             </div>
         </div>
     </div>
@@ -398,6 +429,147 @@
     @keyframes pulse {
         0%, 100% { opacity: 0.4; }
         50% { opacity: 1; }
+    }
+
+    @keyframes streamingGlow {
+        0%, 100% { 
+            border-color: rgba(116, 199, 236, 0.3);
+            box-shadow: 0 0 0 0 rgba(116, 199, 236, 0.3);
+        }
+        50% { 
+            border-color: rgba(137, 180, 250, 0.8);
+            box-shadow: 0 0 20px 2px rgba(137, 180, 250, 0.2);
+        }
+    }
+
+    @keyframes progressFlow {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+
+    @keyframes typingBounce {
+        0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+        40% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .ai-button.streaming {
+        animation: streamingGlow 2s ease-in-out infinite;
+        background: rgba(30, 30, 46, 0.4);
+    }
+
+    .streaming-spinner {
+        border-color: rgba(137, 180, 250, 0.2);
+        border-top-color: rgb(137, 180, 250);
+        border-right-color: rgb(116, 199, 236);
+        animation: spin 0.8s linear infinite;
+    }
+
+    .streaming-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(137, 180, 250, 0.1);
+        overflow: hidden;
+    }
+
+    .streaming-progress::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            rgba(137, 180, 250, 0.8) 50%, 
+            transparent 100%
+        );
+        animation: progressFlow 1.5s ease-in-out infinite;
+    }
+
+    .streaming-preview {
+        margin-top: 1rem;
+        background: rgba(30, 30, 46, 0.2);
+        border: 1px solid rgba(116, 199, 236, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        animation: fadeInUp 0.3s ease-out;
+        max-height: 200px;
+    }
+
+    .streaming-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: rgba(137, 180, 250, 0.05);
+        border-bottom: 1px solid rgba(116, 199, 236, 0.1);
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: rgb(137, 180, 250);
+    }
+
+    .streaming-icon {
+        width: 14px;
+        height: 14px;
+        color: rgb(250, 179, 135);
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .typing-indicator {
+        display: flex;
+        gap: 0.2rem;
+        margin-left: auto;
+    }
+
+    .typing-dot {
+        width: 4px;
+        height: 4px;
+        background: rgb(116, 199, 236);
+        border-radius: 50%;
+        animation: typingBounce 1.4s ease-in-out infinite;
+    }
+
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    .streaming-content {
+        padding: 1rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        line-height: 1.4;
+        color: rgb(205, 214, 244);
+        white-space: pre-wrap;
+        overflow-y: auto;
+        max-height: 150px;
+        background: rgba(49, 50, 68, 0.1);
+    }
+
+    .streaming-content::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .streaming-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .streaming-content::-webkit-scrollbar-thumb {
+        background: rgba(137, 180, 250, 0.3);
+        border-radius: 2px;
     }
 
     .glass-icon-container {

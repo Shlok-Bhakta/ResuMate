@@ -8,19 +8,24 @@ import {
   resumeKeywords,
   combinedScore,
   knowlegeBase,
-  tuning
+  tuning,
+  streamingContent,
+  isStreaming
 } from "./stores";
 
 /**
- * Call OpenRouter to produce a tuned resume markdown.
- * Mirrors original logic while:
- * - Returning a Promise for upstream awaiting
- * - Adding basic defensive checks
- * - Isolating prompt construction for easier future customization
+ * Call OpenRouter to produce a tuned resume markdown with streaming support.
+ * Features:
+ * - Streaming response with throttled updates (250ms intervals)
+ * - Visual feedback with streaming state management
+ * - Prevents concurrent runs and handles cleanup
  */
 export async function tuneResume(): Promise<void> {
   if (get(tuning)) return; // prevent concurrent runs
+  
   tuning.set(true);
+  isStreaming.set(true);
+  streamingContent.set("");
 
   try {
     const systemPrompt = buildSystemPrompt();
@@ -38,6 +43,7 @@ export async function tuneResume(): Promise<void> {
           { role: "system", content: systemPrompt },
           { role: "user", content: userContent },
         ],
+        stream: true,
       }),
     });
 
@@ -46,28 +52,95 @@ export async function tuneResume(): Promise<void> {
       return;
     }
 
-    const data = await resp.json();
-    let content: string = data?.choices?.[0]?.message?.content ?? "";
-
-    // Cleanup steps (retain original intent):
-    content = content.replace(/```\n.*?\n```/, "");
-    content = content.replace(/```/g, "");
-
-    if (!content.startsWith("#")) {
-      // Attempt to trim any leading chatter before first header
-      const idx = content.indexOf("#");
-      if (idx !== -1) content = content.slice(idx);
-    }
-
-    if (content.trim().length > 0) {
-      resumeMd.set(content);
-    } else {
-      console.warn("Tuned content empty; resumeMd left unchanged");
-    }
+    await processStreamingResponse(resp);
   } catch (err) {
     console.error("Error tuning resume:", err);
   } finally {
     tuning.set(false);
+    isStreaming.set(false);
+  }
+}
+
+/**
+ * Process streaming response with throttled updates every 250ms
+ */
+async function processStreamingResponse(response: Response): Promise<void> {
+  const reader = response.body?.getReader();
+  if (!reader) throw new Error("No reader available");
+
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let accumulatedContent = "";
+  let lastUpdateTime = 0;
+  const UPDATE_INTERVAL = 250; // ms
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || ""; // Keep incomplete line in buffer
+
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6);
+          if (data === '[DONE]') {
+            // Final update
+            finalizeContent(accumulatedContent);
+            return;
+          }
+
+          try {
+            const parsed = JSON.parse(data);
+            const content = parsed?.choices?.[0]?.delta?.content;
+            if (content) {
+              accumulatedContent += content;
+              
+              // Throttled updates
+              const now = Date.now();
+              if (now - lastUpdateTime >= UPDATE_INTERVAL) {
+                streamingContent.set(accumulatedContent);
+                lastUpdateTime = now;
+              }
+            }
+          } catch (e) {
+            // Skip invalid JSON (comments, etc.)
+            continue;
+          }
+        }
+      }
+    }
+
+    // Ensure final content is processed
+    finalizeContent(accumulatedContent);
+  } finally {
+    reader.releaseLock();
+  }
+}
+
+/**
+ * Apply final cleanup and set the resume content
+ */
+function finalizeContent(content: string): void {
+  if (!content.trim()) {
+    console.warn("Streamed content empty; resumeMd left unchanged");
+    return;
+  }
+
+  // Apply same cleanup as original
+  content = content.replace(/```\n.*?\n```/, "");
+  content = content.replace(/```/g, "");
+
+  if (!content.startsWith("#")) {
+    const idx = content.indexOf("#");
+    if (idx !== -1) content = content.slice(idx);
+  }
+
+  if (content.trim().length > 0) {
+    resumeMd.set(content);
+    streamingContent.set(""); // Clear streaming content
   }
 }
 

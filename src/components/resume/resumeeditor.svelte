@@ -1,7 +1,7 @@
 <script lang="ts">
     import "./editor.css";
     import { Carta, MarkdownEditor} from "carta-md";
-    import { resumeMd, resumeHtml, score, jobDescription, keywords, saveCurrentProject, header, editorShortcuts, tableify, saveState} from "$utils";
+    import { resumeMd, resumeHtml, score, jobDescription, keywords, saveCurrentProject, header, editorShortcuts, tableify, saveState, streamingContent, isStreaming} from "$utils";
     let carta = new Carta({
             sanitizer: false,
             theme: "catppuccin-mocha",
@@ -22,28 +22,34 @@
 
     $effect(() => {
         $jobDescription
-        $resumeHtml = carta.render($header + tableify($resumeMd));
-        updateSaveState();
-        // this stops the expensive score function from running every time the editor updates
-        // it only runs when the user is idle for 3 seconds
-        if (scoreTimeout !== null) {
-            clearTimeout(scoreTimeout);
+        // Use streaming content if available, otherwise use regular content
+        const contentToRender = $isStreaming && $streamingContent ? $streamingContent : $resumeMd;
+        $resumeHtml = carta.render($header + tableify(contentToRender));
+        
+        // Only update save state and trigger autosave if not streaming
+        if (!$isStreaming) {
+            updateSaveState();
+            // this stops the expensive score function from running every time the editor updates
+            // it only runs when the user is idle for 3 seconds
+            if (scoreTimeout !== null) {
+                clearTimeout(scoreTimeout);
+            }
+            if (saveTimeout !== null) {
+                clearTimeout(saveTimeout);
+            }
+            if (rerenderTimeout !== null) {
+                clearTimeout(rerenderTimeout);
+            }
+            scoreTimeout = setTimeout(() => {   
+                score();
+            }, 500);
+            saveTimeout = setTimeout(() => {
+                saveCurrentProject();
+            }, 1000);
+            rerenderTimeout = setTimeout(() => {
+                $resumeHtml = carta.render($header + tableify($resumeMd));
+            }, 1000);
         }
-        if (saveTimeout !== null) {
-            clearTimeout(saveTimeout);
-        }
-        if (rerenderTimeout !== null) {
-            clearTimeout(rerenderTimeout);
-        }
-        scoreTimeout = setTimeout(() => {   
-            score();
-        }, 500);
-        saveTimeout = setTimeout(() => {
-            saveCurrentProject();
-        }, 1000);
-        rerenderTimeout = setTimeout(() => {
-            $resumeHtml = carta.render($header + tableify($resumeMd));
-        }, 1000);
     });
    
 </script>
