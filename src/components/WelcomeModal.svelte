@@ -2,16 +2,16 @@
     import { hasSeenWelcome } from "./utils/stores.js";
     import { onMount } from "svelte";
     
-    let showWelcome = $state(false);
-    $inspect($hasSeenWelcome);
+    let ready = $state(false);
+    let showWelcome = $derived(ready && !$hasSeenWelcome);
+    
     onMount(() => {
-        if (!$hasSeenWelcome) {
-            showWelcome = true;
-        }
+        setTimeout(() => {
+            ready = true;
+        }, 500);
     });
     
     function closeWelcome() {
-        showWelcome = false;
         $hasSeenWelcome = true;
     }
     
