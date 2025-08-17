@@ -1,4 +1,4 @@
-/* Resume styling - One-page black and white design */
+/* Resume styling - One-page black and white design with adaptive spacing */
 body {
   font-family: 'Times New Roman', sans-serif;
   box-sizing: border-box;
@@ -9,6 +9,11 @@ body {
   font-size: 10pt;
   color: black;
   background: white;
+  
+  /* Setup flex container for adaptive spacing */
+  display: flex;
+  flex-direction: column;
+  min-height: 10.5in;
 }
 
 * {
@@ -153,4 +158,61 @@ p {
     background-color: red;
     z-index: 1000;
   }
+}
+
+/* ======================================================================
+ * ADAPTIVE SPACING - Pure CSS approach
+ * ====================================================================== */
+
+/* Content density detection based on number of h2 sections */
+
+/* Dense content (5+ sections): compress spacing */
+body:has(h2:nth-of-type(5)) {
+  line-height: 1.05;
+  min-height: 10.8in; /* Use more of the page */
+}
+
+body:has(h2:nth-of-type(5)) h2 {
+  margin-top: 0.02in;
+  margin-bottom: 0.015in;
+}
+
+body:has(h2:nth-of-type(5)) ul {
+  margin-bottom: 0.01in;
+}
+
+body:has(h2:nth-of-type(5)) li {
+  margin-bottom: 0.005in;
+}
+
+/* Normal content (3-4 sections): standard spacing with flex distribution */
+body:has(h2:nth-of-type(3):not(:nth-of-type(5))) {
+  justify-content: space-between;
+}
+
+/* Sparse content (1-2 sections): expand spacing to fill page */
+body:has(h2:nth-of-type(1):not(:nth-of-type(3))) {
+  line-height: 1.15;
+  justify-content: space-evenly;
+}
+
+body:has(h2:nth-of-type(1):not(:nth-of-type(3))) h2 {
+  margin-top: 0.06in;
+  margin-bottom: 0.04in;
+}
+
+body:has(h2:nth-of-type(1):not(:nth-of-type(3))) ul {
+  margin-bottom: 0.03in;
+}
+
+/* Flexbox magic: sections with lots of content get more space */
+h2 + ul:has(li:nth-child(4)),
+h2 + p + ul:has(li:nth-child(4)) {
+  flex-grow: 1;
+}
+
+/* Long sections (Experience/Projects) get extra space when content is sparse */
+body:not(:has(h2:nth-of-type(5))) h2 + ul:has(li:nth-child(3)),
+body:not(:has(h2:nth-of-type(5))) h2 + p + ul:has(li:nth-child(3)) {
+  flex-grow: 2;
 }

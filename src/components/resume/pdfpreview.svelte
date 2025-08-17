@@ -1,5 +1,5 @@
-<script>
-    import { analyzeContentDensity, enhanceHTMLWithFlexbox, generateAdaptiveCSS } from "$utils";
+<script lang="ts">
+    import { calculateOptimalSpacing } from "$lib/components/utils/measurementSpacing.ts";
     
     let props = $props();
     let container;
@@ -7,7 +7,7 @@
     let scale = $state(1);
     let stylesheetContent = $state("");
     let adaptiveCSS = $state("");
-
+    let isOptimizing = $state(false);
 
     // Fetch CSS content when component initializes
     async function loadStylesheet() {
@@ -26,17 +26,23 @@
     // Load stylesheet immediately
     loadStylesheet();
 
-    // Process HTML content for adaptive layout
-    function processAdaptiveContent(htmlContent) {
+    // Calculate optimal spacing for the current content
+    async function optimizeSpacing(htmlContent: string, baseCSS: string) {
         if (!htmlContent || htmlContent === "<h1>Loading...</h1>") {
-            return { enhancedHTML: htmlContent, adaptiveCSS: "" };
+            return "";
         }
-        
-        const density = analyzeContentDensity(htmlContent);
-        const enhancedHTML = enhanceHTMLWithFlexbox(htmlContent);
-        const adaptiveCSS = generateAdaptiveCSS(density);
-        
-        return { enhancedHTML, adaptiveCSS };
+
+        isOptimizing = true;
+        try {
+            const result = await calculateOptimalSpacing(htmlContent, baseCSS);
+            console.log(`Optimal spacing found: ${result.multiplier.toFixed(3)}x (estimated height: ${result.estimatedHeight}px)`);
+            return result.css;
+        } catch (error) {
+            console.error("Error optimizing spacing:", error);
+            return "";
+        } finally {
+            isOptimizing = false;
+        }
     }
 
     // Function to handle responsive scaling
@@ -74,16 +80,22 @@
 
     // Load content into the iframe when html and CSS are ready
     $effect(() => {
-        if (iframe && props.html && stylesheetContent !== "") {
-            // Process the HTML content for adaptive layout
-            const { enhancedHTML, adaptiveCSS: newAdaptiveCSS } = processAdaptiveContent(props.html);
-            adaptiveCSS = newAdaptiveCSS;
-            
+        async function renderWithOptimalSpacing() {
+            if (!iframe || !props.html || stylesheetContent === "") {
+                return;
+            }
+
+            // First render with base CSS to calculate optimal spacing
+            const baseCSS = stylesheetContent;
+            adaptiveCSS = await optimizeSpacing(props.html, baseCSS);
+
             const iframeDoc =
                 iframe.contentDocument || iframe.contentWindow.document;
+            if (!iframeDoc) return;
+
             iframeDoc.open();
 
-            // Create the HTML structure with the embedded CSS
+            // Create the HTML structure with the embedded CSS and adaptive spacing
             const content = `
                 <!DOCTYPE html>
                 <html>
@@ -107,12 +119,12 @@
                                 overflow: hidden;
                             }
                             
-                            /* Adaptive spacing and flexbox layout */
+                            /* Adaptive spacing overrides */
                             ${adaptiveCSS}
                         </style>
                     </head>
                     <body>
-                        <div class="pdf-page">${enhancedHTML}</div>
+                        <div class="pdf-page">${props.html}</div>
                     </body>
                 </html>
             `;
@@ -120,12 +132,23 @@
             iframeDoc.write(content);
             iframeDoc.close();
         }
+
+        renderWithOptimalSpacing();
     });
 </script>
 
 <svelte:window on:resize={handleResize} />
 <div class="w-full h-full bg-crust flex items-start justify-start p-4">
     <div class="relative overflow-hidden w-fit" bind:this={container} use:handleResize>
+        {#if isOptimizing}
+            <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center z-10 rounded-lg">
+                <div class="bg-surface0 text-text px-4 py-2 rounded-lg flex items-center gap-2 shadow-lg">
+                    <div class="w-4 h-4 border-2 border-blue border-t-transparent rounded-full animate-spin"></div>
+                    <span class="text-sm font-medium">Optimizing spacing...</span>
+                </div>
+            </div>
+        {/if}
+        
         <iframe
             bind:this={iframe}
             title="Resume Preview"
