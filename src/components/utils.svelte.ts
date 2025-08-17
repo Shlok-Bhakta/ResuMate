@@ -21,15 +21,6 @@ export { createHeader } from "./utils/header";
 
 // Scoring utilities
 export { getKeywords, score } from "./utils/scoring";
-
-// Editor shortcuts plugin & helpers
-export {
-  editorShortcuts,
-  commentLines,
-  moveSelectionUp,
-  moveSelectionDown
-} from "./utils/editorShortcuts";
-
 // Formatting helpers
 export { tableify } from "./utils/formatting";
 

@@ -15,7 +15,6 @@
     "@tailwindcss/vite": "^4.0.9",
     "@types/markdown-it": "^14.1.2",
     "astro": "^5.7.5",
-    "carta-md": "4.8.1",
     "dexie": "^4.0.11",
     "dexie-export-import": "^4.1.4",
     "html2pdf.js": "^0.10.3",

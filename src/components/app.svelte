@@ -1,6 +1,5 @@
 <script lang="ts">
     import LayoutRoot from "./layout/LayoutRoot.svelte";
-    import ResumeEditor from "./resume/resumeeditor.svelte";
     import MonacoStoreEditor from "./ui/MonacoStoreEditor.svelte";
     import Pdfpreview from "./resume/pdfpreview.svelte";
     import Displayscores from "./resume/displayscores.svelte";
