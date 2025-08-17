@@ -14,6 +14,7 @@
     
     let scoreTimeout: ReturnType<typeof setTimeout> | null = null;
     let saveTimeout: ReturnType<typeof setTimeout> | null = null;
+    let renderTimeout: ReturnType<typeof setTimeout> | null = null;
     let isSaving = false;
     
     function updateSaveState() {
@@ -29,25 +30,35 @@
         // Skip updates if we're currently saving to prevent double-updates
         if (isSaving) return;
         
-        $resumeHtml = carta.render($header + tableify($resumeMd));
-        
         updateSaveState();
-        // this stops the expensive score function from running every time the editor updates
-        // it only runs when the user is idle for 3 seconds
+        
+        // Clear all timeouts
+        if (renderTimeout !== null) {
+            clearTimeout(renderTimeout);
+        }
         if (scoreTimeout !== null) {
             clearTimeout(scoreTimeout);
         }
         if (saveTimeout !== null) {
             clearTimeout(saveTimeout);
         }
+        
+        // Debounce the expensive carta.render() call
+        renderTimeout = setTimeout(() => {
+            $resumeHtml = carta.render($header + tableify($resumeMd));
+        }, 200);
+        
+        // Debounce scoring
         scoreTimeout = setTimeout(() => {   
             score();
-        }, 500);
+        }, 600);
+        
+        // Debounce saving
         saveTimeout = setTimeout(async () => {
             isSaving = true;
             await saveCurrentProject();
             isSaving = false;
-        }, 1000);
+        }, 1200);
     });
    
 </script>
@@ -56,7 +67,9 @@
         {carta} 
         bind:value={$resumeMd}
         mode="tabs" 
-        theme="main" 
+        theme="main"
+		disableToolbar={true} 
+
     />
 </div>
 <style>

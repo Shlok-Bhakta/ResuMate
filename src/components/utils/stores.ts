@@ -1,5 +1,5 @@
 import { persist, createIndexedDBStorage } from "@macfja/svelte-persistent-store";
-import { writable, type Writable } from "svelte/store";
+import { writable, derived, type Writable } from "svelte/store";
 
 /**
  * Helper to create a persisted writable store with typed initial value.
@@ -8,12 +8,59 @@ function persisted<T>(key: string, initial: T): Writable<T> {
   return persist<T>(writable<T>(initial), createIndexedDBStorage(), key);
 }
 
+/**
+ * Creates a debounced writable store that delays persistence to avoid performance issues
+ */
+function debouncedPersisted<T>(key: string, initial: T, delay: number = 300): Writable<T> {
+  // Create a non-persisted writable for immediate UI updates
+  const localStore = writable<T>(initial);
+  // Create the actual persisted store
+  const persistedStore = persist<T>(writable<T>(initial), createIndexedDBStorage(), key);
+  
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  
+  // Sync persisted store to local store on init
+  persistedStore.subscribe(value => {
+    localStore.set(value);
+  });
+  
+  return {
+    subscribe: localStore.subscribe,
+    set: (value: T) => {
+      // Update UI immediately
+      localStore.set(value);
+      
+      // Debounce the persistence
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        persistedStore.set(value);
+        timeoutId = null;
+      }, delay);
+    },
+    update: (fn: (value: T) => T) => {
+      localStore.update(currentValue => {
+        const newValue = fn(currentValue);
+        
+        // Debounce the persistence
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          persistedStore.set(newValue);
+          timeoutId = null;
+        }, delay);
+        
+        return newValue;
+      });
+    }
+  };
+}
+
 /* ========================================================================
  * Core Project Content Stores
  * ===================================================================== */
-export const resumeMd = persisted<string>(
+export const resumeMd = debouncedPersisted<string>(
   "resumeMd",
-  "# Go to settings and fetch my resume template from the settings! Also Update your info!"
+  "# Go to settings and fetch my resume template from the settings! Also Update your info!",
+  500
 );
 export const resumeHtml = writable<string | Promise<string>>("<h1>Hi</h1>");
 export const jobDescription = persisted<string>(
