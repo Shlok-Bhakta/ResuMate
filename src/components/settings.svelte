@@ -526,7 +526,7 @@
                         <div class="glass-editor-container">
                             <MonacoStoreEditor
                                 store={knowlegeBase}
-                                height="300px"
+                                height="400px"
                             />
                         </div>
                     </div>
