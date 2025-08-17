@@ -131,6 +131,9 @@
 
             iframeDoc.write(content);
             iframeDoc.close();
+            
+            // Trigger resize calculation after content is loaded
+            handleResize(null);
         }
 
         renderWithOptimalSpacing();
