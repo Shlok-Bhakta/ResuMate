@@ -497,10 +497,11 @@
                             Fetch Default Template
                         </button>
 
-                        <div class="glass-editor-container">
+                        <div class="glass-editor-container glass-editor-large">
                             <MonacoStoreEditor
                                 store={resumeTemplate}
-                                height="400px"
+                                language="markdown"
+                                height="100%"
                             />
                         </div>
                     </div>
@@ -523,10 +524,11 @@
                         </button>
                         <p class="glass-description">Knowledge passed to the AI when tuning your resume.</p>
 
-                        <div class="glass-editor-container">
+                        <div class="glass-editor-container glass-editor-large">
                             <MonacoStoreEditor
                                 store={knowlegeBase}
-                                height="400px"
+                                language="markdown"
+                                height="100%"
                             />
                         </div>
                     </div>
@@ -1085,6 +1087,10 @@
         border: 1px solid rgba(137, 180, 250, 0.2);
         border-radius: 0.5rem;
         overflow: hidden;
+    }
+
+    .glass-editor-large {
+        height: 800px; /* Double the size: 400px * 2 */
     }
 
     .glass-textarea-container {
