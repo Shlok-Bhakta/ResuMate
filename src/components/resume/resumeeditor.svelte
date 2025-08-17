@@ -14,7 +14,7 @@
     
     let scoreTimeout: ReturnType<typeof setTimeout> | null = null;
     let saveTimeout: ReturnType<typeof setTimeout> | null = null;
-    let rerenderTimeout: ReturnType<typeof setTimeout> | null = null;
+    let isSaving = false;
     
     function updateSaveState() {
         $saveState = 0; // Pending state
@@ -25,6 +25,9 @@
         $resumeMd;
         $header;
         $jobDescription;
+        
+        // Skip updates if we're currently saving to prevent double-updates
+        if (isSaving) return;
         
         $resumeHtml = carta.render($header + tableify($resumeMd));
         
@@ -37,17 +40,13 @@
         if (saveTimeout !== null) {
             clearTimeout(saveTimeout);
         }
-        if (rerenderTimeout !== null) {
-            clearTimeout(rerenderTimeout);
-        }
         scoreTimeout = setTimeout(() => {   
             score();
         }, 500);
-        saveTimeout = setTimeout(() => {
-            saveCurrentProject();
-        }, 1000);
-        rerenderTimeout = setTimeout(() => {
-            $resumeHtml = carta.render($header + tableify($resumeMd));
+        saveTimeout = setTimeout(async () => {
+            isSaving = true;
+            await saveCurrentProject();
+            isSaving = false;
         }, 1000);
     });
    
