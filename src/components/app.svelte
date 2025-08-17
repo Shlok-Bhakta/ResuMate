@@ -1,6 +1,7 @@
 <script lang="ts">
     import LayoutRoot from "./layout/LayoutRoot.svelte";
     import ResumeEditor from "./resume/resumeeditor.svelte";
+    import MonacoStoreEditor from "./ui/MonacoStoreEditor.svelte";
     import Pdfpreview from "./resume/pdfpreview.svelte";
     import Displayscores from "./resume/displayscores.svelte";
     import JobFetcher from "./JobFetcher.svelte";
@@ -48,7 +49,11 @@
 
         <div class="flex w-full h-full relative gap-1">
             <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
-                <ResumeEditor />
+                <MonacoStoreEditor 
+                    store={resumeMd}
+                    enableEffects={true}
+                    height="100%"
+                />
             </div>
 
             {#if $projectEditingStage === "Content"}

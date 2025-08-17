@@ -20,7 +20,6 @@
         customCSS,
         enableCustomCSS,
         resumeTemplate,
-        editorShortcuts,
         createHeader,
         resetApplication,
         importIndexedDBs,
@@ -31,7 +30,7 @@
         keywords,
     } from "$utils";
     import "./settingseditor.css";
-    import { Carta, MarkdownEditor } from "carta-md";
+    import MonacoStoreEditor from "./ui/MonacoStoreEditor.svelte";
 
     // Active tab state
     let activeTab = $state<'profile' | 'ai' | 'advanced' | 'sync'>('profile');
@@ -55,8 +54,7 @@
     let receiverCode = $state('');
     let showImportConfirm = $state(false);
 
-    // Carta editor
-    let carta2 = $state<any>(null);
+    // Monaco editor - no setup needed!
 
     function close() {
         modalState.set("None");
@@ -95,12 +93,18 @@
     // Template fetching
     async function fetchResTemplate() {
         try {
+            console.log('Fetching template...');
             const response = await fetch("/ResuMate/template.md");
             if (response.ok) {
-                $resumeTemplate = await response.text();
+                const text = await response.text();
+                console.log('Template fetched, length:', text.length);
+                $resumeTemplate = text;
+                console.log('resumeTemplate store updated');
+            } else {
+                console.error('Failed to fetch template:', response.status);
             }
         } catch (err) {
-            console.error(err);
+            console.error('Fetch error:', err);
         }
     }
 
@@ -196,17 +200,7 @@
         showImportConfirm = false;
     }
 
-    // Initialize carta editor
-    $effect(() => {
-        carta2 = new Carta({
-            sanitizer: false,
-            theme: "catppuccin-mocha",
-            extensions: [editorShortcuts],
-        });
-        return () => {
-            carta2 = null;
-        };
-    });
+    // Monaco editor - no initialization needed!
 
     // Auto-update header when profile changes
     $effect(() => {
@@ -504,14 +498,10 @@
                         </button>
 
                         <div class="glass-editor-container">
-                            {#if carta2}
-                                <MarkdownEditor
-                                    carta={carta2}
-                                    bind:value={$resumeTemplate}
-                                    mode="tabs"
-                                    theme="settings"
-                                />
-                            {/if}
+                            <MonacoStoreEditor
+                                store={resumeTemplate}
+                                height="400px"
+                            />
                         </div>
                     </div>
                 </div>
@@ -533,12 +523,11 @@
                         </button>
                         <p class="glass-description">Knowledge passed to the AI when tuning your resume.</p>
 
-                        <div class="glass-textarea-container">
-                            <textarea
-                                class="glass-textarea"
-                                bind:value={$knowlegeBase}
-                                placeholder="Enter your knowledge base content here..."
-                            ></textarea>
+                        <div class="glass-editor-container">
+                            <MonacoStoreEditor
+                                store={knowlegeBase}
+                                height="300px"
+                            />
                         </div>
                     </div>
                 </div>

@@ -6,11 +6,10 @@
             sanitizer: false,
             theme: "catppuccin-mocha",
 
-            extensions: [
-                editorShortcuts
-            ]
+            // extensions: [
+            //     editorShortcuts
+            // ]
     });
-    $inspect(carta);
     
     let scoreTimeout: ReturnType<typeof setTimeout> | null = null;
     let saveTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -31,7 +30,7 @@
         if (isSaving) return;
         
         updateSaveState();
-        
+
         // Clear all timeouts
         if (renderTimeout !== null) {
             clearTimeout(renderTimeout);
@@ -45,7 +44,9 @@
         
         // Debounce the expensive carta.render() call
         renderTimeout = setTimeout(() => {
-            $resumeHtml = carta.render($header + tableify($resumeMd));
+            // TEMPORARY: Test without tableify to isolate performance issue
+            $resumeHtml = carta.render($header + $resumeMd);
+            // $resumeHtml = carta.render($header + tableify($resumeMd));
         }, 200);
         
         // Debounce scoring
@@ -69,7 +70,6 @@
         mode="tabs" 
         theme="main"
 		disableToolbar={true} 
-
     />
 </div>
 <style>
