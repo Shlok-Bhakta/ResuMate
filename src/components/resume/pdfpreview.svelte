@@ -1,9 +1,12 @@
 <script>
+    import { analyzeContentDensity, enhanceHTMLWithFlexbox, generateAdaptiveCSS } from "$utils";
+    
     let props = $props();
     let container;
     let iframe;
     let scale = $state(1);
     let stylesheetContent = $state("");
+    let adaptiveCSS = $state("");
 
 
     // Fetch CSS content when component initializes
@@ -22,6 +25,19 @@
 
     // Load stylesheet immediately
     loadStylesheet();
+
+    // Process HTML content for adaptive layout
+    function processAdaptiveContent(htmlContent) {
+        if (!htmlContent || htmlContent === "<h1>Loading...</h1>") {
+            return { enhancedHTML: htmlContent, adaptiveCSS: "" };
+        }
+        
+        const density = analyzeContentDensity(htmlContent);
+        const enhancedHTML = enhanceHTMLWithFlexbox(htmlContent);
+        const adaptiveCSS = generateAdaptiveCSS(density);
+        
+        return { enhancedHTML, adaptiveCSS };
+    }
 
     // Function to handle responsive scaling
     function handleResize() {
@@ -59,6 +75,10 @@
     // Load content into the iframe when html and CSS are ready
     $effect(() => {
         if (iframe && props.html && stylesheetContent !== "") {
+            // Process the HTML content for adaptive layout
+            const { enhancedHTML, adaptiveCSS: newAdaptiveCSS } = processAdaptiveContent(props.html);
+            adaptiveCSS = newAdaptiveCSS;
+            
             const iframeDoc =
                 iframe.contentDocument || iframe.contentWindow.document;
             iframeDoc.open();
@@ -75,7 +95,6 @@
                                 margin: 0;
                                 padding: 0;
                                 height: 100%;
-                                
                             }
                             .pdf-page {
                                 width: 8.5in;
@@ -87,10 +106,13 @@
                                 box-sizing: border-box;
                                 overflow: hidden;
                             }
+                            
+                            /* Adaptive spacing and flexbox layout */
+                            ${adaptiveCSS}
                         </style>
                     </head>
                     <body>
-                        <div class="pdf-page">${props.html}</div>
+                        <div class="pdf-page">${enhancedHTML}</div>
                     </body>
                 </html>
             `;

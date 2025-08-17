@@ -50,3 +50,10 @@ export {
 
 // Resume tuning (LLM)
 export { tuneResume } from "./utils/tune";
+
+// Adaptive spacing
+export { 
+  analyzeContentDensity, 
+  enhanceHTMLWithFlexbox,
+  generateAdaptiveCSS
+} from "./utils/adaptiveSpacing";

@@ -10,9 +10,7 @@
         keywords,
         tuneResume,
         tuning,
-        openRouterAIModel,
-        streamingContent,
-        isStreaming
+        openRouterAIModel
     } from "$utils";
 
     let isRescoring = false;
@@ -158,19 +156,12 @@
 
             <!-- AI Tune Button -->
             <div class="mt-4">
-                <button class="ai-button" class:streaming={$isStreaming} onclick={tuneResume} disabled={$tuning}>
+                <button class="ai-button" onclick={tuneResume} disabled={$tuning}>
                     {#if $tuning}
                         <div class="ai-button-content">
-                            <div class="ai-spinner" class:streaming-spinner={$isStreaming}></div>
-                            {#if $isStreaming}
-                                <span>Streaming AI Response...</span>
-                            {:else}
-                                <span>Optimizing Resume...</span>
-                            {/if}
+                            <div class="ai-spinner"></div>
+                            <span>Optimizing Resume...</span>
                         </div>
-                        {#if $isStreaming}
-                            <div class="streaming-progress"></div>
-                        {/if}
                     {:else}
                         <div class="ai-button-content">
                             <div class="ai-icon">

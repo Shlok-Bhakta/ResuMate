@@ -46,8 +46,6 @@ export const availableProjects = persisted<any[]>("availableProjects", []);
 /* Header & Tuning */
 export const header = persisted<string>("header", "");
 export const tuning = writable(false);
-export const streamingContent = writable<string>("");
-export const isStreaming = writable(false);
 
 /* ========================================================================
  * Settings Stores

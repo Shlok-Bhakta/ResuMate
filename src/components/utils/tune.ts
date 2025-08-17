@@ -8,9 +8,7 @@ import {
   resumeKeywords,
   combinedScore,
   knowlegeBase,
-  tuning,
-  streamingContent,
-  isStreaming
+  tuning
 } from "./stores";
 
 /**
@@ -24,8 +22,6 @@ export async function tuneResume(): Promise<void> {
   if (get(tuning)) return; // prevent concurrent runs
   
   tuning.set(true);
-  isStreaming.set(true);
-  streamingContent.set("");
 
   try {
     const systemPrompt = buildSystemPrompt();
@@ -57,12 +53,11 @@ export async function tuneResume(): Promise<void> {
     console.error("Error tuning resume:", err);
   } finally {
     tuning.set(false);
-    isStreaming.set(false);
   }
 }
 
 /**
- * Process streaming response with throttled updates every 250ms
+ * Process streaming response directly into resumeMd
  */
 async function processStreamingResponse(response: Response): Promise<void> {
   const reader = response.body?.getReader();
@@ -72,7 +67,7 @@ async function processStreamingResponse(response: Response): Promise<void> {
   let buffer = "";
   let accumulatedContent = "";
   let lastUpdateTime = 0;
-  const UPDATE_INTERVAL = 250; // ms
+  const UPDATE_INTERVAL = 100; // ms - update more frequently for smoother streaming
 
   try {
     while (true) {
@@ -98,10 +93,11 @@ async function processStreamingResponse(response: Response): Promise<void> {
             if (content) {
               accumulatedContent += content;
               
-              // Throttled updates
+              // Throttled updates directly to resumeMd
               const now = Date.now();
               if (now - lastUpdateTime >= UPDATE_INTERVAL) {
-                streamingContent.set(accumulatedContent);
+                const cleanedContent = cleanStreamingContent(accumulatedContent);
+                resumeMd.set(cleanedContent);
                 lastUpdateTime = now;
               }
             }
@@ -121,6 +117,24 @@ async function processStreamingResponse(response: Response): Promise<void> {
 }
 
 /**
+ * Clean streaming content for display (lighter cleanup during streaming)
+ */
+function cleanStreamingContent(content: string): string {
+  if (!content.trim()) return content;
+  
+  // Basic cleanup during streaming - just remove obvious artifacts
+  let cleaned = content.replace(/```/g, "");
+  
+  // Try to start from first heading if content doesn't start with one
+  if (!cleaned.startsWith("#")) {
+    const idx = cleaned.indexOf("#");
+    if (idx !== -1) cleaned = cleaned.slice(idx);
+  }
+  
+  return cleaned;
+}
+
+/**
  * Apply final cleanup and set the resume content
  */
 function finalizeContent(content: string): void {
@@ -129,7 +143,7 @@ function finalizeContent(content: string): void {
     return;
   }
 
-  // Apply same cleanup as original
+  // Apply more thorough cleanup for final content
   content = content.replace(/```\n.*?\n```/, "");
   content = content.replace(/```/g, "");
 
@@ -140,7 +154,6 @@ function finalizeContent(content: string): void {
 
   if (content.trim().length > 0) {
     resumeMd.set(content);
-    streamingContent.set(""); // Clear streaming content
   }
 }
 
