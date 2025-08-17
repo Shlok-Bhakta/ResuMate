@@ -28,12 +28,17 @@
         role="dialog" 
         aria-modal="true"
         aria-labelledby="welcome-title"
+        tabindex="0"
         onclick={closeWelcome}
+        onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') closeWelcome(); }}
     >
         <!-- Modal -->
         <div 
             class="welcome-modal max-w-md w-full mx-auto"
             onclick={(e) => e.stopPropagation()}
+            onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
+            role="button"
+            tabindex="0"
         >
             <!-- Header -->
             <div class="welcome-header">

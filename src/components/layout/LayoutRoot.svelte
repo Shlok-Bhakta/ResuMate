@@ -23,11 +23,13 @@
 	const {
 		onNewproject = () => {},
 		onSelect = () => {},
-		onEditProject = () => {}
+		onEditProject = () => {},
+		children
 	} = $props<{
 		onNewproject?: () => void;
 		onSelect?: (detail: { name: string; id: number }) => void;
 		onEditProject?: (detail: { name: string; id: number }) => void;
+		children?: import('svelte').Snippet;
 	}>();
 
 	// Modal (mirror of store)
@@ -109,7 +111,7 @@
 	let sidebarAnnouncement = $state("");
 
 	// Modal focus trap
-	let modalContainerEl: HTMLDivElement | null = null;
+	let modalContainerEl: HTMLDivElement | null = $state(null);
 	let prevFocusedEl: HTMLElement | null = null;
 
 	function getFocusable(container: HTMLElement): HTMLElement[] {
@@ -190,13 +192,13 @@
 		onmousedown={onResizerMousedown}
 		ondblclick={onResizerDblClick}
 		aria-hidden={collapsed}
-	/>
+	></div>
 
 	<div class="flex flex-col flex-1 min-w-0 h-full">
 		<Topbar {collapsed} onShowSidebar={onShowSidebar} />
 
 		<main class="flex-1 min-h-0 overflow-hidden" tabindex="-1" aria-label="Main content">
-			<slot />
+			{@render children?.()}
 		</main>
 
 		{#if modal !== "None"}
@@ -207,23 +209,44 @@
 				aria-modal="true"
 				onclick={() => setModal("None")}
 				bind:this={modalContainerEl}
-				tabindex="-1"
+				tabindex="0"
 				onkeydown={onModalKeydown}
 			>
 				{#if modal === "Settings"}
-					<div onclick={(e) => e.stopPropagation()}>
+					<div 
+						onclick={(e) => e.stopPropagation()}
+						onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
+						role="button"
+						tabindex="0"
+					>
 						<Settings />
 					</div>
 				{:else if modal === "CreateProject"}
-					<div onclick={(e) => e.stopPropagation()}>
+					<div 
+						onclick={(e) => e.stopPropagation()}
+						onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
+						role="button"
+						tabindex="0"
+					>
 						<CreateProjectDialog />
 					</div>
 				{:else if modal === "Project Options"}
-					<div onclick={(e) => e.stopPropagation()}>
+					<div 
+						onclick={(e) => e.stopPropagation()}
+						onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
+						role="button"
+						tabindex="0"
+					>
 						<ProjectOptionsDialog />
 					</div>
 				{:else}
-					<div class="bg-crust p-4 rounded shadow text-text" onclick={(e) => e.stopPropagation()}>
+					<div 
+						class="bg-crust p-4 rounded shadow text-text" 
+						onclick={(e) => e.stopPropagation()}
+						onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
+						role="button"
+						tabindex="0"
+					>
 						Unimplemented modal: {modal}
 					</div>
 				{/if}

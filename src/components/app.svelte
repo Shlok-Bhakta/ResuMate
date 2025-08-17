@@ -38,38 +38,40 @@
 </script>
 
 <LayoutRoot>
-    <!-- Animated background blobs -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
-    <div class="flex w-full h-full relative gap-1">
-        <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
-            <ResumeEditor />
+    {#snippet children()}
+        <!-- Animated background blobs -->
+        <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
         </div>
 
-        {#if $projectEditingStage === "Content"}
+        <div class="flex w-full h-full relative gap-1">
             <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
-                <JobFetcher />
+                <ResumeEditor />
             </div>
-        {:else if $projectEditingStage === "Tuning"}
-            <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
-                <Displayscores />
-            </div>
-        {:else if $projectEditingStage === "Preview"}
-            {#await $resumeHtml}
-                <div class="w-fit flex-shrink-0 h-full overflow-hidden glass-panel">
-                    <Pdfpreview html={"<h1>Loading...</h1>"} />
+
+            {#if $projectEditingStage === "Content"}
+                <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
+                    <JobFetcher />
                 </div>
-            {:then content}
-                <div class="w-fit flex-shrink-0 h-full overflow-hidden glass-panel">
-                    <Pdfpreview html={content} />
+            {:else if $projectEditingStage === "Tuning"}
+                <div class="flex-1 min-w-0 h-full overflow-hidden glass-panel">
+                    <Displayscores />
                 </div>
-            {/await}
-        {/if}
-    </div>
+            {:else if $projectEditingStage === "Preview"}
+                {#await $resumeHtml}
+                    <div class="w-fit flex-shrink-0 h-full overflow-hidden glass-panel">
+                        <Pdfpreview html={"<h1>Loading...</h1>"} />
+                    </div>
+                {:then content}
+                    <div class="w-fit flex-shrink-0 h-full overflow-hidden glass-panel">
+                        <Pdfpreview html={content} />
+                    </div>
+                {/await}
+            {/if}
+        </div>
+    {/snippet}
 </LayoutRoot>
 
 <WelcomeModal />

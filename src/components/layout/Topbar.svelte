@@ -203,7 +203,7 @@
 			<span
 				class={"absolute -top-1 -right-1 w-3 h-3 rounded-full " + saveStatusTone($saveState)}
 				aria-hidden="true"
-			/>
+			></span>
 		</button>
 		<div
 			id="save-status-text"
@@ -216,13 +216,13 @@
 	</div>
 
 	<!-- Spacer -->
-	<div class="flex-1" />
+	<div class="flex-1"></div>
 
 	<!-- Project Name show -->
 	<div class="w-fit nerdfont">{$jobName.length < 60 ? $jobName : $jobName.slice(0, 60) + "..."}</div>
 
 	<!-- Spacer -->
-	<div class="flex-1" />
+	<div class="flex-1"></div>
 
 	
 	<!-- Mode Switcher -->

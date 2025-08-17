@@ -224,6 +224,7 @@
     role="dialog"
     aria-modal="true"
     aria-labelledby="settings-title"
+    tabindex="0"
 >
     <div class="glass-settings-panel">
         <!-- Header -->
@@ -298,8 +299,8 @@
                     <div class="glass-form-grid">
                         <!-- Name -->
                         <div class="glass-form-group">
-                            <label class="glass-label">Full Name</label>
-                            <input class="glass-input" bind:value={$name} placeholder="Your full name" />
+                            <label class="glass-label" for="full-name-input">Full Name</label>
+                            <input id="full-name-input" class="glass-input" bind:value={$name} placeholder="Your full name" />
                         </div>
 
                         <!-- Contact Fields -->
@@ -393,11 +394,12 @@
 
                     <div class="glass-form-grid">
                         <div class="glass-form-group glass-form-wide">
-                            <label class="glass-label">OpenRouter API Key</label>
+                            <label class="glass-label" for="openrouter-api-key">OpenRouter API Key</label>
                             <p class="glass-description">
                                 Get your API key from <a href="https://openrouter.ai/settings/keys" target="_blank" rel="noopener noreferrer" class="glass-link">OpenRouter</a> to enable AI-powered resume tuning.
                             </p>
                             <input 
+                                id="openrouter-api-key"
                                 type="password" 
                                 class="glass-input" 
                                 bind:value={$openRouterKey} 
@@ -406,9 +408,10 @@
                         </div>
 
                         <div class="glass-form-group glass-form-wide">
-                            <label class="glass-label">AI Model</label>
+                            <label class="glass-label" for="ai-model-input">AI Model</label>
                             <div class="glass-dropdown-container">
                                 <input
+                                    id="ai-model-input"
                                     type="text"
                                     class="glass-input"
                                     bind:value={$openRouterAIModel}
@@ -472,7 +475,7 @@
                             {#each $keywords.filter(kw => keywordSearch.trim() === '' || kw.toLowerCase().includes(keywordSearch.toLowerCase())) as keyword}
                                 <div class="glass-keyword-item">
                                     <span>{keyword}</span>
-                                    <button class="glass-button-danger-small" onclick={() => removeKeyword(keyword)}>
+                                    <button class="glass-button-danger-small" onclick={() => removeKeyword(keyword)} aria-label={`Remove keyword ${keyword}`}>
                                         <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
