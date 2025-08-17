@@ -78,6 +78,13 @@ npm run preview            # Preview production build
 - This is where all the application logic and UI components live
 - No server-side code - everything is client-side browser execution
 
+**Design System:**
+- Uses glass morphism aesthetic without blur effects for performance
+- Hyprland-inspired minimal design with clean geometric elements
+- Color palette: Blue → Sapphire → Teal gradients for primary elements
+- Border radius: 4px for buttons, 8px for containers (no excessive rounding)
+- Dynamic color coding: Score circles and progress bars reflect performance levels
+
 **Path Aliases (tsconfig.json):**
 ```
 $lib/* → ./src/*

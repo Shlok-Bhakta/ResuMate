@@ -650,7 +650,6 @@ sanitization
 aspect ratio
 serializable
 color scheme
-organization
 requirements
 image upload
 azure search
@@ -810,37 +809,17 @@ peoplesoft
 enumerator
 equivalent
 prometheus
-activation
-conceptual
 operations
 continuous
-serializer
-decoupling
 procedures
-throughput
 appearance
 repetition
-mixed mode
 precedence
-spring web
-test suite
-accounting
-box shadow
-system.net
 chromebook
 detailview
 imagefield
 filedialog
-key events
-boost test
-singlepage
-tablespace
-sql tuning
-search box
-page title
 federation
-ftp server
-cross site
 javascript
 sql server
 postgresql
@@ -992,7 +971,6 @@ indicator
 backtrace
 normalize
 discovery
-ownership
 changeset
 drilldown
 linegraph
@@ -1091,7 +1069,6 @@ graphtalk
 hopscotch
 hypertalk
 join java
-macsyma )
 microcode
 model 204
 pipelines
@@ -1100,7 +1077,6 @@ sensetalk
 sequencel
 simscript
 smalltalk
-spitbol )
 speedcode
 stateflow
 supertalk
@@ -1205,15 +1181,6 @@ designer
 wireless
 ethernet
 products
-snapshot
-newrelic
-addition
-relative
-messages
-schedule
-movement
-explorer
-behavior
 endpoint
 transfer
 shipping
@@ -1467,7 +1434,6 @@ privacy
 gateway
 drivers
 migrate
-summary
 tracing
 api key
 markers
@@ -1819,7 +1785,6 @@ types
 oauth
 rspec
 fonts
-timer
 neo4j
 build
 merge
@@ -1900,7 +1865,6 @@ robot
 feeds
 grant
 crypt
-items
 level
 relay
 abset
@@ -1912,11 +1876,7 @@ arexx
 argus
 basic
 bliss
-bloop
-ksh )
 cduce
-cecil
-cesil
 chain
 charm
 chill
@@ -1970,7 +1930,6 @@ mohol
 mouse
 mumps
 nxt-g
-o:xml
 obliq
 ocaml
 occam
@@ -1984,7 +1943,6 @@ pl-11
 pl360
 planc
 proiv
-pro*c
 rapid
 rebol
 refal
@@ -2083,7 +2041,6 @@ byte
 fork
 wifi
 blob
-case
 yaml
 rxjs
 exec
@@ -2096,9 +2053,6 @@ gzip
 push
 hook
 jira
-call
-cell
-href
 diff
 eval
 each
@@ -2232,48 +2186,23 @@ pict
 pike
 pikt
 plex
-plus
 pure
-qalb
-reia
-rexx
-rlab
-roop
 ruby
 rust
-sa-c
-sail
 sasl
-setl
-slip
-span
 spin
-sp/k
-s/sl
 tacl
-tads
-teco
 trac
-ttcn
-vala
-vsxu
-vvvv
-xojo
-xpl0
 zeno
 zopl
 git
 php
 edi
 sdn
-can
 pci
 nas
 cad
-man
 cab
-jql
-crt
 ssd
 bus
 nic

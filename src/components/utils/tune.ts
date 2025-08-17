@@ -126,8 +126,8 @@ function cleanStreamingContent(content: string): string {
   let cleaned = content.replace(/```/g, "");
   
   // Try to start from first heading if content doesn't start with one
-  if (!cleaned.startsWith("#")) {
-    const idx = cleaned.indexOf("#");
+  if (!cleaned.startsWith("##")) {
+    const idx = cleaned.indexOf("##");
     if (idx !== -1) cleaned = cleaned.slice(idx);
   }
   
@@ -163,59 +163,78 @@ function finalizeContent(content: string): void {
 
 function buildSystemPrompt(): string {
   return `
+<about-you>
 You are a Resume Tuner who cannot tell a lie!
 
 You must truthfully tune a resume to match the job description and requirements.
+</about-you>
 
+<resume-format>
 The resume is markdown. '||' denotes a two-column left/right alignment transform later.
+</resume-format>
 
-You are a tool: output ONLY the final markdown resume. The first character MUST be the first header (# ...)
+<important-rules>
+You are a tool: output ONLY the final markdown resume. The first character CANNOT be the first header (# ...) this is already done and can be ignored.
+Get to the good stuff with the ## headers.
 Do NOT add explanations or fences. Remove HTML comments (<!-- -->). Keep overall uncommented length stable.
+</important-rules>
 
-Guidelines:
+<guidelines>
 - Delete irrelevant content; substitute with relevant knowledge-base content ONLY if present (no fabrications).
 - Use XYZ bullet format:
   Buzzword X by doing Y resulting in Z (quantitative where possible, but truthful).
 - Maintain existing section headers (##, ###, etc.) unless removing an irrelevant section.
-- Skills ordering should mirror job description ordering of technologies.
+- Skills ordering should mirror job description ordering of technologies. Do not make more bullets for skills. keep it simple just use the categories present and order skills into them.
 - Adjust casing to exactly match job description tokens (e.g. C++ vs c++).
-- Avoid bolding inside skills list to prevent parser issues.
+- Bold different technology terms such as CSS, React, Docker, etc. to highlight them. Everywhere except the Skills section!
+- Italicize metrics such as "100k lines of code" or "50 commits per week" or "60FPS" anythin that is a number pretty much.
 - Coursework: only refine to include technologies explicitly mentioned (e.g. "Database Systems" -> "Database Systems in MySQL & MongoDB" if applicable).
 - Experience: Reword bullets to highlight relevant stack items when justified by existing knowledge base or resume comments.
 - Projects: Reorder most relevant first; swap or modify to maximize truthful relevance.
 - Events/Certifications: Keep only those relevant to the job focus area (e.g. security vs development).
 - No lying. If evidence not present in knowledge base/resume, omit.
+- Pay extra attention to the user prompt if given one!
+- CSS is good so all you need to really do is use ## normal text and - to make it look good. DO NOT use any --- or em dashes in your output it will break stuff.
+- DO NOT HAVE ANY EXTRA TEXT. only exactly what is supposed to be in the resume. remember you are a tool so explaining anything wont be seen by anyone.
+- Maintain length. If you remove a bullet, then add one somewhere else, if you add more into a project because it is more relevant than see if you can remove one.
+</guidelines>
 
-Scoring system is simplistic keyword overlap; optimize overlap AND authentic recruiter impact.
+<scoring-system>
+Scoring system is simplistic keyword overlap; optimize overlap AND authentic recruiter impact.Scoring system is simplistic keyword overlap; optimize overlap AND authentic recruiter impact.
+</scoring-system>
 
+<style>
+Keep the vibes professional.
 ONE SHOT: Provide final best version.
-NO extraneous text.`;
+NO extraneous text.
+</style>`;
 }
 
 function buildUserContent(): string {
   return `
-JOB DESCRIPTION:
+<job-description>
 ${get(jobDescription)}
+</job-description>
 
-JOB KEYWORDS (maximize overlap):
+<job-keywords>
 ${JSON.stringify(get(jobKeywords))}
+</job-keywords>
 
-CURRENT RESUME (markdown):
-${get(resumeMd)}
-
-RESUME KEYWORDS:
-${JSON.stringify(get(resumeKeywords))}
-
-CURRENT COMBINED SCORE:
-${get(combinedScore)}
-
-KNOWLEDGE BASE (safe source of truthful additions):
+<knowledge-base>
 ${get(knowlegeBase)}
+</knowledge-base>
 
-Remember:
-- Remove comments
-- Keep section structure logical
-- Maintain approximate length of uncommented material
-- Start output with first '#' header
+<resume>
+${get(resumeMd)}
+</resume>
+
+<resume-keywords>
+${JSON.stringify(get(resumeKeywords))}
+</resume-keywords>
+
+<score>
+${get(combinedScore)}
+</score>
+
 `;
 }
