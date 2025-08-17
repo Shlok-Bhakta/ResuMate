@@ -10,7 +10,8 @@
         keywords,
         tuneResume,
         tuning,
-        openRouterAIModel
+        openRouterAIModel,
+        userInstructions
     } from "$utils";
 
     let isRescoring = false;
@@ -154,8 +155,23 @@
                 </div>
             </div>
 
-            <!-- AI Tune Button -->
+            <!-- AI Tune Section -->
             <div class="mt-4">
+                <!-- User Instructions Input -->
+                <div class="mb-3">
+                    <label for="userInstructions" class="block text-sm font-medium text-text mb-2">
+                        Additional AI Instructions (Optional)
+                    </label>
+                    <textarea
+                        id="userInstructions"
+                        bind:value={$userInstructions}
+                        placeholder="Add any specific instructions for the AI optimization..."
+                        class="ai-instructions-input"
+                        rows="2"
+                    ></textarea>
+                </div>
+
+                <!-- AI Optimize Button -->
                 <button class="ai-button" onclick={tuneResume} disabled={$tuning}>
                     {#if $tuning}
                         <div class="ai-button-content">
@@ -463,6 +479,33 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .ai-instructions-input {
+        width: 100%;
+        background: rgba(30, 30, 46, 0.2);
+        border: 1px solid rgba(116, 199, 236, 0.2);
+        border-radius: 4px;
+        padding: 0.75rem;
+        color: rgb(205, 214, 244);
+        font-size: 0.875rem;
+        line-height: 1.4;
+        resize: vertical;
+        min-height: 60px;
+        transition: all 0.15s ease-out;
+        font-family: inherit;
+    }
+
+    .ai-instructions-input:focus {
+        outline: none;
+        border-color: rgba(116, 199, 236, 0.4);
+        background: rgba(30, 30, 46, 0.3);
+        box-shadow: 0 0 0 2px rgba(116, 199, 236, 0.1);
+    }
+
+    .ai-instructions-input::placeholder {
+        color: rgb(166, 173, 200);
+        opacity: 0.8;
     }
 
 </style>

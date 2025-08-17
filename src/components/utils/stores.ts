@@ -93,6 +93,7 @@ export const availableProjects = persisted<any[]>("availableProjects", []);
 /* Header & Tuning */
 export const header = persisted<string>("header", "");
 export const tuning = writable(false);
+export const userInstructions = writable<string>("");
 
 /* ========================================================================
  * Settings Stores

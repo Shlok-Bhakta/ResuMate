@@ -8,7 +8,8 @@ import {
   resumeKeywords,
   combinedScore,
   knowlegeBase,
-  tuning
+  tuning,
+  userInstructions
 } from "./stores";
 
 /**
@@ -125,6 +126,9 @@ function cleanStreamingContent(content: string): string {
   // Basic cleanup during streaming - just remove obvious artifacts
   let cleaned = content.replace(/```/g, "");
   
+  // Apply AI fingerprint cleanup during streaming
+  cleaned = removeAIFingerprints(cleaned);
+  
   // Try to start from first heading if content doesn't start with one
   if (!cleaned.startsWith("##")) {
     const idx = cleaned.indexOf("##");
@@ -146,6 +150,9 @@ function finalizeContent(content: string): void {
   // Apply more thorough cleanup for final content
   content = content.replace(/```\n.*?\n```/, "");
   content = content.replace(/```/g, "");
+  
+  // Apply comprehensive AI fingerprint cleanup
+  content = removeAIFingerprints(content);
 
   if (!content.startsWith("#")) {
     const idx = content.indexOf("#");
@@ -155,6 +162,49 @@ function finalizeContent(content: string): void {
   if (content.trim().length > 0) {
     resumeMd.set(content);
   }
+}
+
+/**
+ * Remove common AI model fingerprinting characters and replace with normal equivalents
+ */
+function removeAIFingerprints(text: string): string {
+  return text
+    // Replace various dash types with normal hyphens
+    .replace(/[‒‑–—―]/g, '-')  // en dash, em dash, figure dash, etc.
+    
+    // Replace various apostrophe/quote types with normal ones
+    .replace(/[''‚]/g, "'")     // left/right single quotes, low-9 quote
+    .replace(/[""„]/g, '"')     // left/right double quotes, low-9 quote
+    
+    // Replace various spaces with normal space
+    .replace(/[\u00A0\u2000-\u200B\u2028\u2029\u202F\u205F\u3000]/g, ' ')  // non-breaking, thin, zero-width, etc.
+    
+    // Replace various bullet points with normal hyphens
+    .replace(/[•·‧∙⁃]/g, '-')   // bullet, middle dot, etc.
+    
+    // Replace ellipsis character with three periods
+    .replace(/…/g, '...')
+    
+    // Replace fancy numbers with normal numbers
+    .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g, (match) => {
+      const superscripts = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+      return superscripts.indexOf(match).toString();
+    })
+    
+    // Remove zero-width characters entirely
+    .replace(/[\u200C\u200D\uFEFF]/g, '')  // zero-width non-joiner, joiner, BOM
+    
+    // Replace other common Unicode oddities
+    .replace(/[\u2010\u2011]/g, '-')  // hyphen, non-breaking hyphen
+    .replace(/\u2212/g, '-')          // minus sign
+    .replace(/\u00B7/g, '-')          // middle dot
+    
+    // Clean up multiple spaces but preserve paragraph breaks
+    .replace(/[ \t]+/g, ' ')          // Multiple spaces/tabs → single space
+    .replace(/\n{3,}/g, '\n\n')       // 3+ newlines → double newlines (preserve paragraphs)
+    .replace(/\n /g, '\n')            // Remove space after newline
+    .replace(/ \n/g, '\n')            // Remove space before newline
+    .trim();
 }
 
 /* ------------------------------------------------------------------------ */
@@ -211,6 +261,8 @@ NO extraneous text.
 }
 
 function buildUserContent(): string {
+  const userInstructionsValue = get(userInstructions).trim();
+  
   return `
 <job-description>
 ${get(jobDescription)}
@@ -236,5 +288,6 @@ ${JSON.stringify(get(resumeKeywords))}
 ${get(combinedScore)}
 </score>
 
+${userInstructionsValue ? `<user-instructions>\n${userInstructionsValue}\n</user-instructions>\n` : ''}
 `;
 }
