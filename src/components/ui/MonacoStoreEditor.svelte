@@ -125,6 +125,9 @@
         monaco.languages.setMonarchTokensProvider('customMarkdown', {
             tokenizer: {
                 root: [
+                    // HTML Comments - highest priority to override other rules
+                    [/<!--/, 'comment.html', '@comment'],
+                    
                     // Headers
                     [/^#{6}\s+.*$/, 'markup.heading.6.markdown'],
                     [/^#{5}\s+.*$/, 'markup.heading.5.markdown'],
@@ -161,6 +164,17 @@
                     // Code blocks
                     [/^```.*$/, 'markup.raw.block.markdown'],
                     [/^    .*$/, 'markup.raw.block.markdown'],
+                ],
+                comment: [
+                    // Inside comments, handle formatting but use comment color
+                    [/\*\*\*([^*]+)\*\*\*/, 'comment.bold.italic.markdown'],
+                    [/___([^_]+)___/, 'comment.bold.italic.markdown'],
+                    [/\*\*([^*]+)\*\*/, 'comment.bold.markdown'],
+                    [/__([^_]+)__/, 'comment.bold.markdown'],
+                    [/\*([^*]+)\*/, 'comment.italic.markdown'],
+                    [/_([^_]+)_/, 'comment.italic.markdown'],
+                    [/-->/, 'comment.html', '@pop'],
+                    [/./, 'comment.html']
                 ]
             }
         });
@@ -191,6 +205,12 @@
                 { token: 'markup.bold.markdown', foreground: 'eba0ac', fontStyle: 'bold' }, // bold - maroon
                 { token: 'markup.italic.markdown', foreground: 'eba0ac', fontStyle: 'italic' }, // italic - maroon
                 { token: 'markup.bold.italic.markdown', foreground: 'eba0ac', fontStyle: 'bold italic' }, // bold italic - maroon
+                
+                // Comments - override color but preserve formatting
+                { token: 'comment.html', foreground: '9399b2' }, // comment - overlay2
+                { token: 'comment.bold.markdown', foreground: '9399b2', fontStyle: 'bold' }, // comment bold - overlay2
+                { token: 'comment.italic.markdown', foreground: '9399b2', fontStyle: 'italic' }, // comment italic - overlay2
+                { token: 'comment.bold.italic.markdown', foreground: '9399b2', fontStyle: 'bold italic' }, // comment bold italic - overlay2
                 
                 { token: 'markup.quote.markdown', foreground: '7f849c' }, // blockquote - overlay1
                 { token: 'markup.list.markdown', foreground: 'f5c2e7' }, // list markers - pink
@@ -247,6 +267,94 @@
             lineNumbersMinChars: 3,
             fontFamily: "'CaskCovMono', 'JetBrains Mono', 'Fira Code', monospace",
         });
+
+        // Add markdown keyboard shortcuts
+        if (language === 'markdown') {
+            // Bold - Ctrl+B
+            editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyB, () => {
+                const selection = editor.getSelection();
+                if (selection) {
+                    const model = editor.getModel();
+                    if (model) {
+                        const selectedText = model.getValueInRange(selection);
+                        const newText = selectedText.startsWith('**') && selectedText.endsWith('**') 
+                            ? selectedText.slice(2, -2)
+                            : `**${selectedText}**`;
+                        editor.executeEdits('bold-toggle', [{
+                            range: selection,
+                            text: newText
+                        }]);
+                    }
+                }
+            });
+
+            // Italic - Ctrl+I
+            editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyI, () => {
+                const selection = editor.getSelection();
+                if (selection) {
+                    const model = editor.getModel();
+                    if (model) {
+                        const selectedText = model.getValueInRange(selection);
+                        const newText = selectedText.startsWith('*') && selectedText.endsWith('*') && !selectedText.startsWith('**')
+                            ? selectedText.slice(1, -1)
+                            : `*${selectedText}*`;
+                        editor.executeEdits('italic-toggle', [{
+                            range: selection,
+                            text: newText
+                        }]);
+                    }
+                }
+            });
+
+            // Comment lines - Ctrl+/
+            editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Slash, () => {
+                const selection = editor.getSelection();
+                if (selection) {
+                    const model = editor.getModel();
+                    if (model) {
+                        const startLine = selection.startLineNumber;
+                        const endLine = selection.endLineNumber;
+                        
+                        const edits = [];
+                        let allCommented = true;
+                        
+                        // Check if all lines are commented
+                        for (let lineNumber = startLine; lineNumber <= endLine; lineNumber++) {
+                            const lineContent = model.getLineContent(lineNumber).trim();
+                            if (lineContent !== '' && !(lineContent.startsWith('<!--') && lineContent.endsWith('-->'))) {
+                                allCommented = false;
+                                break;
+                            }
+                        }
+                        
+                        // Toggle comments
+                        for (let lineNumber = startLine; lineNumber <= endLine; lineNumber++) {
+                            const lineContent = model.getLineContent(lineNumber);
+                            const trimmed = lineContent.trim();
+                            
+                            if (trimmed === '') continue;
+                            
+                            const range = new monaco.Range(lineNumber, 1, lineNumber, lineContent.length + 1);
+                            
+                            if (allCommented && trimmed.startsWith('<!--') && trimmed.endsWith('-->')) {
+                                // Uncomment
+                                const uncommented = lineContent
+                                    .replace(/^\s*<!--\s*/, '')
+                                    .replace(/\s*-->\s*$/, '');
+                                edits.push({ range, text: uncommented });
+                            } else if (!allCommented && !(trimmed.startsWith('<!--') && trimmed.endsWith('-->'))) {
+                                // Comment
+                                edits.push({ range, text: `<!-- ${lineContent} -->` });
+                            }
+                        }
+                        
+                        if (edits.length > 0) {
+                            editor.executeEdits('comment-toggle', edits);
+                        }
+                    }
+                }
+            });
+        }
 
         // Update store when editor content changes
         const contentChangeDisposable = editor.onDidChangeModelContent(() => {
