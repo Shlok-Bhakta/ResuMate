@@ -5,6 +5,7 @@
 	 * Download: opens a new printable window with injected HTML + inlined stylesheet for accessibility / scraping.
 	 */
 	import ModeSwitcher from "./ModeSwitcher.svelte";
+	import { calculateOptimalSpacing } from "$lib/components/utils/measurementSpacing.ts";
 	import {
 		saveCurrentProject,
 		saveState,
@@ -49,6 +50,18 @@
 	async function downloadPdf() {
 		// if $resumeHtml's promise is not resolved yet, don't download
 		if ($resumeHtml && stylesheetContent !== "") {
+			const htmlContent = await $resumeHtml;
+			
+			// Calculate optimal spacing using the same function as preview
+			let adaptiveCSS = "";
+			try {
+				const result = await calculateOptimalSpacing(htmlContent, stylesheetContent);
+				adaptiveCSS = result.css;
+				console.log(`PDF optimal spacing: ${result.multiplier.toFixed(3)}x (estimated height: ${result.estimatedHeight}px)`);
+			} catch (error) {
+				console.error("Error optimizing PDF spacing:", error);
+			}
+
 			const content = `
 			         <!DOCTYPE html>
 			         <html>
@@ -85,10 +98,13 @@
 
 			                     }
 
+			                     /* Adaptive spacing overrides */
+			                     ${adaptiveCSS}
+
 			                     </style>
 			                 </head>
 			                 <body>
-			                     <div class="pdf-page">${await $resumeHtml}</div>
+			                     <div class="pdf-page">${htmlContent}</div>
 			                 </body>
 			             </html>
 			         `;
