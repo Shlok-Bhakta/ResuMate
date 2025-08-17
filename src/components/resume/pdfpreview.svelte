@@ -2,8 +2,8 @@
     import { calculateOptimalSpacing } from "$lib/components/utils/measurementSpacing.ts";
     
     let props = $props();
-    let container;
-    let iframe;
+    let container: HTMLElement;
+    let iframe: HTMLIFrameElement;
     let scale = $state(1);
     let stylesheetContent = $state("");
     let adaptiveCSS = $state("");
@@ -46,7 +46,7 @@
     }
 
     // Function to handle responsive scaling
-    function handleResize() {
+    function handleResize(_: any) {
         if (container && iframe) {
             const paperWidthPx = 8.5 * 96;  // 8.5 inches in pixels
             const paperHeightPx = 11 * 96;  // 11 inches in pixels
@@ -90,7 +90,7 @@
             adaptiveCSS = await optimizeSpacing(props.html, baseCSS);
 
             const iframeDoc =
-                iframe.contentDocument || iframe.contentWindow.document;
+                iframe.contentDocument || iframe.contentWindow?.document;
             if (!iframeDoc) return;
 
             iframeDoc.open();
