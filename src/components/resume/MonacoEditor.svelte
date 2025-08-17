@@ -1,9 +1,8 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import * as monaco from 'monaco-editor';
-    import MarkdownIt from 'markdown-it';
+    import MarkdownIt from 'markdown-it/dist/index.cjs.js';
     import { resumeMd, resumeHtml, score, jobDescription, keywords, saveCurrentProject, header, tableify, saveState } from "$utils";
-
     let editorContainer: HTMLDivElement;
     let editor: monaco.editor.IStandaloneCodeEditor;
     
