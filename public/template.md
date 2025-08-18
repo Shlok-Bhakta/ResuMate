@@ -229,4 +229,4 @@ This lets you add and remove stuff easily to create a better tuned resume
 
 <!-- - Ranked *7th* out of *80–90 teams* by deconstructing a Minecraft mod **JAR file**, reading over *8 billion Minecraft blocks*, and extracting *8 megabytes* of data to reconstruct a **Linux filesystem** in **Python** and retrieve the flag, contributing to a *14% increase* in overall team score. -->
 
-<!-- - Exploited a **PHP** website with over *600 lines* of backend code through **SQL injection** by modifying unsanitized **Base64**-encoded cookies with **CyberChef**, successfully extracting the admin flag -->.
+<!-- - Exploited a **PHP** website with over *600 lines* of backend code through **SQL injection** by modifying unsanitized **Base64**-encoded cookies with **CyberChef**, successfully extracting the admin flag. -->

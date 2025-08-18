@@ -25,6 +25,7 @@ export function tableify(md: string): string {
  * Post-process rendered HTML to convert flex markers into flexbox HTML.
  * This runs after markdown-it processing, so all formatting is preserved.
  * Also handles paragraph wrapping that markdown-it might add.
+ * Removes HTML comments to keep PDF output clean.
  */
 export function processFlexboxMarkers(html: string): string {
   // First, handle flex markers that might be wrapped in paragraphs
@@ -38,6 +39,9 @@ export function processFlexboxMarkers(html: string): string {
     /{{FLEX_START}}(.*?){{FLEX_MID}}(.*?){{FLEX_END}}/g,
     '<div class="flex-row"><span class="flex-left">$1</span><span class="flex-right">$2</span></div>'
   );
+  
+  // Remove HTML comments from final output (keeps PDF clean)
+  processed = processed.replace(/<!--.*?-->/gs, '');
   
   return processed;
 }
