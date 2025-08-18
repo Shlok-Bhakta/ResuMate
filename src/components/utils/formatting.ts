@@ -1,16 +1,11 @@
 /**
- * Convert custom inline separator syntax using '||' into a simple
- * two-column markdown table snippet. Mirrors original behavior:
+ * Convert custom inline separator syntax using '||' into markdown that will
+ * later be converted to ATS-friendly flexbox HTML. This preserves markdown
+ * formatting (bold, italic, etc.) while avoiding problematic table structures.
  * - Scans each line; skips lines starting with '<!--' (HTML comments)
- * - If a line contains '||', splits on first two occurrences producing:
- *     | left | right | 
- *     |:-|-:|
- * - Appends the alignment row immediately after the transformed line.
+ * - If a line contains '||', marks it with special delimiters for post-processing
  * - Leaves other lines untouched.
- *
- * Note: Original implementation inserted a newline plus the alignment row
- * directly into the line array position. We replicate that by embedding
- * the alignment row with a trailing newline.
+ * - Maintains identical visual appearance but uses flexbox instead of tables
  */
 export function tableify(md: string): string {
   const lines = md.split("\n");
@@ -19,8 +14,30 @@ export function tableify(md: string): string {
     if (line.startsWith("<!--")) continue;
     if (line.includes("||")) {
       let parts = line.split("||").slice(0, 2);
-      lines[i] = "| " + parts.join(" | ") + " |" + "\n|:-|-:|\n";
+      // Use special markers that will be replaced after markdown processing
+      lines[i] = `{{FLEX_START}}${parts[0].trim()}{{FLEX_MID}}${parts[1].trim()}{{FLEX_END}}`;
     }
   }
   return lines.join("\n");
+}
+
+/**
+ * Post-process rendered HTML to convert flex markers into flexbox HTML.
+ * This runs after markdown-it processing, so all formatting is preserved.
+ * Also handles paragraph wrapping that markdown-it might add.
+ */
+export function processFlexboxMarkers(html: string): string {
+  // First, handle flex markers that might be wrapped in paragraphs
+  let processed = html.replace(
+    /<p>{{FLEX_START}}(.*?){{FLEX_MID}}(.*?){{FLEX_END}}<\/p>/g,
+    '<div class="flex-row"><span class="flex-left">$1</span><span class="flex-right">$2</span></div>'
+  );
+  
+  // Also handle cases without paragraph wrapping
+  processed = processed.replace(
+    /{{FLEX_START}}(.*?){{FLEX_MID}}(.*?){{FLEX_END}}/g,
+    '<div class="flex-row"><span class="flex-left">$1</span><span class="flex-right">$2</span></div>'
+  );
+  
+  return processed;
 }

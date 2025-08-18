@@ -3,6 +3,7 @@
     import * as monaco from 'monaco-editor';
     import MarkdownIt from 'markdown-it/dist/index.cjs.js';
     import { resumeMd, resumeHtml, score, jobDescription, keywords, saveCurrentProject, header, tableify, saveState } from "$utils";
+    import { processFlexboxMarkers } from "$lib/components/utils/formatting.ts";
     let editorContainer: HTMLDivElement;
     let editor: monaco.editor.IStandaloneCodeEditor;
     
@@ -48,7 +49,8 @@
         renderTimeout = setTimeout(() => {
             const processedMarkdown = tableify($resumeMd);
             const fullContent = $header + processedMarkdown;
-            $resumeHtml = md.render(fullContent);
+            const renderedHtml = md.render(fullContent);
+            $resumeHtml = processFlexboxMarkers(renderedHtml);
         }, 200);
         
         // Debounce scoring

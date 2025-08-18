@@ -5,6 +5,7 @@
     import MarkdownIt from 'markdown-it';
     import type { Writable } from 'svelte/store';
     import { resumeHtml, score, jobDescription, header, tableify, saveState, saveCurrentProject } from "$utils";
+    import { processFlexboxMarkers } from "$lib/components/utils/formatting.ts";
 
     let editorContainer: HTMLDivElement;
     let editor: monaco.editor.IStandaloneCodeEditor;
@@ -99,7 +100,8 @@
             const storeValue = $store;
             const processedMarkdown = tableify(storeValue);
             const fullContent = $header + processedMarkdown;
-            $resumeHtml = md.render(fullContent);
+            const renderedHtml = md.render(fullContent);
+            $resumeHtml = processFlexboxMarkers(renderedHtml);
         }, 200);
         
         // Debounce scoring

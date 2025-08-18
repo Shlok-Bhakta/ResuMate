@@ -86,25 +86,35 @@ h3 {
   font-weight: bold;
 }
 
-/* Tables for alignment (education, projects, etc.) */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-  
-table td {
-    padding: 0;
-    vertical-align: top;
-}
-
-table td:first-child {
-  text-align: left;
-  text-decoration: underline;
+/* ATS-friendly flexbox alignment (replaces tables for better parsing) */
+.flex-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+    width: 100% !important;
+    margin-bottom: 0.01in;
+    min-height: 1em;
+    box-sizing: border-box;
 }
 
-table td:last-child {
-    text-align: right;
-    white-space: nowrap;
+.flex-left {
+    text-align: left !important;
+    flex: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-right: 0.2in !important; /* Ensure spacing from right element */
+    box-sizing: border-box;
+}
+
+.flex-right {
+    text-align: right !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    min-width: fit-content;
 }
 
 

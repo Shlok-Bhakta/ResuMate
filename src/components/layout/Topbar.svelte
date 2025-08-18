@@ -123,7 +123,7 @@
 						newWindow.print();
 						// Clean up after printing
 						setTimeout(() => {
-							newWindow.close();
+							// newWindow.close();
 							URL.revokeObjectURL(url);
 						}, 100);
 					}, 100);
