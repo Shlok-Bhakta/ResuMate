@@ -6,7 +6,7 @@
 // Target page dimensions (US Letter: 8.5" x 11")
 const PAGE_WIDTH_PX = 8.5 * 96; // 816px
 const PAGE_HEIGHT_PX = 11 * 96;  // 1056px
-const SAFE_HEIGHT_PX = PAGE_HEIGHT_PX - (0.15 * 96); // Leave 0.15" margin = ~1041px
+const SAFE_HEIGHT_PX = PAGE_HEIGHT_PX - (0.265 * 96); // Leave 0.265" margin = ~1030px
 
 export interface SpacingConfig {
   h1MarginTop: number;
@@ -114,7 +114,7 @@ export async function measureContentHeight(
                   background-color: white;
                   padding-left: 0.2in;
                   padding-right: 0.2in;
-                  padding-bottom: 0.05in;
+                  padding-bottom: 0.065in;
                   box-sizing: border-box;
                   font-family: 'Times New Roman', sans-serif;
                   font-size: 10pt;

@@ -100,7 +100,7 @@ export function generateAdaptiveCSS(density: number): string {
       display: flex;
       flex-direction: column;
       height: 100%;
-      min-height: 10.5in; /* Leave some margin for page boundaries */
+      min-height: 9.8in; /* Leave more margin at bottom for cleaner look */
     }
     
     .resume-section-flex {
