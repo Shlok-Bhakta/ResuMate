@@ -356,6 +356,56 @@
                     }
                 }
             });
+
+
+            // Comment lines - Ctrl+Shift+/
+            editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.Slash, () => {
+                const selection = editor.getSelection();
+                if (selection) {
+                    const model = editor.getModel();
+                    if (model) {
+                        const startLine = selection.startLineNumber;
+                        const endLine = selection.endLineNumber;
+                        
+                        const edits = [];
+                        let allCommented = true;
+                        
+                        // Check if all lines are commented
+                        for (let lineNumber = startLine; lineNumber <= endLine; lineNumber++) {
+                            const lineContent = model.getLineContent(lineNumber).trim();
+                            if (lineContent !== '' && !(lineContent.startsWith('<!--') && lineContent.endsWith('-->'))) {
+                                allCommented = false;
+                                break;
+                            }
+                        }
+                        
+                        // Toggle comments
+                        for (let lineNumber = startLine; lineNumber <= endLine; lineNumber++) {
+                            const lineContent = model.getLineContent(lineNumber);
+                            const trimmed = lineContent.trim();
+                            
+                            if (trimmed === '') continue;
+                            
+                            const range = new monaco.Range(lineNumber, 1, lineNumber, lineContent.length + 1);
+                            
+                            if (allCommented && trimmed.startsWith('<!--') && trimmed.endsWith('-->')) {
+                                // Uncomment
+                                const uncommented = lineContent
+                                    .replace(/^\s*<!--\s*/, '')
+                                    .replace(/\s*-->\s*$/, '');
+                                edits.push({ range, text: uncommented });
+                            } else if (!allCommented && !(trimmed.startsWith('<!--') && trimmed.endsWith('-->'))) {
+                                // Comment
+                                edits.push({ range, text: `<!-- ${lineContent} -->` });
+                            }
+                        }
+                        
+                        if (edits.length > 0) {
+                            editor.executeEdits('comment-toggle', edits);
+                        }
+                    }
+                }
+            });
         }
 
         // Update store when editor content changes
