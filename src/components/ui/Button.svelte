@@ -1,8 +1,6 @@
 <!-- Unified Button Component -->
 <script lang="ts">
-	import type { ComponentProps } from 'svelte';
-
-	interface Props extends Omit<ComponentProps<'button'>, 'class'> {
+	interface Props {
 		variant?: 'style1' | 'style2' | 'danger' | 'warning' | 'success' | 'icon';
 		size?: 'small' | 'medium' | 'large';
 		fullWidth?: boolean;
@@ -10,6 +8,14 @@
 		loadingText?: string;
 		children?: import('svelte').Snippet;
 		onclick?: (event: MouseEvent) => void;
+		disabled?: boolean;
+		type?: 'button' | 'submit' | 'reset';
+		'aria-label'?: string;
+		'aria-busy'?: boolean;
+		'aria-disabled'?: boolean;
+		title?: string;
+		id?: string;
+		class?: string;
 	}
 
 	let {
