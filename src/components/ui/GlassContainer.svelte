@@ -132,74 +132,32 @@
 	}
 
 	.glass-input {
-		background: rgba(26, 20, 38, 0.4);
+		background: rgba(18, 16, 28, 0.8);
 		color: rgb(205, 214, 244);
 		padding: 0.5rem 0.75rem;
-		position: relative;
-	}
-
-	.glass-input::before {
-		content: '';
-		position: absolute;
-		inset: -1px;
-		padding: 1px;
-		background: linear-gradient(135deg, 
-			rgba(160, 110, 240, 0.2) 0%,
-			rgba(203, 166, 247, 0.15) 50%,
-			rgba(160, 110, 240, 0.2) 100%
-		);
+		border: 2px solid rgba(180, 120, 250, 0.4) !important;
 		border-radius: 8px;
-		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-		mask-composite: subtract;
-		z-index: -1;
+		transition: all 0.2s ease;
 	}
 
-	.glass-input:focus-within::before {
-		background: linear-gradient(135deg, 
-			rgba(180, 120, 250, 0.5) 0%,
-			rgba(203, 166, 247, 0.4) 50%,
-			rgba(180, 120, 250, 0.5) 100%
-		);
-	}
-
-	.glass-input:focus-within {
-		box-shadow: inset 0 0 0 1px rgba(180, 120, 250, 0.4);
+	.glass-input:focus {
+		border-color: rgba(180, 120, 250, 0.8) !important;
+		box-shadow: 0 0 0 2px rgba(180, 120, 250, 0.3);
 		transition: none;
 	}
 
 	.glass-textarea {
-		background: rgba(26, 20, 38, 0.15);
+		background: rgba(18, 16, 28, 0.85);
 		color: rgb(205, 214, 244);
 		padding: 1rem;
-		position: relative;
-	}
-
-	.glass-textarea::before {
-		content: '';
-		position: absolute;
-		inset: -1px;
-		padding: 1px;
-		background: linear-gradient(135deg, 
-			rgba(160, 110, 240, 0.15) 0%,
-			rgba(203, 166, 247, 0.12) 50%,
-			rgba(160, 110, 240, 0.15) 100%
-		);
+		border: 2px solid rgba(180, 120, 250, 0.4) !important;
 		border-radius: 8px;
-		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-		mask-composite: subtract;
-		z-index: -1;
+		transition: all 0.2s ease;
 	}
 
-	.glass-textarea:focus-within::before {
-		background: linear-gradient(135deg, 
-			rgba(180, 120, 250, 0.4) 0%,
-			rgba(203, 166, 247, 0.35) 50%,
-			rgba(180, 120, 250, 0.4) 100%
-		);
-	}
-
-	.glass-textarea:focus-within {
-		box-shadow: inset 0 0 0 1px rgba(180, 120, 250, 0.4);
+	.glass-textarea:focus {
+		border-color: rgba(180, 120, 250, 0.8) !important;
+		box-shadow: 0 0 0 2px rgba(180, 120, 250, 0.3);
 	}
 
 	.glass-badge {

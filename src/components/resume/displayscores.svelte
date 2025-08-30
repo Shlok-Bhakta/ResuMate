@@ -483,9 +483,9 @@
 
     .ai-instructions-input {
         width: 100%;
-        background: rgba(30, 30, 46, 0.2);
-        border: 1px solid rgba(116, 199, 236, 0.2);
-        border-radius: 4px;
+        background: rgba(18, 16, 28, 0.85);
+        border: 2px solid rgba(180, 120, 250, 0.4) !important;
+        border-radius: 8px;
         padding: 0.75rem;
         color: rgb(205, 214, 244);
         font-size: 0.875rem;
@@ -494,13 +494,13 @@
         min-height: 60px;
         transition: all 0.15s ease-out;
         font-family: inherit;
+        outline: none;
     }
 
     .ai-instructions-input:focus {
-        outline: none;
-        border-color: rgba(116, 199, 236, 0.4);
-        background: rgba(30, 30, 46, 0.3);
-        box-shadow: 0 0 0 2px rgba(116, 199, 236, 0.1);
+        border-color: rgba(180, 120, 250, 0.8) !important;
+        box-shadow: 0 0 0 2px rgba(180, 120, 250, 0.3);
+        background: rgba(18, 16, 28, 0.9);
     }
 
     .ai-instructions-input::placeholder {
