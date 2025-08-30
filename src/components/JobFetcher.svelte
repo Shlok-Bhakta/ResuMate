@@ -1,5 +1,6 @@
 <script lang="ts">
     import { jobUrl, jobDescription } from "$utils";
+    import Button from "$ui/Button.svelte";
     
     let isLoading = false;
     let error = null;
@@ -65,21 +66,22 @@
                     {/if}
                 </div>
                 
-                <button
-                    class="glass-button px-4 py-2 font-medium flex items-center gap-2 min-w-[90px] justify-center"
+                <Button
+                    variant="style2"
+                    size="medium"
                     onclick={fetchContent}
-                    disabled={isLoading || !$jobUrl.trim()}
+                    loading={isLoading}
+                    loadingText="Fetching..."
+                    disabled={!$jobUrl.trim()}
+                    class="min-w-[90px] justify-center"
                 >
-                    {#if isLoading}
-                        <div class="w-4 h-4 border-2 border-base border-t-transparent rounded-full animate-spin"></div>
-                        <span>Fetching...</span>
-                    {:else}
+                    {#snippet children()}
                         <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                         <span>Import</span>
-                    {/if}
-                </button>
+                    {/snippet}
+                </Button>
             </div>
             
             {#if error}

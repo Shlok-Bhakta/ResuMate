@@ -6,6 +6,7 @@
 	 */
 	import ProjectList from "./ProjectList.svelte";
 	import { modalState } from "$utils";
+	import Button from "$ui/Button.svelte";
 
 	let {
 		collapsed = false,
@@ -40,21 +41,23 @@
 	aria-hidden={collapsed}
 >
 	<header class="flex items-center gap-2">
-		<button
-			type="button"
-			class="glass-icon-button p-2 text-text transition-all focus:outline-hidden focus:ring-2 focus:ring-blue/70"
+		<Button
+			variant="icon"
+			size="small"
 			onclick={onToggleSidebar}
 			aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
 			aria-expanded={!collapsed}
 			title={collapsed ? "Show sidebar" : "Hide sidebar"}
 		>
-			<img
-				src={collapsed ? "/ResuMate/icons/sidebaropen.svg" : "/ResuMate/icons/sidebarclose.svg"}
-				alt=""
-				class="w-5 h-5 pointer-events-none"
-				aria-hidden="true"
-			/>
-		</button>
+			{#snippet children()}
+				<img
+					src={collapsed ? "/ResuMate/icons/sidebaropen.svg" : "/ResuMate/icons/sidebarclose.svg"}
+					alt=""
+					class="w-5 h-5 pointer-events-none"
+					aria-hidden="true"
+				/>
+			{/snippet}
+		</Button>
 
 		<button
 			type="button"
@@ -68,14 +71,18 @@
 
 	<!-- Primary actions -->
 	<div class="flex flex-col gap-2" aria-hidden={collapsed}>
-		<button
-			type="button"
-			class="glass-button-primary px-3 py-2 rounded text-sm w-full text-left transition-all"
+		<Button
+			variant="style2"
+			size="small"
+			fullWidth={true}
 			onclick={openCreateDialog}
 			aria-label="New Project"
+			class="text-left"
 		>
-			<span class="font-semibold">New Project</span> <span aria-hidden="true">+</span>
-		</button>
+			{#snippet children()}
+				<span class="font-semibold">New Project</span> <span aria-hidden="true">+</span>
+			{/snippet}
+		</Button>
 	</div>
 
 	<div class="flex flex-col gap-2 flex-1 min-h-0" aria-hidden={collapsed}>
@@ -88,15 +95,19 @@
 	</div>
 
 	<footer class="mt-auto pt-2 flex flex-col gap-2" aria-hidden={collapsed}>
-		<button
-			type="button"
-			class="glass-button px-3 py-2 rounded text-sm text-text w-full text-left transition-all"
+		<Button
+			variant="style1"
+			size="small"
+			fullWidth={true}
 			onclick={toggleSettings}
 			aria-pressed={$modalState === "Settings"}
 			aria-label="Toggle settings"
+			class="text-left"
 		>
-			Settings
-		</button>
+			{#snippet children()}
+				Settings
+			{/snippet}
+		</Button>
 	</footer>
 </aside>
 

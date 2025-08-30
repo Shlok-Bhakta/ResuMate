@@ -7,6 +7,7 @@
 	 */
 	import { projectEditingStage } from "$utils";
 	import { onMount } from "svelte";
+	import Button from "$ui/Button.svelte";
 
 	const modes = ["Content", "Tuning", "Preview"] as const;
 	type Mode = typeof modes[number];
@@ -97,7 +98,7 @@
 			type="button"
 			tabindex={i === activeIndex ? 0 : -1}
 			aria-selected={i === activeIndex}
-			class="glass-tab px-3 py-2 rounded text-sm transition-all {i === activeIndex ? 'glass-tab-active' : 'glass-tab-inactive'}"
+			class="button-base button-{i === activeIndex ? 'style2' : 'style1'} button-small px-3 py-2 rounded text-sm transition-all"
 			onclick={() => setMode(mode)}
 			onfocus={() => (activeIndex = i)}
 		>
@@ -107,40 +108,80 @@
 </div>
 
 <style>
-	.glass-tab {
-		border: 1px solid rgba(116, 199, 236, 0.1);
+	/* Import Button component styles */
+	.button-base {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		border-radius: 8px;
 		font-weight: 500;
+		cursor: pointer;
 		transition: all 0.15s ease-out;
+		outline: none;
 		position: relative;
 		overflow: hidden;
-		border-radius: 4px;
+		text-decoration: none;
+		user-select: none;
 	}
 
-	.glass-tab-inactive {
-		background: rgba(30, 30, 46, 0.3);
-		color: rgb(186, 194, 222);
-		border-color: rgba(116, 199, 236, 0.1);
+	.button-base:focus-visible {
+		outline: 2px solid rgba(203, 166, 247, 0.7);
+		outline-offset: 2px;
 	}
 
-	.glass-tab-inactive:hover {
-		background: rgba(30, 30, 46, 0.5);
+	.button-base:disabled {
+		cursor: not-allowed;
+		opacity: 0.6;
+		transform: none !important;
+		box-shadow: none !important;
+	}
+
+	/* Style1 - Dark button with purple accent */
+	.button-style1 {
+		background: rgba(30, 30, 46, 0.4);
+		border: 1px solid rgba(203, 166, 247, 0.2);
 		color: rgb(205, 214, 244);
-		border-color: rgba(116, 199, 236, 0.3);
+	}
+
+	.button-style1:hover:not(:disabled) {
+		background: rgba(30, 30, 46, 0.6);
+		border-color: rgba(203, 166, 247, 0.4);
 		transform: translateY(-1px);
-		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 2px 8px rgba(203, 166, 247, 0.15);
 		transition: none;
 	}
 
-	.glass-tab-active {
+	/* Style2 - Purple gradient button */
+	.button-style2 {
 		background: linear-gradient(135deg, 
-			rgba(137, 180, 250, 0.8) 0%, 
-			rgba(116, 199, 236, 0.9) 50%,
-			rgba(94, 196, 188, 0.85) 100%
+			rgba(203, 166, 247, 0.85) 0%, 
+			rgba(137, 180, 250, 0.9) 30%,
+			rgba(180, 190, 254, 0.88) 70%,
+			rgba(203, 166, 247, 0.9) 100%
 		);
+		border: 1px solid rgba(203, 166, 247, 0.5);
 		color: rgb(17, 17, 27);
-		border-color: rgba(116, 199, 236, 0.4);
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-		transform: translateY(-1px);
+		font-weight: 600;
+		box-shadow: 0 2px 6px rgba(203, 166, 247, 0.2);
 	}
 
+	.button-style2:hover:not(:disabled) {
+		background: linear-gradient(135deg, 
+			rgba(203, 166, 247, 0.95) 0%, 
+			rgba(137, 180, 250, 1) 30%,
+			rgba(180, 190, 254, 0.98) 70%,
+			rgba(203, 166, 247, 1) 100%
+		);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 16px rgba(203, 166, 247, 0.35);
+		transition: none;
+	}
+
+	/* Small size */
+	.button-small {
+		padding: 0.375rem 0.75rem;
+		font-size: 0.75rem;
+		min-height: 1.75rem;
+	}
 </style>

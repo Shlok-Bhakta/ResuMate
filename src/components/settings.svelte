@@ -31,6 +31,7 @@
     } from "$utils";
     import "./settingseditor.css";
     import MonacoStoreEditor from "./ui/MonacoStoreEditor.svelte";
+    import Button from "$ui/Button.svelte";
 
     // Active tab state
     let activeTab = $state<'profile' | 'ai' | 'advanced' | 'sync'>('profile');
@@ -227,56 +228,74 @@
                 <div class="w-3 h-3 rounded-full bg-purple animate-pulse"></div>
                 <h1 id="settings-title" class="text-2xl font-bold text-text">Settings</h1>
             </div>
-            <button
-                type="button"
-                class="glass-icon-button p-2 transition-all focus:outline-hidden focus:ring-2 focus:ring-blue/70"
+            <Button
+                variant="icon"
+                size="small"
                 onclick={close}
                 aria-label="Close settings"
             >
-                <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </button>
+                {#snippet children()}
+                    <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                {/snippet}
+            </Button>
         </header>
 
         <!-- Tab Navigation -->
         <nav class="glass-settings-nav">
-            <button
-                class="glass-tab {activeTab === 'profile' ? 'glass-tab-active' : 'glass-tab-inactive'}"
+            <Button
+                variant={activeTab === 'profile' ? 'style2' : 'style1'}
+                size="small"
                 onclick={() => activeTab = 'profile'}
+                class="glass-tab {activeTab === 'profile' ? 'glass-tab-active' : 'glass-tab-inactive'}"
             >
-                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                </svg>
-                Profile
-            </button>
-            <button
-                class="glass-tab {activeTab === 'ai' ? 'glass-tab-active' : 'glass-tab-inactive'}"
+                {#snippet children()}
+                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                    </svg>
+                    Profile
+                {/snippet}
+            </Button>
+            <Button
+                variant={activeTab === 'ai' ? 'style2' : 'style1'}
+                size="small"
                 onclick={() => activeTab = 'ai'}
+                class="glass-tab {activeTab === 'ai' ? 'glass-tab-active' : 'glass-tab-inactive'}"
             >
-                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                AI & Keywords
-            </button>
-            <button
-                class="glass-tab {activeTab === 'advanced' ? 'glass-tab-active' : 'glass-tab-inactive'}"
+                {#snippet children()}
+                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    AI & Keywords
+                {/snippet}
+            </Button>
+            <Button
+                variant={activeTab === 'advanced' ? 'style2' : 'style1'}
+                size="small"
                 onclick={() => activeTab = 'advanced'}
+                class="glass-tab {activeTab === 'advanced' ? 'glass-tab-active' : 'glass-tab-inactive'}"
             >
-                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                </svg>
-                Advanced
-            </button>
-            <button
-                class="glass-tab {activeTab === 'sync' ? 'glass-tab-active' : 'glass-tab-inactive'}"
+                {#snippet children()}
+                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                    </svg>
+                    Advanced
+                {/snippet}
+            </Button>
+            <Button
+                variant={activeTab === 'sync' ? 'style2' : 'style1'}
+                size="small"
                 onclick={() => activeTab = 'sync'}
+                class="glass-tab {activeTab === 'sync' ? 'glass-tab-active' : 'glass-tab-inactive'}"
             >
-                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
-                </svg>
-                Sync & Data
-            </button>
+                {#snippet children()}
+                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                    </svg>
+                    Sync & Data
+                {/snippet}
+            </Button>
         </nav>
 
         <!-- Tab Content -->
@@ -419,12 +438,16 @@
                                 {#if showModelDropdown && usableModels.length > 0}
                                     <div class="glass-dropdown">
                                         {#each usableModels.filter(model => !$openRouterAIModel || model.name.toLowerCase().includes($openRouterAIModel.toLowerCase())) as model}
-                                            <button
+                                            <Button
+                                                variant="style1"
+                                                size="small"
                                                 class="glass-dropdown-item"
                                                 onmousedown={() => $openRouterAIModel = model.id}
                                             >
-                                                {model.name}
-                                            </button>
+                                                {#snippet children()}
+                                                    {model.name}
+                                                {/snippet}
+                                            </Button>
                                         {/each}
                                     </div>
                                 {/if}
@@ -450,12 +473,14 @@
                                 placeholder="Add new keyword..."
                                 onkeydown={(e) => e.key === 'Enter' && addKeyword()}
                             />
-                            <button class="glass-button-primary" onclick={addKeyword}>
-                                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-                                </svg>
-                                Add
-                            </button>
+                            <Button variant="style2" size="medium" onclick={addKeyword}>
+                                {#snippet children()}
+                                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                                    </svg>
+                                    Add
+                                {/snippet}
+                            </Button>
                         </div>
 
                         <input
@@ -469,11 +494,13 @@
                             {#each $keywords.filter(kw => keywordSearch.trim() === '' || kw.toLowerCase().includes(keywordSearch.toLowerCase())) as keyword}
                                 <div class="glass-keyword-item">
                                     <span>{keyword}</span>
-                                    <button class="glass-button-danger-small" onclick={() => removeKeyword(keyword)} aria-label={`Remove keyword ${keyword}`}>
-                                        <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
+                                    <Button variant="danger" size="small" onclick={() => removeKeyword(keyword)} aria-label={`Remove keyword ${keyword}`}>
+                                        {#snippet children()}
+                                            <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        {/snippet}
+                                    </Button>
                                 </div>
                             {/each}
                         </div>
@@ -490,12 +517,14 @@
                     </div>
 
                     <div class="glass-template-section">
-                        <button class="glass-button-secondary" onclick={fetchResTemplate}>
-                            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                            Fetch Default Template
-                        </button>
+                        <Button variant="style1" size="medium" onclick={fetchResTemplate}>
+                            {#snippet children()}
+                                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                                Fetch Default Template
+                            {/snippet}
+                        </Button>
 
                         <div class="glass-editor-container glass-editor-large">
                             <MonacoStoreEditor
@@ -516,12 +545,14 @@
                     </div>
 
                     <div class="glass-template-section">
-                        <button class="glass-button-secondary" onclick={fetchKnowledgeBase}>
-                            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                            Fetch Sample Knowledge Base
-                        </button>
+                        <Button variant="style1" size="medium" onclick={fetchKnowledgeBase}>
+                            {#snippet children()}
+                                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                                Fetch Sample Knowledge Base
+                            {/snippet}
+                        </Button>
                         <p class="glass-description">Knowledge passed to the AI when tuning your resume.</p>
 
                         <div class="glass-editor-container glass-editor-large">
@@ -544,18 +575,26 @@
                     </div>
 
                     <div class="glass-sync-tabs">
-                        <button
-                            class="glass-sync-tab {syncTab === 'send' ? 'glass-sync-tab-active' : ''}"
+                        <Button
+                            variant={syncTab === 'send' ? 'style2' : 'style1'}
+                            size="medium"
                             onclick={() => { syncTab = 'send'; resetSync(); }}
+                            class="flex-1"
                         >
-                            Send Data
-                        </button>
-                        <button
-                            class="glass-sync-tab {syncTab === 'receive' ? 'glass-sync-tab-active' : ''}"
+                            {#snippet children()}
+                                Send Data
+                            {/snippet}
+                        </Button>
+                        <Button
+                            variant={syncTab === 'receive' ? 'style2' : 'style1'}
+                            size="medium"
                             onclick={() => { syncTab = 'receive'; resetSync(); }}
+                            class="flex-1"
                         >
-                            Receive Data
-                        </button>
+                            {#snippet children()}
+                                Receive Data
+                            {/snippet}
+                        </Button>
                     </div>
 
                     {#if syncTab === 'send'}
@@ -569,13 +608,16 @@
                                 </div>
                             {/if}
                             
-                            <button
-                                class="glass-button-primary"
+                            <Button
+                                variant="style2"
+                                size="medium"
                                 onclick={startSender}
                                 disabled={['waiting', 'connected', 'sending'].includes(syncStatus.status)}
                             >
-                                Generate Code
-                            </button>
+                                {#snippet children()}
+                                    Generate Code
+                                {/snippet}
+                            </Button>
                         </div>
                     {:else}
                         <div class="glass-sync-content">
@@ -587,13 +629,16 @@
                                 placeholder="Enter code here (e.g., cat-dog-42)"
                             />
                             
-                            <button
-                                class="glass-button-primary"
+                            <Button
+                                variant="style2"
+                                size="medium"
                                 onclick={startReceiver}
                                 disabled={['waiting', 'connected', 'receiving'].includes(syncStatus.status)}
                             >
-                                Connect & Receive
-                            </button>
+                                {#snippet children()}
+                                    Connect & Receive
+                                {/snippet}
+                            </Button>
                         </div>
                     {/if}
 
@@ -615,12 +660,16 @@
                             <p class="glass-import-title">Import received data?</p>
                             <p class="glass-description">This will replace your current data.</p>
                             <div class="glass-import-actions">
-                                <button class="glass-button-success" onclick={() => showImportConfirm = false}>
-                                    Import
-                                </button>
-                                <button class="glass-button-danger" onclick={() => { showImportConfirm = false; resetSync(); }}>
-                                    Cancel
-                                </button>
+                                <Button variant="success" size="medium" onclick={() => showImportConfirm = false}>
+                                    {#snippet children()}
+                                        Import
+                                    {/snippet}
+                                </Button>
+                                <Button variant="danger" size="medium" onclick={() => { showImportConfirm = false; resetSync(); }}>
+                                    {#snippet children()}
+                                        Cancel
+                                    {/snippet}
+                                </Button>
                             </div>
                         </div>
                     {/if}
@@ -635,37 +684,47 @@
                     </div>
 
                     <div class="glass-data-actions">
-                        <button class="glass-button-secondary" onclick={downloadDBasJSON}>
-                            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                            Download Data
-                        </button>
+                        <Button variant="style1" size="medium" onclick={downloadDBasJSON}>
+                            {#snippet children()}
+                                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                                Download Data
+                            {/snippet}
+                        </Button>
 
-                        <label class="glass-button-secondary glass-file-upload">
+                        <label class="glass-file-upload">
                             <input type="file" accept=".json" onchange={handleFileUpload} />
-                            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            Upload Data
+                            <Button variant="style1" size="medium">
+                                {#snippet children()}
+                                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                    Upload Data
+                                {/snippet}
+                            </Button>
                         </label>
 
-                        <button 
-                            class="glass-button-danger {resetConfirmationState > 0 ? 'glass-button-shake' : ''}" 
+                        <Button 
+                            variant="danger"
+                            size="medium"
                             onclick={handleResetClick}
+                            class={resetConfirmationState > 0 ? 'glass-button-shake' : ''}
                         >
-                            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" clip-rule="evenodd" />
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 012 0v4a1 1 0 11-2 0V7zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V7a1 1 0 00-1-1z" clip-rule="evenodd" />
-                            </svg>
-                            {#if resetConfirmationState === 0}
-                                Reset Application
-                            {:else if resetConfirmationState === 1}
-                                Are you sure?
-                            {:else}
-                                ARE YOU REALLY SURE?
-                            {/if}
-                        </button>
+                            {#snippet children()}
+                                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 012 0v4a1 1 0 11-2 0V7zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V7a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                                {#if resetConfirmationState === 0}
+                                    Reset Application
+                                {:else if resetConfirmationState === 1}
+                                    Are you sure?
+                                {:else}
+                                    ARE YOU REALLY SURE?
+                                {/if}
+                            {/snippet}
+                        </Button>
                     </div>
                 </div>
             {/if}

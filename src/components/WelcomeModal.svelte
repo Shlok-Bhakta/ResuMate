@@ -1,6 +1,7 @@
 <script lang="ts">
     import { hasSeenWelcome } from "./utils/stores.js";
     import { onMount } from "svelte";
+    import Button from "$ui/Button.svelte";
     
     let ready = $state(false);
     let showWelcome = $derived(ready && !$hasSeenWelcome);
@@ -66,20 +67,26 @@
             
             <!-- Actions -->
             <div class="welcome-actions">
-                <button
-                    type="button"
+                <Button
+                    variant="style2"
+                    size="medium"
                     onclick={goToHelp}
                     class="welcome-button-primary"
                 >
-                    📚 Read the Guide
-                </button>
-                <button
-                    type="button"
+                    {#snippet children()}
+                        📚 Read the Guide
+                    {/snippet}
+                </Button>
+                <Button
+                    variant="style1"
+                    size="medium"
                     onclick={closeWelcome}
                     class="welcome-button-secondary"
                 >
-                    Let's Go!
-                </button>
+                    {#snippet children()}
+                        Let's Go!
+                    {/snippet}
+                </Button>
             </div>
         </div>
     </div>

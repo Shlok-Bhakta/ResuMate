@@ -16,6 +16,7 @@
 	import { renameProject, duplicateProject, deleteProject } from "$utils";
 	import { onMount } from "svelte";
 	import { get } from "svelte/store";
+	import Button from "$ui/Button.svelte";
 
 	// Local reactive state
 	let name = $state("");
@@ -131,17 +132,19 @@
 					<p class="text-sm text-subtext0">Rename, set job URL, duplicate or delete.</p>
 				</div>
 			</div>
-			<button
-				type="button"
-				class="glass-icon-button p-2 transition-all focus:outline-hidden focus:ring-2 focus:ring-blue/70"
+			<Button
+				variant="icon"
+				size="small"
 				onclick={close}
 				aria-label="Close dialog"
 				title="Close"
 			>
-				<svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-					<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-				</svg>
-			</button>
+				{#snippet children()}
+					<svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+						<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+					</svg>
+				{/snippet}
+			</Button>
 		</div>
 	</header>
 
@@ -180,66 +183,72 @@
 
 		<div class="flex flex-wrap items-center justify-between gap-3 pt-4">
 			<div class="flex items-center gap-2">
-				<button
-					type="button"
-					class="glass-button-danger px-3 py-2 transition-all flex items-center gap-2"
+				<Button
+					variant="danger"
+					size="small"
 					onclick={onDelete}
 					disabled={working}
 					aria-label="Delete project"
 				>
-					<img
-						src="/ResuMate/icons/trash.svg"
-						alt=""
-						aria-hidden="true"
-						class="w-4 h-4 pointer-events-none"
-					/>
-					<span>Delete</span>
-				</button>
-				<button
-					type="button"
-					class="glass-button-warning px-3 py-2 transition-all flex items-center gap-2"
+					{#snippet children()}
+						<img
+							src="/ResuMate/icons/trash.svg"
+							alt=""
+							aria-hidden="true"
+							class="w-4 h-4 pointer-events-none"
+						/>
+						<span>Delete</span>
+					{/snippet}
+				</Button>
+				<Button
+					variant="warning"
+					size="small"
 					onclick={onReset}
 					disabled={working}
 					aria-label="Reset resume to template"
 					title="Reset resume content to template"
 				>
-					<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-						<path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
-					</svg>
-					<span>Reset</span>
-				</button>
+					{#snippet children()}
+						<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+							<path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+						</svg>
+						<span>Reset</span>
+					{/snippet}
+				</Button>
 			</div>
 			<div class="flex items-center gap-3">
-				<button
-					type="button"
-					class="glass-button-secondary px-3 py-2 transition-all flex items-center gap-2"
+				<Button
+					variant="style1"
+					size="small"
 					onclick={onDuplicate}
 					disabled={working}
 					aria-label="Duplicate project"
 					title="Create a copy"
 				>
-					<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-						<path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
-						<path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z" />
-					</svg>
-					<span>Duplicate</span>
-				</button>
-				<button
+					{#snippet children()}
+						<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+							<path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
+							<path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z" />
+						</svg>
+						<span>Duplicate</span>
+					{/snippet}
+				</Button>
+				<Button
+					variant="style2"
+					size="small"
 					type="submit"
-					class="glass-button-primary px-4 py-2 transition-all flex items-center gap-2 min-w-[90px] justify-center"
-					disabled={working}
+					loading={working}
+					loadingText="Working..."
 					aria-label="Save changes"
+					class="min-w-[90px] justify-center"
 				>
-					{#if working}
-						<div class="w-4 h-4 border-2 border-base border-t-transparent rounded-full animate-spin"></div>
-						<span>Working...</span>
-					{:else}
+					{#snippet children()}
 						<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
 							<path d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414L2.586 8l3.707-3.707a1 1 0 011.414 0z" />
 						</svg>
 						<span>Save</span>
-					{/if}
-				</button>
+					{/snippet}
+				</Button>
 			</div>
 		</div>
 	</form>

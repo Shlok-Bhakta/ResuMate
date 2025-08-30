@@ -15,6 +15,7 @@
 		projectId
 	} from "$utils";
 	import { onMount } from "svelte";
+	import Button from "$ui/Button.svelte";
 
 	// Callback props
 	const {
@@ -160,15 +161,18 @@
 						</button>
 
 						<!-- Secondary: Edit (project options) -->
-						<button
-							type="button"
-							class="glass-edit-button px-2 py-1 rounded text-xs focus:ring-2 focus:ring-blue/70 transition-all"
+						<Button
+							variant="icon"
+							size="small"
 							aria-label={`Edit project ${proj[0]}`}
 							title="Project options"
 							onclick={() => editProject(proj)}
+							class="text-xs"
 						>
-							⋮
-						</button>
+							{#snippet children()}
+								⋮
+							{/snippet}
+						</Button>
 					</div>
 				</li>
 			{/each}

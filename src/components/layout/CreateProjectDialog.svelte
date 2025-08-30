@@ -12,6 +12,7 @@
 		saveCurrentProject,
 		modalState
 	} from "$utils";
+	import Button from "$ui/Button.svelte";
 
 	let name = $state("");
 	let url = $state("");
@@ -109,30 +110,32 @@
 		{/if}
 
 		<div class="flex justify-end gap-3 pt-4">
-			<button
-				type="button"
-				class="glass-button-secondary px-4 py-2 transition-all"
+			<Button
+				variant="style1"
+				size="medium"
 				onclick={close}
 				aria-label="Cancel"
 			>
-				Cancel
-			</button>
-			<button
+				{#snippet children()}
+					Cancel
+				{/snippet}
+			</Button>
+			<Button
+				variant="style2"
+				size="medium"
 				type="submit"
-				class="glass-button-primary px-4 py-2 transition-all flex items-center gap-2 min-w-[100px] justify-center"
-				disabled={creating}
+				loading={creating}
+				loadingText="Creating..."
 				aria-label="Create project"
+				class="min-w-[100px] justify-center"
 			>
-				{#if creating}
-					<div class="w-4 h-4 border-2 border-base border-t-transparent rounded-full animate-spin"></div>
-					<span>Creating...</span>
-				{:else}
+				{#snippet children()}
 					<svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
 						<path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
 					</svg>
 					<span>Create</span>
-				{/if}
-			</button>
+				{/snippet}
+			</Button>
 		</div>
 	</form>
 </div>

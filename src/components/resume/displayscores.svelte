@@ -13,6 +13,7 @@
         openRouterAIModel,
         userInstructions
     } from "$utils";
+    import Button from "$ui/Button.svelte";
 
     let isRescoring = false;
 
@@ -81,21 +82,20 @@
                         </div>
                     </div>
                     
-                    <button
-                        class="glass-button-small"
+                    <Button
+                        variant="style1"
+                        size="small"
                         onclick={handleRescore}
-                        disabled={isRescoring}
+                        loading={isRescoring}
+                        loadingText="Scoring..."
                     >
-                        {#if isRescoring}
-                            <div class="w-3 h-3 border-2 border-blue border-t-transparent rounded-full animate-spin"></div>
-                            <span>Scoring...</span>
-                        {:else}
+                        {#snippet children()}
                             <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
                             </svg>
                             <span>Refresh</span>
-                        {/if}
-                    </button>
+                        {/snippet}
+                    </Button>
                 </div>
                 
                 <!-- Progress Bar -->
@@ -172,24 +172,24 @@
                 </div>
 
                 <!-- AI Optimize Button -->
-                <button class="ai-button" onclick={tuneResume} disabled={$tuning}>
-                    {#if $tuning}
-                        <div class="ai-button-content">
-                            <div class="ai-spinner"></div>
-                            <span>Optimizing Resume...</span>
+                <Button 
+                    variant="purple"
+                    size="large"
+                    fullWidth={true}
+                    onclick={tuneResume}
+                    loading={$tuning}
+                    loadingText="Optimizing Resume..."
+                >
+                    {#snippet children()}
+                        <div class="ai-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H5V21H19V9Z"/>
+                            </svg>
                         </div>
-                    {:else}
-                        <div class="ai-button-content">
-                            <div class="ai-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H5V21H19V9Z"/>
-                                </svg>
-                            </div>
-                            <span>AI Optimize</span>
-                            <div class="ai-status-dot"></div>
-                        </div>
-                    {/if}
-                </button>
+                        <span>AI Optimize</span>
+                        <div class="ai-status-dot"></div>
+                    {/snippet}
+                </Button>
                 
             </div>
         </div>

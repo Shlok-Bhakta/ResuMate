@@ -15,6 +15,7 @@
 		resumeHtml,
 		jobName
 	} from "$utils";
+	import Button from "$ui/Button.svelte";
 
 	// Props from LayoutRoot
 	const { collapsed = false, onShowSidebar = () => {} } = $props<{ collapsed?: boolean; onShowSidebar?: () => void }>();
@@ -168,59 +169,68 @@
 >
 	<!-- Sidebar show when collapsed -->
 	{#if collapsed}
-		<button
-			type="button"
+		<Button
+			variant="icon"
+			size="small"
 			onclick={onShowSidebar}
-			class="glass-button-small p-2 text-text transition-all focus:outline-hidden focus:ring-2 focus:ring-blue/70"
 			aria-label="Show sidebar"
 			title="Show sidebar"
 		>
-			<img
-				src="/ResuMate/icons/sidebaropen.svg"
-				alt=""
-				aria-hidden="true"
-				class="w-5 h-5 pointer-events-none"
-			/>
-		</button>
+			{#snippet children()}
+				<img
+					src="/ResuMate/icons/sidebaropen.svg"
+					alt=""
+					aria-hidden="true"
+					class="w-5 h-5 pointer-events-none"
+				/>
+			{/snippet}
+		</Button>
 	{/if}
 
 	<!-- Project actions (Edit / Duplicate) -->
 	<div class="flex items-center gap-2">
-		<button
-			type="button"
+		<Button
+			variant="style1"
+			size="small"
 			onclick={openEdit}
-			class="glass-button px-3 py-2 text-text text-sm transition-all"
 			aria-label="Edit project"
 			title="Edit project"
 		>
-			Edit
-		</button>
-		<button
-			type="button"
+			{#snippet children()}
+				Edit
+			{/snippet}
+		</Button>
+		<Button
+			variant="style1"
+			size="small"
 			onclick={onDuplicate}
-			class="glass-button px-3 py-2 text-text text-sm transition-all"
 			aria-label="Duplicate project"
 			title="Duplicate project"
 		>
-			Duplicate
-		</button>
+			{#snippet children()}
+				Duplicate
+			{/snippet}
+		</Button>
 	</div>
 
 	<!-- Save -->
 	<div class="flex items-center gap-2">
-		<button
-			type="button"
+		<Button
+			variant="style2"
+			size="small"
 			onclick={saveProject}
-			class="glass-button-primary px-3 py-2 text-sm transition-all relative"
+			class="relative"
 			aria-describedby="save-status-text"
 			aria-label="Save project"
 		>
-			Save
-			<span
-				class={"absolute -top-1 -right-1 w-3 h-3 rounded-full " + saveStatusTone($saveState)}
-				aria-hidden="true"
-			></span>
-		</button>
+			{#snippet children()}
+				Save
+				<span
+					class={"absolute -top-1 -right-1 w-3 h-3 rounded-full " + saveStatusTone($saveState)}
+					aria-hidden="true"
+				></span>
+			{/snippet}
+		</Button>
 		<div
 			id="save-status-text"
 			role="status"
@@ -245,15 +255,18 @@
 	<ModeSwitcher />
 
 	<!-- Download PDF (prints HTML) -->
-	<button
-		type="button"
+	<Button
+		variant="style1"
+		size="small"
 		onclick={downloadPdf}
-		class="glass-button px-3 py-2 text-text text-sm transition-all ml-2"
+		class="ml-2"
 		aria-label="Download / Print resume"
 		title="Download / Print resume"
 	>
-		Download
-	</button>
+		{#snippet children()}
+			Download
+		{/snippet}
+	</Button>
 </div>
 
 <style>
