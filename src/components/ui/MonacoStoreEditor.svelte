@@ -4,7 +4,7 @@
     import 'monaco-editor/esm/vs/basic-languages/markdown/markdown.contribution';
     import MarkdownIt from 'markdown-it';
     import type { Writable } from 'svelte/store';
-    import { resumeHtml, score, jobDescription, header, tableify, saveState, saveCurrentProject } from "$utils";
+    import { resumeHtml, score, jobDescription, header, tableify, saveState, saveCurrentProject, tuning, tuningStreamContent } from "$utils";
     import { processFlexboxMarkers } from "$lib/components/utils/formatting.ts";
 
     let editorContainer: HTMLDivElement;
@@ -29,6 +29,14 @@
 
     // Track if we're updating from store to prevent loops
     let isUpdatingFromStore = false;
+    
+    // Create a reactive value that switches between store and streaming content during tuning
+    let displayContent = $derived.by(() => {
+        if ($tuning && $tuningStreamContent) {
+            return $tuningStreamContent;
+        }
+        return $store;
+    });
 
     // Effects for main resume editor
     const md = new MarkdownIt({
@@ -47,28 +55,41 @@
         $saveState = 0; // Pending state
     }
 
-    // Effect to sync store changes to editor
+    // Effect to sync display content to editor (switches between store and streaming content)
     $effect(() => {
-        const storeValue = $store;
+        const displayValue = displayContent;
         if (editor && !isUpdatingFromStore) {
             const currentValue = editor.getValue();
-            if (currentValue !== storeValue) {
-                console.log('Monaco updating from store, length:', storeValue.length);
+            if (currentValue !== displayValue) {
+                console.log('Monaco updating from displayContent, length:', displayValue.length, 'tuning:', $tuning);
                 const position = editor.getPosition();
                 const selection = editor.getSelection();
                 
                 isUpdatingFromStore = true;
-                editor.setValue(storeValue || '');
+                editor.setValue(displayValue || '');
                 
-                // Restore cursor position and selection
-                if (position) {
+                // Only restore cursor position if not streaming (to avoid jumping around)
+                if (!$tuning && position) {
                     editor.setPosition(position);
                 }
-                if (selection) {
+                if (!$tuning && selection) {
                     editor.setSelection(selection);
+                } else if ($tuning) {
+                    // During streaming, move cursor to end so user can see new content
+                    const model = editor.getModel();
+                    if (model) {
+                        const lastLine = model.getLineCount();
+                        const lastColumn = model.getLineMaxColumn(lastLine);
+                        editor.setPosition({ lineNumber: lastLine, column: lastColumn });
+                    }
                 }
                 isUpdatingFromStore = false;
             }
+        }
+        
+        // Update editor read-only state based on tuning
+        if (editor) {
+            editor.updateOptions({ readOnly: $tuning });
         }
     });
 
@@ -118,8 +139,8 @@
     });
 
     onMount(() => {
-        // Initialize Monaco editor with current store value
-        const initialValue = $store;
+        // Initialize Monaco editor with current display content
+        const initialValue = displayContent;
         
         // Register custom markdown language with Monarch grammar
         monaco.languages.register({ id: 'customMarkdown' });
@@ -408,9 +429,9 @@
             });
         }
 
-        // Update store when editor content changes
+        // Update store when editor content changes (but not during tuning streaming)
         const contentChangeDisposable = editor.onDidChangeModelContent(() => {
-            if (!isUpdatingFromStore) {
+            if (!isUpdatingFromStore && !$tuning) {
                 const value = editor.getValue();
                 store.set(value);
                 

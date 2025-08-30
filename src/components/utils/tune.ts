@@ -9,6 +9,7 @@ import {
   combinedScore,
   knowlegeBase,
   tuning,
+  tuningStreamContent,
   userInstructions
 } from "./stores";
 
@@ -23,6 +24,7 @@ export async function tuneResume(): Promise<void> {
   if (get(tuning)) return; // prevent concurrent runs
   
   tuning.set(true);
+  tuningStreamContent.set(""); // Clear streaming content at start
 
   try {
     const systemPrompt = buildSystemPrompt();
@@ -58,7 +60,7 @@ export async function tuneResume(): Promise<void> {
 }
 
 /**
- * Process streaming response directly into resumeMd
+ * Process streaming response with separate streaming and final content variables
  */
 async function processStreamingResponse(response: Response): Promise<void> {
   const reader = response.body?.getReader();
@@ -83,7 +85,7 @@ async function processStreamingResponse(response: Response): Promise<void> {
         if (line.startsWith('data: ')) {
           const data = line.slice(6);
           if (data === '[DONE]') {
-            // Final update
+            // Final update - set the editor store to complete accumulated content
             finalizeContent(accumulatedContent);
             return;
           }
@@ -94,11 +96,11 @@ async function processStreamingResponse(response: Response): Promise<void> {
             if (content) {
               accumulatedContent += content;
               
-              // Throttled updates directly to resumeMd
+              // Throttled updates to streaming display variable only
               const now = Date.now();
               if (now - lastUpdateTime >= UPDATE_INTERVAL) {
                 const cleanedContent = cleanStreamingContent(accumulatedContent);
-                resumeMd.set(cleanedContent);
+                tuningStreamContent.set(cleanedContent);
                 lastUpdateTime = now;
               }
             }
@@ -139,7 +141,7 @@ function cleanStreamingContent(content: string): string {
 }
 
 /**
- * Apply final cleanup and set the resume content
+ * Apply final cleanup and set the complete resume content to editor store
  */
 function finalizeContent(content: string): void {
   if (!content.trim()) {
@@ -160,7 +162,10 @@ function finalizeContent(content: string): void {
   }
 
   if (content.trim().length > 0) {
+    // Set the complete generated content to the editor store
     resumeMd.set(content);
+    // Clear the streaming content since we're done
+    tuningStreamContent.set("");
   }
 }
 
