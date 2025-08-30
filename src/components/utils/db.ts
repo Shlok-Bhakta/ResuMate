@@ -413,6 +413,29 @@ export async function resetApplication(): Promise<void> {
 }
 
 /* ========================================================================
+ * Keyword Management Functions
+ * ===================================================================== */
+
+/**
+ * Remove a keyword from the manual keywords list (used in settings)
+ */
+export function removeManualKeyword(keyword: string): void {
+  keywords.update(kws => kws.filter(k => k !== keyword));
+}
+
+/**
+ * Remove a keyword from the master keywords list (this will affect future scoring)
+ * This removes the keyword from the master list so it won't be detected in future scoring runs
+ */
+export function removeKeywordFromMaster(keyword: string): void {
+  keywords.update(kws => kws.filter(k => k !== keyword));
+  // Also remove from current display lists for immediate UI update
+  resumeKeywords.update(kws => kws.filter(k => k !== keyword));
+  jobKeywords.update(kws => kws.filter(k => k !== keyword));
+  overlappingKeywords.update(kws => kws.filter(k => k !== keyword));
+}
+
+/* ========================================================================
  * Internal Helpers (IndexedDB direct)
  * ===================================================================== */
 

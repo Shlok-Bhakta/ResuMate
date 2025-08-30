@@ -29,6 +29,7 @@
         openRouterAIModel,
         keywords,
     } from "$utils";
+    import { removeManualKeyword } from "$lib/components/utils/db.ts";
     import "./settingseditor.css";
     import MonacoStoreEditor from "./ui/MonacoStoreEditor.svelte";
     import Button from "$ui/Button.svelte";
@@ -143,9 +144,6 @@
         }
     }
 
-    function removeKeyword(keyword: string) {
-        keywords.update((kws) => kws.filter(k => k !== keyword));
-    }
 
     // File upload
     function handleFileUpload(event: any) {
@@ -494,7 +492,7 @@
                             {#each $keywords.filter(kw => keywordSearch.trim() === '' || kw.toLowerCase().includes(keywordSearch.toLowerCase())) as keyword}
                                 <div class="glass-keyword-item">
                                     <span>{keyword}</span>
-                                    <Button variant="danger" size="small" onclick={() => removeKeyword(keyword)} aria-label={`Remove keyword ${keyword}`}>
+                                    <Button variant="danger" size="small" onclick={() => removeManualKeyword(keyword)} aria-label={`Remove keyword ${keyword}`}>
                                         {#snippet children()}
                                             <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />

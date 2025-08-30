@@ -14,6 +14,7 @@
         userInstructions
     } from "$utils";
     import Button from "$ui/Button.svelte";
+    import { removeKeywordFromMaster } from "$lib/components/utils/db.ts";
 
     let isRescoring = false;
 
@@ -64,6 +65,7 @@
             isRescoring = false;
         }
     }
+
 </script>
 
 {#if $jobKeywords}
@@ -126,7 +128,17 @@
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                         </svg>
                                     {/if}
-                                    {resumeKeyword}
+                                    <span>{resumeKeyword}</span>
+                                    <button
+                                        class="keyword-remove-btn"
+                                        onclick={() => removeKeywordFromMaster(resumeKeyword)}
+                                        aria-label={`Remove keyword ${resumeKeyword}`}
+                                        title="Remove keyword"
+                                    >
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
                                 </div>
                             {/each}
                         </div>
@@ -147,7 +159,17 @@
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                         </svg>
                                     {/if}
-                                    {jobKeyword}
+                                    <span>{jobKeyword}</span>
+                                    <button
+                                        class="keyword-remove-btn"
+                                        onclick={() => removeKeywordFromMaster(jobKeyword)}
+                                        aria-label={`Remove keyword ${jobKeyword}`}
+                                        title="Remove keyword"
+                                    >
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
                                 </div>
                             {/each}
                         </div>
@@ -506,6 +528,40 @@
     .ai-instructions-input::placeholder {
         color: rgb(166, 173, 200);
         opacity: 0.8;
+    }
+
+    /* Tiny X button styling for high info density */
+    .keyword-remove-btn {
+        width: 12px;
+        height: 12px;
+        padding: 0;
+        margin: 0 0 0 4px;
+        border: 1px solid rgba(243, 139, 168, 0.5);
+        border-radius: 2px;
+        background: rgba(243, 139, 168, 0.2);
+        color: rgb(243, 139, 168);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.1s ease;
+        flex-shrink: 0;
+    }
+    
+    .keyword-remove-btn svg {
+        width: 8px;
+        height: 8px;
+        pointer-events: none;
+    }
+
+    .keyword-remove-btn:hover {
+        background: rgba(243, 139, 168, 0.3);
+        border-color: rgba(243, 139, 168, 0.7);
+    }
+
+    .keyword-remove-btn:active {
+        background: rgba(243, 139, 168, 0.4);
+        transform: scale(0.95);
     }
 
 </style>
