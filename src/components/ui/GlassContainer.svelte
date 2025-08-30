@@ -56,54 +56,155 @@
 	/* Container variants */
 	.glass-container {
 		background: linear-gradient(135deg, 
-			rgba(137, 180, 250, 0.02) 0%, 
-			rgba(116, 199, 236, 0.02) 30%,
-			rgba(180, 190, 254, 0.015) 70%,
-			rgba(137, 180, 250, 0.025) 100%
+			rgba(180, 120, 250, 0.03) 0%, 
+			rgba(160, 110, 240, 0.025) 30%,
+			rgba(140, 100, 230, 0.02) 70%,
+			rgba(180, 120, 250, 0.035) 100%
 		);
-		border: 1px solid rgba(137, 180, 250, 0.08);
+		position: relative;
+	}
+
+	.glass-container::before {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		padding: 1px;
+		background: linear-gradient(135deg, 
+			rgba(180, 120, 250, 0.15) 0%,
+			rgba(203, 166, 247, 0.12) 25%,
+			rgba(160, 110, 240, 0.1) 50%,
+			rgba(203, 166, 247, 0.12) 75%,
+			rgba(180, 120, 250, 0.15) 100%
+		);
+		border-radius: 8px;
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask-composite: subtract;
+		z-index: -1;
 	}
 
 	.glass-panel {
-		background: rgba(30, 30, 46, 0.15);
-		border: 1px solid rgba(116, 199, 236, 0.08);
+		background: rgba(26, 20, 38, 0.25);
 		color: rgb(205, 214, 244);
+		position: relative;
+	}
+
+	.glass-panel::before {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		padding: 1px;
+		background: linear-gradient(135deg, 
+			rgba(180, 120, 250, 0.15) 0%,
+			rgba(203, 166, 247, 0.12) 25%,
+			rgba(160, 110, 240, 0.1) 50%,
+			rgba(203, 166, 247, 0.12) 75%,
+			rgba(180, 120, 250, 0.15) 100%
+		);
+		border-radius: 8px;
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask-composite: subtract;
+		z-index: -1;
 	}
 
 	.glass-dialog {
-		background: rgba(30, 30, 46, 0.95);
-		border: 1px solid rgba(137, 180, 250, 0.3);
+		background: rgba(22, 18, 32, 0.95);
 		color: rgb(205, 214, 244);
-		box-shadow: 0 8px 32px rgba(17, 17, 27, 0.8);
+		box-shadow: 0 12px 40px rgba(13, 11, 21, 0.85);
+		position: relative;
+	}
+
+	.glass-dialog::before {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		padding: 1px;
+		background: linear-gradient(135deg, 
+			rgba(180, 120, 250, 0.4) 0%,
+			rgba(203, 166, 247, 0.35) 25%,
+			rgba(160, 110, 240, 0.3) 50%,
+			rgba(203, 166, 247, 0.35) 75%,
+			rgba(180, 120, 250, 0.4) 100%
+		);
+		border-radius: 8px;
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask-composite: subtract;
+		z-index: -1;
 	}
 
 	.glass-input {
-		background: rgba(30, 30, 46, 0.3);
-		border: 1px solid rgba(116, 199, 236, 0.15);
+		background: rgba(26, 20, 38, 0.4);
 		color: rgb(205, 214, 244);
 		padding: 0.5rem 0.75rem;
+		position: relative;
+	}
+
+	.glass-input::before {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		padding: 1px;
+		background: linear-gradient(135deg, 
+			rgba(160, 110, 240, 0.2) 0%,
+			rgba(203, 166, 247, 0.15) 50%,
+			rgba(160, 110, 240, 0.2) 100%
+		);
+		border-radius: 8px;
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask-composite: subtract;
+		z-index: -1;
+	}
+
+	.glass-input:focus-within::before {
+		background: linear-gradient(135deg, 
+			rgba(180, 120, 250, 0.5) 0%,
+			rgba(203, 166, 247, 0.4) 50%,
+			rgba(180, 120, 250, 0.5) 100%
+		);
 	}
 
 	.glass-input:focus-within {
-		border-color: rgba(116, 199, 236, 0.4);
-		box-shadow: inset 0 0 0 1px rgba(116, 199, 236, 0.3);
+		box-shadow: inset 0 0 0 1px rgba(180, 120, 250, 0.4);
 		transition: none;
 	}
 
 	.glass-textarea {
-		background: rgba(30, 30, 46, 0.1);
-		border: 1px solid rgba(116, 199, 236, 0.08);
+		background: rgba(26, 20, 38, 0.15);
 		color: rgb(205, 214, 244);
 		padding: 1rem;
+		position: relative;
+	}
+
+	.glass-textarea::before {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		padding: 1px;
+		background: linear-gradient(135deg, 
+			rgba(160, 110, 240, 0.15) 0%,
+			rgba(203, 166, 247, 0.12) 50%,
+			rgba(160, 110, 240, 0.15) 100%
+		);
+		border-radius: 8px;
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask-composite: subtract;
+		z-index: -1;
+	}
+
+	.glass-textarea:focus-within::before {
+		background: linear-gradient(135deg, 
+			rgba(180, 120, 250, 0.4) 0%,
+			rgba(203, 166, 247, 0.35) 50%,
+			rgba(180, 120, 250, 0.4) 100%
+		);
 	}
 
 	.glass-textarea:focus-within {
-		box-shadow: inset 0 0 0 1px rgba(137, 180, 250, 0.3);
+		box-shadow: inset 0 0 0 1px rgba(180, 120, 250, 0.4);
 	}
 
 	.glass-badge {
-		background: rgba(49, 50, 68, 0.8);
-		border: 1px solid rgba(137, 180, 250, 0.2);
+		background: rgba(42, 38, 58, 0.85);
+		border: 1px solid rgba(180, 120, 250, 0.25);
 		color: rgb(205, 214, 244);
 		padding: 0.25rem 0.5rem;
 		font-size: 0.75rem;
@@ -128,7 +229,7 @@
 	}
 
 	.glass-overlay {
-		background: rgba(30, 30, 46, 0.8);
+		background: rgba(22, 18, 32, 0.85);
 		border: none;
 		color: rgb(205, 214, 244);
 	}
@@ -216,12 +317,12 @@
 	}
 
 	.glass-base::-webkit-scrollbar-thumb {
-		background: rgba(137, 180, 250, 0.3);
+		background: rgba(180, 120, 250, 0.35);
 		border-radius: 4px;
 	}
 
 	.glass-base::-webkit-scrollbar-thumb:hover {
-		background: rgba(137, 180, 250, 0.5);
+		background: rgba(180, 120, 250, 0.55);
 	}
 
 	/* Placeholder styling for inputs/textareas */

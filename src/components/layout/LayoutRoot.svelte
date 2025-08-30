@@ -258,21 +258,21 @@
 <style>
 	.glass-resizer {
 		background: linear-gradient(180deg,
-			rgba(137, 180, 250, 0.1) 0%,
-			rgba(137, 180, 250, 0.2) 50%,
-			rgba(137, 180, 250, 0.1) 100%
+			rgba(180, 120, 250, 0.12) 0%,
+			rgba(160, 110, 240, 0.25) 50%,
+			rgba(180, 120, 250, 0.12) 100%
 		);
 		transition: all 0.3s ease;
 	}
 
 	.glass-resizer:hover {
 		background: linear-gradient(180deg,
-			rgba(137, 180, 250, 0.2) 0%,
-			rgba(137, 180, 250, 0.4) 50%,
-			rgba(137, 180, 250, 0.2) 100%
+			rgba(180, 120, 250, 0.25) 0%,
+			rgba(160, 110, 240, 0.45) 50%,
+			rgba(180, 120, 250, 0.25) 100%
 		);
 		width: 4px;
-		box-shadow: 0 0 16px rgba(137, 180, 250, 0.3);
+		box-shadow: 0 0 16px rgba(160, 110, 240, 0.4);
 	}
 
 	/* Interaction effects with background blobs */
@@ -286,9 +286,9 @@
 		height: 100%;
 		background: linear-gradient(180deg,
 			transparent 0%,
-			rgba(137, 180, 250, 0.6) 20%,
-			rgba(116, 199, 236, 0.8) 50%,
-			rgba(137, 180, 250, 0.6) 80%,
+			rgba(180, 120, 250, 0.7) 20%,
+			rgba(160, 110, 240, 0.9) 50%,
+			rgba(180, 120, 250, 0.7) 80%,
 			transparent 100%
 		);
 		opacity: 0;
@@ -301,9 +301,9 @@
 
 	.glass-modal-backdrop {
 		background: linear-gradient(135deg, 
-			rgba(17, 17, 27, 0.85) 0%, 
-			rgba(24, 24, 37, 0.9) 50%, 
-			rgba(17, 17, 27, 0.85) 100%
+			rgba(13, 11, 21, 0.88) 0%, 
+			rgba(18, 16, 28, 0.92) 50%, 
+			rgba(22, 18, 32, 0.88) 100%
 		);
 		backdrop-filter: saturate(180%) contrast(120%);
 	}

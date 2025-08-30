@@ -272,13 +272,13 @@
 <style>
 	.glass-topbar {
 		background: linear-gradient(135deg, 
-			rgba(137, 180, 250, 0.08) 0%, 
-			rgba(116, 199, 236, 0.06) 25%, 
-			rgba(166, 227, 161, 0.04) 50%, 
-			rgba(250, 179, 135, 0.06) 75%, 
-			rgba(243, 139, 168, 0.08) 100%
+			rgba(180, 120, 250, 0.08) 0%, 
+			rgba(160, 110, 240, 0.06) 25%, 
+			rgba(203, 166, 247, 0.05) 50%, 
+			rgba(140, 100, 230, 0.06) 75%, 
+			rgba(180, 120, 250, 0.08) 100%
 		);
-		border-bottom: 1px solid rgba(137, 180, 250, 0.2);
+		border-bottom: 1px solid rgba(180, 120, 250, 0.2);
 		box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
 	}
 
@@ -291,9 +291,9 @@
 		height: 1px;
 		background: linear-gradient(90deg, 
 			transparent,
-			rgba(137, 180, 250, 0.3) 20%,
-			rgba(116, 199, 236, 0.4) 50%,
-			rgba(137, 180, 250, 0.3) 80%,
+			rgba(180, 120, 250, 0.35) 20%,
+			rgba(203, 166, 247, 0.4) 50%,
+			rgba(160, 110, 240, 0.35) 80%,
 			transparent
 		);
 	}
@@ -307,7 +307,7 @@
 		height: 1px;
 		background: linear-gradient(90deg, 
 			transparent,
-			rgba(137, 180, 250, 0.15) 50%,
+			rgba(180, 120, 250, 0.18) 50%,
 			transparent
 		);
 	}

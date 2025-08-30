@@ -83,17 +83,44 @@
 <style>
     .glass-panel {
         background: linear-gradient(145deg, 
-            rgba(137, 180, 250, 0.03) 0%, 
-            rgba(30, 30, 46, 0.02) 25%, 
-            rgba(116, 199, 236, 0.02) 50%, 
-            rgba(30, 30, 46, 0.03) 75%, 
-            rgba(166, 227, 161, 0.02) 100%
+            rgba(180, 120, 250, 0.05) 0%, 
+            rgba(26, 20, 38, 0.6) 25%, 
+            rgba(140, 100, 230, 0.04) 50%, 
+            rgba(22, 18, 32, 0.7) 75%, 
+            rgba(160, 110, 240, 0.03) 100%
         );
-        border: 1px solid rgba(137, 180, 250, 0.08);
-        border-radius: 12px;
+        border: 1px solid;
+        border-image: linear-gradient(135deg, 
+            rgba(180, 120, 250, 0.2) 0%,
+            rgba(203, 166, 247, 0.15) 25%,
+            rgba(160, 110, 240, 0.12) 50%,
+            rgba(203, 166, 247, 0.15) 75%,
+            rgba(180, 120, 250, 0.2) 100%
+        ) 1;
+        border-radius: 8px;
+        position: relative;
         box-shadow: 
-            0 8px 32px rgba(0, 0, 0, 0.1),
-            inset 0 1px 0 rgba(137, 180, 250, 0.1);
+            0 12px 40px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(180, 120, 250, 0.15),
+            inset 0 -1px 0 rgba(140, 100, 230, 0.08);
+    }
+
+    .glass-panel::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        padding: 1px;
+        background: linear-gradient(135deg, 
+            rgba(180, 120, 250, 0.2) 0%,
+            rgba(203, 166, 247, 0.15) 25%,
+            rgba(160, 110, 240, 0.12) 50%,
+            rgba(203, 166, 247, 0.15) 75%,
+            rgba(180, 120, 250, 0.2) 100%
+        );
+        border-radius: 8px;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: subtract;
+        z-index: -1;
     }
 
     .blob {
@@ -109,7 +136,7 @@
     .blob-1 {
         width: 400px;
         height: 400px;
-        background: radial-gradient(circle, rgba(137, 180, 250, 0.6) 0%, rgba(116, 199, 236, 0.4) 50%, transparent 70%);
+        background: radial-gradient(circle, rgba(180, 120, 250, 0.4) 0%, rgba(140, 100, 230, 0.3) 50%, rgba(160, 80, 240, 0.2) 70%, transparent 85%);
         top: 5%;
         left: 5%;
         animation: float1 16s infinite;
@@ -118,7 +145,7 @@
     .blob-2 {
         width: 350px;
         height: 350px;
-        background: radial-gradient(circle, rgba(116, 199, 236, 0.5) 0%, rgba(94, 196, 188, 0.4) 50%, transparent 70%);
+        background: radial-gradient(circle, rgba(140, 100, 230, 0.35) 0%, rgba(120, 80, 200, 0.3) 50%, rgba(160, 110, 240, 0.2) 70%, transparent 85%);
         top: 55%;
         right: 10%;
         animation: float2 20s infinite;
@@ -127,7 +154,7 @@
     .blob-3 {
         width: 300px;
         height: 300px;
-        background: radial-gradient(circle, rgba(94, 196, 188, 0.4) 0%, rgba(116, 199, 236, 0.3) 50%, transparent 70%);
+        background: radial-gradient(circle, rgba(160, 110, 240, 0.3) 0%, rgba(120, 90, 220, 0.25) 50%, rgba(180, 120, 250, 0.15) 70%, transparent 85%);
         bottom: 15%;
         left: 45%;
         animation: float3 24s infinite;

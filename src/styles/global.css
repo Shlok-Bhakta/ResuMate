@@ -37,9 +37,11 @@ html {
   height: 100%;
   overflow: hidden;
   background: linear-gradient(135deg, 
-    rgba(17, 17, 27, 1) 0%, 
-    rgba(24, 24, 37, 1) 50%, 
-    rgba(30, 30, 46, 1) 100%
+    rgba(13, 11, 21, 1) 0%, 
+    rgba(18, 16, 28, 1) 25%,
+    rgba(22, 18, 32, 1) 50%, 
+    rgba(26, 20, 38, 1) 75%,
+    rgba(30, 22, 44, 1) 100%
   );
 }
 
