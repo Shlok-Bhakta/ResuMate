@@ -16,6 +16,7 @@
 	} from "$utils";
 	import { onMount } from "svelte";
 	import Button from "$ui/Button.svelte";
+	import GlassContainer from "$ui/GlassContainer.svelte";
 
 	// Callback props
 	const {
@@ -125,13 +126,15 @@
 <nav aria-label="Projects" class="flex flex-col gap-2 flex-1 min-h-0">
 	<!-- Search input -->
 	<div class="px-1">
-		<input
-			type="text"
-			class="glass-search w-full px-3 py-2 rounded text-text text-sm focus:outline-none placeholder:text-overlay1"
-			placeholder="Search projects..."
-			bind:value={search}
-			aria-label="Search projects"
-		/>
+		<GlassContainer variant="input" fullWidth size="small">
+			<input
+				type="text"
+				class="w-full bg-transparent border-none outline-none text-text text-sm placeholder:text-overlay1"
+				placeholder="Search projects..."
+				bind:value={search}
+				aria-label="Search projects"
+			/>
+		</GlassContainer>
 	</div>
 
 	{#if (filteredProjects?.length || 0) === 0}
@@ -181,19 +184,6 @@
 </nav>
 
 <style>
-	.glass-search {
-		background: rgba(30, 30, 46, 0.2);
-		border: 1px solid rgba(137, 180, 250, 0.15);
-		transition: all 0.15s ease-out;
-	}
-
-	.glass-search:focus {
-		background: rgba(30, 30, 46, 0.3);
-		border-color: rgba(137, 180, 250, 0.4);
-		box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.1);
-		transition: none;
-	}
-
 	.glass-project-button {
 		border: 1px solid rgba(137, 180, 250, 0.05);
 		transition: all 0.15s ease-out;
@@ -218,21 +208,5 @@
 		color: rgb(205, 214, 244);
 		transform: translateX(2px);
 		box-shadow: 2px 0 8px rgba(137, 180, 250, 0.15);
-	}
-
-	.glass-edit-button {
-		background: rgba(30, 30, 46, 0.15);
-		border: 1px solid rgba(137, 180, 250, 0.1);
-		color: rgb(186, 194, 222);
-		transition: all 0.15s ease-out;
-	}
-
-	.glass-edit-button:hover {
-		background: rgba(30, 30, 46, 0.3);
-		border-color: rgba(137, 180, 250, 0.25);
-		color: rgb(205, 214, 244);
-		transform: translateY(-1px);
-		box-shadow: 0 2px 6px rgba(137, 180, 250, 0.1);
-		transition: none;
 	}
 </style>

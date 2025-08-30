@@ -17,6 +17,7 @@
 	import { onMount } from "svelte";
 	import { get } from "svelte/store";
 	import Button from "$ui/Button.svelte";
+	import GlassContainer from "$ui/GlassContainer.svelte";
 
 	// Local reactive state
 	let name = $state("");
@@ -117,8 +118,10 @@
 </script>
 
 <!-- Dialog Panel -->
-<div
-	class="glass-dialog w-[min(560px,92vw)] p-6"
+<GlassContainer
+	variant="dialog"
+	size="large"
+	class="w-[min(560px,92vw)]"
 	role="document"
 	aria-labelledby="project-options-title"
 	onkeydown={onKeydown}
@@ -151,34 +154,38 @@
 	<form class="space-y-4" onsubmit={onSave}>
 		<div class="flex flex-col gap-2">
 			<label for="po-name" class="text-sm font-medium text-text">Project name</label>
-			<input
-				id="po-name"
-				class="glass-input px-3 py-2 focus:glass-input-focus transition-all duration-300"
-				bind:value={name}
-				placeholder="e.g., Company – Role"
-			/>
+			<GlassContainer variant="input" fullWidth>
+				<input
+					id="po-name"
+					class="w-full bg-transparent border-none outline-none"
+					bind:value={name}
+					placeholder="e.g., Company – Role"
+				/>
+			</GlassContainer>
 		</div>
 
 		<div class="flex flex-col gap-2">
 			<label for="po-url" class="text-sm font-medium text-text">Job URL (optional)</label>
-			<input
-				id="po-url"
-				class="glass-input px-3 py-2 focus:glass-input-focus transition-all duration-300"
-				bind:value={url}
-				placeholder="https://example.com/job"
-				inputmode="url"
-				spellcheck="false"
-			/>
+			<GlassContainer variant="input" fullWidth>
+				<input
+					id="po-url"
+					class="w-full bg-transparent border-none outline-none"
+					bind:value={url}
+					placeholder="https://example.com/job"
+					inputmode="url"
+					spellcheck="false"
+				/>
+			</GlassContainer>
 			<p class="text-xs text-subtext1">Used by the fetch tool to grab job description later.</p>
 		</div>
 
 		{#if errorMsg}
-			<div role="alert" class="glass-error flex items-center gap-2 p-3">
+			<GlassContainer variant="error" role="alert" class="flex items-center gap-2">
 				<svg class="w-4 h-4 text-red flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
 					<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
 				</svg>
 				<span class="text-sm text-red">{errorMsg}</span>
-			</div>
+			</GlassContainer>
 		{/if}
 
 		<div class="flex flex-wrap items-center justify-between gap-3 pt-4">
@@ -252,137 +259,5 @@
 			</div>
 		</div>
 	</form>
-</div>
+</GlassContainer>
 
-<style>
-	.glass-dialog {
-		background: rgba(30, 30, 46, 0.95);
-		border: 1px solid rgba(137, 180, 250, 0.3);
-		border-radius: 0.75rem;
-		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-		color: rgb(205, 214, 244);
-	}
-
-	.glass-icon-button {
-		background: rgba(17, 17, 27, 0.6);
-		border: 1px solid rgba(137, 180, 250, 0.3);
-		border-radius: 0.5rem;
-		color: rgb(205, 214, 244);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.glass-icon-button:hover {
-		background: rgba(17, 17, 27, 0.8);
-		border-color: rgba(137, 180, 250, 0.5);
-		transform: translateY(-1px);
-	}
-
-	.glass-input {
-		background: rgba(17, 17, 27, 0.8);
-		border: 1px solid rgba(137, 180, 250, 0.3);
-		border-radius: 0.5rem;
-		color: rgb(205, 214, 244);
-		font-size: 0.875rem;
-		outline: none;
-	}
-
-	.glass-input::placeholder {
-		color: rgb(108, 112, 134);
-	}
-
-	.glass-input-focus {
-		border-color: rgba(137, 180, 250, 0.6);
-		box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.2);
-		background: rgba(17, 17, 27, 0.9);
-	}
-
-	.glass-button-secondary {
-		background: rgba(17, 17, 27, 0.6);
-		border: 1px solid rgba(137, 180, 250, 0.3);
-		border-radius: 0.5rem;
-		color: rgb(205, 214, 244);
-		font-size: 0.875rem;
-		font-weight: 500;
-	}
-
-	.glass-button-secondary:hover:not(:disabled) {
-		background: rgba(17, 17, 27, 0.8);
-		border-color: rgba(137, 180, 250, 0.5);
-		transform: translateY(-1px);
-	}
-
-	.glass-button-primary {
-		background: linear-gradient(135deg, 
-			rgba(137, 180, 250, 0.8) 0%, 
-			rgba(116, 199, 236, 0.9) 100%
-		);
-		border: 1px solid rgba(137, 180, 250, 0.4);
-		border-radius: 0.5rem;
-		color: rgb(17, 17, 27);
-		font-size: 0.875rem;
-		font-weight: 600;
-		box-shadow: 0 2px 8px rgba(137, 180, 250, 0.2);
-	}
-
-	.glass-button-primary:hover:not(:disabled) {
-		background: linear-gradient(135deg, 
-			rgba(137, 180, 250, 0.9) 0%, 
-			rgba(116, 199, 236, 1) 100%
-		);
-		transform: translateY(-1px);
-		box-shadow: 0 4px 16px rgba(137, 180, 250, 0.3);
-	}
-
-	.glass-button-primary:disabled {
-		opacity: 0.6;
-		cursor: not-allowed;
-		transform: none;
-	}
-
-	.glass-button-danger {
-		background: rgba(243, 139, 168, 0.2);
-		border: 1px solid rgba(243, 139, 168, 0.4);
-		border-radius: 0.5rem;
-		color: rgb(243, 139, 168);
-		font-size: 0.875rem;
-		font-weight: 500;
-	}
-
-	.glass-button-danger:hover:not(:disabled) {
-		background: rgba(243, 139, 168, 0.3);
-		border-color: rgba(243, 139, 168, 0.6);
-		transform: translateY(-1px);
-		box-shadow: 0 2px 8px rgba(243, 139, 168, 0.2);
-	}
-
-	.glass-button-warning {
-		background: rgba(250, 179, 135, 0.2);
-		border: 1px solid rgba(250, 179, 135, 0.4);
-		border-radius: 0.5rem;
-		color: rgb(250, 179, 135);
-		font-size: 0.875rem;
-		font-weight: 500;
-	}
-
-	.glass-button-warning:hover:not(:disabled) {
-		background: rgba(250, 179, 135, 0.3);
-		border-color: rgba(250, 179, 135, 0.6);
-		transform: translateY(-1px);
-		box-shadow: 0 2px 8px rgba(250, 179, 135, 0.2);
-	}
-
-	.glass-button-danger:disabled,
-	.glass-button-warning:disabled {
-		opacity: 0.5;
-		cursor: not-allowed;
-		transform: none;
-	}
-
-	.glass-error {
-		background: rgba(243, 139, 168, 0.1);
-		border: 1px solid rgba(243, 139, 168, 0.3);
-		border-radius: 0.5rem;
-	}
-</style>
