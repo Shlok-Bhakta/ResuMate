@@ -37,7 +37,7 @@
 		}
 	};
 
-	const buttonClass = $derived(() => {
+	const buttonClass = $derived.by(() => {
 		const base = 'button-base';
 		const variantClass = `button-${variant}`;
 		const sizeClass = `button-${size}`;
