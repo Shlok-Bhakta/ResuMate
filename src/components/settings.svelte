@@ -55,6 +55,7 @@
     let syncTab = $state<'send' | 'receive'>('send');
     let receiverCode = $state('');
     let showImportConfirm = $state(false);
+    let fileInput: HTMLInputElement;
 
     // Monaco editor - no setup needed!
 
@@ -150,15 +151,24 @@
         const file = event.target.files[0];
         if (!file) return;
 
+        console.log("File selected:", file.name, file.size, "bytes");
+
         const reader = new FileReader();
-        reader.onload = function (e) {
+        reader.onload = async function (e) {
             try {
                 if (e.target?.result && typeof e.target.result === "string") {
-                    importIndexedDBs(e.target.result);
+                    console.log("File content length:", e.target.result.length);
+                    await importIndexedDBs(e.target.result);
+                    console.log("Import completed successfully");
                 }
             } catch (error) {
-                console.error("Error parsing JSON file:", error);
+                console.error("Error importing file:", error);
+                alert(`Import failed: ${error.message || error}`);
             }
+        };
+        reader.onerror = function() {
+            console.error("Error reading file");
+            alert("Error reading file");
         };
         reader.readAsText(file);
     }
@@ -691,17 +701,15 @@
                             {/snippet}
                         </Button>
 
-                        <label class="glass-file-upload">
-                            <input type="file" accept=".json" onchange={handleFileUpload} />
-                            <Button variant="style1" size="medium">
-                                {#snippet children()}
-                                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                    Upload Data
-                                {/snippet}
-                            </Button>
-                        </label>
+                        <input type="file" accept=".json" onchange={handleFileUpload} bind:this={fileInput} style="display: none;" />
+                        <Button variant="style1" size="medium" onclick={() => fileInput?.click()}>
+                            {#snippet children()}
+                                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Upload Data
+                            {/snippet}
+                        </Button>
 
                         <Button 
                             variant="danger"
@@ -1359,15 +1367,6 @@
         gap: 1rem;
     }
 
-    .glass-file-upload {
-        position: relative;
-    }
-
-    .glass-file-upload input {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-    }
 
     @keyframes pulse {
         0%, 100% { opacity: 1; }
