@@ -42,11 +42,11 @@ If you are not brainrotted into oblivion, scroll down to see the full guide and 
 
 
 ## In Depth Guide. Please read for a good time using this :/
-Start by hitting the settings button in the bottom left of the screen
+Start by hitting the settings button on the bottom left of the screen
 <img width="1677" height="987" alt="go to settings" src="https://github.com/user-attachments/assets/3a4aa125-d10d-4078-a45a-9605df6f1d80" />
 
 ### Basic Info
-Enter all your info. The slider determine wether it will be on the document
+Enter all your info. The slider will determine wether the data will be on the document
 <img width="1314" height="618" alt="Add Personal info" src="https://github.com/user-attachments/assets/01b43c58-0caf-4132-aee4-e1dd3a70670b" />
 
 
@@ -67,7 +67,7 @@ I have added 1 special thing to this markdown though
 ```
 The || is a split. This means all the stuff to the left of the || is left alligned and all the stuff to the right of the || is right alligned
 
-The markdown editor has a pretty handy feature where you can do `ALT + /` on any selected lines and it will comment them out quicky including and excluding them from the reusme
+The markdown editor has a pretty handy feature where you can do `ALT + /` on any selected lines and it will comment them out quicky including and excluding them from the reusme. If it doesn't work then refresh the page I am still looking into this.
 
 Next is the knowlege bank. Here is the content you will be giving the AI for tuning. Anything that is not in the resume could be good to have. Some voulenteer or military experience that is not in the content of the resume is good to have. Also having deep descriptions with tons of numbers and data that the AI can use to make a better taylored resume could also be nice. 
 
@@ -81,6 +81,7 @@ You can transfer all your resume data between browsers or devices using the **Se
 
 - Both sender and receiver must use a browser that supports IndexedDB and PeerJS (most modern browsers).
 - Internet connection is required for PeerJS signaling.
+- Some networks may not work like the TAMUWIFI network :( so fall back to sending json and opening it
 
 #### Steps
 
