@@ -145,6 +145,23 @@
         }
     }
 
+    async function refetchDefaultKeywords() {
+        try {
+            const response = await fetch("/ResuMate/keywords.txt");
+            const text = await response.text();
+            let textcleaned = text
+                .split("\n")
+                .map((skill) => skill.toLowerCase())
+                .filter((skill, index, self) => self.indexOf(skill) === index);
+            textcleaned.sort((a, b) => b.length - a.length);
+            $keywords = textcleaned;
+            console.log(`Loaded ${textcleaned.length} default keywords`);
+        } catch (error) {
+            console.error("Failed to fetch default keywords:", error);
+            alert("Failed to fetch default keywords");
+        }
+    }
+
 
     // File upload
     function handleFileUpload(event: any) {
@@ -466,10 +483,20 @@
 
                 <div class="glass-section">
                     <div class="glass-section-header">
-                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.94l1-4H9.03z" clip-rule="evenodd" />
-                        </svg>
-                        <h2>Keywords Management</h2>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.94l1-4H9.03z" clip-rule="evenodd" />
+                            </svg>
+                            <h2>Keywords Management</h2>
+                        </div>
+                        <Button variant="style1" size="small" onclick={refetchDefaultKeywords}>
+                            {#snippet children()}
+                                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                                </svg>
+                                Reload Defaults
+                            {/snippet}
+                        </Button>
                     </div>
 
                     <div class="glass-keywords-manager">
@@ -876,6 +903,7 @@
     .glass-section-header {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 0.75rem;
         margin-bottom: 1.5rem;
         color: rgb(137, 180, 250);
